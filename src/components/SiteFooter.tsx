@@ -1,4 +1,4 @@
-import { Globe, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Globe, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 
 const companyLinks = [
   { label: "Carreiras", href: "#carreiras" },
@@ -10,6 +10,13 @@ const productLinks = [
   { label: "Documentação", href: "#" },
   { label: "Privacidade", href: "#" },
   { label: "Termos de Uso", href: "#" },
+];
+
+const socialLinks = [
+  { label: "X", href: "#", Icon: Twitter },
+  { label: "Instagram", href: "#", Icon: Instagram },
+  { label: "LinkedIn", href: "#", Icon: Linkedin },
+  { label: "YouTube", href: "#", Icon: Youtube },
 ];
 
 const SiteFooter = () => {
@@ -28,15 +35,24 @@ const SiteFooter = () => {
             segurança e visibilidade.
           </p>
           <div className="mt-4 flex items-center gap-3">
-            {[Twitter, Linkedin, Youtube].map((Icon) => (
+            {socialLinks.map(({ label, href, Icon }) => (
               <a
-                key={Icon.displayName}
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/80 transition hover:border-white/20 hover:bg-white/10"
+                key={label}
+                href={href}
+                aria-label={label}
+                className="flex h-10 w-10 items-center justify-center text-white/80 transition hover:text-white"
               >
-                <Icon size={18} />
+                <Icon size={20} />
               </a>
             ))}
+          </div>
+          <div className="mt-4 flex items-center gap-2 text-sm text-white/70">
+            <Globe size={18} className="text-white/80" />
+            <select className="bg-transparent text-white/80 outline-none">
+              <option className="bg-[#0B1117] text-white">Português BR</option>
+              <option className="bg-[#0B1117] text-white">English</option>
+              <option className="bg-[#0B1117] text-white">Español</option>
+            </select>
           </div>
         </div>
 
@@ -68,18 +84,6 @@ const SiteFooter = () => {
                 </a>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-3 text-sm text-white/70">
-          <h4 className="text-base font-semibold text-white">Idioma</h4>
-          <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2">
-            <Globe size={18} className="text-white/80" />
-            <select className="bg-transparent text-white/80 outline-none">
-              <option className="bg-[#0B1117] text-white">Português BR</option>
-              <option className="bg-[#0B1117] text-white">English</option>
-              <option className="bg-[#0B1117] text-white">Español</option>
-            </select>
           </div>
         </div>
       </div>
