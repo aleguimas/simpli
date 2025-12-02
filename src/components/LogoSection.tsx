@@ -72,7 +72,7 @@ const LogoSection = () => {
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="h-14 w-auto object-contain opacity-95 md:h-16"
+                  className="block h-14 w-auto object-contain opacity-95 md:h-16"
                   loading="lazy"
                 />
               </div>
