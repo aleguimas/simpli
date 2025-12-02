@@ -50,24 +50,26 @@ const LogoSection = () => {
         </p>
       </div>
 
-      <div className="relative mx-auto mt-12 max-w-5xl overflow-hidden">
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-[#0B1117] to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-[#0B1117] to-transparent" />
+      <div className="relative mx-auto mt-12 max-w-6xl overflow-hidden">
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#0B1117] to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#0B1117] to-transparent" />
 
-        <div className="flex animate-[logo-marquee_28s_linear_infinite] items-center gap-3 bg-black px-4 py-3 md:gap-4">
-          {[...logos, ...logos].map((logo, idx) => (
-            <div
-              key={`${logo.name}-${idx}`}
-              className="flex h-16 flex-shrink-0 items-center justify-center rounded-xl bg-black px-4"
-            >
-              <img
-                src={logo.src}
-                alt={logo.name}
-                className="h-12 w-auto object-contain opacity-95"
-                loading="lazy"
-              />
-            </div>
-          ))}
+        <div className="h-20 w-full overflow-hidden rounded-xl border border-white/10 bg-black">
+          <div className="flex min-w-[200%] animate-[logo-marquee_26s_linear_infinite] items-center gap-3 px-4 md:gap-4">
+            {[...logos, ...logos].map((logo, idx) => (
+              <div
+                key={`${logo.name}-${idx}`}
+                className="flex h-16 flex-shrink-0 items-center justify-center bg-black px-5"
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  className="h-12 w-auto object-contain opacity-95"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
