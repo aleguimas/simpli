@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import HeroSection from "@/components/HeroSection";
 import LogoSection from "@/components/LogoSection";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
-import BenefitsSection from "@/components/BenefitsSection";
+import ServicesSection from "@/components/ServicesSection";
 import EnterpriseSection from "@/components/EnterpriseSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CallToActionSection from "@/components/CallToActionSection";
@@ -30,7 +30,7 @@ const Index = () => {
         <HeroSection />
         <LogoSection />
         <CaseStudiesSection />
-        <BenefitsSection />
+        <ServicesSection />
         <EnterpriseSection />
         <TestimonialsSection />
         <CallToActionSection />

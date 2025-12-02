@@ -11,7 +11,7 @@ import {
 
 const navLinks = [
   { label: "Início", href: "#hero" },
-  { label: "Sobre", href: "#beneficios" },
+  { label: "Sobre", href: "#servicos" },
 ];
 
 const serviceItems = [
