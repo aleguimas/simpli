@@ -50,12 +50,12 @@ const LogoSection = () => {
         </p>
       </div>
 
-      <div className="relative mx-auto mt-12 max-w-6xl overflow-hidden">
+      <div className="relative -mx-6 mt-12 overflow-hidden md:-mx-10">
         <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#0B1117] to-transparent" />
         <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#0B1117] to-transparent" />
 
-        <div className="h-20 w-full overflow-hidden rounded-xl border border-white/10 bg-black">
-          <div className="flex h-full min-w-[200%] animate-[logo-marquee_26s_linear_infinite] items-center gap-3 px-4 md:gap-4">
+        <div className="h-20 w-full overflow-hidden border-y border-white/10 bg-black md:h-24">
+          <div className="flex h-full min-w-[200%] animate-[logo-marquee_26s_linear_infinite] items-center gap-3 px-4 md:gap-6 md:px-6">
             {[...logos, ...logos].map((logo, idx) => (
               <div
                 key={`${logo.name}-${idx}`}
@@ -64,7 +64,7 @@ const LogoSection = () => {
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="h-14 w-auto object-contain opacity-95"
+                  className="h-14 w-auto object-contain opacity-95 md:h-16"
                   loading="lazy"
                 />
               </div>
