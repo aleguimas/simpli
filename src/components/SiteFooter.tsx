@@ -17,7 +17,12 @@ const SiteFooter = () => {
     <footer className="border-t border-white/10 bg-[#0B1117] px-6 py-12 md:px-10 md:py-16">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm">
-          <div className="text-xl font-semibold text-white">Tela.com</div>
+          <img
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEbdyYejjVKFxBWctPSJI0ik5y678jHYdwnRfN"
+            alt="Tela.com logo"
+            className="h-9 w-auto"
+            loading="lazy"
+          />
           <p className="mt-3 text-sm text-white/70">
             Automação inteligente para equipes que querem eficiência com
             segurança e visibilidade.

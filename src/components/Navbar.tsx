@@ -74,8 +74,13 @@ const Navbar = () => {
       )}
     >
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6 md:px-10">
-        <a href="#hero" className="text-lg font-semibold tracking-tight">
-          Tela<span className="text-white/60">.com</span>
+        <a href="#hero" className="flex items-center">
+          <img
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEbdyYejjVKFxBWctPSJI0ik5y678jHYdwnRfN"
+            alt="Tela.com logo"
+            className="h-8 w-auto"
+            loading="lazy"
+          />
         </a>
 
         <nav className="hidden items-center gap-4 text-sm text-white/80 md:flex">
