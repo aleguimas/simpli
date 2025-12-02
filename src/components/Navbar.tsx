@@ -50,7 +50,7 @@ const Navbar = () => {
             Entrar
           </Button>
           <Button className="bg-white text-black hover:bg-white/90">
-            Agendar Demo
+            Fale conosco
           </Button>
         </div>
       </div>

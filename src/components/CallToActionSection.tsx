@@ -18,7 +18,7 @@ const CallToActionSection = () => {
           times.
         </p>
         <Button className="mt-8 h-12 rounded-xl bg-white px-6 text-base font-semibold text-black hover:bg-white/90">
-          Agendar Demo
+          Fale conosco
         </Button>
       </div>
     </section>
