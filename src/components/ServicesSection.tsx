@@ -48,18 +48,18 @@ const ServicesSection = () => {
           </h2>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {services.map(({ slug, title, description, Icon }) => (
             <Link
               key={slug}
               to={`/servicos/${slug}`}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#101722]/90 p-6 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#121a26] hover:shadow-xl hover:shadow-black/30"
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#101722]/90 p-6 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#121a26] hover:shadow-xl hover:shadow-black/30"
             >
               <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
                 <div className="h-full w-full bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
               </div>
-              <div className="relative flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/10 text-white">
+              <div className="relative flex flex-col gap-4">
+                <div className="flex aspect-square h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/10 p-3 text-white">
                   <Icon size={22} />
                 </div>
                 <div>
