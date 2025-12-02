@@ -143,13 +143,7 @@ const Navbar = () => {
           </DropdownMenu>
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <Button
-            variant="outline"
-            className="border-white/20 bg-white/5 text-white transition-colors hover:border-white hover:bg-white hover:text-black"
-          >
-            Entrar
-          </Button>
+        <div className="hidden items-center md:flex">
           <Button className="bg-white text-black transition-colors hover:border hover:border-white/70 hover:bg-transparent hover:text-white">
             Fale conosco
           </Button>
