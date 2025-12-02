@@ -55,11 +55,11 @@ const LogoSection = () => {
         <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#0B1117] to-transparent" />
 
         <div className="h-20 w-full overflow-hidden border-y border-white/10 bg-black md:h-24">
-          <div className="flex h-full min-w-[200%] animate-[logo-marquee_26s_linear_infinite] items-center gap-3 px-4 md:gap-6 md:px-6">
+          <div className="flex w-max animate-[logo-marquee_26s_linear_infinite] items-center gap-3 px-4 md:gap-6 md:px-6">
             {[...logos, ...logos].map((logo, idx) => (
               <div
                 key={`${logo.name}-${idx}`}
-                className="flex h-full flex-shrink-0 items-center justify-center bg-black px-5"
+                className="flex h-full flex-shrink-0 items-center justify-center px-5"
               >
                 <img
                   src={logo.src}
