@@ -1,9 +1,10 @@
 import { Globe, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 
 const companyLinks = [
-  { label: "Carreiras", href: "#carreiras" },
-  { label: "Changelog", href: "#changelog" },
-  { label: "Status", href: "#" },
+  { label: "Início", href: "#hero" },
+  { label: "Sobre", href: "#servicos" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Treinamento", href: "#treinamento" },
 ];
 
 const productLinks = [
@@ -46,7 +47,7 @@ const SiteFooter = () => {
               </a>
             ))}
           </div>
-          <div className="mt-4 flex items-center gap-2 text-sm text-white/70">
+          <div className="mt-4 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70">
             <Globe size={18} className="text-white/80" />
             <select className="bg-transparent text-white/80 outline-none">
               <option className="bg-[#0B1117] text-white">Português BR</option>
@@ -88,7 +89,7 @@ const SiteFooter = () => {
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-6xl border-t border-white/5 pt-6 text-xs text-white/50">
-        © {new Date().getFullYear()} Simplí. Todos os direitos reservados.
+        © {new Date().getFullYear()} Tela. Todos os direitos reservados.
       </div>
     </footer>
   );
