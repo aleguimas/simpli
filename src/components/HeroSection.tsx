@@ -34,12 +34,12 @@ const HeroSection = () => {
             seu negócio.
           </p>
           <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Button className="h-12 rounded-xl bg-white px-7 text-lg text-black hover:bg-white/90">
+            <Button className="h-12 rounded-xl border border-white/0 bg-white px-7 text-lg text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white">
               Fale conosco
             </Button>
             <Button
               variant="outline"
-              className="h-12 rounded-xl border-white/20 bg-white/5 px-7 text-lg text-white hover:bg-white/10"
+              className="h-12 rounded-xl border-white/20 bg-white/5 px-7 text-lg text-white transition-colors hover:border-white hover:bg-white hover:text-black"
             >
               Ver Casos de Uso
             </Button>
