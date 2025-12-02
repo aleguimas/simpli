@@ -53,8 +53,7 @@ const LogoSection = () => {
     >
       <div className="mx-auto max-w-4xl">
         <p className="text-xl font-medium text-white/80 md:text-2xl">
-          Empresas líderes do Brasil confiam no Tela para automatizar seu
-          trabalho
+          Empresas que confiam no trabalho da Simplí
         </p>
       </div>
 
