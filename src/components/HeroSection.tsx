@@ -26,7 +26,7 @@ const HeroSection = () => {
             className="mx-auto h-8 w-auto opacity-90"
             loading="lazy"
           />
-          <h1 className="mt-5 pb-1 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-4xl font-semibold leading-[1.12] text-transparent sm:text-5xl md:text-6xl">
+          <h1 className="mt-5 pb-2 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-4xl font-semibold leading-[1.22] text-transparent sm:text-5xl md:text-6xl">
             Simplificando a Transformação Digital
           </h1>
           <p className="mt-8 text-base leading-relaxed text-white/70 sm:text-lg">
