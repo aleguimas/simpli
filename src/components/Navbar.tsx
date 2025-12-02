@@ -146,11 +146,11 @@ const Navbar = () => {
         <div className="hidden items-center gap-3 md:flex">
           <Button
             variant="outline"
-            className="border-white/20 bg-white/5 text-white hover:bg-white/10"
+            className="border-white/20 bg-white/5 text-white transition-colors hover:border-white hover:bg-white hover:text-black"
           >
             Entrar
           </Button>
-          <Button className="bg-white text-black hover:bg-white/90">
+          <Button className="bg-white text-black transition-colors hover:border hover:border-white/70 hover:bg-transparent hover:text-white">
             Fale conosco
           </Button>
         </div>
