@@ -23,23 +23,23 @@ const HeroSection = () => {
           <img
             src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEbdyYejjVKFxBWctPSJI0ik5y678jHYdwnRfN"
             alt="Tela.com logo"
-            className="mx-auto h-8 w-auto opacity-90"
+            className="mx-auto h-10 w-auto opacity-90 md:h-12"
             loading="lazy"
           />
-          <h1 className="mt-5 pb-3 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-4xl font-semibold leading-[1.32] text-transparent sm:text-5xl md:text-6xl">
+          <h1 className="mt-6 pb-3 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-5xl font-semibold leading-[1.28] text-transparent sm:text-6xl md:text-7xl">
             Simplificando a Transformação Digital
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
+          <p className="mt-6 text-lg leading-relaxed text-white/70 sm:text-xl">
             Transformamos ideias em soluções digitais inovadoras que impulsionam
             seu negócio.
           </p>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Button className="h-11 rounded-xl bg-white text-black hover:bg-white/90">
+          <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Button className="h-12 rounded-xl bg-white px-7 text-lg text-black hover:bg-white/90">
               Fale conosco
             </Button>
             <Button
               variant="outline"
-              className="h-11 rounded-xl border-white/20 bg-white/5 text-white hover:bg-white/10"
+              className="h-12 rounded-xl border-white/20 bg-white/5 px-7 text-lg text-white hover:bg-white/10"
             >
               Ver Casos de Uso
             </Button>
