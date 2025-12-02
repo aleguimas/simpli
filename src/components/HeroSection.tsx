@@ -24,11 +24,11 @@ const HeroSection = () => {
             Automação com IA • Tela
           </p>
           <h1 className="mt-4 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-4xl font-semibold text-transparent sm:text-5xl md:text-6xl">
-            Agentes de IA que trabalham pra você
+            Simplificando a Transformação Digital
           </h1>
           <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
-            Escale operações, reduza tarefas repetitivas e ganhe eficiência com
-            fluxos inteligentes que combinam humanos e IA em um só lugar.
+            Transformamos ideias em soluções digitais inovadoras que impulsionam
+            seu negócio.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Button className="h-11 rounded-xl bg-white text-black hover:bg-white/90">
