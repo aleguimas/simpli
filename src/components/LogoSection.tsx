@@ -49,7 +49,7 @@ const LogoSection = () => {
   return (
     <section
       id="logos"
-      className="bg-[#0B1117] px-6 py-16 text-center md:px-10 md:py-24"
+      className="bg-[#0B1117] px-6 pt-16 pb-10 text-center md:px-10 md:pt-24 md:pb-16"
     >
       <div className="mx-auto max-w-4xl">
         <p className="text-xl font-medium text-white/80 md:text-2xl">
