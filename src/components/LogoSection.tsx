@@ -1,11 +1,40 @@
 const logos = [
-  { name: "Jusbrasil", size: "w-28" },
-  { name: "Vórtx", size: "w-20" },
-  { name: "Ultra", size: "w-20" },
-  { name: "Unimed", size: "w-24" },
-  { name: "Loft", size: "w-16" },
-  { name: "Ernesto Borges", size: "w-32" },
-  { name: "Machado Meyer", size: "w-28" },
+  {
+    name: "Jusbrasil",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsExco3zp1deM4WnXr8mYypFcOSAIPdGN6HTBV5",
+  },
+  {
+    name: "Vórtx",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEeV4mo4HwmbEWM0XkgZJFzH2fIpryq6ljVUcL",
+  },
+  {
+    name: "Ultra",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE6z8rLjZi7ToKv0aVd1rQNMIwhkCLjxBuJelc",
+  },
+  {
+    name: "Unimed",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx",
+  },
+  {
+    name: "Loft",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEZk3ALi084ELxHGVik9czW6J02qOuRdIN3ab7",
+  },
+  {
+    name: "Ernesto Borges",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE9eYm9hDgbF0t15iaTHu2MwmqGXE64dxSPAlr",
+  },
+  {
+    name: "Machado Meyer",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEuo0aOjAlPByubrRVGe5Dxp4iNQ2vSgwE3McT",
+  },
+  {
+    name: "Cliente 8",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE0rGDOPsDdGhWFTqILyHmz7NRarSkQjZciOft",
+  },
+  {
+    name: "Cliente 9",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE8Rz6idcLjbd3I06D4f7MtmWUYaBeikhEJP1z",
+  },
 ];
 
 const LogoSection = () => {
@@ -20,18 +49,34 @@ const LogoSection = () => {
           trabalho
         </p>
       </div>
-      <div className="mx-auto mt-12 flex max-w-5xl flex-wrap items-center justify-center gap-6 sm:gap-10">
-        {logos.map((logo) => (
-          <div
-            key={logo.name}
-            className={`flex h-16 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 ${logo.size}`}
-          >
-            <span className="text-sm font-semibold text-white/80">
-              {logo.name}
-            </span>
-          </div>
-        ))}
+
+      <div className="relative mx-auto mt-12 max-w-5xl overflow-hidden">
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-[#0B1117] to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-[#0B1117] to-transparent" />
+
+        <div className="flex animate-[logo-marquee_28s_linear_infinite] items-center gap-6 md:gap-10">
+          {[...logos, ...logos].map((logo, idx) => (
+            <div
+              key={`${logo.name}-${idx}`}
+              className="flex h-16 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-5"
+            >
+              <img
+                src={logo.src}
+                alt={logo.name}
+                className="h-10 w-auto object-contain opacity-90"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
       </div>
+
+      <style>{`
+        @keyframes logo-marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 };
