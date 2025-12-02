@@ -35,6 +35,10 @@ const logos = [
     name: "Cliente 9",
     src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE8Rz6idcLjbd3I06D4f7MtmWUYaBeikhEJP1z",
   },
+  {
+    name: "Cliente 10",
+    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEaye5CLpBF8GkPX2cwREIBOA1KmZx5CpJ0DtM",
+  },
 ];
 
 const LogoSection = () => {
