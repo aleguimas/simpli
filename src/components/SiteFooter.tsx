@@ -88,7 +88,7 @@ const SiteFooter = () => {
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-6xl border-t border-white/5 pt-6 text-xs text-white/50">
-        © {new Date().getFullYear()} Tela. Todos os direitos reservados.
+        © {new Date().getFullYear()} Simplí. Todos os direitos reservados.
       </div>
     </footer>
   );
