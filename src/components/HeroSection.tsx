@@ -20,13 +20,16 @@ const HeroSection = () => {
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
-          <p className="text-sm uppercase tracking-[0.2em] text-white/60">
-            Automação com IA • Tela
-          </p>
-          <h1 className="mt-4 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-4xl font-semibold text-transparent sm:text-5xl md:text-6xl">
+          <img
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEbdyYejjVKFxBWctPSJI0ik5y678jHYdwnRfN"
+            alt="Tela.com logo"
+            className="mx-auto h-8 w-auto opacity-90"
+            loading="lazy"
+          />
+          <h1 className="mt-5 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-4xl font-semibold leading-tight text-transparent sm:text-5xl md:text-6xl">
             Simplificando a Transformação Digital
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
+          <p className="mt-8 text-base leading-relaxed text-white/70 sm:text-lg">
             Transformamos ideias em soluções digitais inovadoras que impulsionam
             seu negócio.
           </p>
