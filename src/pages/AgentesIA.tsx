@@ -127,7 +127,7 @@ const AgentesIA = () => {
           </div>
           <Card className="border-white/10 bg-white/5">
             <CardContent className="flex flex-col items-center gap-3 p-6 text-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#4ADE80] to-[#22d3ee] text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black">
                 <MessageCircle size={22} />
               </div>
               <h3 className="text-xl font-semibold text-white">Tecnologias Avançadas</h3>
@@ -152,7 +152,7 @@ const AgentesIA = () => {
                 className="border-white/10 bg-white/5 shadow-lg shadow-black/30"
               >
                 <CardContent className="flex flex-col gap-3 p-5 text-left">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#4ADE80] to-[#22d3ee] text-[#0C140F]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#86efac] to-white text-black">
                     <item.icon size={18} />
                   </div>
                   <div>
@@ -217,7 +217,7 @@ const AgentesIA = () => {
                 </blockquote>
               </div>
               <div className="flex flex-col items-center gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 text-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#4ADE80] to-[#22d3ee] text-[#0C140F]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black">
                   <MessageCircle size={20} />
                 </div>
                 <div>
