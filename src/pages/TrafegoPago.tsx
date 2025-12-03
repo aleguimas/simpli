@@ -67,95 +67,97 @@ const TrafegoPago = () => {
       <Navbar />
 
       <main>
-        <section className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(120deg, #7afa00 0%, #00e686 40%, #00d8ff 100%)",
-            }}
-          />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.18),_transparent_45%)]" />
-          <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-5 text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/80">
-              Performance Digital
+        <section
+          className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
+          style={{
+            backgroundImage:
+              "linear-gradient(120deg, rgba(12,20,15,0.88), rgba(28,51,36,0.78)), linear-gradient(135deg, rgba(122,250,0,0.35), rgba(0,216,255,0.28))",
+          }}
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.1),_transparent_45%)]" />
+          <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+              <Megaphone size={14} /> Performance Digital
+            </div>
+            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+              Tráfego Pago que Gera Resultados Reais
+            </h1>
+            <p className="max-w-3xl text-lg text-white/75 md:text-xl">
+              Planejamos, executamos e otimizamos campanhas em Google Ads, Meta Ads
+              e LinkedIn Ads para maximizar ROI com inteligência e velocidade.
             </p>
-            <h1 className="text-4xl font-semibold md:text-5xl">Tráfego Pago</h1>
-            <p className="max-w-2xl text-lg text-white/90 md:text-xl">
-              Gerenciamos campanhas de marketing digital para maximizar seu ROI.
-            </p>
-            <Button
-              asChild
-              className="h-12 rounded-xl border border-transparent bg-white px-7 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
-            >
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                Solicitar Orçamento
-              </a>
-            </Button>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button
+                asChild
+                className="h-12 min-w-[180px] rounded-xl border border-transparent bg-white px-7 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
+              >
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                  Solicitar Orçamento
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                className="h-12 min-w-[180px] rounded-xl border-white/30 bg-white/5 text-white transition hover:border-white hover:bg-white/10"
+              >
+                Falar com especialista
+              </Button>
+            </div>
           </div>
         </section>
 
-        <section className="bg-white px-6 py-16 text-[#0C140F] md:px-10 md:py-20">
-          <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+        <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
+          <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
             <div className="space-y-4">
-              <h2 className="text-3xl font-semibold md:text-4xl">
-                O que é Tráfego Pago?
-              </h2>
-              <p className="text-base leading-relaxed text-[#0C140F]/80">
-                Tráfego pago é uma estratégia de marketing digital que envolve
-                investir em anúncios em plataformas como Google Ads, Facebook Ads
-                e LinkedIn Ads para gerar resultados rápidos e mensuráveis.
+              <p className="text-sm uppercase tracking-[0.18em] text-white/50">
+                Estratégia sob medida
               </p>
-              <p className="text-base leading-relaxed text-[#0C140F]/80">
-                Nossas campanhas são planejadas para atingir o público certo, no
-                momento certo, maximizando o retorno sobre investimento.
+              <h2 className="text-3xl font-semibold md:text-4xl">O que é Tráfego Pago?</h2>
+              <p className="text-base leading-relaxed text-white/70">
+                Tráfego pago é investir em anúncios para atrair visitantes qualificados de forma
+                rápida e mensurável. Atuamos em múltiplas plataformas para encontrar seu público no
+                momento certo.
               </p>
-              <p className="text-base leading-relaxed text-[#0C140F]/80">
-                Utilizamos ferramentas avançadas de segmentação, remarketing e
-                otimização contínua para garantir que cada real investido gere
-                resultado concreto.
+              <p className="text-base leading-relaxed text-white/70">
+                Utilizamos segmentação avançada, remarketing e otimização contínua para que cada real
+                investido gere retorno claro, com dashboards e KPIs acompanhados em tempo real.
               </p>
             </div>
-            <Card className="border-0 bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] text-[#0C140F] shadow-xl">
-              <CardContent className="flex flex-col items-center gap-3 p-6 text-center md:p-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-[#0C140F]">
+            <Card className="border border-white/10 bg-[#0C140F]/80 shadow-2xl shadow-black/40">
+              <CardContent className="flex flex-col items-center gap-3 p-6 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] text-[#0C140F]">
                   <ArrowUpRight size={22} />
                 </div>
-                <h3 className="text-lg font-semibold">Plataformas Avançadas</h3>
-                <p className="text-sm text-[#0C140F]/80">
-                  Google Ads, Meta Ads, LinkedIn Ads e analytics para decisões
-                  baseadas em dados.
+                <h3 className="text-lg font-semibold text-white">Plataformas Avançadas</h3>
+                <p className="text-sm text-white/70">
+                  Google Ads, Meta Ads, LinkedIn Ads e analytics para decisões baseadas em dados.
                 </p>
               </CardContent>
             </Card>
           </div>
         </section>
 
-        <section className="bg-[#f7f9fb] px-6 py-16 text-[#0C140F] md:px-10 md:py-20">
+        <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">
-              Benefícios do Tráfego Pago
-            </h2>
-            <p className="mt-2 text-base text-[#0C140F]/70">
-              Por que investir em campanhas de tráfego pago?
+            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
+              Por que investir
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">Benefícios do Tráfego Pago</h2>
+            <p className="mt-3 text-base text-white/70">
+              Resultados rápidos, medidos e escaláveis com foco em ROI.
             </p>
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {benefits.map((item) => (
                 <Card
                   key={item.title}
-                  className="border border-white/0 bg-white shadow-sm shadow-[#0C140F]/10"
+                  className="border border-white/10 bg-white/5 shadow-lg shadow-black/30"
                 >
                   <CardContent className="flex flex-col gap-3 p-5 text-left">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] text-[#0C140F]">
                       <item.icon size={18} />
                     </div>
                     <div>
-                      <h3 className="text-base font-semibold text-[#0C140F]">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-[#0C140F]/70">
-                        {item.description}
-                      </p>
+                      <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                      <p className="mt-1 text-sm text-white/70">{item.description}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -164,49 +166,63 @@ const TrafegoPago = () => {
           </div>
         </section>
 
-        <section className="bg-white px-6 py-16 text-[#0C140F] md:px-10 md:py-20">
+        <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">Como Gerenciamos</h2>
-            <p className="mt-2 text-base text-[#0C140F]/70">
-              Nosso processo para gestão de campanhas
+            <p className="text-sm uppercase tracking-[0.18em] text-white/50">Como fazemos</p>
+            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">Gestão Completa de Campanhas</h2>
+            <p className="mt-3 text-base text-white/70">
+              Processo claro e iterativo para maximizar performance.
             </p>
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="relative mx-auto mt-12 max-w-4xl space-y-8">
+              <div className="pointer-events-none absolute left-6 top-0 hidden h-full w-px bg-white/10 sm:block" />
               {process.map((item, idx) => (
-                <Card
-                  key={item.step}
-                  className="border border-white/0 bg-[#f7f9fb] shadow-sm shadow-[#0C140F]/10"
-                >
-                  <CardContent className="flex flex-col items-center gap-3 p-5 text-center">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] text-base font-semibold text-[#0C140F]">
-                      {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
-                    </span>
-                    <h3 className="text-base font-semibold text-[#0C140F]">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-[#0C140F]/70">{item.description}</p>
-                  </CardContent>
-                </Card>
+                <div key={item.step} className="relative flex gap-4 sm:gap-6">
+                  <div className="relative z-10 mt-1 flex flex-col items-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] text-base font-semibold text-[#0C140F] shadow-lg">
+                      {item.step}
+                    </div>
+                    {idx < process.length - 1 && (
+                      <div className="hidden h-full w-px bg-white/15 sm:block" />
+                    )}
+                  </div>
+                  <Card className="flex-1 border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
+                    <CardContent className="p-5 text-left sm:p-6">
+                      <div className="flex flex-col gap-2">
+                        <p className="text-xs uppercase tracking-[0.14em] text-white/60">
+                          Etapa {idx + 1}
+                        </p>
+                        <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                        <p className="text-sm text-white/70">{item.description}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-[#f7f9fb] px-6 py-16 text-[#0C140F] md:px-10 md:py-20">
+        <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-5xl text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">Case de Sucesso</h2>
-            <p className="mt-2 text-base text-[#0C140F]/70">
-              Veja como otimizamos campanhas de um e-commerce
+            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
+              Case de Sucesso
             </p>
-            <Card className="mt-10 overflow-hidden border border-white/0 bg-white shadow-lg shadow-[#0C140F]/10">
+            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
+              Resultados que falam por si
+            </h2>
+            <p className="mt-3 text-base text-white/70">
+              Exemplo real de otimização e crescimento em e-commerce.
+            </p>
+            <Card className="mt-10 overflow-hidden border border-white/10 bg-[#0F1D15]/80 shadow-2xl shadow-black/40">
               <CardContent className="grid gap-8 p-6 md:grid-cols-[1.1fr_0.9fr] md:p-8">
                 <div className="space-y-4 text-left">
-                  <h3 className="text-xl font-semibold text-[#0C140F]">
-                    E-commerce Plus - Campanhas Google Ads
-                  </h3>
-                  <p className="text-sm leading-relaxed text-[#0C140F]/75">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
+                    <Radar size={14} /> E-commerce Plus - Google Ads
+                  </div>
+                  <p className="text-sm leading-relaxed text-white/75">
                     Implementamos uma estratégia completa de tráfego pago com:
                   </p>
-                  <ul className="space-y-2 text-sm text-[#0C140F]/80">
+                  <ul className="space-y-2 text-sm text-white/75">
                     {[
                       "Campanhas de pesquisa e display no Google Ads",
                       "Remarketing no Facebook e Instagram",
@@ -214,43 +230,38 @@ const TrafegoPago = () => {
                       "KPIs de ROI e CPA monitorados semanalmente",
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-2">
-                        <Check size={16} className="text-[#00c853]" />
+                        <Check size={16} className="text-[#4ADE80]" />
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <blockquote className="rounded-xl border border-[#0C140F]/10 bg-[#f7f9fb] p-4 text-sm text-[#0C140F]/80">
-                    “A Simplí transformou nossas campanhas, aumentando vendas em
-                    200% e reduzindo o CPA em 40%.”
-                    <span className="mt-2 block text-xs text-[#0C140F]/60">
+                  <blockquote className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/75">
+                    “A Simplí transformou nossas campanhas, aumentando vendas em 200% e reduzindo o CPA
+                    em 40%.”
+                    <span className="mt-2 block text-xs text-white/60">
                       — Ana Costa, Marketing Manager
                     </span>
                   </blockquote>
                 </div>
 
-                <div className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-[#0C140F]/10 bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] p-6 text-center text-[#0C140F] shadow-inner shadow-[#0C140F]/10">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-[#0C140F]">
-                    <Radar size={22} />
+                <div className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-gradient-to-br from-[#123026] via-[#16402F] to-[#0F1D15] p-6 text-center shadow-inner shadow-black/30">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-[#7afa00]">
+                    <BarChart3 size={20} />
                   </div>
-                  <h4 className="text-lg font-semibold">Resultados</h4>
-                  <div className="flex flex-col gap-1 text-sm text-[#0C140F]/80">
+                  <h4 className="text-lg font-semibold text-white">Resultados</h4>
+                  <div className="flex flex-col gap-1 text-sm text-white/80">
                     <div className="flex flex-col">
-                      <span className="text-2xl font-semibold text-[#0C140F]">
-                        200%
-                      </span>
-                      <span className="text-xs">Aumento em vendas</span>
+                      <span className="text-2xl font-semibold text-white">200%</span>
+                      <span className="text-xs text-white/60">Aumento em vendas</span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-2xl font-semibold text-[#0C140F]">
-                        40%
-                      </span>
-                      <span className="text-xs">Redução de CPA</span>
+                      <span className="text-2xl font-semibold text-white">40%</span>
+                      <span className="text-xs text-white/60">Redução de CPA</span>
                     </div>
                   </div>
                   <Button
                     asChild
-                    variant="secondary"
-                    className="mt-2 h-11 w-full rounded-xl border border-white/30 bg-white/90 text-[#0C140F] hover:bg-white"
+                    className="mt-2 h-11 w-full rounded-xl border border-transparent bg-white px-5 text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
                   >
                     <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
                       Quero resultados assim
@@ -259,6 +270,34 @@ const TrafegoPago = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden bg-gradient-to-r from-[#1C3324] via-[#16402F] to-[#0F1D15] px-6 py-16 md:px-10 md:py-20">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.12),_transparent_55%)]" />
+          <div className="relative mx-auto max-w-5xl text-center">
+            <h2 className="text-3xl font-semibold md:text-4xl">
+              Pronto para acelerar com Tráfego Pago?
+            </h2>
+            <p className="mt-3 text-base text-white/80 md:text-lg">
+              Fale com nosso time e descubra o plano ideal para crescer com eficiência e controle.
+            </p>
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <Button
+                asChild
+                className="h-12 rounded-xl border border-transparent bg-white px-7 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
+              >
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                  Solicitar Orçamento
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                className="h-12 rounded-xl border-white/30 bg-white/5 text-white transition hover:border-white hover:bg-white/10"
+              >
+                Ver outros serviços
+              </Button>
+            </div>
           </div>
         </section>
       </main>
