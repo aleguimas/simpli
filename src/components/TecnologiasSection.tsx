@@ -1,25 +1,23 @@
-import { ShieldCheck, KeyRound, BarChart3, Link2 } from "lucide-react";
-
-const items = [
+const team = [
   {
-    title: "SOC 2 Type II",
-    description: "Segurança e compliance para dados sensíveis.",
-    Icon: ShieldCheck,
+    name: "Alexandre Guimarães",
+    title: "O Estrategista",
+    bio: "Transformação Digital e Inteligência Artificial com 20+ anos de gestão corporativa.",
   },
   {
-    title: "Controle de Acesso",
-    description: "Permissões granulares para times e parceiros.",
-    Icon: KeyRound,
+    name: "Luciano Fernandes",
+    title: "O Professor",
+    bio: "Visual Merchandising e Trade Marketing com 35+ anos de experiência no mercado.",
   },
   {
-    title: "Relatórios",
-    description: "Métricas em tempo real sobre performance dos agentes.",
-    Icon: BarChart3,
+    name: "Rodrigo Lemos",
+    title: "O Tráfego",
+    bio: "Tráfego Pago e Marketing Digital, focado em estratégias para aumentar o faturamento.",
   },
   {
-    title: "Integração Perfeita",
-    description: "Conecte APIs, bases internas e ferramentas do time.",
-    Icon: Link2,
+    name: "Caio Souza",
+    title: "O Agente",
+    bio: "Arquitetura de Automação com Inteligência Artificial.",
   },
 ];
 
@@ -31,22 +29,35 @@ const TecnologiasSection = () => {
     >
       <div className="mx-auto max-w-6xl text-center">
         <p className="text-sm uppercase tracking-[0.2em] text-white/50">
-          Feito para Empresas
+          Nossa Equipe
         </p>
         <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
-          Tecnologias de ponta para automação perfeita
+          Conheça os especialistas que transformam ideias em soluções inovadoras.
         </h2>
-        <div className="mt-12 grid grid-cols-2 gap-x-10 gap-y-14 md:grid-cols-4">
-          {items.map(({ title, description, Icon }) => (
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {team.map((person) => (
             <div
-              key={title}
-              className="flex flex-col items-center gap-3 text-center"
+              key={person.name}
+              className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-[#0F1D15]/90 p-6 shadow-lg shadow-black/30 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#102419]"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/10">
-                <Icon className="text-white" size={22} />
+              <div className="flex aspect-square w-full items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[#1C3324] via-[#0F1D15] to-[#0C140F] text-3xl font-semibold text-white/80">
+                {person.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .slice(0, 2)}
               </div>
-              <h3 className="text-lg font-semibold text-white">{title}</h3>
-              <p className="text-sm text-white/65">{description}</p>
+              <div className="flex flex-col items-start gap-2 text-left">
+                <div className="text-xs uppercase tracking-[0.16em] text-white/60">
+                  {person.title}
+                </div>
+                <h3 className="text-xl font-semibold text-white">
+                  {person.name}
+                </h3>
+                <p className="text-sm leading-relaxed text-white/70">
+                  {person.bio}
+                </p>
+              </div>
             </div>
           ))}
         </div>
