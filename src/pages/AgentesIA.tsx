@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
+import SiteFooter from "@/components/SiteFooter";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG =
@@ -257,6 +258,8 @@ const AgentesIA = () => {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </div>
   );
 };

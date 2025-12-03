@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { Bot, Laptop, Lightbulb, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SiteFooter from "@/components/SiteFooter";
 
 const services = {
   "desenvolvimento-web": {
@@ -104,6 +105,7 @@ const ServicePage = () => {
           </div>
         </div>
       </div>
+      <SiteFooter />
     </div>
   );
 };
