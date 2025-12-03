@@ -202,15 +202,13 @@ const AgentesIA = () => {
           <Card className="mt-10 border-white/10 bg-[#0C140F]/70 shadow-2xl shadow-black/40">
             <CardContent className="grid gap-8 px-4 py-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-6">
               <div className="space-y-4">
-                <div className="flex justify-center md:justify-start">
+                <div className="flex items-center gap-3">
                   <img
                     src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx"
                     alt="Natal Home Center"
-                    className="w-full max-w-[360px] md:max-w-[420px] rounded-2xl border border-white/10 bg-white p-4 shadow-md shadow-black/20"
+                    className="h-10 w-auto rounded-md border border-white/10 bg-white/5 p-2"
                     loading="lazy"
                   />
-                </div>
-                <div className="space-y-1">
                   <h3 className="text-xl font-semibold text-white">
                     Natal Home Center - Atendimento Inteligente
                   </h3>
