@@ -3,7 +3,6 @@ import {
   ArrowUpRight,
   BarChart3,
   Check,
-  Megaphone,
   Radar,
   Rocket,
   Target,
@@ -96,9 +95,6 @@ const TrafegoPago = () => {
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.1),_transparent_45%)]" />
           <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
-              <Megaphone size={14} /> Performance Digital
-            </div>
             <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
               Tráfego Pago que Gera Resultados Reais
             </h1>
