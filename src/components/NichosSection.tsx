@@ -389,12 +389,12 @@ const NichosSection = () => {
           </div>
         </div>
 
-        <div className="group/card-grid mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="nichos-grid mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {filteredCases.map((item) => (
             <a
               key={`${item.category}-${item.title}`}
               href="#"
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 group-hover/card-grid:opacity-60 hover:opacity-100"
+              className="nichos-card relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 opacity-100 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
                 <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.16),_transparent_58%)]" />
@@ -431,6 +431,12 @@ const NichosSection = () => {
           background: rgba(255,255,255,0.18);
           border-radius: 9999px;
           border: 2px solid #0B1117;
+        }
+        .nichos-grid:hover .nichos-card {
+          opacity: 0.6;
+        }
+        .nichos-card:hover {
+          opacity: 1;
         }
       `}</style>
     </section>
