@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Bot, Laptop, Lightbulb, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SiteFooter from "@/components/SiteFooter";
 
 const services = {
   "desenvolvimento-web": {
@@ -36,31 +35,28 @@ const ServicePage = () => {
 
   if (!service) {
     return (
-      <div className="flex min-h-screen flex-col bg-[#0C140F] px-6 text-white">
-        <div className="flex flex-1 items-center justify-center">
-          <div className="max-w-xl text-center">
-            <p className="text-2xl font-semibold">Serviço não encontrado</p>
-            <p className="mt-3 text-white/70">
-              O serviço que você tentou acessar não existe ou foi movido.
-            </p>
-            <div className="mt-6 flex justify-center gap-3">
-              <Link to="/">
-                <Button className="bg-white text-black hover:bg-white/90">
-                  Voltar para o início
-                </Button>
-              </Link>
-              <Link to="/#servicos">
-                <Button
-                  variant="outline"
-                  className="border-white/20 bg-white/5 text-white hover:bg-white/10"
-                >
-                  Ver serviços
-                </Button>
-              </Link>
-            </div>
+      <div className="flex min-h-screen items-center justify-center bg-[#0C140F] px-6 text-white">
+        <div className="max-w-xl text-center">
+          <p className="text-2xl font-semibold">Serviço não encontrado</p>
+          <p className="mt-3 text-white/70">
+            O serviço que você tentou acessar não existe ou foi movido.
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <Link to="/">
+              <Button className="bg-white text-black hover:bg-white/90">
+                Voltar para o início
+              </Button>
+            </Link>
+            <Link to="/#servicos">
+              <Button
+                variant="outline"
+                className="border-white/20 bg-white/5 text-white hover:bg-white/10"
+              >
+                Ver serviços
+              </Button>
+            </Link>
           </div>
         </div>
-        <SiteFooter />
       </div>
     );
   }
@@ -68,8 +64,8 @@ const ServicePage = () => {
   const Icon = service.Icon;
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#0C140F] px-6 py-16 text-white md:px-10">
-      <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-8">
+    <div className="min-h-screen bg-[#0C140F] px-6 py-16 text-white md:px-10">
+      <div className="mx-auto flex max-w-4xl flex-col gap-8">
         <Link
           to="/#servicos"
           className="text-sm text-white/70 underline-offset-4 transition hover:text-white hover:underline"
@@ -108,7 +104,6 @@ const ServicePage = () => {
           </div>
         </div>
       </div>
-      <SiteFooter />
     </div>
   );
 };
