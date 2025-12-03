@@ -69,11 +69,11 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b border-white/10 pt-4 pb-3 transition-colors",
+        "sticky top-0 z-50 h-16 w-full border-b border-white/10 transition-colors",
         scrolled ? "bg-[#0C140F]/80 backdrop-blur-xl" : "bg-transparent",
       )}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 md:px-10">
+      <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6 md:px-10">
         <a href="#hero" className="flex items-center">
           <img
             src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEsCzKr2uURvumjDTaW8whPIYnNpgbMFyHqVOA"
