@@ -41,7 +41,7 @@ const processTimeline = [
     icon: Zap,
     relatedIds: [2],
     status: "completed" as const,
-    energy: 95,
+    energy: 25,
   },
   {
     id: 2,
@@ -52,7 +52,7 @@ const processTimeline = [
     icon: BarChart3,
     relatedIds: [3],
     status: "in-progress" as const,
-    energy: 80,
+    energy: 50,
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ const processTimeline = [
     icon: TrendingUp,
     relatedIds: [4],
     status: "pending" as const,
-    energy: 60,
+    energy: 75,
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ const processTimeline = [
     icon: Clock3,
     relatedIds: [],
     status: "pending" as const,
-    energy: 55,
+    energy: 100,
   },
 ];
 

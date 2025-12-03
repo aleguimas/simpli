@@ -198,7 +198,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
               </div>
 
               {isExpanded && (
-                <Card className="absolute left-1/2 top-20 w-64 -translate-x-1/2 border-white/30 bg-black/90 backdrop-blur-lg shadow-xl shadow-white/10">
+                <Card className="absolute left-1/2 top-20 w-64 -translate-x-1/2 border-white/30 bg-[#1a1a1a] backdrop-blur-lg shadow-xl shadow-white/10">
                   <div className="absolute -top-3 left-1/2 h-3 w-px -translate-x-1/2 bg-white/50" />
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
