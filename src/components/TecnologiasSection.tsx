@@ -11,7 +11,7 @@ const team = [
     title: "O Professor",
     bio: "Visual Merchandising e Trade Marketing com 35+ anos de experiência no mercado.",
     image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEN5bXdVEATQL5kRn8PCGNcDBlOitbevH4VU1j",
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEICbbBm7mMh5zL6vCXuUPodEBkaJDQn2c4rpG",
   },
   {
     name: "Rodrigo Lemos",
