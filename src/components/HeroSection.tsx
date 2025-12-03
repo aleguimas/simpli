@@ -40,7 +40,9 @@ const HeroSection = () => {
               asChild
               className={`${buttonBaseClasses} border border-white/0 bg-white text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white`}
             >
-              <a href="#carreiras">Sobre / Estratégistas</a>
+              <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+                Fale conosco
+              </a>
             </Button>
             <Button
               asChild

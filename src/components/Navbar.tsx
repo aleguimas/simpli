@@ -148,8 +148,10 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden items-center md:flex">
-          <Button className="bg-white text-black transition-colors hover:border hover:border-white/70 hover:bg-transparent hover:text-white">
-            Fale conosco
+          <Button className="bg-white text-black transition-colors hover:border hover:border-white/70 hover:bg-transparent hover:text-white" asChild>
+            <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+              Fale conosco
+            </a>
           </Button>
         </div>
 
@@ -224,8 +226,10 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                <Button className="mt-2 h-11 rounded-xl border border-white/0 bg-white text-black transition hover:border-white/70 hover:bg-transparent hover:text-white">
-                  Fale conosco
+                <Button className="mt-2 h-11 rounded-xl border border-white/0 bg-white text-black transition hover:border-white/70 hover:bg-transparent hover:text-white" asChild>
+                  <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+                    Fale conosco
+                  </a>
                 </Button>
               </div>
             </SheetContent>

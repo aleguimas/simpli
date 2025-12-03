@@ -90,8 +90,10 @@ const ServicePage = () => {
             {service.description}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button className="h-11 rounded-xl bg-white px-5 text-black hover:bg-white/90">
-              Fale conosco
+            <Button className="h-11 rounded-xl bg-white px-5 text-black hover:bg-white/90" asChild>
+              <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+                Fale conosco
+              </a>
             </Button>
             <Button
               variant="outline"
