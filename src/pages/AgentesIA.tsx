@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import SiteFooter from "@/components/SiteFooter";
 import { useInView } from "@/hooks/use-in-view";
+import Navbar from "@/components/Navbar";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG =
@@ -92,6 +93,7 @@ const AgentesIA = () => {
 
   return (
     <div className="bg-[#0C140F] text-white">
+      <Navbar />
       <section
         className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
         style={{
