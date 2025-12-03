@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
+const HERO_BG =
+  "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEppByWMrB2eHrQEupzvT8LaN4mntWUVOky7IR";
 
 const benefits = [
   {
@@ -55,7 +57,14 @@ const processSteps = [
 const AgentesIA = () => {
   return (
     <div className="bg-[#0C140F] text-white">
-      <section className="relative overflow-hidden bg-gradient-to-r from-[#1C3324] via-[#16402F] to-[#0F1D15] px-6 py-20 md:px-10 md:py-24">
+      <section
+        className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
+        style={{
+          backgroundImage: `linear-gradient(120deg, rgba(12,20,15,0.8), rgba(28,51,36,0.7)), url('${HERO_BG}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center gap-6">
           <Badge className="border-0 bg-white/15 text-white">Agentes Inteligentes</Badge>
