@@ -45,12 +45,141 @@ const DiagnosticReport = () => {
   const navigate = useNavigate();
   const summary: SummaryState = location.state?.summary ?? fallbackSummary;
 
-  const objectives = summary.selections?.[1]?.length ?? 0;
-  const challenges = summary.selections?.[2]?.length ?? 0;
-  const recommendationsCount = Math.max(2, Math.ceil(challenges / 2) || 2);
+  const objectives = summary.selections?.[1] ?? [];
+  const challenges = summary.selections?.[2] ?? [];
+  const technologies = summary.selections?.[3] ?? [];
+  const readiness = summary.readiness ?? {};
+  const maturityText = summary.maturityLevel ?? "";
+  const budget = summary.budget ?? "";
+  const timeline = summary.timeline ?? "";
+
+  const recommendations: { title: string; description: string; urgency: "Alta" | "Média" | "Baixa" }[] = [];
+  const positives: { title: string; description: string }[] = [];
+
+  const needsAutomation =
+    challenges.some((c) => c.includes("Processos manuais")) ||
+    objectives.some((o) => o.includes("Automatizar processos") || o.includes("Aumentar eficiência"));
+  const needsInsights =
+    challenges.some((c) => c.includes("insights") || c.includes("decisão")) ||
+    objectives.some((o) => o.includes("insights"));
+  const needsCX =
+    challenges.some((c) => c.includes("satisfação") || c.includes("experiência") || c.includes("cliente")) ||
+    objectives.some((o) => o.includes("experiência do cliente"));
+  const needsScale = challenges.some((c) => c.includes("escalar"));
+  const needsGrowth = objectives.some((o) => o.includes("vendas")) || challenges.some((c) => c.includes("Competitividade"));
+  const needsCost =
+    challenges.some((c) => c.includes("custo")) || objectives.some((o) => o.includes("custos"));
+
+  if (needsAutomation) {
+    recommendations.push({
+      title: "Automação de Processos e Agentes",
+      description:
+        "Mapeie fluxos críticos e implemente agentes de IA para reduzir tarefas manuais e ganhar eficiência imediata.",
+      urgency: "Alta",
+    });
+  }
+  if (needsInsights) {
+    recommendations.push({
+      title: "Fundação de Dados e Analytics",
+      description:
+        "Centralize dados em um repositório confiável e habilite dashboards preditivos para decisões mais rápidas.",
+      urgency: "Alta",
+    });
+  }
+  if (needsCX) {
+    recommendations.push({
+      title: "Experiência do Cliente Inteligente",
+      description:
+        "Implemente chatbots de suporte, roteamento inteligente e personalização de jornada para elevar a satisfação.",
+      urgency: "Média",
+    });
+  }
+  if (needsScale) {
+    recommendations.push({
+      title: "Arquitetura Escalável",
+      description:
+        "Padronize integrações e automatize handoffs entre times para crescer com estabilidade e menor custo operacional.",
+      urgency: "Média",
+    });
+  }
+  if (needsGrowth || needsCost) {
+    recommendations.push({
+      title: "Crescimento Rentável",
+      description:
+        "Otimize aquisição e retenção com automações de marketing e priorização de leads mais qualificados.",
+      urgency: "Média",
+    });
+  }
+  if (recommendations.length === 0) {
+    recommendations.push({
+      title: "Piloto Rápido com IA",
+      description:
+        "Selecione um processo-chave, implemente um piloto de IA em poucas semanas e meça impacto antes de expandir.",
+      urgency: "Média",
+    });
+  }
+
+  if (maturityText.includes("Avançado") || maturityText.includes("Maduro")) {
+    positives.push({
+      title: "Boa maturidade digital",
+      description: "Você já tem bases sólidas e pode acelerar a adoção de IA em escala.",
+    });
+  } else if (maturityText.includes("Intermediário")) {
+    positives.push({
+      title: "Base digital intermediária",
+      description: "Há integração de sistemas e dados centralizados para evoluir rapidamente.",
+    });
+  }
+
+  if (technologies.length > 0) {
+    const techPreview = technologies.slice(0, 2).join(", ");
+    positives.push({
+      title: "Stack tecnológica existente",
+      description: `Você já utiliza ${techPreview}${technologies.length > 2 ? " e outras ferramentas" : ""}, facilitando integrações.`,
+    });
+  }
+
+  if (readiness.team?.includes("equipe completa") || readiness.team?.includes("limitada")) {
+    positives.push({
+      title: "Equipe técnica disponível",
+      description: "Há time interno que pode acelerar implementação e suporte contínuo.",
+    });
+  }
+
+  if (readiness.knowledge?.includes("Avançado") || readiness.knowledge?.includes("Intermediário")) {
+    positives.push({
+      title: "Conhecimento prévio de IA",
+      description: "A familiaridade do time com IA reduz curva de aprendizado.",
+    });
+  }
+
+  if (budget && budget !== "Ainda preciso definir") {
+    positives.push({
+      title: "Orçamento dedicado",
+      description: "Investimento já sinalizado para projetos de IA.",
+    });
+  }
+
+  if (timeline) {
+    positives.push({
+      title: "Prazo claro",
+      description: "Definição de cronograma ajuda a priorizar entregas e ganhos rápidos.",
+    });
+  }
+
+  if (positives.length === 0) {
+    positives.push({
+      title: "Movimento estratégico",
+      description: "Realizar o diagnóstico já é um passo relevante para a transformação digital.",
+    });
+  }
+
+  const objectivesCount = objectives.length;
+  const challengesCount = challenges.length;
+  const recommendationsCount = recommendations.length;
 
   const maturityScore = (() => {
-    const level = summary.maturityLevel ?? "";
+    const level = maturityText;
     if (level.includes("Maduro")) return 85;
     if (level.includes("Avançado")) return 75;
     if (level.includes("Intermediário")) return 55;
@@ -58,46 +187,8 @@ const DiagnosticReport = () => {
     return 20;
   })();
 
-  const levelLabel =
-    summary.maturityLevel?.split("-")[0]?.trim() ?? "Básico / Inicial";
-
-  const priorities = [
-    {
-      title: "Estruturação de Dados",
-      urgency: "Alta",
-      description:
-        "Organize e centralize seus dados antes de implementar IA. Crie um data warehouse e defina KPIs claros.",
-    },
-    {
-      title: "Melhoria da Experiência do Cliente",
-      urgency: "Média",
-      description:
-        "Implemente fluxos com chatbots e personalização para elevar satisfação e reduzir tempo de resposta.",
-    },
-  ];
-
-  const roadmap = [
-    {
-      title: "Fase 1: Fundação",
-      duration: "2-3 meses",
-      items: [
-        "Estruturação de dados",
-        "Treinamento básico da equipe",
-        "Definição de KPIs",
-      ],
-    },
-    {
-      title: "Fase 2: Implementação",
-      duration: "3-6 meses",
-      items: [
-        "Primeiros projetos piloto",
-        "Integração de sistemas",
-        "Expansão gradual",
-      ],
-    },
-  ];
-
-  const companyName = summary.contact?.company || "Sua empresa";
+  const levelLabel = maturityText.split("-")[0]?.trim() || "Básico / Inicial";
+  const companyName = summary.contact?.company || "sua empresa";
   const personName =
     summary.contact?.firstName && summary.contact?.lastName
       ? `${summary.contact.firstName} ${summary.contact.lastName}`
@@ -171,7 +262,7 @@ const DiagnosticReport = () => {
                     {levelLabel}
                   </Badge>
                   <span className="text-sm text-white/60">
-                    {summary.maturityLevel || "Requer estruturação antes da IA"}
+                    {maturityText || "Requer estruturação antes da IA"}
                   </span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-white/10 md:w-64">
@@ -189,7 +280,7 @@ const DiagnosticReport = () => {
                     Objetivos Identificados
                   </div>
                   <div className="mt-2 text-2xl font-semibold text-white">
-                    {objectives}
+                    {objectivesCount}
                   </div>
                   <p className="text-xs text-white/60">Áreas de foco para IA</p>
                 </div>
@@ -199,7 +290,7 @@ const DiagnosticReport = () => {
                     Desafios Mapeados
                   </div>
                   <div className="mt-2 text-2xl font-semibold text-white">
-                    {challenges}
+                    {challengesCount}
                   </div>
                   <p className="text-xs text-white/60">
                     Oportunidades de melhoria
@@ -231,14 +322,19 @@ const DiagnosticReport = () => {
                 Reconhecemos os pontos fortes que já existem na sua organização.
               </p>
               <div className="rounded-xl border border-[#f2d792] bg-white p-4 text-sm text-[#0C140F]">
-                <div className="flex items-center gap-2 font-semibold text-[#0C140F]">
-                  <Award size={16} className="text-[#c98a00]" />
-                  Iniciativa Proativa
+                <div className="flex flex-col gap-3">
+                  {positives.map((item) => (
+                    <div key={item.title} className="flex items-start gap-3">
+                      <CheckCircle2 size={18} className="text-[#c98a00] mt-0.5" />
+                      <div>
+                        <div className="font-semibold text-[#0C140F]">
+                          {item.title}
+                        </div>
+                        <div className="text-[#4b5563]">{item.description}</div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <p className="mt-2 text-[#4b5563]">
-                  Ao fazer este diagnóstico, {personName || "você"} deu o primeiro
-                  passo para a transformação digital em {companyName}.
-                </p>
               </div>
             </CardContent>
           </Card>
@@ -250,15 +346,14 @@ const DiagnosticReport = () => {
                 Recomendações Estratégicas
               </div>
               <p className="text-sm text-white/70">
-                Com base na sua análise, estas são as ações prioritárias para sua
-                empresa.
+                Geradas a partir dos objetivos e dores informados no diagnóstico.
               </p>
               <div className="space-y-4">
-                {priorities.map((item, idx) => (
+                {recommendations.map((item, idx) => (
                   <div
                     key={item.title}
                     className={`rounded-xl border p-4 ${
-                      idx === 0
+                      item.urgency === "Alta"
                         ? "border-red-200/40 bg-red-200/10"
                         : "border-amber-200/40 bg-amber-200/10"
                     }`}
@@ -271,15 +366,15 @@ const DiagnosticReport = () => {
                         <div>
                           <p className="text-base font-semibold">{item.title}</p>
                           <p className="text-xs text-white/70">
-                            {idx === 0
-                              ? "Primeiro passo fundamental para a jornada de IA"
-                              : "Segundo passo após consolidar a primeira implementação"}
+                            {item.urgency === "Alta"
+                              ? "Ação imediata recomendada"
+                              : "Planeje nos próximos ciclos"}
                           </p>
                         </div>
                       </div>
                       <Badge
                         className={`${
-                          idx === 0
+                          item.urgency === "Alta"
                             ? "bg-red-200/20 text-red-100"
                             : "bg-amber-200/20 text-amber-100"
                         }`}
@@ -306,7 +401,26 @@ const DiagnosticReport = () => {
                 Cronograma sugerido para sua jornada de transformação digital.
               </p>
               <div className="space-y-6">
-                {roadmap.map((phase, idx) => (
+                {[
+                  {
+                    title: "Fase 1: Fundação",
+                    duration: "2-3 meses",
+                    items: [
+                      "Estruturação de dados",
+                      "Treinamento básico da equipe",
+                      "Definição de KPIs",
+                    ],
+                  },
+                  {
+                    title: "Fase 2: Implementação",
+                    duration: "3-6 meses",
+                    items: [
+                      "Primeiros projetos piloto",
+                      "Integração de sistemas",
+                      "Expansão gradual",
+                    ],
+                  },
+                ].map((phase, idx) => (
                   <div
                     key={phase.title}
                     className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4"
