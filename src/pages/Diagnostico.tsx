@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 type StepConfig = {
   step: number;
@@ -24,6 +25,14 @@ type StepConfig = {
   selectLabel?: string;
   selectPlaceholder?: string;
   selectOptions?: string[];
+  budgetLabel?: string;
+  budgetPlaceholder?: string;
+  budgetOptions?: string[];
+  timelineLabel?: string;
+  timelinePlaceholder?: string;
+  timelineOptions?: string[];
+  notesLabel?: string;
+  notesPlaceholder?: string;
 };
 
 const steps: StepConfig[] = [
@@ -90,6 +99,45 @@ const steps: StepConfig[] = [
       "Machine Learning/IA",
     ],
   },
+  {
+    step: 4,
+    progress: 80,
+    stageLabel: "Investimento e prazo",
+    heading: "Investimento e Prazo",
+    subheading: "Informações sobre orçamento e timeline para implementação",
+    prompt: "Quais tecnologias você já utiliza?",
+    budgetLabel: "Orçamento disponível para projetos de IA",
+    budgetPlaceholder: "Selecione a faixa de orçamento",
+    budgetOptions: [
+      "Até R$ 10.000",
+      "R$ 10.000 - R$ 50.000",
+      "R$ 50.000 - R$ 100.000",
+      "R$ 100.000 - R$ 500.000",
+      "Acima de R$ 500.000",
+      "Ainda preciso definir",
+    ],
+    timelineLabel: "Prazo desejado para implementação",
+    timelinePlaceholder: "Selecione o prazo",
+    timelineOptions: [
+      "Imediato (até 1 mês)",
+      "Curto prazo (1-3 meses)",
+      "Médio prazo (3-6 meses)",
+      "Longo prazo (6+ meses)",
+      "Flexível",
+    ],
+    notesLabel: "Descreva brevemente seu projeto ou necessidade específica",
+    notesPlaceholder: "Conte-nos mais sobre o que você espera alcançar com a implementação de IA...",
+    options: [
+      "ERP/Sistema de gestão",
+      "CRM",
+      "Analytics/Business Intelligence",
+      "Banco de dados em nuvem",
+      "Agentes de IA",
+      "Chatbot",
+      "Automação de processos (RPA)",
+      "Machine Learning/IA",
+    ],
+  },
 ];
 
 const Diagnostico = () => {
@@ -98,14 +146,27 @@ const Diagnostico = () => {
     1: [],
     2: [],
     3: [],
+    4: [],
   });
   const [selectedLevelByStep, setSelectedLevelByStep] = useState<Record<number, string>>({
     3: "Iniciante - Processos majoritariamente manuais",
+  });
+  const [budgetByStep, setBudgetByStep] = useState<Record<number, string>>({
+    4: "",
+  });
+  const [timelineByStep, setTimelineByStep] = useState<Record<number, string>>({
+    4: "",
+  });
+  const [notesByStep, setNotesByStep] = useState<Record<number, string>>({
+    4: "",
   });
 
   const current = steps.find((s) => s.step === currentStep)!;
   const selected = selectedByStep[currentStep] ?? [];
   const selectedLevel = selectedLevelByStep[currentStep] ?? "";
+  const selectedBudget = budgetByStep[currentStep] ?? "";
+  const selectedTimeline = timelineByStep[currentStep] ?? "";
+  const selectedNotes = notesByStep[currentStep] ?? "";
 
   const Icon =
     current.stageLabel === "Desafios atuais"
@@ -213,6 +274,72 @@ const Diagnostico = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+              )}
+
+              {current.budgetOptions && (
+                <div className="space-y-2">
+                  <p className="text-base font-semibold text-white">
+                    {current.budgetLabel}
+                  </p>
+                  <Select
+                    value={selectedBudget}
+                    onValueChange={(value) =>
+                      setBudgetByStep((prev) => ({ ...prev, [currentStep]: value }))
+                    }
+                  >
+                    <SelectTrigger className="h-11 w-full rounded-xl border-white/20 bg-white/5 text-left text-white/80 hover:border-white/30 focus:border-white focus:ring-0">
+                      <SelectValue placeholder={current.budgetPlaceholder} />
+                    </SelectTrigger>
+                    <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
+                      {current.budgetOptions.map((option) => (
+                        <SelectItem key={option} value={option} className="text-white/90">
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+
+              {current.timelineOptions && (
+                <div className="space-y-2">
+                  <p className="text-base font-semibold text-white">
+                    {current.timelineLabel}
+                  </p>
+                  <Select
+                    value={selectedTimeline}
+                    onValueChange={(value) =>
+                      setTimelineByStep((prev) => ({ ...prev, [currentStep]: value }))
+                    }
+                  >
+                    <SelectTrigger className="h-11 w-full rounded-xl border-white/20 bg-white/5 text-left text-white/80 hover:border-white/30 focus:border-white focus:ring-0">
+                      <SelectValue placeholder={current.timelinePlaceholder} />
+                    </SelectTrigger>
+                    <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
+                      {current.timelineOptions.map((option) => (
+                        <SelectItem key={option} value={option} className="text-white/90">
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+
+              {current.notesLabel && (
+                <div className="space-y-2">
+                  <p className="text-base font-semibold text-white">
+                    {current.notesLabel}
+                  </p>
+                  <Textarea
+                    value={selectedNotes}
+                    onChange={(e) =>
+                      setNotesByStep((prev) => ({ ...prev, [currentStep]: e.target.value }))
+                    }
+                    placeholder={current.notesPlaceholder}
+                    className="min-h-[120px] rounded-xl border-white/20 bg-white/5 text-white placeholder:text-white/50 focus:border-white focus:ring-0"
+                  />
                 </div>
               )}
 
