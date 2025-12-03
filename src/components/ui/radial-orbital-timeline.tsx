@@ -257,7 +257,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
                                 }}
                               >
                                 {relatedItem?.title}
-                                <ArrowRight size={8} className="ml-1 text-white/60 hover:text-[#0C140F]" />
+                                <ArrowRight size={8} className="ml-1 transition-colors" />
                               </Button>
                             );
                           })}
