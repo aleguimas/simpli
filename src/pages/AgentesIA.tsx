@@ -200,7 +200,7 @@ const AgentesIA = () => {
                   <img
                     src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx"
                     alt="Natal Home Center"
-                    className="h-12 w-auto rounded-md border border-white/10 bg-white/5 p-2.5"
+                    className="h-10 w-auto rounded-md border border-white/10 bg-white/5 p-2"
                     loading="lazy"
                   />
                   <h3 className="text-xl font-semibold text-white">
