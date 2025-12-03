@@ -42,6 +42,8 @@ type StepConfig = {
   notesPlaceholder?: string;
 };
 
+type ReadinessKey = "team" | "knowledge" | "training";
+
 const steps: StepConfig[] = [
   {
     step: 1,
@@ -137,6 +139,59 @@ const steps: StepConfig[] = [
       "Conte-nos mais sobre o que você espera alcançar com a implementação de IA...",
     options: [],
   },
+  {
+    step: 5,
+    progress: 100,
+    stageLabel: "Recursos e capacitação",
+    heading: "Recursos e Capacitação",
+    subheading:
+      "Entender a prontidão da equipe é crucial para o sucesso da implementação",
+    prompt: "",
+    options: [],
+  },
+];
+
+const readinessSelects: {
+  key: ReadinessKey;
+  label: string;
+  placeholder: string;
+  options: string[];
+}[] = [
+  {
+    key: "team",
+    label: "Sua empresa possui equipe técnica interna?",
+    placeholder: "Selecione uma opção",
+    options: [
+      "Sim, equipe completa de TI",
+      "Sim, equipe reduzida de TI",
+      "Temos um responsável técnico",
+      "Não temos equipe técnica interna",
+    ],
+  },
+  {
+    key: "knowledge",
+    label: "Qual o nível de conhecimento da equipe sobre IA?",
+    placeholder: "Selecione o nível",
+    options: [
+      "Iniciante - primeiros contatos com IA",
+      "Básico - uso limitado de IA",
+      "Intermediário - já usamos alguns modelos",
+      "Avançado - desenvolvemos e integramos IA",
+      "Especialista - time dedicado a IA/ML",
+    ],
+  },
+  {
+    key: "training",
+    label: "Há disponibilidade para treinamento da equipe?",
+    placeholder: "Selecione uma opção",
+    options: [
+      "Sim, disponibilidade total",
+      "Sim, parcial (algumas horas por semana)",
+      "Limitada (agenda cheia)",
+      "Não no momento",
+      "Preciso avaliar",
+    ],
+  },
 ];
 
 const Diagnostico = () => {
@@ -146,6 +201,7 @@ const Diagnostico = () => {
     2: [],
     3: [],
     4: [],
+    5: [],
   });
   const [selectedLevelByStep, setSelectedLevelByStep] = useState<
     Record<number, string>
@@ -161,6 +217,11 @@ const Diagnostico = () => {
   const [notesByStep, setNotesByStep] = useState<Record<number, string>>({
     4: "",
   });
+  const [readinessByStep, setReadinessByStep] = useState<
+    Record<number, Record<ReadinessKey, string>>
+  >({
+    5: { team: "", knowledge: "", training: "" },
+  });
 
   const current = steps.find((s) => s.step === currentStep)!;
   const selected = selectedByStep[currentStep] ?? [];
@@ -168,6 +229,11 @@ const Diagnostico = () => {
   const selectedBudget = budgetByStep[currentStep] ?? "";
   const selectedTimeline = timelineByStep[currentStep] ?? "";
   const selectedNotes = notesByStep[currentStep] ?? "";
+  const readiness = readinessByStep[currentStep] ?? {
+    team: "",
+    knowledge: "",
+    training: "",
+  };
 
   const Icon =
     current.stageLabel === "Desafios atuais"
@@ -323,7 +389,10 @@ const Diagnostico = () => {
                   <Select
                     value={selectedTimeline}
                     onValueChange={(value) =>
-                      setTimelineByStep((prev) => ({ ...prev, [currentStep]: value }))
+                      setTimelineByStep((prev) => ({
+                        ...prev,
+                        [currentStep]: value,
+                      }))
                     }
                   >
                     <SelectTrigger className="h-11 w-full rounded-xl border-white/20 bg-white/5 text-left text-white/80 hover:border-white/30 focus:border-white focus:ring-0">
@@ -360,6 +429,49 @@ const Diagnostico = () => {
                     placeholder={current.notesPlaceholder}
                     className="min-h-[120px] rounded-xl border-white/20 bg-white/5 text-white placeholder:text-white/50 focus:border-white focus:ring-0"
                   />
+                </div>
+              )}
+
+              {current.step === 5 && (
+                <div className="space-y-4">
+                  {readinessSelects.map((select) => (
+                    <div key={select.key} className="space-y-2">
+                      <p className="text-base font-semibold text-white">
+                        {select.label}
+                      </p>
+                      <Select
+                        value={readiness[select.key]}
+                        onValueChange={(value) =>
+                          setReadinessByStep((prev) => ({
+                            ...prev,
+                            [currentStep]: {
+                              ...(prev[currentStep] ?? {
+                                team: "",
+                                knowledge: "",
+                                training: "",
+                              }),
+                              [select.key]: value,
+                            },
+                          }))
+                        }
+                      >
+                        <SelectTrigger className="h-11 w-full rounded-xl border-white/20 bg-white/5 text-left text-white/80 hover:border-white/30 focus:border-white focus:ring-0">
+                          <SelectValue placeholder={select.placeholder} />
+                        </SelectTrigger>
+                        <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
+                          {select.options.map((option) => (
+                            <SelectItem
+                              key={option}
+                              value={option}
+                              className="text-white/90"
+                            >
+                              {option}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  ))}
                 </div>
               )}
 
