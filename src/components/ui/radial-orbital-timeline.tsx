@@ -118,9 +118,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
     const y = radius * Math.sin(radian);
 
     const zIndex = Math.round(100 + 50 * Math.cos(radian));
-    const opacity = Math.max(0.4, Math.min(1, 0.4 + 0.6 * ((1 + Math.sin(radian)) / 2)));
-
-    return { x, y, zIndex, opacity };
+    return { x, y, zIndex };
   };
 
   const isRelatedToActive = (itemId: number): boolean => {
@@ -131,7 +129,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
 
   return (
     <div
-      className="relative flex h-[540px] w-full items-center justify-center bg-transparent opacity-90"
+      className="relative flex h-[540px] w-full items-center justify-center bg-transparent"
       ref={containerRef}
       onClick={handleContainerClick}
     >
@@ -155,6 +153,11 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
           const isRelated = isRelatedToActive(item.id);
           const isPulsing = pulseEffect[item.id];
           const Icon = item.icon;
+          const opacity = activeNodeId
+            ? item.id === activeNodeId
+              ? 1
+              : 0.4
+            : 1;
 
           return (
             <div
@@ -164,7 +167,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
               style={{
                 transform: `translate(${position.x}px, ${position.y}px)`,
                 zIndex: isExpanded ? 200 : position.zIndex,
-                opacity: isExpanded ? 1 : position.opacity,
+                opacity,
               }}
               onClick={(e) => {
                 e.stopPropagation();
