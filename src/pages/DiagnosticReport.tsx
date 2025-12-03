@@ -10,6 +10,7 @@ import {
   ShieldAlert,
   Sparkles,
   Star,
+  ThumbsUp,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -218,21 +219,23 @@ const DiagnosticReport = () => {
             </CardContent>
           </Card>
 
-          <Card className="border border-amber-200/20 bg-gradient-to-br from-amber-200/10 via-amber-200/5 to-transparent shadow-2xl shadow-black/40">
+          <Card className="border-0 bg-gradient-to-r from-[#fff4c4] via-[#fff8e6] to-white shadow-2xl shadow-black/30">
             <CardContent className="space-y-4 p-6">
-              <div className="flex items-center gap-2 text-lg font-semibold text-amber-200">
-                <Award size={18} />
+              <div className="flex items-center gap-2 text-lg font-semibold text-[#0C140F]">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/70">
+                  <ThumbsUp size={18} className="text-[#c98a00]" />
+                </span>
                 Pontos Positivos da sua Empresa
               </div>
-              <p className="text-sm text-white/75">
+              <p className="text-sm text-[#4b5563]">
                 Reconhecemos os pontos fortes que já existem na sua organização.
               </p>
-              <div className="rounded-xl border border-amber-200/30 bg-[#0F1D15] p-4 text-sm text-white">
-                <div className="flex items-center gap-2 font-semibold text-amber-200">
-                  <Star size={16} className="text-amber-300" />
+              <div className="rounded-xl border border-[#f2d792] bg-white p-4 text-sm text-[#0C140F]">
+                <div className="flex items-center gap-2 font-semibold text-[#0C140F]">
+                  <Award size={16} className="text-[#c98a00]" />
                   Iniciativa Proativa
                 </div>
-                <p className="mt-2 text-white/75">
+                <p className="mt-2 text-[#4b5563]">
                   Ao fazer este diagnóstico, {personName || "você"} deu o primeiro
                   passo para a transformação digital em {companyName}.
                 </p>
