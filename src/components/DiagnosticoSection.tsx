@@ -27,7 +27,7 @@ const DiagnosticoSection = () => {
             alt="Visual da plataforma Simplí"
             className="h-full w-full object-cover"
           />
-          <div className="pointer-events-none absolute inset-0 rounded-[16px] shadow-[inset_0_0_160px_68px_rgba(0,0,0,0.85)]" />
+          <div className="pointer-events-none absolute inset-0 rounded-[16px] shadow-[inset_0_0_80px_12px_rgba(0,0,0,0.9),inset_0_0_28px_2px_rgba(0,0,0,0.7)]" />
         </div>
 
         <Button className="mt-8 h-12 rounded-xl bg-[#4ADE80] px-6 text-base font-semibold text-black transition hover:bg-[#3ccb70]">
