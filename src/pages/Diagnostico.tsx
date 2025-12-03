@@ -7,21 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 
 const options = [
-  "Reduzir custos operacionais",
-  "Melhorar experiência do cliente",
-  "Automatizar processos",
-  "Melhorar qualidade",
-  "Aumentar eficiência",
-  "Obter insights dos dados",
-  "Aumentar vendas",
-  "Inovar no mercado",
+  "Processos manuais e repetitivos",
+  "Dificuldade na tomada de decisão",
+  "Baixa eficiência operacional",
+  "Falta de insights dos dados",
+  "Alto custo operacional",
+  "Dificuldade em escalar operações",
+  "Baixa satisfação do cliente",
+  "Competitividade no mercado",
 ];
 
 const Diagnostico = () => {
   const [selected, setSelected] = useState<string[]>([]);
-  const progressValue = 20;
+  const progressValue = 40;
 
-  const headingHighlight = useMemo(() => "Objetivos com IA", []);
+  const headingHighlight = useMemo(() => "Desafios Atuais", []);
 
   const toggleOption = (value: string) => {
     setSelected((prev) =>
@@ -64,8 +64,8 @@ const Diagnostico = () => {
         <main className="mt-10 space-y-6">
           <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 md:flex-row md:items-center md:justify-between">
             <div className="text-sm text-white/80">
-              <span className="font-semibold text-white">Passo 1 de 5</span> •
-              Objetivos principais
+              <span className="font-semibold text-white">Passo 2 de 5</span> •
+              Desafios atuais
             </div>
             <div className="text-sm font-semibold text-[#4ADE80]">
               {progressValue}% completo
@@ -87,15 +87,14 @@ const Diagnostico = () => {
                     {headingHighlight}
                   </h2>
                   <p className="text-sm text-white/70 md:text-base">
-                    Quais são seus principais objetivos com inteligência
-                    artificial?
+                    Quais desafios você enfrenta no dia a dia?
                   </p>
                 </div>
               </div>
 
               <div>
                 <p className="text-base font-semibold text-white">
-                  Escolha os objetivos prioritários
+                  Quais desafios você enfrenta? (Marque todos que aplicam)
                 </p>
                 <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
                   {options.map((option) => (
