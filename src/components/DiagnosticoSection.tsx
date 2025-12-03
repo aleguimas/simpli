@@ -24,15 +24,18 @@ const DiagnosticoSection = () => {
         <div className="relative mt-10 w-full max-w-5xl">
           <div className="pointer-events-none absolute -left-16 top-6 h-56 w-56 rounded-full bg-white/5 blur-3xl md:-left-28 md:top-0 md:h-80 md:w-80" />
           <div className="pointer-events-none absolute -right-12 bottom-0 h-48 w-48 rounded-full bg-[#1C3324]/40 blur-3xl md:-right-24 md:h-72 md:w-72" />
-          <div className="relative px-3 py-4 sm:px-6 sm:py-6">
-            <div className="mx-auto max-w-5xl [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0.35)_14%,rgba(0,0,0,0.9)_48%,rgba(0,0,0,1)_68%,rgba(0,0,0,1)_100%)]">
-              <div className="mx-auto max-w-4xl md:-mr-12 md:pl-12 lg:-mr-20 lg:pl-20 md:[perspective:1400px] md:[mask-image:linear-gradient(to_right,black_65%,transparent_100%)]">
-                <div className="relative transition-transform duration-700 md:[transform:rotateX(12deg)_skewX(-6deg)]">
-                  <img
-                    src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE7Cpjs4JbNsEXlrThLj3By4kOfWQ51aHmIixU"
-                    alt="Visual da plataforma Simplí"
-                    className="mx-auto h-56 w-full max-w-3xl rounded-2xl border border-white/10 object-cover shadow-2xl shadow-black/40 sm:h-72 md:h-96"
-                  />
+          <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-[#0F1D15]/70 shadow-2xl shadow-black/40">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
+            <div className="relative px-3 py-4 sm:px-6 sm:py-6">
+              <div className="mx-auto max-w-5xl [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0)_0%,rgba(0,0,0,0.35)_14%,rgba(0,0,0,0.9)_48%,rgba(0,0,0,1)_68%,rgba(0,0,0,1)_100%)]">
+                <div className="mx-auto max-w-4xl md:-mr-12 md:pl-12 lg:-mr-20 lg:pl-20 md:[perspective:1400px] md:[mask-image:linear-gradient(to_right,black_65%,transparent_100%)]">
+                  <div className="relative transition-transform duration-700 md:[transform:rotateX(12deg)_skewX(-6deg)]">
+                    <img
+                      src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE7Cpjs4JbNsEXlrThLj3By4kOfWQ51aHmIixU"
+                      alt="Visual da plataforma Simplí"
+                      className="mx-auto h-56 w-full max-w-3xl rounded-2xl border border-white/10 object-cover shadow-2xl shadow-black/40 sm:h-72 md:h-96"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
