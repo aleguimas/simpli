@@ -5,6 +5,8 @@ import {
   ArrowRight,
   Brain,
   Calendar,
+  CheckCircle2,
+  Mail,
   Target,
   TrendingUp,
 } from "lucide-react";
@@ -20,6 +22,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 type StepConfig = {
   step: number;
@@ -220,6 +224,8 @@ const Diagnostico = () => {
   >({
     5: { team: "", knowledge: "", training: "" },
   });
+  const [showResultsDialog, setShowResultsDialog] = useState(false);
+  const [email, setEmail] = useState("");
 
   const current = steps.find((s) => s.step === currentStep)!;
   const selected = selectedByStep[currentStep] ?? [];
@@ -254,6 +260,14 @@ const Diagnostico = () => {
 
   const goPrev = () => setCurrentStep((prev) => Math.max(1, prev - 1));
   const goNext = () => setCurrentStep((prev) => Math.min(steps.length, prev + 1));
+
+  const handlePrimaryAction = () => {
+    if (currentStep === steps.length) {
+      setShowResultsDialog(true);
+      return;
+    }
+    goNext();
+  };
 
   return (
     <div className="relative min-h-screen bg-[#0C140F] text-white">
@@ -510,15 +524,60 @@ const Diagnostico = () => {
             </Button>
             <Button
               className="h-11 w-full rounded-xl border border-white/0 bg-white px-5 text-black transition hover:border-white/70 hover:bg-transparent hover:text-white md:w-40"
-              disabled={currentStep === steps.length}
-              onClick={goNext}
+              onClick={handlePrimaryAction}
             >
-              Próximo
-              <ArrowRight size={16} className="ml-2" />
+              {currentStep === steps.length ? (
+                <>
+                  Ver diagnóstico
+                  <CheckCircle2 size={18} className="ml-2" />
+                </>
+              ) : (
+                <>
+                  Próximo
+                  <ArrowRight size={16} className="ml-2" />
+                </>
+              )}
             </Button>
           </div>
         </main>
       </div>
+
+      <Dialog open={showResultsDialog} onOpenChange={setShowResultsDialog}>
+        <DialogContent className="max-w-md rounded-2xl border border-transparent bg-white text-[#0C140F] shadow-xl">
+          <DialogHeader className="space-y-2">
+            <div className="flex items-center gap-2 text-[#1C3324]">
+              <Mail size={20} />
+              <DialogTitle className="text-lg font-semibold">
+                Acesse seus Resultados
+              </DialogTitle>
+            </div>
+            <DialogDescription className="text-sm text-[#0C140F]/70">
+              Insira seu email para visualizar o relatório completo
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#0C140F]">
+              E-mail Corporativo *
+            </label>
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="seuemail@empresa.com"
+              className="h-11 rounded-xl border-[#0C140F33] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
+            />
+          </div>
+
+          <div className="pt-4">
+            <Button
+              className="h-11 w-full rounded-xl border border-transparent bg-[#1C3324] text-white transition hover:bg-[#15271b]"
+              onClick={() => setShowResultsDialog(false)}
+            >
+              Continuar
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
