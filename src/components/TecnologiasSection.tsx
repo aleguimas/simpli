@@ -25,7 +25,7 @@ const team = [
     title: "O Agente",
     bio: "Arquitetura de Automação com Inteligência Artificial.",
     image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEbdNkH1VKFxBWctPSJI0ik5y678jHYdwnRfNe",
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsER33zz5jXHjAIKp0qPDCzExk8boTtf7heY9QW",
   },
 ];
 
