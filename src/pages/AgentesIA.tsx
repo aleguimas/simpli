@@ -79,7 +79,14 @@ const processTimeline = [
   },
 ];
 
+const performanceBars = [
+  { label: "Antes da Simplí", seconds: 90, color: "bg-white" },
+  { label: "Depois da Simplí", seconds: 8, color: "bg-[#86efac]" },
+];
+
 const AgentesIA = () => {
+  const maxSeconds = Math.max(...performanceBars.map((bar) => bar.seconds));
+
   return (
     <div className="bg-[#0C140F] text-white">
       <section
@@ -220,19 +227,53 @@ const AgentesIA = () => {
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black">
                   <MessageCircle size={20} />
                 </div>
-                <div>
+                <div className="w-full max-w-md text-left">
                   <h4 className="text-lg font-semibold text-white">Resultados</h4>
-                  <div className="mt-4 flex flex-col gap-4 text-sm text-white/80">
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="text-2xl font-semibold text-[#4ADE80]">90%</span>
-                      <span>Redução no tempo de atendimento</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <span className="text-2xl font-semibold text-[#4ADE80]">98%</span>
-                      <span>Satisfação do cliente</span>
-                    </div>
+                  <p className="mt-1 text-sm text-white/70">
+                    Tempo de atendimento
+                  </p>
+                  <div className="mt-3 space-y-4">
+                    {performanceBars.map((bar, index) => {
+                      const targetWidth = (bar.seconds / maxSeconds) * 100;
+                      return (
+                        <div key={bar.label} className="space-y-1">
+                          <div className="flex items-center justify-between text-xs text-white/70">
+                            <span className="font-medium text-white">
+                              {bar.label}
+                            </span>
+                            <span className={bar.color === "bg-white" ? "text-white/70" : "text-[#86efac]"}>
+                              {bar.seconds}s
+                            </span>
+                          </div>
+                          <div className="h-3 w-full overflow-hidden rounded-full bg-white/10">
+                            <div
+                              className={`bar-animate h-full rounded-full ${bar.color} ${index === 0 ? "shadow-[0_0_12px_rgba(255,255,255,0.5)]" : "shadow-[0_0_12px_rgba(134,239,172,0.5)]"}`}
+                              style={
+                                {
+                                  "--target-width": `${targetWidth}%`,
+                                  animationDelay: `${index * 0.2}s`,
+                                } as React.CSSProperties
+                              }
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
+                  <p className="mt-4 text-center text-xs uppercase tracking-[0.18em] text-white/60">
+                    aumento brutal na eficiência no atendimento
+                  </p>
                 </div>
+                <style>{`
+                  @keyframes bar-grow {
+                    from { width: 0; }
+                    to { width: var(--target-width); }
+                  }
+                  .bar-animate {
+                    width: 0;
+                    animation: bar-grow 1.6s ease-out forwards;
+                  }
+                `}</style>
               </div>
             </CardContent>
           </Card>
