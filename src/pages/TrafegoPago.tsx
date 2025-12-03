@@ -167,31 +167,40 @@ const TrafegoPago = () => {
             <p className="mt-3 text-base text-white/70">
               Processo claro e iterativo para maximizar performance.
             </p>
-            <div className="relative mx-auto mt-12 max-w-4xl space-y-8">
-              <div className="pointer-events-none absolute left-6 top-0 hidden h-full w-px bg-white/10 sm:block" />
-              {process.map((item, idx) => (
-                <div key={item.step} className="relative flex gap-4 sm:gap-6">
-                  <div className="relative z-10 mt-1 flex flex-col items-center">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-lg">
-                      {item.step}
-                    </div>
-                    {idx < process.length - 1 && (
-                      <div className="hidden h-full w-px bg-white/15 sm:block" />
-                    )}
-                  </div>
-                  <Card className="flex-1 border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
-                    <CardContent className="p-5 text-left sm:p-6">
-                      <div className="flex flex-col gap-2">
+            <div className="relative mx-auto mt-12 max-w-5xl">
+              <div className="hidden md:block absolute left-3 right-3 top-10 h-0.5 bg-white/10" />
+              <div className="grid gap-6 md:grid-cols-4">
+                {process.map((item, idx) => (
+                  <div
+                    key={item.step}
+                    className="relative flex h-full flex-col items-center text-center md:items-start md:text-left"
+                  >
+                    <div className="hidden md:block absolute -top-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-gradient-to-br from-[#86efac] to-white shadow-[0_0_0_6px_rgba(12,20,15,0.6)]" />
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-lg">
+                        {item.step}
+                      </div>
+                      <div className="text-left md:hidden">
                         <p className="text-xs uppercase tracking-[0.14em] text-white/60">
                           Etapa {idx + 1}
                         </p>
                         <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                        <p className="text-sm text-white/70">{item.description}</p>
                       </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
+                    </div>
+                    <Card className="mt-4 h-full w-full border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
+                      <CardContent className="p-5">
+                        <div className="flex flex-col gap-2">
+                          <p className="text-xs uppercase tracking-[0.14em] text-white/60">
+                            Etapa {idx + 1}
+                          </p>
+                          <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                          <p className="text-sm text-white/70">{item.description}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
