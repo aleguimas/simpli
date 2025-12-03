@@ -142,15 +142,24 @@ const CaseStudiesSection = () => {
               </h3>
               {item.bulletPoints ? (
                 <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/70">
-                  {item.bulletPoints.map((point) => (
-                    <li key={point} className="flex items-start gap-2">
-                      <span
-                        aria-hidden
-                        className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/60"
-                      />
-                      <span>{point}</span>
-                    </li>
-                  ))}
+                  {item.bulletPoints.map((point) => {
+                    const [highlight, ...rest] = point.split(":");
+                    const restText = rest.join(":").trim();
+                    return (
+                      <li key={point} className="flex items-start gap-2">
+                        <span
+                          aria-hidden
+                          className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/60"
+                        />
+                        <span>
+                          <span className="font-semibold text-white">
+                            {highlight}:
+                          </span>{" "}
+                          {restText}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : (
                 item.summary && (
