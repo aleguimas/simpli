@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   ArrowUpRight,
   BarChart3,
   Check,
@@ -169,37 +170,49 @@ const TrafegoPago = () => {
             </p>
             <div className="relative mx-auto mt-12 max-w-5xl">
               <div className="hidden md:block absolute left-3 right-3 top-10 h-0.5 bg-white/10" />
-              <div className="grid gap-6 md:grid-cols-4">
-                {process.map((item, idx) => (
-                  <div
-                    key={item.step}
-                    className="relative flex h-full flex-col items-center text-center md:items-start md:text-left"
-                  >
-                    <div className="hidden md:block absolute -top-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-gradient-to-br from-[#86efac] to-white shadow-[0_0_0_6px_rgba(12,20,15,0.6)]" />
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-lg">
-                        {item.step}
-                      </div>
-                      <div className="text-left md:hidden">
-                        <p className="text-xs uppercase tracking-[0.14em] text-white/60">
-                          Etapa {idx + 1}
-                        </p>
-                        <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                      </div>
-                    </div>
-                    <Card className="mt-4 h-full w-full border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
-                      <CardContent className="p-5">
-                        <div className="flex flex-col gap-2">
-                          <p className="text-xs uppercase tracking-[0.14em] text-white/60">
-                            Etapa {idx + 1}
-                          </p>
-                          <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                          <p className="text-sm text-white/70">{item.description}</p>
+              <div className="grid gap-8 md:grid-cols-7">
+                {process.map((item, idx) => {
+                  const isLast = idx === process.length - 1;
+                  return (
+                    <div
+                      key={item.step}
+                      className="col-span-7 flex flex-col items-center md:col-span-2"
+                    >
+                      <div className="relative flex h-full w-full flex-col items-center text-center md:items-start md:text-left">
+                        <div className="hidden md:block absolute -top-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-gradient-to-br from-[#86efac] to-white shadow-[0_0_0_6px_rgba(12,20,15,0.6)]" />
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-lg">
+                            {item.step}
+                          </div>
+                          <div className="text-left md:hidden">
+                            <p className="text-xs uppercase tracking-[0.14em] text-white/60">
+                              Etapa {idx + 1}
+                            </p>
+                            <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                          </div>
                         </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
+                        <Card className="mt-4 h-full w-full border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
+                          <CardContent className="p-5">
+                            <div className="flex flex-col gap-2">
+                              <p className="text-xs uppercase tracking-[0.14em] text-white/60">
+                                Etapa {idx + 1}
+                              </p>
+                              <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                              <p className="text-sm text-white/70">{item.description}</p>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                      {!isLast && (
+                        <div className="my-6 flex items-center justify-center md:my-0 md:mt-6">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 shadow-md md:rotate-0 md:translate-x-3">
+                            <ArrowRight size={18} />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
