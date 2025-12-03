@@ -4,7 +4,7 @@ const team = [
     title: "O Estrategista",
     bio: "Transformação Digital e Inteligência Artificial com 20+ anos de gestão corporativa.",
     image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEKMtJqh3jmdzfo2QuXWxp84Vn6rDB07Fw5iIH",
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEauhePJBF8GkPX2cwREIBOA1KmZx5CpJ0DtMd",
   },
   {
     name: "Luciano Fernandes",
