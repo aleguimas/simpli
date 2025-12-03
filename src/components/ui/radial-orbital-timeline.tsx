@@ -29,6 +29,11 @@ const stageLabels: Record<number, string> = {
   4: "Conclusão",
 };
 
+const badgeStyle = (id: number) =>
+  id === 4
+    ? "bg-emerald-500 text-white border-emerald-400"
+    : "bg-white text-[#0C140F] border-white";
+
 const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => {
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
   const [rotationAngle, setRotationAngle] = useState<number>(0);
@@ -124,12 +129,6 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
     return relatedItems.includes(itemId);
   };
 
-  const statusStyles = (status: TimelineStatus) => {
-    if (status === "completed") return "text-white bg-emerald-600/30 border-emerald-300/60";
-    if (status === "in-progress") return "text-black bg-white border-white";
-    return "text-white bg-white/10 border-white/40";
-  };
-
   return (
     <div
       className="relative flex h-[540px] w-full items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-[#0F1D15] via-[#0C140F] to-[#0F1D15] px-4"
@@ -209,7 +208,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
                   <div className="absolute -top-3 left-1/2 h-3 w-px -translate-x-1/2 bg-white/50" />
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
-                      <Badge className={`px-2 text-xs uppercase ${statusStyles(item.status)}`}>
+                      <Badge className={`px-2 text-xs uppercase ${badgeStyle(item.id)}`}>
                         {stageLabels[item.id] ?? "Etapa"}
                       </Badge>
                       <span className="text-xs font-mono text-white/50">{item.date}</span>
@@ -251,14 +250,14 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
                                 key={relatedId}
                                 variant="outline"
                                 size="sm"
-                                className="flex h-6 items-center px-2 py-0 text-xs text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                                className="flex h-6 items-center px-2 py-0 text-xs bg-[#1f1f1f] text-white border-[#1f1f1f] transition-all hover:bg-white hover:text-[#0C140F] hover:border-white"
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   toggleItem(relatedId);
                                 }}
                               >
                                 {relatedItem?.title}
-                                <ArrowRight size={8} className="ml-1 text-white/60" />
+                                <ArrowRight size={8} className="ml-1 text-white/60 hover:text-[#0C140F]" />
                               </Button>
                             );
                           })}
