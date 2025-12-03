@@ -1,10 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Brain, Target } from "lucide-react";
+import { ArrowLeft, ArrowRight, Brain, Target, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type StepConfig = {
   step: number;
@@ -14,6 +21,9 @@ type StepConfig = {
   subheading: string;
   prompt: string;
   options: string[];
+  selectLabel?: string;
+  selectPlaceholder?: string;
+  selectOptions?: string[];
 };
 
 const steps: StepConfig[] = [
@@ -53,6 +63,33 @@ const steps: StepConfig[] = [
       "Competitividade no mercado",
     ],
   },
+  {
+    step: 3,
+    progress: 60,
+    stageLabel: "Maturidade tecnológica",
+    heading: "Maturidade Tecnológica",
+    subheading: "Avalie o nível atual de maturidade digital da sua empresa",
+    prompt: "Quais tecnologias você já utiliza?",
+    selectLabel: "Como você classificaria a maturidade digital da sua empresa?",
+    selectPlaceholder: "Selecione o nível",
+    selectOptions: [
+      "Iniciante - Processos majoritariamente manuais",
+      "Básico - Algumas automações simples",
+      "Intermediário - Sistemas integrados e dados centralizados",
+      "Avançado - Analytics e automação inteligente",
+      "Maduro - IA e Machine Learning já em uso",
+    ],
+    options: [
+      "ERP/Sistema de gestão",
+      "CRM",
+      "Analytics/Business Intelligence",
+      "Banco de dados em nuvem",
+      "Agentes de IA",
+      "Chatbot",
+      "Automação de processos (RPA)",
+      "Machine Learning/IA",
+    ],
+  },
 ];
 
 const Diagnostico = () => {
@@ -60,11 +97,22 @@ const Diagnostico = () => {
   const [selectedByStep, setSelectedByStep] = useState<Record<number, string[]>>({
     1: [],
     2: [],
+    3: [],
+  });
+  const [selectedLevelByStep, setSelectedLevelByStep] = useState<Record<number, string>>({
+    3: "Iniciante - Processos majoritariamente manuais",
   });
 
   const current = steps.find((s) => s.step === currentStep)!;
   const selected = selectedByStep[currentStep] ?? [];
-  const Icon = current.stageLabel === "Desafios atuais" ? Brain : Target;
+  const selectedLevel = selectedLevelByStep[currentStep] ?? "";
+
+  const Icon =
+    current.stageLabel === "Desafios atuais"
+      ? Brain
+      : current.stageLabel.startsWith("Maturidade")
+        ? TrendingUp
+        : Target;
 
   const toggleOption = (value: string) => {
     setSelectedByStep((prev) => {
@@ -142,6 +190,31 @@ const Diagnostico = () => {
                   </p>
                 </div>
               </div>
+
+              {current.selectOptions && (
+                <div className="space-y-2">
+                  <p className="text-base font-semibold text-white">
+                    {current.selectLabel}
+                  </p>
+                  <Select
+                    value={selectedLevel}
+                    onValueChange={(value) =>
+                      setSelectedLevelByStep((prev) => ({ ...prev, [currentStep]: value }))
+                    }
+                  >
+                    <SelectTrigger className="h-11 w-full rounded-xl border-white/20 bg-white/5 text-left text-white/80 hover:border-white/30 focus:border-white focus:ring-0">
+                      <SelectValue placeholder={current.selectPlaceholder} />
+                    </SelectTrigger>
+                    <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
+                      {current.selectOptions.map((option) => (
+                        <SelectItem key={option} value={option} className="text-white/90">
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
 
               <div>
                 <p className="text-base font-semibold text-white">
