@@ -48,7 +48,6 @@ const Diagnostico = () => {
               className="h-9 w-auto"
               loading="lazy"
             />
-            <span className="hidden sm:inline-block">Voltar para início</span>
           </Link>
           <Button
             asChild
