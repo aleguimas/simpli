@@ -10,6 +10,8 @@ import { useInView } from "@/hooks/use-in-view";
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG =
   "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEppByWMrB2eHrQEupzvT8LaN4mntWUVOky7IR";
+const NATAL_LOGO_SRC =
+  "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx";
 
 const benefits = [
   {
@@ -199,12 +201,20 @@ const AgentesIA = () => {
               Veja como automatizamos o atendimento da Natal Home Center
             </p>
           </div>
-          <Card className="mt-10 border-white/10 bg-[#0C140F]/70 shadow-2xl shadow-black/40">
-            <CardContent className="grid gap-8 px-4 py-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-6">
+          <Card
+            className="relative mt-10 overflow-hidden border-white/10 bg-[#0C140F]/70 shadow-2xl shadow-black/40"
+            style={{
+              backgroundImage: `linear-gradient(180deg, rgba(12,20,15,0.85), rgba(12,20,15,0.92)), url('${NATAL_LOGO_SRC}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <CardContent className="relative grid gap-8 px-4 py-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-6">
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <img
-                    src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx"
+                    src={NATAL_LOGO_SRC}
                     alt="Natal Home Center"
                     className="h-10 w-auto rounded-md border border-white/10 bg-white/5 p-2"
                     loading="lazy"
