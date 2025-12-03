@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
-  { label: "Início", href: "#hero" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Treinamentos", href: "#treinamento" },
-  { label: "Sobre", href: "#carreiras" },
+  { label: "Início", href: "/#hero" },
+  { label: "Serviços", href: "/#servicos" },
+  { label: "Treinamentos", href: "/#treinamento" },
+  { label: "Sobre", href: "/#carreiras" },
 ];
 
 const Navbar = () => {
@@ -29,24 +30,24 @@ const Navbar = () => {
       )}
     >
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6 md:px-10">
-        <a href="#hero" className="flex items-center">
+        <Link to="/#hero" className="flex items-center">
           <img
             src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEsCzKr2uURvumjDTaW8whPIYnNpgbMFyHqVOA"
             alt="Tela.com logo"
             className="h-8 w-auto"
             loading="lazy"
           />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-2 text-sm text-white/80 md:flex">
           {navLinks.map((item) => (
-            <a
+            <Link
               key={item.href}
-              href={item.href}
+              to={item.href}
               className="rounded-lg px-3 py-2 transition hover:text-white"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -76,13 +77,13 @@ const Navbar = () => {
               <div className="mt-6 flex flex-col gap-5">
                 <div className="flex flex-col gap-2 text-sm">
                   {navLinks.map((item) => (
-                    <a
+                    <Link
                       key={item.href}
-                      href={item.href}
+                      to={item.href}
                       className="rounded-lg px-3 py-2 transition hover:bg-white/5"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
 
