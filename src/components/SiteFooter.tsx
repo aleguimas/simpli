@@ -32,8 +32,7 @@ const SiteFooter = () => {
             loading="lazy"
           />
           <p className="mt-3 text-sm text-white/70">
-            Automação inteligente para equipes que querem eficiência com
-            segurança e visibilidade.
+            Consultoria e tecnologia de ponta para transformação digital.
           </p>
           <div className="mt-4 flex items-center gap-3">
             {socialLinks.map(({ label, href, Icon }) => (
@@ -89,7 +88,7 @@ const SiteFooter = () => {
         </div>
       </div>
       <div className="mx-auto mt-10 max-w-6xl border-t border-white/5 pt-6 text-xs text-white/50">
-        © {new Date().getFullYear()} Tela. Todos os direitos reservados.
+        © {new Date().getFullYear()} Simplí. Todos os direitos reservados.
       </div>
     </footer>
   );
