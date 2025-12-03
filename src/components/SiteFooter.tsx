@@ -1,4 +1,4 @@
-import { Globe, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Globe, Instagram, Linkedin, X, Youtube } from "lucide-react";
 
 const companyLinks = [
   { label: "Início", href: "#hero" },
@@ -9,7 +9,7 @@ const companyLinks = [
 ];
 
 const socialLinks = [
-  { label: "X", href: "#", Icon: Twitter },
+  { label: "X", href: "#", Icon: X },
   { label: "Instagram", href: "#", Icon: Instagram },
   { label: "LinkedIn", href: "#", Icon: Linkedin },
   { label: "YouTube", href: "#", Icon: Youtube },
@@ -35,7 +35,7 @@ const SiteFooter = () => {
           <p className="mt-3 text-sm text-white/70">
             Consultoria e tecnologia de ponta para transformação digital.
           </p>
-          <div className="mt-4 flex items-center gap-2">
+          <div className="mt-4 flex items-center gap-1.5">
             {socialLinks.map(({ label, href, Icon }) => (
               <a
                 key={label}
@@ -43,7 +43,7 @@ const SiteFooter = () => {
                 aria-label={label}
                 className="flex h-10 w-10 items-center justify-center text-white/80 transition hover:text-white"
               >
-                <Icon size={20} />
+                <Icon size={18} />
               </a>
             ))}
           </div>
