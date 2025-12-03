@@ -53,7 +53,7 @@ const ServicesSection = () => {
             <Link
               key={slug}
               to={`/servicos/${slug}`}
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#101722]/90 p-6 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#121a26] hover:shadow-xl hover:shadow-black/30"
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f241c]/90 p-6 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#123026] hover:shadow-xl hover:shadow-black/30"
             >
               <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
                 <div className="h-full w-full bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
