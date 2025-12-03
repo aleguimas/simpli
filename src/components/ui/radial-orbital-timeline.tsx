@@ -131,7 +131,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
 
   return (
     <div
-      className="relative flex h-[540px] w-full items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-[#0F1D15] via-[#0C140F] to-[#0F1D15] px-4"
+      className="relative flex h-[540px] w-full items-center justify-center bg-transparent"
       ref={containerRef}
       onClick={handleContainerClick}
     >
