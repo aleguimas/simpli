@@ -345,10 +345,10 @@ const caseItems: CaseItem[] = [
 const CaseStudiesSection = () => {
   const [selected, setSelected] = useState(categories[0]);
 
-  const filteredCases = useMemo(() => {
-    if (selected === categories[0]) return caseItems;
-    return caseItems.filter((item) => item.category === selected);
-  }, [selected]);
+  const filteredCases = useMemo(
+    () => caseItems.filter((item) => item.category === selected),
+    [selected],
+  );
 
   return (
     <section
