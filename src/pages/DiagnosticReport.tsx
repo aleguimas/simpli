@@ -188,9 +188,6 @@ const DiagnosticReport = () => {
   })();
 
   const levelLabel = maturityText.split("-")[0]?.trim() || "Básico / Inicial";
-  const maturityDescription = maturityText.includes("-")
-    ? maturityText.split("-").slice(1).join("-").trim()
-    : maturityText;
 
   const companyName = summary.contact?.company || "sua empresa";
   const personName =
@@ -313,9 +310,6 @@ const DiagnosticReport = () => {
                   <Badge className={`${badgeColor(levelLabel)} font-semibold`}>
                     {levelLabel}
                   </Badge>
-                  <span className="text-sm text-white/60">
-                    {maturityDescription || "Requer estruturação antes da IA"}
-                  </span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-white/10 md:w-64">
                   <div
