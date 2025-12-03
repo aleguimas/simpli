@@ -70,7 +70,10 @@ const Diagnostico = () => {
             <div className="text-sm font-semibold text-[#4ADE80]">
               {progressValue}% completo
             </div>
-            <Progress value={progressValue} className="h-2 bg-white/10" />
+            <Progress
+              value={progressValue}
+              className="h-2 bg-white/10 [&>div]:bg-white"
+            />
           </div>
 
           <Card className="border border-white/10 bg-[#0F1D15]/90 shadow-2xl shadow-black/30">
