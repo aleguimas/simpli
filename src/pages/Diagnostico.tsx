@@ -106,7 +106,7 @@ const steps: StepConfig[] = [
     selectPlaceholder: "Selecione o nível",
     selectOptions: [
       "Iniciante - Processos majoritariamente manuais",
-      "Básico - Algumas automações simples",
+      "Básico",
       "Intermediário - Sistemas integrados e dados centralizados",
       "Avançado - Analytics e automação inteligente",
       "Maduro - IA e Machine Learning já em uso",
@@ -208,7 +208,7 @@ const readinessSelects: {
 
 const maturityMap: Record<string, string> = {
   "Iniciante - Processos majoritariamente manuais": "iniciante",
-  "Básico - Algumas automações simples": "basico",
+  "Básico": "basico",
   "Intermediário - Sistemas integrados e dados centralizados": "intermediario",
   "Avançado - Analytics e automação inteligente": "avancado",
   "Maduro - IA e Machine Learning já em uso": "maduro",

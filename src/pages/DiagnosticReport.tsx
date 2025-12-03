@@ -259,7 +259,7 @@ const DiagnosticReport = () => {
         </Link>
         <Button
           variant="outline"
-          className="rounded-full border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10"
+          className="h-10 rounded-xl border-white/20 bg-white/5 text-white transition hover:border-white hover:bg-white hover:text-black"
           onClick={() => navigate("/")}
         >
           <ArrowLeft size={16} className="mr-2" />
