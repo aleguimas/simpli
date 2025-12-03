@@ -344,6 +344,7 @@ const caseItems: CaseItem[] = [
 
 const NichosSection = () => {
   const [selected, setSelected] = useState(categories[0]);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const filteredCases = useMemo(
     () => caseItems.filter((item) => item.category === selected),
@@ -390,30 +391,38 @@ const NichosSection = () => {
         </div>
 
         <div className="nichos-grid mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {filteredCases.map((item) => (
-            <a
-              key={`${item.category}-${item.title}`}
-              href="#"
-              className="nichos-card relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 opacity-100 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40"
-            >
-              <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
-                <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.16),_transparent_58%)]" />
-              </div>
-              <Badge className="border border-white/20 bg-white/10 text-white">
-                {item.category}
-              </Badge>
-              <h3 className="mt-4 text-xl font-semibold text-white">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/70">
-                {item.subtitle}
-              </p>
-              <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition group-hover:translate-x-1">
-                Solicitar orçamento
-                <ArrowUpRight size={16} />
-              </div>
-            </a>
-          ))}
+          {filteredCases.map((item, index) => {
+            const isDimmed =
+              hoveredIndex !== null && hoveredIndex !== index;
+            return (
+              <a
+                key={`${item.category}-${item.title}`}
+                href="#"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                className={`nichos-card relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 ${
+                  isDimmed ? "opacity-50" : "opacity-100"
+                }`}
+              >
+                <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 hover:opacity-100">
+                  <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.16),_transparent_58%)]" />
+                </div>
+                <Badge className="border border-white/20 bg-white/10 text-white">
+                  {item.category}
+                </Badge>
+                <h3 className="mt-4 text-xl font-semibold text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">
+                  {item.subtitle}
+                </p>
+                <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition hover:translate-x-1">
+                  Solicitar orçamento
+                  <ArrowUpRight size={16} />
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
       <style>{`
@@ -431,12 +440,6 @@ const NichosSection = () => {
           background: rgba(255,255,255,0.18);
           border-radius: 9999px;
           border: 2px solid #0B1117;
-        }
-        .nichos-grid:hover .nichos-card {
-          opacity: 0.6;
-        }
-        .nichos-card:hover {
-          opacity: 1;
         }
       `}</style>
     </section>
