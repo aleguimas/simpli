@@ -28,13 +28,8 @@ const DiagnosticoSection = () => {
               src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE7Cpjs4JbNsEXlrThLj3By4kOfWQ51aHmIixU"
               alt="Visual da plataforma Simplí"
               className="mx-auto h-56 w-full max-w-3xl object-cover sm:h-72 md:h-96"
-              style={{
-                maskImage:
-                  "radial-gradient(circle at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0.8) 72%, rgba(0,0,0,0) 95%)",
-                WebkitMaskImage:
-                  "radial-gradient(circle at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0.8) 72%, rgba(0,0,0,0) 95%)",
-              }}
             />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,0,0,0)_55%,_rgba(0,0,0,0.45)_80%,_rgba(0,0,0,0.65)_100%)]" />
           </div>
         </div>
 
