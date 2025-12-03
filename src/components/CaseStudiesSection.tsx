@@ -4,9 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 type CaseItem = {
   company: string;
   title: string;
-  summary?: string;
+  subtitle: string;
   category: string;
-  bulletPoints?: string[];
 };
 
 const categories = [
@@ -23,15 +22,39 @@ const categories = [
 const caseItems: CaseItem[] = [
   {
     company: "Jusbrasil",
-    title: "Automação de fluxos jurídicos com IA",
-    bulletPoints: [
-      "Varejo (lojas físicas e e-commerce): atendimento 24/7 para dúvidas sobre produtos, trocas e devoluções",
-      "Clínicas e consultórios médicos: informações sobre especialidades, convênios aceitos, preparos para exames",
-      "Escritórios de advocacia: triagem inicial de casos, informações sobre áreas de atuação",
-      "Imobiliárias: informações sobre imóveis disponíveis, características, valores",
-      "Restaurantes e delivery: cardápio, horários, pedidos",
-      "Hotéis e pousadas: informações sobre acomodações, serviços, reservas",
-    ],
+    title: "Varejo (lojas físicas e e-commerce)",
+    subtitle: "Atendimento 24/7 para dúvidas sobre produtos, trocas e devoluções",
+    category: "Atendimento",
+  },
+  {
+    company: "Jusbrasil",
+    title: "Clínicas e consultórios médicos",
+    subtitle:
+      "Informações sobre especialidades, convênios aceitos e preparos para exames",
+    category: "Atendimento",
+  },
+  {
+    company: "Jusbrasil",
+    title: "Escritórios de advocacia",
+    subtitle: "Triagem inicial de casos e informações sobre áreas de atuação",
+    category: "Atendimento",
+  },
+  {
+    company: "Jusbrasil",
+    title: "Imobiliárias",
+    subtitle: "Informações sobre imóveis disponíveis, características e valores",
+    category: "Atendimento",
+  },
+  {
+    company: "Jusbrasil",
+    title: "Restaurantes e delivery",
+    subtitle: "Cardápio, horários de funcionamento e acompanhamento de pedidos",
+    category: "Atendimento",
+  },
+  {
+    company: "Jusbrasil",
+    title: "Hotéis e pousadas",
+    subtitle: "Detalhes sobre acomodações, serviços oferecidos e reservas",
     category: "Atendimento",
   },
 ];
@@ -89,7 +112,7 @@ const CaseStudiesSection = () => {
         <div className="group/card-grid mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {filteredCases.map((item) => (
             <a
-              key={item.company}
+              key={`${item.company}-${item.title}`}
               href="#"
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 group-hover/card-grid:opacity-60 hover:opacity-100"
             >
@@ -105,28 +128,9 @@ const CaseStudiesSection = () => {
               <h3 className="mt-4 text-xl font-semibold text-white">
                 {item.title}
               </h3>
-              {item.bulletPoints ? (
-                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/70">
-                  {item.bulletPoints.map((point) => {
-                    const [highlight, ...rest] = point.split(":");
-                    const restText = rest.join(":").trim();
-                    return (
-                      <li key={point} className="flex items-start gap-2">
-                        <span
-                          aria-hidden
-                          className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/60"
-                        />
-                        <span>
-                          <span className="font-semibold text-white">
-                            {highlight}:
-                          </span>{" "}
-                          {restText}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : null}
+              <p className="mt-3 text-sm leading-relaxed text-white/70">
+                {item.subtitle}
+              </p>
               <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition group-hover:translate-x-1">
                 Solicitar orçamento
                 <ArrowUpRight size={16} />
