@@ -99,8 +99,13 @@ const TreinamentosSection = () => {
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <Button className="h-12 rounded-xl border border-transparent bg-white px-6 text-base font-semibold text-black transition hover:border-white hover:bg-[#0B1117] hover:text-white">
-            Solicitar Orçamento dos Treinamentos
+          <Button
+            asChild
+            className="h-12 rounded-xl border border-transparent bg-white px-6 text-base font-semibold text-black transition hover:border-white hover:bg-[#0B1117] hover:text-white"
+          >
+            <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+              Solicitar Orçamento dos Treinamentos
+            </a>
           </Button>
         </div>
       </div>
