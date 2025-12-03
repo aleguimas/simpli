@@ -12,51 +12,292 @@ type CaseItem = {
 const categories = [
   "Atendimento",
   "Agendamento",
-  "Qualificação de leads",
-  "Leitura de estoque",
-  "Suporte e dúvidas",
-  "Disparo de emails / WhatsApp",
-  "Automação de cobranças",
+  "Qualificação de Leads",
+  "Leitura de Estoque",
+  "Suporte e Dúvidas",
+  "Disparo de Emails / WhatsApp",
+  "Automação de Cobranças",
   "Projeto personalizados",
 ];
 
 const caseItems: CaseItem[] = [
+  // Atendimento
   {
-    company: "Jusbrasil",
+    company: "Atendimento",
     title: "Varejo (lojas físicas e e-commerce)",
     subtitle: "Atendimento 24/7 para dúvidas sobre produtos, trocas e devoluções",
     category: "Atendimento",
   },
   {
-    company: "Jusbrasil",
+    company: "Atendimento",
     title: "Clínicas e consultórios médicos",
     subtitle:
       "Informações sobre especialidades, convênios aceitos e preparos para exames",
     category: "Atendimento",
   },
   {
-    company: "Jusbrasil",
+    company: "Atendimento",
     title: "Escritórios de advocacia",
     subtitle: "Triagem inicial de casos e informações sobre áreas de atuação",
     category: "Atendimento",
   },
   {
-    company: "Jusbrasil",
+    company: "Atendimento",
     title: "Imobiliárias",
     subtitle: "Informações sobre imóveis disponíveis, características e valores",
     category: "Atendimento",
   },
   {
-    company: "Jusbrasil",
+    company: "Atendimento",
     title: "Restaurantes e delivery",
     subtitle: "Cardápio, horários de funcionamento e acompanhamento de pedidos",
     category: "Atendimento",
   },
   {
-    company: "Jusbrasil",
+    company: "Atendimento",
     title: "Hotéis e pousadas",
     subtitle: "Detalhes sobre acomodações, serviços oferecidos e reservas",
     category: "Atendimento",
+  },
+  // Agendamento
+  {
+    company: "Agendamento",
+    title: "Clínicas e consultórios",
+    subtitle: "Agendamento de consultas, exames e retornos",
+    category: "Agendamento",
+  },
+  {
+    company: "Agendamento",
+    title: "Salões de beleza e barbearias",
+    subtitle: "Marcação de horários para cortes e procedimentos estéticos",
+    category: "Agendamento",
+  },
+  {
+    company: "Agendamento",
+    title: "Escritórios de advocacia",
+    subtitle: "Agendamento de reuniões com clientes",
+    category: "Agendamento",
+  },
+  {
+    company: "Agendamento",
+    title: "Clínicas veterinárias",
+    subtitle: "Consultas e procedimentos para pets",
+    category: "Agendamento",
+  },
+  {
+    company: "Agendamento",
+    title: "Academias e personal trainers",
+    subtitle: "Agendamento de aulas e treinos",
+    category: "Agendamento",
+  },
+  {
+    company: "Agendamento",
+    title: "Oficinas mecânicas",
+    subtitle: "Agendamento de manutenções e reparos",
+    category: "Agendamento",
+  },
+  {
+    company: "Agendamento",
+    title: "Restaurantes",
+    subtitle: "Reserva de mesa",
+    category: "Agendamento",
+  },
+  // Qualificação de Leads
+  {
+    company: "Qualificação de Leads",
+    title: "Imobiliárias",
+    subtitle: "Identificar interesse real, faixa de preço e localização desejada",
+    category: "Qualificação de Leads",
+  },
+  {
+    company: "Qualificação de Leads",
+    title: "Escolas e cursos",
+    subtitle: "Identificar perfil do aluno, curso de interesse e capacidade de investimento",
+    category: "Qualificação de Leads",
+  },
+  {
+    company: "Qualificação de Leads",
+    title: "Consultorias e serviços B2B",
+    subtitle: "Entender porte da empresa e necessidades específicas",
+    category: "Qualificação de Leads",
+  },
+  {
+    company: "Qualificação de Leads",
+    title: "Escritórios de advocacia",
+    subtitle: "Avaliar complexidade do caso e viabilidade",
+    category: "Qualificação de Leads",
+  },
+  {
+    company: "Qualificação de Leads",
+    title: "Corretoras de seguros",
+    subtitle: "Identificar perfil de risco e necessidades de cobertura",
+    category: "Qualificação de Leads",
+  },
+  {
+    company: "Qualificação de Leads",
+    title: "Concessionárias de veículos",
+    subtitle: "Preferências, orçamento e urgência de compra",
+    category: "Qualificação de Leads",
+  },
+  // Leitura de Estoque
+  {
+    company: "Leitura de Estoque",
+    title: "Varejo físico e e-commerce",
+    subtitle: "Consulta de disponibilidade em tempo real",
+    category: "Leitura de Estoque",
+  },
+  {
+    company: "Leitura de Estoque",
+    title: "Farmácias",
+    subtitle: "Verificação de medicamentos disponíveis",
+    category: "Leitura de Estoque",
+  },
+  {
+    company: "Leitura de Estoque",
+    title: "Distribuidoras",
+    subtitle: "Consulta de produtos para revendedores",
+    category: "Leitura de Estoque",
+  },
+  {
+    company: "Leitura de Estoque",
+    title: "Restaurantes",
+    subtitle: "Verificação de ingredientes para delivery",
+    category: "Leitura de Estoque",
+  },
+  {
+    company: "Leitura de Estoque",
+    title: "Lojas de materiais de construção",
+    subtitle: "Consulta de disponibilidade de materiais",
+    category: "Leitura de Estoque",
+  },
+  {
+    company: "Leitura de Estoque",
+    title: "Pet shops",
+    subtitle: "Verificação de produtos e rações",
+    category: "Leitura de Estoque",
+  },
+  // Suporte e Dúvidas
+  {
+    company: "Suporte e Dúvidas",
+    title: "E-commerce",
+    subtitle: "Dúvidas sobre produtos, prazos de entrega e políticas de troca",
+    category: "Suporte e Dúvidas",
+  },
+  {
+    company: "Suporte e Dúvidas",
+    title: "SaaS e empresas de tecnologia",
+    subtitle: "Suporte técnico inicial e troubleshooting",
+    category: "Suporte e Dúvidas",
+  },
+  {
+    company: "Suporte e Dúvidas",
+    title: "Bancos e fintechs",
+    subtitle: "Dúvidas sobre produtos financeiros e transações",
+    category: "Suporte e Dúvidas",
+  },
+  {
+    company: "Suporte e Dúvidas",
+    title: "Escolas e universidades",
+    subtitle: "Informações sobre cursos, matrículas e documentação",
+    category: "Suporte e Dúvidas",
+  },
+  {
+    company: "Suporte e Dúvidas",
+    title: "Planos de saúde",
+    subtitle: "Dúvidas sobre cobertura e rede credenciada",
+    category: "Suporte e Dúvidas",
+  },
+  {
+    company: "Suporte e Dúvidas",
+    title: "Telecomunicações",
+    subtitle: "Suporte para problemas técnicos e planos disponíveis",
+    category: "Suporte e Dúvidas",
+  },
+  // Disparo de Emails / WhatsApp
+  {
+    company: "Disparo de Emails / WhatsApp",
+    title: "Varejo",
+    subtitle: "Campanhas promocionais, avisos de estoque e carrinho abandonado",
+    category: "Disparo de Emails / WhatsApp",
+  },
+  {
+    company: "Disparo de Emails / WhatsApp",
+    title: "Clínicas",
+    subtitle: "Lembretes de consultas e campanhas de prevenção",
+    category: "Disparo de Emails / WhatsApp",
+  },
+  {
+    company: "Disparo de Emails / WhatsApp",
+    title: "Escolas",
+    subtitle: "Comunicados aos pais e lembretes de pagamento",
+    category: "Disparo de Emails / WhatsApp",
+  },
+  {
+    company: "Disparo de Emails / WhatsApp",
+    title: "Imobiliárias",
+    subtitle: "Envio de novos imóveis conforme o perfil do cliente",
+    category: "Disparo de Emails / WhatsApp",
+  },
+  {
+    company: "Disparo de Emails / WhatsApp",
+    title: "Restaurantes",
+    subtitle: "Promoções e cardápios especiais",
+    category: "Disparo de Emails / WhatsApp",
+  },
+  {
+    company: "Disparo de Emails / WhatsApp",
+    title: "Academias",
+    subtitle: "Lembretes de treino e novos horários de aulas",
+    category: "Disparo de Emails / WhatsApp",
+  },
+  {
+    company: "Disparo de Emails / WhatsApp",
+    title: "Qualquer nicho",
+    subtitle: "Newsletters e conteúdo educativo",
+    category: "Disparo de Emails / WhatsApp",
+  },
+  // Automação de Cobranças
+  {
+    company: "Automação de Cobranças",
+    title: "Clínicas e consultórios",
+    subtitle: "Cobrança de consultas e procedimentos",
+    category: "Automação de Cobranças",
+  },
+  {
+    company: "Automação de Cobranças",
+    title: "Escolas e cursos",
+    subtitle: "Mensalidades atrasadas",
+    category: "Automação de Cobranças",
+  },
+  {
+    company: "Automação de Cobranças",
+    title: "Escritórios de advocacia",
+    subtitle: "Honorários e parcelas",
+    category: "Automação de Cobranças",
+  },
+  {
+    company: "Automação de Cobranças",
+    title: "Academias",
+    subtitle: "Mensalidades em atraso",
+    category: "Automação de Cobranças",
+  },
+  {
+    company: "Automação de Cobranças",
+    title: "Condomínios",
+    subtitle: "Taxas condominiais",
+    category: "Automação de Cobranças",
+  },
+  {
+    company: "Automação de Cobranças",
+    title: "Assinaturas e serviços recorrentes",
+    subtitle: "Qualquer modelo com pagamentos recorrentes",
+    category: "Automação de Cobranças",
+  },
+  {
+    company: "Automação de Cobranças",
+    title: "Lojas com crediário próprio",
+    subtitle: "Parcelas atrasadas",
+    category: "Automação de Cobranças",
   },
 ];
 
@@ -113,7 +354,7 @@ const CaseStudiesSection = () => {
         <div className="group/card-grid mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {filteredCases.map((item) => (
             <a
-              key={item.title}
+              key={`${item.category}-${item.title}`}
               href="#"
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 group-hover/card-grid:opacity-60 hover:opacity-100"
             >
