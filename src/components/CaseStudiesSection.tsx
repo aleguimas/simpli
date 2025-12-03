@@ -9,13 +9,14 @@ type CaseItem = {
 };
 
 const categories = [
-  "Todas as Indústrias",
-  "Jurídico",
-  "Saúde",
-  "Finanças",
-  "Imobiliário",
-  "Compliance",
-  "Operações de Back-office",
+  "Atendimento",
+  "Agendamento",
+  "Qualificação de leads",
+  "Leitura de estoque",
+  "Suporte e dúvidas",
+  "Disparo de emails / WhatsApp",
+  "Automação de cobranças",
+  "Projeto personalizados",
 ];
 
 const caseItems: CaseItem[] = [
@@ -24,42 +25,42 @@ const caseItems: CaseItem[] = [
     title: "Automação de fluxos jurídicos com IA",
     summary:
       "Classificação inteligente de documentos e geração de relatórios automáticos para acelerar times jurídicos.",
-    category: "Jurídico",
+    category: "Atendimento",
   },
   {
     company: "Vórtx",
     title: "Roteamento inteligente de tarefas críticas",
     summary:
       "Assistentes monitoram processos e direcionam demandas críticas com alertas em tempo real.",
-    category: "Finanças",
+    category: "Automação de cobranças",
   },
   {
     company: "Unimed",
     title: "Atendimento assistido por IA",
     summary:
       "Triagem e acompanhamento automatizado de casos, mantendo equipes focadas no cuidado ao paciente.",
-    category: "Saúde",
+    category: "Agendamento",
   },
   {
     company: "Loft",
     title: "Integração de dados imobiliários",
     summary:
       "Agentes conectam dados de múltiplas fontes para atualizar cadastros e precificação de imóveis.",
-    category: "Imobiliário",
+    category: "Leitura de estoque",
   },
   {
     company: "Machado Meyer",
     title: "Compliance contínuo",
     summary:
       "Monitoramento de conformidade com geração de evidências e alertas de risco em tempo real.",
-    category: "Compliance",
+    category: "Suporte e dúvidas",
   },
   {
     company: "Ultra",
     title: "Back-office automatizado",
     summary:
       "Revisão de contratos, conciliações e extração de dados feita por agentes com supervisão humana.",
-    category: "Operações de Back-office",
+    category: "Qualificação de leads",
   },
 ];
 
@@ -67,7 +68,7 @@ const CaseStudiesSection = () => {
   const [selected, setSelected] = useState(categories[0]);
 
   const filteredCases = useMemo(() => {
-    if (selected === "Todas as Indústrias") return caseItems;
+    if (selected === categories[0]) return caseItems;
     return caseItems.filter((item) => item.category === selected);
   }, [selected]);
 
