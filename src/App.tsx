@@ -10,6 +10,7 @@ import Diagnostico from "./pages/Diagnostico";
 import DiagnosticReport from "./pages/DiagnosticReport";
 import AgentesIA from "./pages/AgentesIA";
 import DesenvolvimentoWeb from "./pages/DesenvolvimentoWeb";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/diagnostico" element={<Diagnostico />} />
