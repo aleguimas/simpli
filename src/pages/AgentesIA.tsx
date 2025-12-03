@@ -2,7 +2,6 @@ import type React from "react";
 import { CheckCircle2, Zap, BarChart3, Clock3, TrendingUp, MessageCircle, NotebookPen, Brain, Cog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import SiteFooter from "@/components/SiteFooter";
 import { useInView } from "@/hooks/use-in-view";
@@ -104,7 +103,6 @@ const AgentesIA = () => {
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center gap-6">
-          <Badge className="border-0 bg-white/15 text-white">Agentes Inteligentes</Badge>
           <h1 className="text-4xl font-semibold md:text-5xl">Agentes de IA</h1>
           <p className="max-w-2xl text-lg text-white/75 md:text-xl">
             Desenvolvemos chatbots inteligentes e automações que revolucionam o atendimento.
