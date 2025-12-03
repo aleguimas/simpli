@@ -125,9 +125,14 @@ const Diagnostico = () => {
               <ArrowLeft size={16} className="mr-2" />
               Anterior
             </Button>
-            <Button className="h-11 w-full rounded-xl border border-white/0 bg-white px-5 text-black transition hover:border-white/70 hover:bg-transparent hover:text-white md:w-40">
-              Próximo
-              <ArrowRight size={16} className="ml-2" />
+            <Button
+              asChild
+              className="h-11 w-full rounded-xl border border-white/0 bg-white px-5 text-black transition hover:border-white/70 hover:bg-transparent hover:text-white md:w-40"
+            >
+              <Link to="/diagnostico/passo-2">
+                Próximo
+                <ArrowRight size={16} className="ml-2" />
+              </Link>
             </Button>
           </div>
         </main>
