@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 const DiagnosticoSection = () => {
   return (
     <section className="relative overflow-hidden bg-[#0C140F] px-6 py-20 md:px-10 md:py-24">
+      <div
+        className="absolute inset-0 bg-center bg-cover opacity-50"
+        style={{
+          backgroundImage:
+            "url('https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEauhePJBF8GkPX2cwREIBOA1KmZx5CpJ0DtMd')",
+        }}
+      />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08),_transparent_55%)]" />
       <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center text-white">
         <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">
