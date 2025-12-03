@@ -342,7 +342,7 @@ const caseItems: CaseItem[] = [
   },
 ];
 
-const CaseStudiesSection = () => {
+const NichosSection = () => {
   const [selected, setSelected] = useState(categories[0]);
 
   const filteredCases = useMemo(
@@ -352,7 +352,7 @@ const CaseStudiesSection = () => {
 
   return (
     <section
-      id="cases"
+      id="nichos"
       className="bg-[#0B1117] px-6 py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
@@ -364,9 +364,6 @@ const CaseStudiesSection = () => {
             <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
               Conheça os nichos de impacto dos Agentes de IA
             </h2>
-          </div>
-          <div className="flex items-center gap-2 text-sm text-white/60">
-            <span className="hidden sm:block">Categorias</span>
           </div>
         </div>
 
@@ -440,4 +437,4 @@ const CaseStudiesSection = () => {
   );
 };
 
-export default CaseStudiesSection;
+export default NichosSection;
