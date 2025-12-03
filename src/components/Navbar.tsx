@@ -76,7 +76,7 @@ const Navbar = () => {
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6 md:px-10">
         <a href="#hero" className="flex items-center">
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEbdyYejjVKFxBWctPSJI0ik5y678jHYdwnRfN"
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEsCzKr2uURvumjDTaW8whPIYnNpgbMFyHqVOA"
             alt="Tela.com logo"
             className="h-8 w-auto"
             loading="lazy"

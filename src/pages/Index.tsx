@@ -31,8 +31,8 @@ const Index = () => {
         <LogoSection />
         <ServicesSection />
         <NichosSection />
-        <EnterpriseSection />
         <TestimonialsSection />
+        <EnterpriseSection />
         <CallToActionSection />
       </main>
       <SiteFooter />
