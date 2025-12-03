@@ -1,5 +1,6 @@
 import { Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const DiagnosticoSection = () => {
   return (
@@ -34,13 +35,7 @@ const DiagnosticoSection = () => {
           asChild
           className="mt-8 h-12 rounded-xl border border-white/0 bg-white px-7 text-lg font-semibold text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white"
         >
-          <a
-            href="https://agente.simpli.ia.br/diagnostico"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Fazer diagnóstico gratuito
-          </a>
+          <Link to="/diagnostico">Fazer diagnóstico gratuito</Link>
         </Button>
         <div className="mt-4 text-xs uppercase tracking-[0.14em] text-white/60">
           Gratuito • Rápido • Relatório personalizado
