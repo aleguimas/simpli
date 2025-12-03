@@ -135,9 +135,6 @@ const TrafegoPago = () => {
 
         <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
-              Por que investir
-            </p>
             <h2 className="mt-2 text-3xl font-semibold md:text-4xl">Benefícios do Tráfego Pago</h2>
             <p className="mt-3 text-base text-white/70">
               Resultados rápidos, medidos e escaláveis com foco em ROI.
