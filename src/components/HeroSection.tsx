@@ -41,7 +41,7 @@ const HeroSection = () => {
               variant="outline"
               className="h-12 rounded-xl border-white/20 bg-white/5 px-7 text-lg text-white transition-colors hover:border-white hover:bg-white hover:text-black"
             >
-              Ver Casos de Uso
+              Nossos Serviços
             </Button>
           </div>
         </div>
