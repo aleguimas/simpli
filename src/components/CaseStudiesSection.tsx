@@ -4,85 +4,53 @@ import { ArrowUpRight } from "lucide-react";
 type CaseItem = {
   company: string;
   title: string;
-  summary?: string;
+  summary: string;
   category: string;
-  bulletPoints?: string[];
 };
 
-const categories = [
-  "Atendimento",
-  "Agendamento",
-  "Qualificação de leads",
-  "Leitura de estoque",
-  "Suporte e dúvidas",
-  "Disparo de emails / WhatsApp",
-  "Automação de cobranças",
-  "Projeto personalizados",
-];
+const categories = ["Atendimento"];
 
 const caseItems: CaseItem[] = [
   {
-    company: "Jusbrasil",
-    title: "Automação de fluxos jurídicos com IA",
-    bulletPoints: [
-      "Varejo (lojas físicas e e-commerce): atendimento 24/7 para dúvidas sobre produtos, trocas e devoluções",
-      "Clínicas e consultórios médicos: informações sobre especialidades, convênios aceitos, preparos para exames",
-      "Escritórios de advocacia: triagem inicial de casos, informações sobre áreas de atuação",
-      "Imobiliárias: informações sobre imóveis disponíveis, características, valores",
-      "Restaurantes e delivery: cardápio, horários, pedidos",
-      "Hotéis e pousadas: informações sobre acomodações, serviços, reservas",
-    ],
+    company: "Varejo (lojas físicas e e-commerce)",
+    title: "Atendimento 24/7",
+    summary:
+      "Dúvidas sobre produtos, trocas e devoluções resolvidas a qualquer hora.",
     category: "Atendimento",
   },
   {
-    company: "Vórtx",
-    title: "Roteamento inteligente de tarefas críticas",
-    bulletPoints: [
-      "Roteamento inteligente: prioriza tarefas críticas automaticamente",
-      "Alertas em tempo real: sinaliza exceções para correção imediata",
-      "Automação de cobranças: dispara lembretes e follow-ups sem intervenção manual",
-    ],
-    category: "Automação de cobranças",
+    company: "Clínicas e consultórios médicos",
+    title: "Informações de especialidades",
+    summary:
+      "Detalhes de convênios aceitos, preparos para exames e direcionamento correto.",
+    category: "Atendimento",
   },
   {
-    company: "Unimed",
-    title: "Atendimento assistido por IA",
-    bulletPoints: [
-      "Triagem inicial: coleta sintomas e direciona o paciente corretamente",
-      "Agendamentos automáticos: confirma e lembra consultas ou exames",
-      "Acompanhamento contínuo: envia orientações e check-ins pós-atendimento",
-    ],
-    category: "Agendamento",
+    company: "Escritórios de advocacia",
+    title: "Triagem inicial de casos",
+    summary:
+      "Coleta informações básicas e direciona para a área de atuação adequada.",
+    category: "Atendimento",
   },
   {
-    company: "Loft",
-    title: "Integração de dados imobiliários",
-    bulletPoints: [
-      "Leitura de estoque: consolida imóveis de múltiplas fontes",
-      "Atualização automática: sincroniza preços, fotos e disponibilidade",
-      "Precificação inteligente: sugere valores com base em dados de mercado",
-    ],
-    category: "Leitura de estoque",
+    company: "Imobiliárias",
+    title: "Consulta de imóveis",
+    summary:
+      "Disponibilidade, características e valores atualizados em tempo real.",
+    category: "Atendimento",
   },
   {
-    company: "Machado Meyer",
-    title: "Compliance contínuo",
-    bulletPoints: [
-      "Monitoramento de conformidade: acompanha políticas e prazos críticos",
-      "Evidências automáticas: registra decisões e ações para auditoria",
-      "Alertas de risco: notifica equipes sobre exceções ou pendências",
-    ],
-    category: "Suporte e dúvidas",
+    company: "Restaurantes e delivery",
+    title: "Cardápio e pedidos",
+    summary: "Horários, opções do cardápio e suporte a pedidos com rapidez.",
+    category: "Atendimento",
   },
   {
-    company: "Ultra",
-    title: "Back-office automatizado",
-    bulletPoints: [
-      "Revisão de contratos: extrai cláusulas e valida consistência",
-      "Conciliação financeira: cruza dados de pagamentos e faturas",
-      "Qualificação de leads: prioriza contatos com maior fit e intenção",
-    ],
-    category: "Qualificação de leads",
+    company: "Hotéis e pousadas",
+    title: "Reservas e serviços",
+    summary:
+      "Informações sobre acomodações, serviços disponíveis e suporte a reservas.",
+    category: "Atendimento",
   },
 ];
 
@@ -155,34 +123,9 @@ const CaseStudiesSection = () => {
               <h3 className="mt-4 text-xl font-semibold text-white">
                 {item.title}
               </h3>
-              {item.bulletPoints ? (
-                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/70">
-                  {item.bulletPoints.map((point) => {
-                    const [highlight, ...rest] = point.split(":");
-                    const restText = rest.join(":").trim();
-                    return (
-                      <li key={point} className="flex items-start gap-2">
-                        <span
-                          aria-hidden
-                          className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/60"
-                        />
-                        <span>
-                          <span className="font-semibold text-white">
-                            {highlight}:
-                          </span>{" "}
-                          {restText}
-                        </span>
-                      </li>
-                    );
-                  })}
-                </ul>
-              ) : (
-                item.summary && (
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">
-                    {item.summary}
-                  </p>
-                )
-              )}
+              <p className="mt-3 text-sm leading-relaxed text-white/70">
+                {item.summary}
+              </p>
               <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition group-hover:translate-x-1">
                 Solicitar orçamento
                 <ArrowUpRight size={16} />
