@@ -90,7 +90,7 @@ const TestimonialsSection = () => {
               <div className="mt-4">
                 <Button
                   variant="outline"
-                  className="w-full rounded-xl border-white/30 bg-white/5 text-white transition hover:border-[#0B1117] hover:bg-[#0B1117] hover:text-white"
+                  className="w-full rounded-xl border-white/30 bg-white/5 text-white transition hover:border-white hover:bg-white hover:text-[#0B1117]"
                 >
                   Saiba Mais
                 </Button>
@@ -99,7 +99,7 @@ const TestimonialsSection = () => {
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <Button className="h-12 rounded-xl border border-transparent bg-white px-6 text-base font-semibold text-black transition hover:border-[#0B1117] hover:bg-[#0B1117] hover:text-white">
+          <Button className="h-12 rounded-xl border border-transparent bg-white px-6 text-base font-semibold text-black transition hover:border-white hover:bg-[#0B1117] hover:text-white">
             Solicitar Orçamento dos Treinamentos
           </Button>
         </div>
