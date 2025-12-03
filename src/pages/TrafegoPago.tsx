@@ -112,12 +112,6 @@ const TrafegoPago = () => {
                   Solicitar Orçamento
                 </a>
               </Button>
-              <Button
-                variant="outline"
-                className="h-12 min-w-[180px] rounded-xl border-white/30 bg-white/5 text-white transition hover:border-white hover:bg-white/10"
-              >
-                Falar com especialista
-              </Button>
             </div>
           </div>
         </section>
