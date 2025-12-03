@@ -23,11 +23,11 @@ const DiagnosticoSection = () => {
 
         <div className="relative mt-10 w-full max-w-4xl overflow-hidden rounded-2xl border border-white/15 bg-white/5 shadow-2xl shadow-black/40">
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#0C140F]/40 via-transparent to-transparent" />
-          <div className="relative">
+          <div className="relative flex justify-center px-4 py-2 sm:px-6 sm:py-4">
             <img
               src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE7Cpjs4JbNsEXlrThLj3By4kOfWQ51aHmIixU"
               alt="Visual da plataforma Simplí"
-              className="h-56 w-full origin-center -rotate-2 scale-105 object-cover sm:h-72 md:h-96"
+              className="mx-auto h-56 w-full max-w-3xl object-cover sm:h-72 md:h-96"
               style={{
                 maskImage:
                   "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 10%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,1) 65%, rgba(0,0,0,1) 100%)",
