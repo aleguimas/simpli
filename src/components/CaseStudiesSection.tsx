@@ -373,7 +373,7 @@ const CaseStudiesSection = () => {
         <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/5 bg-white/5">
           <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#0B1117] to-transparent" />
           <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#0B1117] to-transparent" />
-          <div className="flex overflow-x-auto scroll-smooth px-4 py-3 text-sm text-white/80">
+          <div className="cases-scroll flex overflow-x-auto scroll-smooth px-4 py-3 text-sm text-white/80">
             <div className="flex gap-3">
               {categories.map((cat) => (
                 <button
@@ -419,6 +419,23 @@ const CaseStudiesSection = () => {
           ))}
         </div>
       </div>
+      <style>{`
+        .cases-scroll {
+          scrollbar-color: rgba(255,255,255,0.18) #0B1117;
+          scrollbar-width: thin;
+        }
+        .cases-scroll::-webkit-scrollbar {
+          height: 10px;
+        }
+        .cases-scroll::-webkit-scrollbar-track {
+          background: #0B1117;
+        }
+        .cases-scroll::-webkit-scrollbar-thumb {
+          background: rgba(255,255,255,0.18);
+          border-radius: 9999px;
+          border: 2px solid #0B1117;
+        }
+      `}</style>
     </section>
   );
 };
