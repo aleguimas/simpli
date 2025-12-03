@@ -55,29 +55,14 @@ const Diagnostico = () => {
             variant="outline"
             className="h-10 rounded-xl border-white/20 bg-white/5 text-white transition hover:border-white hover:bg-white hover:text-black"
           >
-            <Link to="/">Página inicial</Link>
+            <Link to="/" className="inline-flex items-center gap-2">
+              <ArrowLeft size={16} />
+              Voltar
+            </Link>
           </Button>
         </header>
 
         <main className="mt-10 space-y-6">
-          <div className="space-y-3 text-left">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
-              Diagnóstico Gratuito
-            </div>
-            <div className="max-w-3xl space-y-3">
-              <h1 className="text-3xl font-semibold leading-tight md:text-4xl">
-                Descubra como{" "}
-                <span className="text-[#4ADE80]">{headingHighlight}</span> podem
-                acelerar sua operação
-              </h1>
-              <p className="text-base text-white/70 md:text-lg">
-                Em poucos passos você identifica as prioridades, entende o
-                potencial dos agentes de IA e recebe um plano personalizado para
-                seu negócio.
-              </p>
-            </div>
-          </div>
-
           <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 md:flex-row md:items-center md:justify-between">
             <div className="text-sm text-white/80">
               <span className="font-semibold text-white">Passo 1 de 5</span> •
