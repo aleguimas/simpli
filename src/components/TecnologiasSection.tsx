@@ -18,6 +18,8 @@ const team = [
     name: "Caio Souza",
     title: "O Agente",
     bio: "Arquitetura de Automação com Inteligência Artificial.",
+    image:
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEbdNkH1VKFxBWctPSJI0ik5y678jHYdwnRfNe",
   },
 ];
 
@@ -40,12 +42,21 @@ const TecnologiasSection = () => {
               key={person.name}
               className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-[#0F1D15]/90 p-6 shadow-lg shadow-black/30 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#102419]"
             >
-              <div className="flex aspect-square w-full items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[#1C3324] via-[#0F1D15] to-[#0C140F] text-3xl font-semibold text-white/80">
-                {person.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")
-                  .slice(0, 2)}
+              <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#1C3324] via-[#0F1D15] to-[#0C140F] text-3xl font-semibold text-white/80">
+                {person.image ? (
+                  <img
+                    src={person.image}
+                    alt={person.name}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  person.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .slice(0, 2)
+                )}
               </div>
               <div className="flex flex-col items-start gap-2 text-left">
                 <div className="text-xs uppercase tracking-[0.16em] text-white/60">
