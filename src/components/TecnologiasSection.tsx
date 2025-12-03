@@ -23,7 +23,7 @@ const team = [
   {
     name: "Caio Souza",
     title: "O Agente",
-    bio: "Arquitetura de Automação com Inteligência Artificial.",
+    bio: "Desenvolvimento web e arquitetura de automação com Inteligência Artificial.",
     image:
       "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEtUmhv4n0k0d8pmGzXQeVxIluNUWFAC75ZS49",
   },
