@@ -99,23 +99,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-/* Scrollbar personalizada para combinar com o fundo azul */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #1b2430 #0b1117;
-}
-
-*::-webkit-scrollbar {
-  width: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: #0b1117;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #1b2430;
-  border-radius: 9999px;
-  border: 2px solid #0b1117;
-}
