@@ -11,14 +11,14 @@ const team = [
     title: "O Professor",
     bio: "Visual Merchandising e Trade Marketing com 35+ anos de experiência no mercado.",
     image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEZuv3m784ELxHGVik9czW6J02qOuRdIN3ab71",
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEN5bXdVEATQL5kRn8PCGNcDBlOitbevH4VU1j",
   },
   {
     name: "Rodrigo Lemos",
     title: "O Tráfego",
     bio: "Tráfego Pago e Marketing Digital, focado em estratégias para aumentar o faturamento.",
     image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsELn57g0kZzK0dVWxMER8XGta73Nqwu1gBrDi6",
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE3iT5EHtlXpfOwIErqgV4Y1jUPA8ys5KotB0b",
   },
   {
     name: "Caio Souza",
