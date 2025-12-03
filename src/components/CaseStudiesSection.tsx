@@ -112,17 +112,14 @@ const CaseStudiesSection = () => {
         <div className="group/card-grid mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {filteredCases.map((item) => (
             <a
-              key={`${item.company}-${item.title}`}
+              key={item.title}
               href="#"
               className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 group-hover/card-grid:opacity-60 hover:opacity-100"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
                 <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.16),_transparent_58%)]" />
               </div>
-              <div className="flex items-center justify-between">
-                <div className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white/90">
-                  {item.company}
-                </div>
+              <div className="flex items-center justify-end">
                 <span className="text-xs text-white/60">{item.category}</span>
               </div>
               <h3 className="mt-4 text-xl font-semibold text-white">
