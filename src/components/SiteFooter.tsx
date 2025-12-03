@@ -35,7 +35,7 @@ const SiteFooter = () => {
           <p className="mt-3 text-sm text-white/70">
             Consultoria e tecnologia de ponta para transformação digital.
           </p>
-          <div className="mt-4 flex items-center gap-3">
+          <div className="mt-4 flex items-center gap-2">
             {socialLinks.map(({ label, href, Icon }) => (
               <a
                 key={label}
