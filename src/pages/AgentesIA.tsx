@@ -228,7 +228,7 @@ const AgentesIA = () => {
                   <h4 className="text-lg font-semibold uppercase tracking-[0.12em] text-white">
                     Tempo de atendimento
                   </h4>
-                  <div className="mt-6 flex items-end justify-center gap-3">
+                  <div className="mt-6 flex items-end justify-center gap-[25px]">
                     {performanceBars.map((bar, index) => {
                       const targetHeight = (bar.seconds / maxSeconds) * 100;
                       const isBefore = bar.color === "bg-white";
