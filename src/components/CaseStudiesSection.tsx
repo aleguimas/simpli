@@ -80,10 +80,10 @@ const CaseStudiesSection = () => {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-sm uppercase tracking-[0.18em] text-white/50">
-              Casos de sucesso
+              Aplicabilidade dos Agentes de IA
             </p>
             <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
-              Automação impulsionada por IA para todas as indústrias
+              Conheça os nichos de impacto dos Agentes de IA
             </h2>
           </div>
           <div className="flex items-center gap-2 text-sm text-white/60">
