@@ -17,7 +17,7 @@ const TransformarNegocioSection = () => {
           Entre em contato conosco e descubra como podemos ajudar sua empresa a
           alcançar o próximo nível na transformação digital.
         </p>
-        <Button className="mt-8 h-12 rounded-xl bg-white px-6 text-base font-semibold text-black hover:bg-white/90">
+        <Button className="mt-8 h-12 rounded-xl border border-transparent bg-white px-6 text-base font-semibold text-black transition hover:border-white hover:bg-[#0C140F] hover:text-white">
           Fale conosco
         </Button>
       </div>
