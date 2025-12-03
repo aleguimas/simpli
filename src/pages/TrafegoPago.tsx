@@ -108,9 +108,6 @@ const TrafegoPago = () => {
         <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
             <div className="space-y-4">
-              <p className="text-sm uppercase tracking-[0.18em] text-white/50">
-                Estratégia sob medida
-              </p>
               <h2 className="text-3xl font-semibold md:text-4xl">O que é Tráfego Pago?</h2>
               <p className="text-base leading-relaxed text-white/70">
                 Tráfego pago é investir em anúncios para atrair visitantes qualificados de forma
@@ -124,7 +121,7 @@ const TrafegoPago = () => {
             </div>
             <Card className="border border-white/10 bg-[#0C140F]/80 shadow-2xl shadow-black/40">
               <CardContent className="flex flex-col items-center gap-3 p-6 text-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] text-[#0C140F]">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black">
                   <ArrowUpRight size={22} />
                 </div>
                 <h3 className="text-lg font-semibold text-white">Plataformas Avançadas</h3>
@@ -152,7 +149,7 @@ const TrafegoPago = () => {
                   className="border border-white/10 bg-white/5 shadow-lg shadow-black/30"
                 >
                   <CardContent className="flex flex-col gap-3 p-5 text-left">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] text-[#0C140F]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#86efac] to-white text-black">
                       <item.icon size={18} />
                     </div>
                     <div>
@@ -178,7 +175,7 @@ const TrafegoPago = () => {
               {process.map((item, idx) => (
                 <div key={item.step} className="relative flex gap-4 sm:gap-6">
                   <div className="relative z-10 mt-1 flex flex-col items-center">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#7afa00] via-[#00e686] to-[#00d8ff] text-base font-semibold text-[#0C140F] shadow-lg">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-lg">
                       {item.step}
                     </div>
                     {idx < process.length - 1 && (
@@ -245,7 +242,7 @@ const TrafegoPago = () => {
                 </div>
 
                 <div className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-gradient-to-br from-[#123026] via-[#16402F] to-[#0F1D15] p-6 text-center shadow-inner shadow-black/30">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-[#7afa00]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black">
                     <BarChart3 size={20} />
                   </div>
                   <h4 className="text-lg font-semibold text-white">Resultados</h4>
@@ -259,14 +256,6 @@ const TrafegoPago = () => {
                       <span className="text-xs text-white/60">Redução de CPA</span>
                     </div>
                   </div>
-                  <Button
-                    asChild
-                    className="mt-2 h-11 w-full rounded-xl border border-transparent bg-white px-5 text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
-                  >
-                    <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                      Quero resultados assim
-                    </a>
-                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -290,12 +279,6 @@ const TrafegoPago = () => {
                 <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
                   Solicitar Orçamento
                 </a>
-              </Button>
-              <Button
-                variant="outline"
-                className="h-12 rounded-xl border-white/30 bg-white/5 text-white transition hover:border-white hover:bg-white/10"
-              >
-                Ver outros serviços
               </Button>
             </div>
           </div>
