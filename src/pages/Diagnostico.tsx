@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRight,
@@ -204,6 +204,7 @@ const readinessSelects: {
 ];
 
 const Diagnostico = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedByStep, setSelectedByStep] = useState<Record<number, string[]>>({
     1: [],
@@ -292,7 +293,28 @@ const Diagnostico = () => {
   };
 
   const handleDetailsSubmit = () => {
+    const summary = {
+      selections: selectedByStep,
+      maturityLevel: selectedLevelByStep[3] ?? "",
+      budget: budgetByStep[4] ?? "",
+      timeline: timelineByStep[4] ?? "",
+      notes: notesByStep[4] ?? "",
+      readiness: readinessByStep[5] ?? { team: "", knowledge: "", training: "" },
+      contact: {
+        email,
+        firstName,
+        lastName,
+        phone,
+        company,
+        companySize,
+        companySector,
+        role,
+        roleArea,
+        subscribeNews,
+      },
+    };
     setShowDetailsDialog(false);
+    navigate("/diagnostico/resultado", { state: { summary } });
   };
 
   return (
