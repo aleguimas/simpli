@@ -17,7 +17,7 @@ const categories = [
   "Suporte e Dúvidas",
   "Disparo de Emails / WhatsApp",
   "Automação de Cobranças",
-  "Projeto personalizados",
+  "Projetos personalizados",
 ];
 
 const caseItems: CaseItem[] = [
@@ -112,7 +112,8 @@ const caseItems: CaseItem[] = [
   {
     company: "Qualificação de Leads",
     title: "Escolas e cursos",
-    subtitle: "Identificar perfil do aluno, curso de interesse e capacidade de investimento",
+    subtitle:
+      "Identificar perfil do aluno, curso de interesse e capacidade de investimento",
     category: "Qualificação de Leads",
   },
   {
@@ -298,6 +299,46 @@ const caseItems: CaseItem[] = [
     title: "Lojas com crediário próprio",
     subtitle: "Parcelas atrasadas",
     category: "Automação de Cobranças",
+  },
+  // Projetos personalizados
+  {
+    company: "Projetos personalizados",
+    title: "Projetos sob medida",
+    subtitle:
+      "Os projetos são planejados de acordo com a demanda do cliente; valores baseados na complexidade.",
+    category: "Projetos personalizados",
+  },
+  {
+    company: "Projetos personalizados",
+    title: "CRM próprio",
+    subtitle:
+      "Criação e desenvolvimento de software de CRM customizado para as necessidades da empresa.",
+    category: "Projetos personalizados",
+  },
+  {
+    company: "Projetos personalizados",
+    title: "App sob medida",
+    subtitle: "Desenvolvimento de app específico para seu negócio.",
+    category: "Projetos personalizados",
+  },
+  {
+    company: "Projetos personalizados",
+    title: "Automações com IA",
+    subtitle: "Fluxos de automação com IA personalizados.",
+    category: "Projetos personalizados",
+  },
+  {
+    company: "Projetos personalizados",
+    title: "Análise de dados com IA",
+    subtitle:
+      "Algoritmo de predição construído de acordo com os dados do seu negócio.",
+    category: "Projetos personalizados",
+  },
+  {
+    company: "Projetos personalizados",
+    title: "Página de vendas / Sites",
+    subtitle: "Desenvolvemos sites com modernidade e clareza.",
+    category: "Projetos personalizados",
   },
 ];
 
