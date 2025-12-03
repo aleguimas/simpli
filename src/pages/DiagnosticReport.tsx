@@ -4,10 +4,8 @@ import {
   Award,
   BarChart,
   Calendar,
-  Check,
   CheckCircle2,
   Clock,
-  Info,
   Lightbulb,
   ShieldAlert,
   Sparkles,
@@ -35,10 +33,10 @@ const fallbackSummary: SummaryState = {
 
 const badgeColor = (level: string) => {
   if (level?.toLowerCase().includes("maduro") || level?.includes("Avançado"))
-    return "bg-emerald-100 text-emerald-700";
-  if (level?.includes("Intermediário")) return "bg-blue-100 text-blue-700";
-  if (level?.includes("Básico")) return "bg-amber-100 text-amber-700";
-  return "bg-gray-100 text-gray-700";
+    return "bg-emerald-200/20 text-emerald-200";
+  if (level?.includes("Intermediário")) return "bg-blue-200/20 text-blue-200";
+  if (level?.includes("Básico")) return "bg-amber-200/20 text-amber-200";
+  return "bg-white/10 text-white";
 };
 
 const DiagnosticReport = () => {
@@ -105,9 +103,9 @@ const DiagnosticReport = () => {
       : "";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e9fbf1] via-[#ecf9ff] to-[#e7f7f2] text-[#0C140F]">
+    <div className="min-h-screen bg-[#0C140F] text-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 md:px-10">
-        <Link to="/" className="text-sm text-[#0C140F]">
+        <Link to="/" className="text-sm text-white">
           <img
             src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEsCzKr2uURvumjDTaW8whPIYnNpgbMFyHqVOA"
             alt="Simplí"
@@ -117,7 +115,7 @@ const DiagnosticReport = () => {
         </Link>
         <Button
           variant="outline"
-          className="rounded-full border-[#0C140F26] bg-white text-[#0C140F] hover:border-[#0C140F40]"
+          className="rounded-full border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10"
           onClick={() => navigate("/")}
         >
           <ArrowLeft size={16} className="mr-2" />
@@ -127,55 +125,55 @@ const DiagnosticReport = () => {
 
       <main className="mx-auto max-w-6xl px-6 pb-12 md:px-10">
         <div className="flex flex-col items-center gap-3 text-center">
-          <Badge className="rounded-full bg-emerald-100 text-emerald-700">
+          <Badge className="rounded-full border border-emerald-300/40 bg-emerald-300/10 text-emerald-100">
             Seu Relatório de Diagnóstico
           </Badge>
-          <h1 className="text-3xl font-semibold text-[#0C140F] md:text-4xl">
+          <h1 className="text-3xl font-semibold text-white md:text-4xl">
             Resultado da sua{" "}
-            <span className="text-emerald-600">Análise de Maturidade em IA</span>
+            <span className="text-emerald-300">Análise de Maturidade em IA</span>
           </h1>
-          <p className="max-w-3xl text-base text-[#0C140F]/75">
+          <p className="max-w-3xl text-base text-white/70">
             Com base nas suas respostas, preparamos uma visão completa do nível de
             preparação da sua empresa para implementar inteligência artificial.
           </p>
         </div>
 
         <section className="mt-8 space-y-6">
-          <Card className="border-0 shadow-sm">
+          <Card className="border border-white/5 bg-[#0F1D15] shadow-2xl shadow-black/40">
             <CardContent className="p-6">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-300/15 text-emerald-200">
                     <BarChart size={20} />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-[#0C140F]">
+                    <p className="text-sm font-semibold text-white">
                       Índice de Maturidade Digital
                     </p>
-                    <p className="text-xs text-[#0C140F]/60">
+                    <p className="text-xs text-white/60">
                       Avaliação do preparo atual para IA
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-amber-600">
-                  <Star size={16} className="fill-amber-400 text-amber-400" />
+                <div className="flex items-center gap-2 text-sm text-amber-200">
+                  <Star size={16} className="fill-amber-300 text-amber-300" />
                   Nível de preparação
                 </div>
               </div>
 
               <div className="mt-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-semibold text-[#0C140F]">
+                  <span className="text-3xl font-semibold text-white">
                     {maturityScore}/100
                   </span>
                   <Badge className={`${badgeColor(levelLabel)} font-semibold`}>
                     {levelLabel}
                   </Badge>
-                  <span className="text-sm text-[#0C140F]/60">
+                  <span className="text-sm text-white/60">
                     {summary.maturityLevel || "Requer estruturação antes da IA"}
                   </span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-[#0C140F0F] md:w-64">
+                <div className="h-2 w-full rounded-full bg-white/10 md:w-64">
                   <div
                     className="h-2 rounded-full bg-gradient-to-r from-[#1C3324] to-[#4ADE80]"
                     style={{ width: `${maturityScore}%` }}
@@ -184,59 +182,57 @@ const DiagnosticReport = () => {
               </div>
 
               <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-                <div className="rounded-xl border border-[#0C140F0D] bg-white p-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-[#0C140F]">
-                    <Sparkles size={18} className="text-emerald-600" />
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                    <Sparkles size={18} className="text-emerald-200" />
                     Objetivos Identificados
                   </div>
-                  <div className="mt-2 text-2xl font-semibold text-[#0C140F]">
+                  <div className="mt-2 text-2xl font-semibold text-white">
                     {objectives}
                   </div>
-                  <p className="text-xs text-[#0C140F]/60">
-                    Áreas de foco para IA
-                  </p>
+                  <p className="text-xs text-white/60">Áreas de foco para IA</p>
                 </div>
-                <div className="rounded-xl border border-[#0C140F0D] bg-white p-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-[#0C140F]">
-                    <ShieldAlert size={18} className="text-sky-600" />
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                    <ShieldAlert size={18} className="text-sky-200" />
                     Desafios Mapeados
                   </div>
-                  <div className="mt-2 text-2xl font-semibold text-[#0C140F]">
+                  <div className="mt-2 text-2xl font-semibold text-white">
                     {challenges}
                   </div>
-                  <p className="text-xs text-[#0C140F]/60">
+                  <p className="text-xs text-white/60">
                     Oportunidades de melhoria
                   </p>
                 </div>
-                <div className="rounded-xl border border-[#0C140F0D] bg-white p-4">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-[#0C140F]">
-                    <Lightbulb size={18} className="text-lime-600" />
+                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-white">
+                    <Lightbulb size={18} className="text-amber-200" />
                     Recomendações
                   </div>
-                  <div className="mt-2 text-2xl font-semibold text-[#0C140F]">
+                  <div className="mt-2 text-2xl font-semibold text-white">
                     {recommendationsCount}
                   </div>
-                  <p className="text-xs text-[#0C140F]/60">Ações prioritárias</p>
+                  <p className="text-xs text-white/60">Ações prioritárias</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-0 bg-amber-50 shadow-sm">
+          <Card className="border border-amber-200/20 bg-gradient-to-br from-amber-200/10 via-amber-200/5 to-transparent shadow-2xl shadow-black/40">
             <CardContent className="space-y-4 p-6">
-              <div className="flex items-center gap-2 text-lg font-semibold text-[#b18100]">
+              <div className="flex items-center gap-2 text-lg font-semibold text-amber-200">
                 <Award size={18} />
                 Pontos Positivos da sua Empresa
               </div>
-              <p className="text-sm text-[#0C140F]/70">
+              <p className="text-sm text-white/75">
                 Reconhecemos os pontos fortes que já existem na sua organização.
               </p>
-              <div className="rounded-xl border border-amber-100 bg-white p-4 text-sm text-[#0C140F]">
-                <div className="flex items-center gap-2 font-semibold">
-                  <Star size={16} className="text-amber-500" />
+              <div className="rounded-xl border border-amber-200/30 bg-[#0F1D15] p-4 text-sm text-white">
+                <div className="flex items-center gap-2 font-semibold text-amber-200">
+                  <Star size={16} className="text-amber-300" />
                   Iniciativa Proativa
                 </div>
-                <p className="mt-2 text-[#0C140F]/70">
+                <p className="mt-2 text-white/75">
                   Ao fazer este diagnóstico, {personName || "você"} deu o primeiro
                   passo para a transformação digital em {companyName}.
                 </p>
@@ -244,13 +240,13 @@ const DiagnosticReport = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm">
+          <Card className="border border-white/10 bg-[#0F1D15] shadow-2xl shadow-black/40">
             <CardContent className="space-y-5 p-6">
-              <div className="flex items-center gap-2 text-lg font-semibold text-[#0C140F]">
-                <Lightbulb size={18} className="text-amber-500" />
+              <div className="flex items-center gap-2 text-lg font-semibold text-white">
+                <Lightbulb size={18} className="text-amber-200" />
                 Recomendações Estratégicas
               </div>
-              <p className="text-sm text-[#0C140F]/70">
+              <p className="text-sm text-white/70">
                 Com base na sua análise, estas são as ações prioritárias para sua
                 empresa.
               </p>
@@ -259,17 +255,19 @@ const DiagnosticReport = () => {
                   <div
                     key={item.title}
                     className={`rounded-xl border p-4 ${
-                      idx === 0 ? "border-red-200 bg-red-50/80" : "border-amber-200 bg-amber-50/70"
+                      idx === 0
+                        ? "border-red-200/40 bg-red-200/10"
+                        : "border-amber-200/40 bg-amber-200/10"
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3 text-[#0C140F]">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-sm font-semibold text-[#0C140F]">
+                      <div className="flex items-center gap-3 text-white">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-sm font-semibold text-white">
                           {idx + 1}
                         </span>
                         <div>
                           <p className="text-base font-semibold">{item.title}</p>
-                          <p className="text-xs text-[#0C140F]/60">
+                          <p className="text-xs text-white/70">
                             {idx === 0
                               ? "Primeiro passo fundamental para a jornada de IA"
                               : "Segundo passo após consolidar a primeira implementação"}
@@ -279,14 +277,14 @@ const DiagnosticReport = () => {
                       <Badge
                         className={`${
                           idx === 0
-                            ? "bg-red-100 text-red-700"
-                            : "bg-amber-100 text-amber-700"
+                            ? "bg-red-200/20 text-red-100"
+                            : "bg-amber-200/20 text-amber-100"
                         }`}
                       >
                         {item.urgency}
                       </Badge>
                     </div>
-                    <p className="mt-3 text-sm text-[#0C140F]/75">
+                    <p className="mt-3 text-sm text-white/75">
                       {item.description}
                     </p>
                   </div>
@@ -295,36 +293,36 @@ const DiagnosticReport = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm">
+          <Card className="border border-white/10 bg-[#0F1D15] shadow-2xl shadow-black/40">
             <CardContent className="space-y-5 p-6">
-              <div className="flex items-center gap-2 text-lg font-semibold text-[#0C140F]">
-                <Clock size={18} className="text-blue-600" />
+              <div className="flex items-center gap-2 text-lg font-semibold text-white">
+                <Clock size={18} className="text-blue-200" />
                 Roadmap de Implementação
               </div>
-              <p className="text-sm text-[#0C140F]/70">
+              <p className="text-sm text-white/70">
                 Cronograma sugerido para sua jornada de transformação digital.
               </p>
               <div className="space-y-6">
                 {roadmap.map((phase, idx) => (
                   <div
                     key={phase.title}
-                    className="flex flex-col gap-3 rounded-xl border border-[#0C140F0F] bg-white p-4"
+                    className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4"
                   >
-                    <div className="flex items-center gap-2 text-[#0C140F]">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-100 text-sm font-semibold text-emerald-700">
+                    <div className="flex items-center gap-2 text-white">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-300/20 text-sm font-semibold text-emerald-100">
                         {idx + 1}
                       </span>
                       <div>
                         <p className="text-base font-semibold">{phase.title}</p>
-                        <Badge className="bg-[#e8f2ff] text-[#0C140F]">
+                        <Badge className="bg-blue-200/20 text-blue-100">
                           {phase.duration}
                         </Badge>
                       </div>
                     </div>
-                    <ul className="space-y-2 text-sm text-[#0C140F]/75">
+                    <ul className="space-y-2 text-sm text-white/75">
                       {phase.items.map((item) => (
                         <li key={item} className="flex items-center gap-2">
-                          <CheckCircle2 size={16} className="text-emerald-600" />
+                          <CheckCircle2 size={16} className="text-emerald-200" />
                           {item}
                         </li>
                       ))}
@@ -337,14 +335,14 @@ const DiagnosticReport = () => {
         </section>
 
         <section className="mt-8">
-          <div className="rounded-2xl bg-gradient-to-r from-[#51e089] via-[#4ade80] to-[#b7f5d1] p-8 text-center text-[#0C140F] shadow-lg shadow-emerald-100">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-[#1C3324]">
+          <div className="rounded-2xl border border-emerald-200/30 bg-gradient-to-r from-[#123026] via-[#16402F] to-[#1F5C3E] p-8 text-center text-white shadow-2xl shadow-black/50">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-emerald-100">
               <Calendar size={22} />
             </div>
             <h3 className="mt-4 text-2xl font-semibold">
               Vamos Transformar seu Negócio?
             </h3>
-            <p className="mx-auto mt-2 max-w-2xl text-sm text-[#0C140F]/80">
+            <p className="mx-auto mt-2 max-w-2xl text-sm text-white/75">
               Nossos especialistas estão prontos para analisar seu diagnóstico em
               detalhes e criar um plano de ação personalizado. Agende agora uma
               reunião estratégica e dê o primeiro passo rumo à transformação
@@ -356,7 +354,7 @@ const DiagnosticReport = () => {
                 Agendar Reunião Estratégica
               </Button>
             </div>
-            <p className="mt-3 text-xs text-[#0C140F]/70">
+            <p className="mt-3 text-xs text-white/70">
               Reunião gratuita • Sem compromisso • Especialistas em IA
             </p>
           </div>

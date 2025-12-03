@@ -56,6 +56,8 @@ type StepConfig = {
 
 type ReadinessKey = "team" | "knowledge" | "training";
 
+const WEBHOOK_URL = "https://webhook.n8n1.agenciaevodigital.com/webhook/forms1";
+
 const steps: StepConfig[] = [
   {
     step: 1,
@@ -204,6 +206,52 @@ const readinessSelects: {
   },
 ];
 
+const maturityMap: Record<string, string> = {
+  "Iniciante - Processos majoritariamente manuais": "iniciante",
+  "Básico - Algumas automações simples": "basico",
+  "Intermediário - Sistemas integrados e dados centralizados": "intermediario",
+  "Avançado - Analytics e automação inteligente": "avancado",
+  "Maduro - IA e Machine Learning já em uso": "maduro",
+};
+
+const budgetMap: Record<string, string> = {
+  "Até R$ 10.000": "ate10k",
+  "R$ 10.000 - R$ 50.000": "10k-50k",
+  "R$ 50.000 - R$ 100.000": "50k-100k",
+  "R$ 100.000 - R$ 500.000": "100k-500k",
+  "Acima de R$ 500.000": "500k-plus",
+  "Ainda preciso definir": "indefinido",
+};
+
+const timelineMap: Record<string, string> = {
+  "Imediato (até 1 mês)": "imediato",
+  "Curto prazo (1-3 meses)": "curto",
+  "Médio prazo (3-6 meses)": "medio",
+  "Longo prazo (6+ meses)": "longo",
+  Flexível: "flexivel",
+};
+
+const teamMap: Record<string, string> = {
+  "Sim, equipe completa de TI/Tecnologia": "equipe-completa",
+  "Sim, mas limitada": "equipe-limitada",
+  "Não, dependemos de terceiros": "terceiros",
+  "Não temos equipe técnica": "sem-equipe",
+};
+
+const knowledgeMap: Record<string, string> = {
+  "Avançado - Já trabalham com IA": "avancado",
+  "Intermediário - Conhecem conceitos": "intermediario",
+  "Básico - Pouco conhecimento": "basico",
+  "Nenhum - Precisam de capacitação": "nenhum",
+};
+
+const trainingMap: Record<string, string> = {
+  "Sim, totalmente": "totalmente",
+  "Sim, parcialmente": "parcialmente",
+  "Não, precisamos de solução pronta": "sem-treinamento",
+  "Ainda não definimos": "indefinido",
+};
+
 const Diagnostico = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
@@ -295,7 +343,52 @@ const Diagnostico = () => {
     setShowDetailsDialog(true);
   };
 
-  const handleDetailsSubmit = () => {
+  const maturityScore = (level: string) => {
+    if (level.includes("Maduro")) return 85;
+    if (level.includes("Avançado")) return 75;
+    if (level.includes("Intermediário")) return 55;
+    if (level.includes("Básico")) return 35;
+    return 20;
+  };
+
+  const handleDetailsSubmit = async () => {
+    const levelText = selectedLevelByStep[3] ?? "";
+    const score = maturityScore(levelText);
+    const payload = {
+      formType: "diagnostico_ia",
+      timestamp: new Date().toISOString(),
+      completeData: {
+        nome: firstName,
+        sobrenome: lastName,
+        telefone: phone,
+        email,
+        empresa: company,
+        cargo: role,
+        area: roleArea,
+        setor: companySector,
+        tamanho: companySize,
+        desafios: selectedByStep[2] ?? [],
+        objetivos: selectedByStep[1] ?? [],
+        tecnologias: selectedByStep[3] ?? [],
+        maturidade: maturityMap[levelText] ?? "",
+        orcamento: budgetMap[budgetByStep[4] ?? ""] ?? "",
+        prazo: timelineMap[timelineByStep[4] ?? ""] ?? "",
+        descricao: notesByStep[4] ?? "",
+        equipeTecnica: teamMap[readinessByStep[5]?.team ?? ""] ?? "",
+        conhecimentoIA: knowledgeMap[readinessByStep[5]?.knowledge ?? ""] ?? "",
+        disponibilidadeTreinamento:
+          trainingMap[readinessByStep[5]?.training ?? ""] ?? "",
+        newsletter: subscribeNews,
+        IMD: score,
+      },
+    };
+
+    await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
     const summary = {
       selections: selectedByStep,
       maturityLevel: selectedLevelByStep[3] ?? "",
