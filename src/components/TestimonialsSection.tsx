@@ -1,62 +1,96 @@
-import { Quote } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const testimonials = [
+const trainings = [
   {
-    name: "Ana Souza",
-    role: "COO, Jusbrasil",
-    quote:
-      "Os agentes de IA reduziram drasticamente o tempo de análise de documentos e liberaram nosso time para decisões estratégicas.",
+    title: "Imersão de IA para Negócios",
+    description:
+      "Transforme desafios em oportunidades com um workshop intensivo de 10 horas.",
+    duration: "10 horas",
+    format: "Presencial + Online",
   },
   {
-    name: "Bruno Lima",
-    role: "Head de Operações, Unimed",
-    quote:
-      "Conseguimos escalar o atendimento com consistência e segurança, mantendo a personalização para cada paciente.",
+    title: "Atendimento ao Cliente",
+    description:
+      "Excelência no atendimento físico e online. Aumente a satisfação em 85% e reduza reclamações em 70%.",
+    duration: "12 horas",
+    format: "Presencial",
   },
   {
-    name: "Carla Menezes",
-    role: "CTO, Vórtx",
-    quote:
-      "A orquestração de tarefas críticas ficou mais confiável e visível. O impacto em eficiência é claro.",
+    title: "Técnicas de Vendas",
+    description:
+      "Vendas que convertem em qualquer ambiente. Aumente as vendas em 150% e melhore a conversão em 80%.",
+    duration: "20 horas",
+    format: "Presencial/Híbrido",
+  },
+  {
+    title: "Visual Merchandising",
+    description:
+      "Transforme seu ponto de venda. Aumente o ticket médio em 25% e melhore a conversão em 40%.",
+    duration: "8 horas",
+    format: "Presencial/Online",
   },
 ];
 
 const TestimonialsSection = () => {
   return (
     <section
-      id="changelog"
+      id="treinamento"
       className="bg-[#0B1117] px-6 py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <p className="text-sm uppercase tracking-[0.2em] text-white/50">
-            Depoimentos
+            Treinamentos In Company
           </p>
           <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
-            O que nossos clientes estão dizendo sobre nosso trabalho
+            Além de desenvolvimento e consultoria, oferecemos treinamentos
+            corporativos especializados para transformar sua equipe e impulsionar
+            os resultados da sua empresa.
           </h2>
         </div>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {testimonials.map((item) => (
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {trainings.map((item) => (
             <div
-              key={item.name}
-              className="relative h-full rounded-2xl border border-white/10 bg-[#1C242D]/60 p-6 shadow-lg shadow-black/30"
+              key={item.title}
+              className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-[#101722]/80 p-6 shadow-lg shadow-black/30 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#121a26]"
             >
-              <Quote className="absolute right-4 top-4 text-white/20" size={20} />
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-sm font-semibold text-white">
-                  {item.name.charAt(0)}
+              <div className="flex flex-col gap-3">
+                <h3 className="text-xl font-semibold text-white">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-white/75">
+                  {item.description}
+                </p>
+              </div>
+              <div className="mt-6 flex flex-col gap-2 rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/80">
+                <div className="flex items-center justify-between">
+                  <span className="text-white/60">Duração:</span>
+                  <span className="font-semibold text-white">
+                    {item.duration}
+                  </span>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-white">{item.name}</p>
-                  <p className="text-xs text-white/60">{item.role}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-white/60">Formato:</span>
+                  <span className="font-semibold text-white">
+                    {item.format}
+                  </span>
                 </div>
               </div>
-              <p className="mt-5 text-base leading-relaxed text-white/80">
-                “{item.quote}”
-              </p>
+              <div className="mt-4">
+                <Button
+                  variant="outline"
+                  className="w-full rounded-xl border-white/30 bg-white/5 text-white hover:border-white hover:bg-white hover:text-black"
+                >
+                  Saiba Mais
+                </Button>
+              </div>
             </div>
           ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Button className="h-12 rounded-xl bg-white px-6 text-base font-semibold text-black hover:bg-white/90">
+            Solicitar Orçamento dos Treinamentos
+          </Button>
         </div>
       </div>
     </section>
