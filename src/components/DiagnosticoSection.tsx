@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import { Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const DiagnosticoSection = () => {
@@ -7,7 +7,7 @@ const DiagnosticoSection = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08),_transparent_55%)]" />
       <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center text-white">
         <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/80">
-          <Sparkles size={16} className="text-white/80" />
+          <Brain size={16} className="text-white" />
           <span>Agentes de IA para o seu negócio</span>
         </div>
         <h2 className="text-3xl font-semibold leading-tight md:text-5xl">
