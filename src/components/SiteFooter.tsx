@@ -22,7 +22,7 @@ const contactInfo = [
 
 const SiteFooter = () => {
   return (
-    <footer className="border-t border-white/10 bg-[#0B1117] px-6 py-12 md:px-10 md:py-16">
+    <footer className="border-t border-white/10 bg-[#0f241c] px-6 py-12 md:px-10 md:py-16">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm">
           <img
@@ -49,9 +49,9 @@ const SiteFooter = () => {
           <div className="mt-4 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70">
             <Globe size={18} className="text-white/80" />
             <select className="bg-transparent text-white/80 outline-none">
-              <option className="bg-[#0B1117] text-white">Português BR</option>
-              <option className="bg-[#0B1117] text-white">English</option>
-              <option className="bg-[#0B1117] text-white">Español</option>
+              <option className="bg-[#0f241c] text-white">Português BR</option>
+              <option className="bg-[#0f241c] text-white">English</option>
+              <option className="bg-[#0f241c] text-white">Español</option>
             </select>
           </div>
         </div>
