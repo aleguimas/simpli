@@ -162,10 +162,10 @@ const readinessSelects: {
     label: "Sua empresa possui equipe técnica interna?",
     placeholder: "Selecione uma opção",
     options: [
-      "Sim, equipe completa de TI",
-      "Sim, equipe reduzida de TI",
-      "Temos um responsável técnico",
-      "Não temos equipe técnica interna",
+      "Sim, equipe completa de TI/Tecnologia",
+      "Sim, mas limitada",
+      "Não, dependemos de terceiros",
+      "Não temos equipe técnica",
     ],
   },
   {
@@ -173,11 +173,10 @@ const readinessSelects: {
     label: "Qual o nível de conhecimento da equipe sobre IA?",
     placeholder: "Selecione o nível",
     options: [
-      "Iniciante - primeiros contatos com IA",
-      "Básico - uso limitado de IA",
-      "Intermediário - já usamos alguns modelos",
-      "Avançado - desenvolvemos e integramos IA",
-      "Especialista - time dedicado a IA/ML",
+      "Avançado - Já trabalham com IA",
+      "Intermediário - Conhecem conceitos",
+      "Básico - Pouco conhecimento",
+      "Nenhum - Precisam de capacitação",
     ],
   },
   {
@@ -185,11 +184,10 @@ const readinessSelects: {
     label: "Há disponibilidade para treinamento da equipe?",
     placeholder: "Selecione uma opção",
     options: [
-      "Sim, disponibilidade total",
-      "Sim, parcial (algumas horas por semana)",
-      "Limitada (agenda cheia)",
-      "Não no momento",
-      "Preciso avaliar",
+      "Sim, totalmente",
+      "Sim, parcialmente",
+      "Não, precisamos de solução pronta",
+      "Ainda não definimos",
     ],
   },
 ];
