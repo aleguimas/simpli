@@ -143,9 +143,6 @@ const DesenvolvimentoWeb = () => {
         <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
             <div className="space-y-4">
-              <p className="text-sm uppercase tracking-[0.18em] text-white/50">
-                O que fazemos
-              </p>
               <h2 className="text-3xl font-semibold md:text-4xl">O que é Desenvolvimento Web?</h2>
               <p className="text-base leading-relaxed text-white/70">
                 O desenvolvimento web é o processo de criação de sites e aplicações web que funcionam na internet. Envolve
@@ -177,9 +174,6 @@ const DesenvolvimentoWeb = () => {
 
         <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
-              Benefícios
-            </p>
             <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
               Benefícios do Desenvolvimento Web
             </h2>
@@ -209,9 +203,6 @@ const DesenvolvimentoWeb = () => {
 
         <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
-              Processo
-            </p>
             <h2 className="text-3xl font-semibold md:text-4xl">Como Fazemos</h2>
             <p className="mt-2 text-base text-white/70">
               Nosso processo de desenvolvimento web em passos claros e sequenciais
@@ -247,9 +238,6 @@ const DesenvolvimentoWeb = () => {
 
         <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
-              Cases de sucesso
-            </p>
             <h2 className="text-3xl font-semibold md:text-4xl">Cases de Sucesso</h2>
             <p className="mt-2 text-base text-white/70">
               Conheça alguns dos projetos que desenvolvemos e os resultados alcançados
