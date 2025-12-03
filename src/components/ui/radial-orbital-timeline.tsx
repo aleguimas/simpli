@@ -22,6 +22,13 @@ interface RadialOrbitalTimelineProps {
   timelineData: TimelineItem[];
 }
 
+const stageLabels: Record<number, string> = {
+  1: "Análise",
+  2: "Planejamento",
+  3: "Execução",
+  4: "Conclusão",
+};
+
 const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => {
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
   const [rotationAngle, setRotationAngle] = useState<number>(0);
@@ -203,11 +210,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
                   <CardHeader className="pb-2">
                     <div className="flex items-center justify-between">
                       <Badge className={`px-2 text-xs uppercase ${statusStyles(item.status)}`}>
-                        {item.status === "completed"
-                          ? "Concluído"
-                          : item.status === "in-progress"
-                            ? "Em andamento"
-                            : "Planejado"}
+                        {stageLabels[item.id] ?? "Etapa"}
                       </Badge>
                       <span className="text-xs font-mono text-white/50">{item.date}</span>
                     </div>
