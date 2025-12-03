@@ -9,16 +9,7 @@ type CaseItem = {
   bulletPoints?: string[];
 };
 
-const categories = [
-  "Atendimento",
-  "Agendamento",
-  "Qualificação de leads",
-  "Leitura de estoque",
-  "Suporte e dúvidas",
-  "Disparo de emails / WhatsApp",
-  "Automação de cobranças",
-  "Projeto personalizados",
-];
+const categories = ["Atendimento"];
 
 const caseItems: CaseItem[] = [
   {
@@ -33,56 +24,6 @@ const caseItems: CaseItem[] = [
       "Hotéis e pousadas: informações sobre acomodações, serviços, reservas",
     ],
     category: "Atendimento",
-  },
-  {
-    company: "Vórtx",
-    title: "Roteamento inteligente de tarefas críticas",
-    bulletPoints: [
-      "Roteamento inteligente: prioriza tarefas críticas automaticamente",
-      "Alertas em tempo real: sinaliza exceções para correção imediata",
-      "Automação de cobranças: dispara lembretes e follow-ups sem intervenção manual",
-    ],
-    category: "Automação de cobranças",
-  },
-  {
-    company: "Unimed",
-    title: "Atendimento assistido por IA",
-    bulletPoints: [
-      "Triagem inicial: coleta sintomas e direciona o paciente corretamente",
-      "Agendamentos automáticos: confirma e lembra consultas ou exames",
-      "Acompanhamento contínuo: envia orientações e check-ins pós-atendimento",
-    ],
-    category: "Agendamento",
-  },
-  {
-    company: "Loft",
-    title: "Integração de dados imobiliários",
-    bulletPoints: [
-      "Leitura de estoque: consolida imóveis de múltiplas fontes",
-      "Atualização automática: sincroniza preços, fotos e disponibilidade",
-      "Precificação inteligente: sugere valores com base em dados de mercado",
-    ],
-    category: "Leitura de estoque",
-  },
-  {
-    company: "Machado Meyer",
-    title: "Compliance contínuo",
-    bulletPoints: [
-      "Monitoramento de conformidade: acompanha políticas e prazos críticos",
-      "Evidências automáticas: registra decisões e ações para auditoria",
-      "Alertas de risco: notifica equipes sobre exceções ou pendências",
-    ],
-    category: "Suporte e dúvidas",
-  },
-  {
-    company: "Ultra",
-    title: "Back-office automatizado",
-    bulletPoints: [
-      "Revisão de contratos: extrai cláusulas e valida consistência",
-      "Conciliação financeira: cruza dados de pagamentos e faturas",
-      "Qualificação de leads: prioriza contatos com maior fit e intenção",
-    ],
-    category: "Qualificação de leads",
   },
 ];
 
@@ -176,13 +117,7 @@ const CaseStudiesSection = () => {
                     );
                   })}
                 </ul>
-              ) : (
-                item.summary && (
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">
-                    {item.summary}
-                  </p>
-                )
-              )}
+              ) : null}
               <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition group-hover:translate-x-1">
                 Solicitar orçamento
                 <ArrowUpRight size={16} />
