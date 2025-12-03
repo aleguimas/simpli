@@ -9,6 +9,7 @@ import {
   Mail,
   Target,
   TrendingUp,
+  UserRound,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -22,7 +23,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
 type StepConfig = {
@@ -225,7 +232,17 @@ const Diagnostico = () => {
     5: { team: "", knowledge: "", training: "" },
   });
   const [showResultsDialog, setShowResultsDialog] = useState(false);
+  const [showDetailsDialog, setShowDetailsDialog] = useState(false);
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [company, setCompany] = useState("");
+  const [companySize, setCompanySize] = useState("");
+  const [companySector, setCompanySector] = useState("");
+  const [role, setRole] = useState("");
+  const [roleArea, setRoleArea] = useState("");
+  const [subscribeNews, setSubscribeNews] = useState(false);
 
   const current = steps.find((s) => s.step === currentStep)!;
   const selected = selectedByStep[currentStep] ?? [];
@@ -267,6 +284,15 @@ const Diagnostico = () => {
       return;
     }
     goNext();
+  };
+
+  const openDetailsModal = () => {
+    setShowResultsDialog(false);
+    setShowDetailsDialog(true);
+  };
+
+  const handleDetailsSubmit = () => {
+    setShowDetailsDialog(false);
   };
 
   return (
@@ -571,9 +597,167 @@ const Diagnostico = () => {
           <div className="pt-4">
             <Button
               className="h-11 w-full rounded-xl border border-transparent bg-[#1C3324] text-white transition hover:bg-[#15271b]"
-              onClick={() => setShowResultsDialog(false)}
+              onClick={openDetailsModal}
             >
               Continuar
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
+        <DialogContent className="max-w-xl rounded-2xl border border-transparent bg-white text-[#0C140F] shadow-xl">
+          <DialogHeader className="space-y-2">
+            <div className="flex items-center gap-2 text-[#1C3324]">
+              <UserRound size={20} />
+              <DialogTitle className="text-lg font-semibold">
+                Complete seus Dados
+              </DialogTitle>
+            </div>
+            <DialogDescription className="text-sm text-[#0C140F]/70">
+              Para acessar o relatório, precisamos de algumas informações adicionais:
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="space-y-1">
+              <label className="text-sm font-semibold text-[#0C140F]">
+                Nome *
+              </label>
+              <Input
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="João"
+                className="h-11 rounded-xl border-[#0C140F26] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
+              />
+            </div>
+            <div className="space-y-1">
+              <label className="text-sm font-semibold text-[#0C140F]">
+                Sobrenome *
+              </label>
+              <Input
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Silva"
+                className="h-11 rounded-xl border-[#0C140F26] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-sm font-semibold text-[#0C140F]">
+              Número de telefone WhatsApp *
+            </label>
+            <Input
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="+55 11 99999-9999"
+              className="h-11 rounded-xl border-[#0C140F26] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-sm font-semibold text-[#0C140F]">
+              Nome da empresa *
+            </label>
+            <Input
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              placeholder="Minha Empresa Ltda"
+              className="h-11 rounded-xl border-[#0C140F26] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="space-y-1">
+              <label className="text-sm font-semibold text-[#0C140F]">
+                Qual é o tamanho da sua empresa? *
+              </label>
+              <Select value={companySize} onValueChange={setCompanySize}>
+                <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
+                  <SelectValue placeholder="Selecione" />
+                </SelectTrigger>
+                <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
+                  <SelectItem value="1-50">Pequena (1-50)</SelectItem>
+                  <SelectItem value="51-200">Média (51-200)</SelectItem>
+                  <SelectItem value="201-1000">Grande (200-1000)</SelectItem>
+                  <SelectItem value="1000+">Enterprise (1000+)</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-1">
+              <label className="text-sm font-semibold text-[#0C140F]">
+                Qual é o setor de atuação da sua empresa? *
+              </label>
+              <Select value={companySector} onValueChange={setCompanySector}>
+                <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
+                  <SelectValue placeholder="Selecione" />
+                </SelectTrigger>
+                <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
+                  <SelectItem value="tecnologia">Tecnologia</SelectItem>
+                  <SelectItem value="varejo">Varejo</SelectItem>
+                  <SelectItem value="saude">Saúde</SelectItem>
+                  <SelectItem value="educacao">Educação</SelectItem>
+                  <SelectItem value="financas">Finanças</SelectItem>
+                  <SelectItem value="industria">Indústria</SelectItem>
+                  <SelectItem value="servicos">Serviços</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="space-y-1">
+              <label className="text-sm font-semibold text-[#0C140F]">
+                Cargo na Empresa *
+              </label>
+              <Select value={role} onValueChange={setRole}>
+                <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
+                  <SelectValue placeholder="Selecione" />
+                </SelectTrigger>
+                <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
+                  <SelectItem value="ceo">CEO / Founder</SelectItem>
+                  <SelectItem value="diretor">Diretor</SelectItem>
+                  <SelectItem value="gerente">Gerente</SelectItem>
+                  <SelectItem value="coordenador">Coordenador</SelectItem>
+                  <SelectItem value="analista">Especialista / Analista</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-1">
+              <label className="text-sm font-semibold text-[#0C140F]">
+                Área de atuação do seu cargo? *
+              </label>
+              <Select value={roleArea} onValueChange={setRoleArea}>
+                <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
+                  <SelectValue placeholder="Selecione" />
+                </SelectTrigger>
+                <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
+                  <SelectItem value="tecnologia">Tecnologia / Produto</SelectItem>
+                  <SelectItem value="operacoes">Operações</SelectItem>
+                  <SelectItem value="marketing">Marketing / Vendas</SelectItem>
+                  <SelectItem value="financas">Finanças</SelectItem>
+                  <SelectItem value="rh">RH</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <label className="flex items-center gap-3 text-sm text-[#0C140F]">
+            <Checkbox
+              checked={subscribeNews}
+              onCheckedChange={(checked) => setSubscribeNews(!!checked)}
+              className="border-[#0C140F66] data-[state=checked]:bg-[#1C3324] data-[state=checked]:text-white"
+            />
+            Quero assinar a Simplí News: AI
+          </label>
+
+          <div className="pt-2">
+            <Button
+              className="h-11 w-full rounded-xl border border-transparent bg-[#8BE0A3] text-[#0C140F] transition hover:bg-[#7ad48f]"
+              onClick={handleDetailsSubmit}
+            >
+              Acessar Relatório Completo
             </Button>
           </div>
         </DialogContent>
