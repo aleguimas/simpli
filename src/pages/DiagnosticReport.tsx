@@ -188,6 +188,10 @@ const DiagnosticReport = () => {
   })();
 
   const levelLabel = maturityText.split("-")[0]?.trim() || "Básico / Inicial";
+  const maturityDescription = maturityText.includes("-")
+    ? maturityText.split("-").slice(1).join("-").trim()
+    : maturityText;
+
   const companyName = summary.contact?.company || "sua empresa";
   const personName =
     summary.contact?.firstName && summary.contact?.lastName
@@ -310,7 +314,7 @@ const DiagnosticReport = () => {
                     {levelLabel}
                   </Badge>
                   <span className="text-sm text-white/60">
-                    {maturityText || "Requer estruturação antes da IA"}
+                    {maturityDescription || "Requer estruturação antes da IA"}
                   </span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-white/10 md:w-64">
