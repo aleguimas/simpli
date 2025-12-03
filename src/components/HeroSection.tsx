@@ -35,7 +35,7 @@ const HeroSection = () => {
             Transformamos ideias em soluções digitais inovadoras que impulsionam
             seu negócio.
           </p>
-          <div className="mt-9 flex w-full max-w-xl flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-9 mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-3 sm:flex-row sm:justify-center">
             <Button
               className={`${buttonBaseClasses} border border-white/0 bg-white text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white`}
             >
