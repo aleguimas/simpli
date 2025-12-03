@@ -1,4 +1,4 @@
-import { CheckCircle2, Zap, BarChart3, Clock3, TrendingUp, MessageCircle } from "lucide-react";
+import { CheckCircle2, Zap, BarChart3, Clock3, TrendingUp, MessageCircle, NotebookPen, Brain, Cog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -39,7 +39,7 @@ const processTimeline = [
     date: "Etapa 1",
     content: "Mapeamos fluxos críticos e identificamos onde a IA gera maior impacto.",
     category: "Planejamento",
-    icon: Zap,
+    icon: NotebookPen,
     relatedIds: [2],
     status: "completed" as const,
     energy: 25,
@@ -50,7 +50,7 @@ const processTimeline = [
     date: "Etapa 2",
     content: "Desenhamos arquitetura e integrações para agentes inteligentes sob medida.",
     category: "Design",
-    icon: BarChart3,
+    icon: Brain,
     relatedIds: [3],
     status: "in-progress" as const,
     energy: 50,
@@ -61,7 +61,7 @@ const processTimeline = [
     date: "Etapa 3",
     content: "Construímos, treinamos e testamos os agentes com dados e regras do negócio.",
     category: "Execução",
-    icon: TrendingUp,
+    icon: Cog,
     relatedIds: [4],
     status: "pending" as const,
     energy: 75,
@@ -72,7 +72,7 @@ const processTimeline = [
     date: "Etapa 4",
     content: "Publicamos, monitoramos performance e refinamos continuamente os agentes.",
     category: "Deploy",
-    icon: Clock3,
+    icon: TrendingUp,
     relatedIds: [],
     status: "pending" as const,
     energy: 100,
