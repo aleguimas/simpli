@@ -3,6 +3,8 @@ import { useInView } from "@/hooks/use-in-view";
 
 const HeroSection = () => {
   const { ref, isVisible } = useInView({ threshold: 0.35 });
+  const buttonBaseClasses =
+    "h-12 w-full sm:w-auto sm:min-w-[190px] rounded-xl px-7 text-lg";
 
   return (
     <section
@@ -33,13 +35,15 @@ const HeroSection = () => {
             Transformamos ideias em soluções digitais inovadoras que impulsionam
             seu negócio.
           </p>
-          <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Button className="h-12 min-w-[170px] rounded-xl border border-white/0 bg-white px-7 text-lg text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white">
+          <div className="mt-9 flex w-full max-w-xl flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Button
+              className={`${buttonBaseClasses} border border-white/0 bg-white text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white`}
+            >
               Fale conosco
             </Button>
             <Button
               variant="outline"
-              className="h-12 min-w-[170px] rounded-xl border-white/20 bg-white/5 px-7 text-lg text-white transition-colors hover:border-white hover:bg-white hover:text-black"
+              className={`${buttonBaseClasses} border-white/20 bg-white/5 text-white transition-colors hover:border-white hover:bg-white hover:text-black`}
             >
               Nossos Serviços
             </Button>
