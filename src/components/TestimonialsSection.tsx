@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const trainings = [
@@ -7,6 +8,7 @@ const trainings = [
       "Transforme desafios em oportunidades com um workshop intensivo de 10 horas.",
     duration: "10 horas",
     format: "Presencial + Online",
+    tag: "Tecnologia",
   },
   {
     title: "Atendimento ao Cliente",
@@ -14,6 +16,7 @@ const trainings = [
       "Excelência no atendimento físico e online. Aumente a satisfação em 85% e reduza reclamações em 70%.",
     duration: "12 horas",
     format: "Presencial",
+    tag: "Vendas",
   },
   {
     title: "Técnicas de Vendas",
@@ -21,6 +24,7 @@ const trainings = [
       "Vendas que convertem em qualquer ambiente. Aumente as vendas em 150% e melhore a conversão em 80%.",
     duration: "20 horas",
     format: "Presencial/Híbrido",
+    tag: "Vendas",
   },
   {
     title: "Visual Merchandising",
@@ -28,6 +32,7 @@ const trainings = [
       "Transforme seu ponto de venda. Aumente o ticket médio em 25% e melhore a conversão em 40%.",
     duration: "8 horas",
     format: "Presencial/Online",
+    tag: "Vendas",
   },
 ];
 
@@ -58,6 +63,9 @@ const TestimonialsSection = () => {
               className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-[#101722]/80 p-6 shadow-lg shadow-black/30 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#121a26]"
             >
               <div className="flex flex-col gap-3">
+                <Badge className="w-fit border border-white/20 bg-white/10 text-white">
+                  {item.tag}
+                </Badge>
                 <h3 className="text-xl font-semibold text-white">
                   {item.title}
                 </h3>
@@ -82,7 +90,7 @@ const TestimonialsSection = () => {
               <div className="mt-4">
                 <Button
                   variant="outline"
-                  className="w-full rounded-xl border-white/30 bg-white/5 text-white hover:border-white hover:bg-white hover:text-black"
+                  className="w-full rounded-xl border-white/30 bg-white/5 text-white transition hover:border-black hover:bg-black hover:text-white"
                 >
                   Saiba Mais
                 </Button>
