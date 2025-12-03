@@ -3,6 +3,7 @@ import { Globe, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 const companyLinks = [
   { label: "Início", href: "#hero" },
   { label: "Serviços", href: "#servicos" },
+  { label: "IA", href: "#nichos" },
   { label: "Treinamentos", href: "#treinamento" },
   { label: "Sobre", href: "#carreiras" },
 ];
