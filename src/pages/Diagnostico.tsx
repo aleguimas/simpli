@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   ArrowRight,
+  BookOpen,
   Brain,
   Calendar,
   CheckCircle2,
@@ -264,7 +265,9 @@ const Diagnostico = () => {
         ? TrendingUp
         : current.stageLabel.startsWith("Investimento")
           ? Calendar
-          : Target;
+          : current.stageLabel.includes("Recursos")
+            ? BookOpen
+            : Target;
 
   const toggleOption = (value: string) => {
     setSelectedByStep((prev) => {
