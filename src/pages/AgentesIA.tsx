@@ -196,9 +196,17 @@ const AgentesIA = () => {
           <Card className="mt-10 border-white/10 bg-[#0C140F]/70 shadow-2xl shadow-black/40">
             <CardContent className="grid gap-8 px-4 py-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-6">
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-white">
-                  Natal Home Center - Atendimento Inteligente
-                </h3>
+                <div className="flex items-center gap-3">
+                  <img
+                    src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx"
+                    alt="Natal Home Center"
+                    className="h-10 w-auto rounded-md border border-white/10 bg-white/5 p-2"
+                    loading="lazy"
+                  />
+                  <h3 className="text-xl font-semibold text-white">
+                    Natal Home Center - Atendimento Inteligente
+                  </h3>
+                </div>
                 <p className="text-sm leading-relaxed text-white/70">
                   Implementamos um agente de IA completo para atendimento via WhatsApp,
                   integrando CRM e base de dados, com plataforma de apoio para a equipe.
