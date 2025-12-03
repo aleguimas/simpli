@@ -2,7 +2,7 @@ import { CheckCircle2, Zap, BarChart3, Clock3, TrendingUp, MessageCircle } from 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router-dom";
+import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG =
@@ -31,26 +31,50 @@ const benefits = [
   },
 ];
 
-const processSteps = [
+const processTimeline = [
   {
-    label: "01",
+    id: 1,
     title: "Análise de Processos",
-    description: "Identificação de oportunidades de automação.",
+    date: "Etapa 1",
+    content: "Mapeamos fluxos críticos e identificamos onde a IA gera maior impacto.",
+    category: "Planejamento",
+    icon: Zap,
+    relatedIds: [2],
+    status: "completed" as const,
+    energy: 95,
   },
   {
-    label: "02",
+    id: 2,
     title: "Design da Solução",
-    description: "Arquitetura e fluxos de automação.",
+    date: "Etapa 2",
+    content: "Desenhamos arquitetura e integrações para agentes inteligentes sob medida.",
+    category: "Design",
+    icon: BarChart3,
+    relatedIds: [1, 3],
+    status: "in-progress" as const,
+    energy: 80,
   },
   {
-    label: "03",
+    id: 3,
     title: "Desenvolvimento",
-    description: "Implementação com tecnologias avançadas.",
+    date: "Etapa 3",
+    content: "Construímos, treinamos e testamos os agentes com dados e regras do negócio.",
+    category: "Execução",
+    icon: TrendingUp,
+    relatedIds: [2, 4],
+    status: "pending" as const,
+    energy: 60,
   },
   {
-    label: "04",
+    id: 4,
     title: "Deploy & Monitoramento",
-    description: "Implantação e acompanhamento contínuo.",
+    date: "Etapa 4",
+    content: "Publicamos, monitoramos performance e refinamos continuamente os agentes.",
+    category: "Deploy",
+    icon: Clock3,
+    relatedIds: [3],
+    status: "pending" as const,
+    energy: 55,
   },
 ];
 
@@ -145,21 +169,10 @@ const AgentesIA = () => {
         <div className="mx-auto max-w-6xl text-center">
           <h2 className="text-3xl font-semibold md:text-4xl">Como Desenvolvemos</h2>
           <p className="mt-2 text-base text-white/70">
-            Nosso processo de desenvolvimento de agentes de IA
+            Visualize as etapas do nosso processo de criação de agentes de IA.
           </p>
-          <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-4">
-            {processSteps.map((step) => (
-              <div
-                key={step.label}
-                className="flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-[#0F1D15] p-6 shadow-lg shadow-black/40"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#4ADE80] to-[#22d3ee] text-[#0C140F] font-semibold">
-                  {step.label}
-                </div>
-                <h3 className="text-lg font-semibold text-white">{step.title}</h3>
-                <p className="text-sm text-white/70">{step.description}</p>
-              </div>
-            ))}
+          <div className="mt-10">
+            <RadialOrbitalTimeline timelineData={processTimeline} />
           </div>
         </div>
       </section>
