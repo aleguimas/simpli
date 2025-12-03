@@ -4,8 +4,9 @@ import { ArrowUpRight } from "lucide-react";
 type CaseItem = {
   company: string;
   title: string;
-  summary: string;
+  summary?: string;
   category: string;
+  bulletPoints?: string[];
 };
 
 const categories = [
@@ -23,8 +24,14 @@ const caseItems: CaseItem[] = [
   {
     company: "Jusbrasil",
     title: "Automação de fluxos jurídicos com IA",
-    summary:
-      "Classificação inteligente de documentos e geração de relatórios automáticos para acelerar times jurídicos.",
+    bulletPoints: [
+      "Varejo (lojas físicas e e-commerce): atendimento 24/7 para dúvidas sobre produtos, trocas e devoluções",
+      "Clínicas e consultórios médicos: informações sobre especialidades, convênios aceitos, preparos para exames",
+      "Escritórios de advocacia: triagem inicial de casos, informações sobre áreas de atuação",
+      "Imobiliárias: informações sobre imóveis disponíveis, características, valores",
+      "Restaurantes e delivery: cardápio, horários, pedidos",
+      "Hotéis e pousadas: informações sobre acomodações, serviços, reservas",
+    ],
     category: "Atendimento",
   },
   {
@@ -133,11 +140,27 @@ const CaseStudiesSection = () => {
               <h3 className="mt-4 text-xl font-semibold text-white">
                 {item.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/70">
-                {item.summary}
-              </p>
+              {item.bulletPoints ? (
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-white/70">
+                  {item.bulletPoints.map((point) => (
+                    <li key={point} className="flex items-start gap-2">
+                      <span
+                        aria-hidden
+                        className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/60"
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                item.summary && (
+                  <p className="mt-3 text-sm leading-relaxed text-white/70">
+                    {item.summary}
+                  </p>
+                )
+              )}
               <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white transition group-hover:translate-x-1">
-                Continuar lendo
+                Solicitar orçamento
                 <ArrowUpRight size={16} />
               </div>
             </a>
