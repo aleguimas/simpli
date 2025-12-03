@@ -30,9 +30,9 @@ const DiagnosticoSection = () => {
               className="mx-auto h-56 w-full max-w-3xl object-cover sm:h-72 md:h-96"
               style={{
                 maskImage:
-                  "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 10%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,1) 65%, rgba(0,0,0,1) 100%)",
+                  "radial-gradient(circle at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0.8) 72%, rgba(0,0,0,0) 95%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 10%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,1) 65%, rgba(0,0,0,1) 100%)",
+                  "radial-gradient(circle at center, rgba(0,0,0,1) 55%, rgba(0,0,0,0.8) 72%, rgba(0,0,0,0) 95%)",
               }}
             />
           </div>
