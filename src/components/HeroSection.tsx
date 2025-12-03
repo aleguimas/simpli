@@ -4,7 +4,7 @@ import { useInView } from "@/hooks/use-in-view";
 const HeroSection = () => {
   const { ref, isVisible } = useInView({ threshold: 0.35 });
   const buttonBaseClasses =
-    "h-12 w-full sm:w-auto sm:min-w-[190px] rounded-xl px-7 text-lg";
+    "h-9 w-full sm:w-auto sm:min-w-[120px] rounded-lg px-4 text-sm";
 
   return (
     <section
