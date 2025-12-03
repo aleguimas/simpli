@@ -15,6 +15,8 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
+const HERO_BG =
+  "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE9K2mTqgbF0t15iaTHu2MwmqGXE64dxSPAlrk";
 
 const benefits = [
   {
@@ -87,8 +89,9 @@ const TrafegoPago = () => {
         <section
           className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
           style={{
-            backgroundImage:
-              "linear-gradient(120deg, rgba(12,20,15,0.88), rgba(28,51,36,0.78)), linear-gradient(135deg, rgba(122,250,0,0.35), rgba(0,216,255,0.28))",
+            backgroundImage: `linear-gradient(120deg, rgba(12,20,15,0.86), rgba(28,51,36,0.8)), url('${HERO_BG}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.1),_transparent_45%)]" />
@@ -179,7 +182,7 @@ const TrafegoPago = () => {
             </p>
 
             <div className="relative mx-auto mt-10 max-w-5xl space-y-6">
-              <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60">
+              <div className="flex itemscenter justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60">
                 {process.map((item, idx) => (
                   <span key={item.step} className={idx === activeStep ? "text-white" : ""}>
                     Step {idx + 1}
