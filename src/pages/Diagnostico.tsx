@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Brain, Target, TrendingUp } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Brain,
+  Calendar,
+  Target,
+  TrendingUp,
+} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -105,7 +112,7 @@ const steps: StepConfig[] = [
     stageLabel: "Investimento e prazo",
     heading: "Investimento e Prazo",
     subheading: "Informações sobre orçamento e timeline para implementação",
-    prompt: "Quais tecnologias você já utiliza?",
+    prompt: "",
     budgetLabel: "Orçamento disponível para projetos de IA",
     budgetPlaceholder: "Selecione a faixa de orçamento",
     budgetOptions: [
@@ -126,17 +133,9 @@ const steps: StepConfig[] = [
       "Flexível",
     ],
     notesLabel: "Descreva brevemente seu projeto ou necessidade específica",
-    notesPlaceholder: "Conte-nos mais sobre o que você espera alcançar com a implementação de IA...",
-    options: [
-      "ERP/Sistema de gestão",
-      "CRM",
-      "Analytics/Business Intelligence",
-      "Banco de dados em nuvem",
-      "Agentes de IA",
-      "Chatbot",
-      "Automação de processos (RPA)",
-      "Machine Learning/IA",
-    ],
+    notesPlaceholder:
+      "Conte-nos mais sobre o que você espera alcançar com a implementação de IA...",
+    options: [],
   },
 ];
 
@@ -148,7 +147,9 @@ const Diagnostico = () => {
     3: [],
     4: [],
   });
-  const [selectedLevelByStep, setSelectedLevelByStep] = useState<Record<number, string>>({
+  const [selectedLevelByStep, setSelectedLevelByStep] = useState<
+    Record<number, string>
+  >({
     3: "Iniciante - Processos majoritariamente manuais",
   });
   const [budgetByStep, setBudgetByStep] = useState<Record<number, string>>({
@@ -173,7 +174,9 @@ const Diagnostico = () => {
       ? Brain
       : current.stageLabel.startsWith("Maturidade")
         ? TrendingUp
-        : Target;
+        : current.stageLabel.startsWith("Investimento")
+          ? Calendar
+          : Target;
 
   const toggleOption = (value: string) => {
     setSelectedByStep((prev) => {
@@ -186,8 +189,7 @@ const Diagnostico = () => {
   };
 
   const goPrev = () => setCurrentStep((prev) => Math.max(1, prev - 1));
-  const goNext = () =>
-    setCurrentStep((prev) => Math.min(steps.length, prev + 1));
+  const goNext = () => setCurrentStep((prev) => Math.min(steps.length, prev + 1));
 
   return (
     <div className="relative min-h-screen bg-[#0C140F] text-white">
@@ -260,7 +262,10 @@ const Diagnostico = () => {
                   <Select
                     value={selectedLevel}
                     onValueChange={(value) =>
-                      setSelectedLevelByStep((prev) => ({ ...prev, [currentStep]: value }))
+                      setSelectedLevelByStep((prev) => ({
+                        ...prev,
+                        [currentStep]: value,
+                      }))
                     }
                   >
                     <SelectTrigger className="h-11 w-full rounded-xl border-white/20 bg-white/5 text-left text-white/80 hover:border-white/30 focus:border-white focus:ring-0">
@@ -268,7 +273,11 @@ const Diagnostico = () => {
                     </SelectTrigger>
                     <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
                       {current.selectOptions.map((option) => (
-                        <SelectItem key={option} value={option} className="text-white/90">
+                        <SelectItem
+                          key={option}
+                          value={option}
+                          className="text-white/90"
+                        >
                           {option}
                         </SelectItem>
                       ))}
@@ -293,7 +302,11 @@ const Diagnostico = () => {
                     </SelectTrigger>
                     <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
                       {current.budgetOptions.map((option) => (
-                        <SelectItem key={option} value={option} className="text-white/90">
+                        <SelectItem
+                          key={option}
+                          value={option}
+                          className="text-white/90"
+                        >
                           {option}
                         </SelectItem>
                       ))}
@@ -318,7 +331,11 @@ const Diagnostico = () => {
                     </SelectTrigger>
                     <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
                       {current.timelineOptions.map((option) => (
-                        <SelectItem key={option} value={option} className="text-white/90">
+                        <SelectItem
+                          key={option}
+                          value={option}
+                          className="text-white/90"
+                        >
                           {option}
                         </SelectItem>
                       ))}
@@ -335,7 +352,10 @@ const Diagnostico = () => {
                   <Textarea
                     value={selectedNotes}
                     onChange={(e) =>
-                      setNotesByStep((prev) => ({ ...prev, [currentStep]: e.target.value }))
+                      setNotesByStep((prev) => ({
+                        ...prev,
+                        [currentStep]: e.target.value,
+                      }))
                     }
                     placeholder={current.notesPlaceholder}
                     className="min-h-[120px] rounded-xl border-white/20 bg-white/5 text-white placeholder:text-white/50 focus:border-white focus:ring-0"
@@ -343,26 +363,28 @@ const Diagnostico = () => {
                 </div>
               )}
 
-              <div>
-                <p className="text-base font-semibold text-white">
-                  {current.prompt}
-                </p>
-                <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
-                  {current.options.map((option) => (
-                    <label
-                      key={option}
-                      className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80 transition hover:border-white/20 hover:bg-white/10"
-                    >
-                      <Checkbox
-                        checked={selected.includes(option)}
-                        onCheckedChange={() => toggleOption(option)}
-                        className="border-white/40 data-[state=checked]:bg-white data-[state=checked]:text-black"
-                      />
-                      <span>{option}</span>
-                    </label>
-                  ))}
+              {current.options.length > 0 && current.prompt && (
+                <div>
+                  <p className="text-base font-semibold text-white">
+                    {current.prompt}
+                  </p>
+                  <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
+                    {current.options.map((option) => (
+                      <label
+                        key={option}
+                        className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white/80 transition hover:border-white/20 hover:bg-white/10"
+                      >
+                        <Checkbox
+                          checked={selected.includes(option)}
+                          onCheckedChange={() => toggleOption(option)}
+                          className="border-white/40 data-[state=checked]:bg-white data-[state=checked]:text-black"
+                        />
+                        <span>{option}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </CardContent>
           </Card>
 
