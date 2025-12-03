@@ -223,39 +223,31 @@ const AgentesIA = () => {
                   </span>
                 </blockquote>
               </div>
-              <div className="flex flex-col items-center gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 text-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black">
-                  <MessageCircle size={20} />
-                </div>
-                <div className="w-full max-w-md text-left">
+              <div className="flex flex-col gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 text-center">
+                <div className="w-full max-w-md self-center text-left">
                   <h4 className="text-lg font-semibold text-white">Resultados</h4>
-                  <p className="mt-1 text-sm text-white/70">
-                    Tempo de atendimento
-                  </p>
-                  <div className="mt-3 space-y-4">
+                  <p className="mt-1 text-sm text-white/70">Tempo de atendimento</p>
+                  <div className="mt-5 flex items-end justify-between gap-6">
                     {performanceBars.map((bar, index) => {
-                      const targetWidth = (bar.seconds / maxSeconds) * 100;
+                      const targetHeight = (bar.seconds / maxSeconds) * 100;
+                      const isBefore = bar.color === "bg-white";
                       return (
-                        <div key={bar.label} className="space-y-1">
-                          <div className="flex items-center justify-between text-xs text-white/70">
-                            <span className="font-medium text-white">
-                              {bar.label}
-                            </span>
-                            <span className={bar.color === "bg-white" ? "text-white/70" : "text-[#86efac]"}>
-                              {bar.seconds}s
-                            </span>
-                          </div>
-                          <div className="h-3 w-full overflow-hidden rounded-full bg-white/10">
+                        <div key={bar.label} className="flex flex-col items-center gap-3">
+                          <span className="text-xs font-medium text-white/70">{bar.label}</span>
+                          <div className="flex h-52 w-24 items-end justify-center rounded-2xl bg-white/5 p-2">
                             <div
-                              className={`bar-animate h-full rounded-full ${bar.color} ${index === 0 ? "shadow-[0_0_12px_rgba(255,255,255,0.5)]" : "shadow-[0_0_12px_rgba(134,239,172,0.5)]"}`}
+                              className={`bar-animate-vertical w-full rounded-xl ${isBefore ? "bg-white/85 shadow-[0_8px_28px_rgba(255,255,255,0.22)]" : "bg-[#86efac] shadow-[0_8px_28px_rgba(134,239,172,0.35)]"}`}
                               style={
                                 {
-                                  "--target-width": `${targetWidth}%`,
+                                  "--target-height": `${targetHeight}%`,
                                   animationDelay: `${index * 0.2}s`,
                                 } as React.CSSProperties
                               }
                             />
                           </div>
+                          <span className="text-lg font-semibold text-white">
+                            {bar.seconds}s
+                          </span>
                         </div>
                       );
                     })}
@@ -265,13 +257,13 @@ const AgentesIA = () => {
                   </p>
                 </div>
                 <style>{`
-                  @keyframes bar-grow {
-                    from { width: 0; }
-                    to { width: var(--target-width); }
+                  @keyframes bar-grow-vertical {
+                    from { height: 0; }
+                    to { height: var(--target-height); }
                   }
-                  .bar-animate {
-                    width: 0;
-                    animation: bar-grow 1.6s ease-out forwards;
+                  .bar-animate-vertical {
+                    height: 0;
+                    animation: bar-grow-vertical 1.6s ease-out forwards;
                   }
                 `}</style>
               </div>
