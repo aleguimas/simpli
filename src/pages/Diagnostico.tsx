@@ -694,13 +694,46 @@ const Diagnostico = () => {
                   <SelectValue placeholder="Selecione" />
                 </SelectTrigger>
                 <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
-                  <SelectItem value="tecnologia">Tecnologia</SelectItem>
-                  <SelectItem value="varejo">Varejo</SelectItem>
-                  <SelectItem value="saude">Saúde</SelectItem>
-                  <SelectItem value="educacao">Educação</SelectItem>
-                  <SelectItem value="financas">Finanças</SelectItem>
-                  <SelectItem value="industria">Indústria</SelectItem>
-                  <SelectItem value="servicos">Serviços</SelectItem>
+                  <SelectItem value="financeiro">
+                    Financeiro (Bancos & Pagamentos)
+                  </SelectItem>
+                  <SelectItem value="seguros">Seguros</SelectItem>
+                  <SelectItem value="tecnologia">
+                    Tecnologia (Software & Cloud)
+                  </SelectItem>
+                  <SelectItem value="telecomunicacoes">Telecomunicações</SelectItem>
+                  <SelectItem value="varejo">
+                    Varejo & E-commerce
+                  </SelectItem>
+                  <SelectItem value="industria">
+                    Indústria & Manufatura
+                  </SelectItem>
+                  <SelectItem value="energia">
+                    Energia & Combustíveis (Distribuição/Downstream)
+                  </SelectItem>
+                  <SelectItem value="utilities">
+                    Serviços de Eletricidade, Gás, Água e Esgoto (Utilities)
+                  </SelectItem>
+                  <SelectItem value="logistica">
+                    Logística, Transporte & Mobilidade
+                  </SelectItem>
+                  <SelectItem value="imobiliario">
+                    Imobiliário / Construção civil
+                  </SelectItem>
+                  <SelectItem value="agronegocio">Agronegócio</SelectItem>
+                  <SelectItem value="saude">
+                    Saúde (Prestadores & Planos)
+                  </SelectItem>
+                  <SelectItem value="farmaceutica">
+                    Farmacêutica & Biotecnologia
+                  </SelectItem>
+                  <SelectItem value="educacao">
+                    Educação (Educação & Treinamentos)
+                  </SelectItem>
+                  <SelectItem value="midia">Mídia / Publishers</SelectItem>
+                  <SelectItem value="martech">Agências / Martech</SelectItem>
+                  <SelectItem value="publico">Setor Público (Governo)</SelectItem>
+                  <SelectItem value="outro">Outro</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -716,11 +749,20 @@ const Diagnostico = () => {
                   <SelectValue placeholder="Selecione" />
                 </SelectTrigger>
                 <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
-                  <SelectItem value="ceo">CEO / Founder</SelectItem>
+                  <SelectItem value="founder">Founder</SelectItem>
+                  <SelectItem value="presidente">Presidente</SelectItem>
+                  <SelectItem value="ceo">CEO</SelectItem>
+                  <SelectItem value="clevel">C-Level</SelectItem>
+                  <SelectItem value="vp">VP</SelectItem>
                   <SelectItem value="diretor">Diretor</SelectItem>
+                  <SelectItem value="superintendente">Superintendente</SelectItem>
+                  <SelectItem value="head">Head</SelectItem>
                   <SelectItem value="gerente">Gerente</SelectItem>
                   <SelectItem value="coordenador">Coordenador</SelectItem>
-                  <SelectItem value="analista">Especialista / Analista</SelectItem>
+                  <SelectItem value="especialista">Especialista</SelectItem>
+                  <SelectItem value="analista">Analista</SelectItem>
+                  <SelectItem value="assistente">Assistente</SelectItem>
+                  <SelectItem value="estagiario">Estagiário</SelectItem>
                 </SelectContent>
               </Select>
             </div>
