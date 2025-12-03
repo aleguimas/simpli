@@ -4,7 +4,7 @@ const TransformarNegocioSection = () => {
   return (
     <section
       id="cta"
-      className="relative overflow-hidden bg-[#0b1b14] px-6 py-20 md:px-10 md:py-28"
+      className="relative overflow-hidden bg-[#0f241c] px-6 py-20 md:px-10 md:py-28"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.12),_transparent_55%)]" />
       <div className="relative mx-auto max-w-4xl text-center">
