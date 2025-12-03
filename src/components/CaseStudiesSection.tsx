@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 type CaseItem = {
   company: string;
@@ -119,9 +120,9 @@ const CaseStudiesSection = () => {
               <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
                 <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.16),_transparent_58%)]" />
               </div>
-              <div className="flex items-center justify-end">
-                <span className="text-xs text-white/60">{item.category}</span>
-              </div>
+              <Badge className="border border-white/20 bg-white/10 text-white">
+                {item.category}
+              </Badge>
               <h3 className="mt-4 text-xl font-semibold text-white">
                 {item.title}
               </h3>
