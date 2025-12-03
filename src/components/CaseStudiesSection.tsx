@@ -37,36 +37,51 @@ const caseItems: CaseItem[] = [
   {
     company: "Vórtx",
     title: "Roteamento inteligente de tarefas críticas",
-    summary:
-      "Assistentes monitoram processos e direcionam demandas críticas com alertas em tempo real.",
+    bulletPoints: [
+      "Roteamento inteligente: prioriza tarefas críticas automaticamente",
+      "Alertas em tempo real: sinaliza exceções para correção imediata",
+      "Automação de cobranças: dispara lembretes e follow-ups sem intervenção manual",
+    ],
     category: "Automação de cobranças",
   },
   {
     company: "Unimed",
     title: "Atendimento assistido por IA",
-    summary:
-      "Triagem e acompanhamento automatizado de casos, mantendo equipes focadas no cuidado ao paciente.",
+    bulletPoints: [
+      "Triagem inicial: coleta sintomas e direciona o paciente corretamente",
+      "Agendamentos automáticos: confirma e lembra consultas ou exames",
+      "Acompanhamento contínuo: envia orientações e check-ins pós-atendimento",
+    ],
     category: "Agendamento",
   },
   {
     company: "Loft",
     title: "Integração de dados imobiliários",
-    summary:
-      "Agentes conectam dados de múltiplas fontes para atualizar cadastros e precificação de imóveis.",
+    bulletPoints: [
+      "Leitura de estoque: consolida imóveis de múltiplas fontes",
+      "Atualização automática: sincroniza preços, fotos e disponibilidade",
+      "Precificação inteligente: sugere valores com base em dados de mercado",
+    ],
     category: "Leitura de estoque",
   },
   {
     company: "Machado Meyer",
     title: "Compliance contínuo",
-    summary:
-      "Monitoramento de conformidade com geração de evidências e alertas de risco em tempo real.",
+    bulletPoints: [
+      "Monitoramento de conformidade: acompanha políticas e prazos críticos",
+      "Evidências automáticas: registra decisões e ações para auditoria",
+      "Alertas de risco: notifica equipes sobre exceções ou pendências",
+    ],
     category: "Suporte e dúvidas",
   },
   {
     company: "Ultra",
     title: "Back-office automatizado",
-    summary:
-      "Revisão de contratos, conciliações e extração de dados feita por agentes com supervisão humana.",
+    bulletPoints: [
+      "Revisão de contratos: extrai cláusulas e valida consistência",
+      "Conciliação financeira: cruza dados de pagamentos e faturas",
+      "Qualificação de leads: prioriza contatos com maior fit e intenção",
+    ],
     category: "Qualificação de leads",
   },
 ];
