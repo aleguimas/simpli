@@ -211,7 +211,9 @@ const TrafegoPago = () => {
                       style={{
                         left: `calc(${left}% - 6px)`,
                         transform: `translateY(-50%) scale(${isActive ? 1.15 : 1})`,
-                        background: isActive ? "linear-gradient(135deg,#86efac,#ffffff)" : "rgba(255,255,255,0.55)",
+                        background: isActive
+                          ? "linear-gradient(135deg,#86efac,#ffffff)"
+                          : "rgba(255,255,255,0.55)",
                       }}
                     />
                   );
@@ -232,11 +234,8 @@ const TrafegoPago = () => {
                     >
                       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(134,239,172,0.12),_transparent_60%)]" />
                       <CardContent className="relative space-y-4 p-6 text-left">
-                        <div className="flex items-center justify-between text-xs uppercase tracking-[0.16em] text-white/70">
+                        <div className="flex items-center text-xs uppercase tracking-[0.16em] text-white/70">
                           <span className="font-semibold text-white">{item.step}</span>
-                          <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px]">
-                            {idx + 1} / {process.length}
-                          </span>
                         </div>
                         <div className="space-y-2">
                           <h3 className="text-lg font-semibold text-white">{item.title}</h3>
