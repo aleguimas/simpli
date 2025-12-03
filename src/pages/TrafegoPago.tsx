@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import {
-  ArrowRight,
   ArrowUpRight,
   BarChart3,
   Check,
@@ -43,26 +43,42 @@ const process = [
   {
     step: "01",
     title: "Pesquisa de Mercado",
-    description: "Análise de concorrência e público-alvo.",
+    description: "Análise de concorrência e público-alvo para acertar a estratégia.",
+    tools: ["Pesquisa", "Benchmark", "Personas"],
   },
   {
     step: "02",
     title: "Estratégia de Campanha",
-    description: "Definição de objetivos, ofertas e táticas.",
+    description: "Definição de objetivos, oferta e canais com metas claras.",
+    tools: ["Objetivos", "Oferta", "Canais"],
   },
   {
     step: "03",
     title: "Execução",
-    description: "Criação e lançamento das campanhas.",
+    description: "Criação de anúncios, criativos e landing pages que convertem.",
+    tools: ["Criativos", "Landing", "Tags"],
   },
   {
     step: "04",
     title: "Otimização",
-    description: "Monitoração contínua e ajustes semanais.",
+    description: "Ajustes semanais, testes A/B e foco em ROI contínuo.",
+    tools: ["A/B", "CRO", "Relatórios"],
   },
 ];
 
 const TrafegoPago = () => {
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % process.length);
+    }, 2600);
+    return () => clearInterval(interval);
+  }, []);
+
+  const progress =
+    process.length > 1 ? (activeStep / (process.length - 1)) * 100 : 100;
+
   return (
     <div className="bg-[#0C140F] text-white">
       <Navbar />
@@ -166,51 +182,78 @@ const TrafegoPago = () => {
             <p className="text-sm uppercase tracking-[0.18em] text-white/50">Como fazemos</p>
             <h2 className="mt-2 text-3xl font-semibold md:text-4xl">Gestão Completa de Campanhas</h2>
             <p className="mt-3 text-base text-white/70">
-              Processo claro e iterativo para maximizar performance.
+              Linha do tempo horizontal com destaque automático em cada etapa.
             </p>
-            <div className="relative mx-auto mt-12 max-w-5xl">
-              <div className="hidden md:block absolute left-3 right-3 top-10 h-0.5 bg-white/10" />
-              <div className="grid gap-8 md:grid-cols-7">
-                {process.map((item, idx) => {
-                  const isLast = idx === process.length - 1;
+
+            <div className="relative mx-auto mt-10 max-w-5xl space-y-6">
+              <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60">
+                {process.map((item, idx) => (
+                  <span key={item.step} className={idx === activeStep ? "text-white" : ""}>
+                    Step {idx + 1}
+                  </span>
+                ))}
+              </div>
+              <div className="relative h-2 overflow-hidden rounded-full bg-white/10">
+                <div
+                  className="absolute left-0 top-0 h-2 rounded-full bg-gradient-to-r from-[#86efac] via-white to-[#86efac]"
+                  style={{
+                    width: `${progress}%`,
+                    transition: "width 1.2s ease",
+                  }}
+                />
+                {process.map((_, idx) => {
+                  const left = process.length > 1 ? (idx / (process.length - 1)) * 100 : 0;
+                  const isActive = idx === activeStep;
                   return (
                     <div
+                      key={idx}
+                      className="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-white/50 shadow-[0_0_0_6px_rgba(255,255,255,0.08)] transition"
+                      style={{
+                        left: `calc(${left}% - 6px)`,
+                        transform: `translateY(-50%) scale(${isActive ? 1.15 : 1})`,
+                        background: isActive ? "linear-gradient(135deg,#86efac,#ffffff)" : "rgba(255,255,255,0.55)",
+                      }}
+                    />
+                  );
+                })}
+              </div>
+
+              <div className="grid gap-5 md:grid-cols-4">
+                {process.map((item, idx) => {
+                  const isActive = idx === activeStep;
+                  return (
+                    <Card
                       key={item.step}
-                      className="col-span-7 flex flex-col items-center md:col-span-2"
+                      className={`relative overflow-hidden border bg-white/5 transition-all duration-500 ${
+                        isActive
+                          ? "scale-[1.02] border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.35)] ring-2 ring-white/25"
+                          : "border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.25)]"
+                      }`}
                     >
-                      <div className="relative flex h-full w-full flex-col items-center text-center md:items-start md:text-left">
-                        <div className="hidden md:block absolute -top-1 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-gradient-to-br from-[#86efac] to-white shadow-[0_0_0_6px_rgba(12,20,15,0.6)]" />
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-lg">
-                            {item.step}
-                          </div>
-                          <div className="text-left md:hidden">
-                            <p className="text-xs uppercase tracking-[0.14em] text-white/60">
-                              Etapa {idx + 1}
-                            </p>
-                            <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                          </div>
+                      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(134,239,172,0.12),_transparent_60%)]" />
+                      <CardContent className="relative space-y-4 p-6 text-left">
+                        <div className="flex items-center justify-between text-xs uppercase tracking-[0.16em] text-white/70">
+                          <span className="font-semibold text-white">{item.step}</span>
+                          <span className="rounded-full bg-white/10 px-2 py-0.5 text-[11px]">
+                            {idx + 1} / {process.length}
+                          </span>
                         </div>
-                        <Card className="mt-4 h-full w-full border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
-                          <CardContent className="p-5">
-                            <div className="flex flex-col gap-2">
-                              <p className="text-xs uppercase tracking-[0.14em] text-white/60">
-                                Etapa {idx + 1}
-                              </p>
-                              <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                              <p className="text-sm text-white/70">{item.description}</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
-                      {!isLast && (
-                        <div className="my-6 flex items-center justify-center md:my-0 md:mt-6">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/80 shadow-md md:rotate-0 md:translate-x-3">
-                            <ArrowRight size={18} />
-                          </div>
+                        <div className="space-y-2">
+                          <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                          <p className="text-sm leading-relaxed text-white/70">{item.description}</p>
                         </div>
-                      )}
-                    </div>
+                        <div className="flex flex-wrap gap-2 text-[11px] text-white/70">
+                          {item.tools.map((tool) => (
+                            <span
+                              key={tool}
+                              className="rounded-full border border-white/10 bg-white/5 px-2 py-1"
+                            >
+                              {tool}
+                            </span>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
                   );
                 })}
               </div>
