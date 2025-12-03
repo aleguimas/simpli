@@ -389,7 +389,9 @@ const NichosImpactoSection = () => {
             return (
               <a
                 key={`${item.category}-${item.title}`}
-                href="#"
+                href="https://wa.link/cpk8xf"
+                target="_blank"
+                rel="noreferrer"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 className={`nichos-card relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#0F1D15] to-[#0C140F] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 ${
