@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import HeroSection from "@/components/HeroSection";
-import LogoSection from "@/components/LogoSection";
-import ServicesSection from "@/components/ServicesSection";
-import NichosSection from "@/components/NichosSection";
-import EnterpriseSection from "@/components/EnterpriseSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import CallToActionSection from "@/components/CallToActionSection";
+import ClientesSection from "@/components/ClientesSection";
+import ServicosSection from "@/components/ServicosSection";
+import NichosImpactoSection from "@/components/NichosImpactoSection";
+import TreinamentosSection from "@/components/TreinamentosSection";
+import TecnologiasSection from "@/components/TecnologiasSection";
+import TransformarNegocioSection from "@/components/TransformarNegocioSection";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
 
@@ -28,12 +28,12 @@ const Index = () => {
       <Navbar />
       <main className="overflow-hidden">
         <HeroSection />
-        <LogoSection />
-        <ServicesSection />
-        <NichosSection />
-        <TestimonialsSection />
-        <EnterpriseSection />
-        <CallToActionSection />
+        <ClientesSection />
+        <ServicosSection />
+        <NichosImpactoSection />
+        <TreinamentosSection />
+        <TecnologiasSection />
+        <TransformarNegocioSection />
       </main>
       <SiteFooter />
     </div>

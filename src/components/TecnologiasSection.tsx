@@ -23,7 +23,7 @@ const items = [
   },
 ];
 
-const EnterpriseSection = () => {
+const TecnologiasSection = () => {
   return (
     <section
       id="carreiras"
@@ -55,4 +55,4 @@ const EnterpriseSection = () => {
   );
 };
 
-export default EnterpriseSection;
+export default TecnologiasSection;

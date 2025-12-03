@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-const CallToActionSection = () => {
+const TransformarNegocioSection = () => {
   return (
     <section
       id="cta"
@@ -25,4 +25,4 @@ const CallToActionSection = () => {
   );
 };
 
-export default CallToActionSection;
+export default TransformarNegocioSection;

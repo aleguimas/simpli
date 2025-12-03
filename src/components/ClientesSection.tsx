@@ -45,7 +45,7 @@ const logos = [
   },
 ];
 
-const LogoSection = () => {
+const ClientesSection = () => {
   return (
     <section
       id="logos"
@@ -90,4 +90,4 @@ const LogoSection = () => {
   );
 };
 
-export default LogoSection;
+export default ClientesSection;

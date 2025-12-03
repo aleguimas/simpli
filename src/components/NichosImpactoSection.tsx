@@ -21,7 +21,6 @@ const categories = [
 ];
 
 const caseItems: CaseItem[] = [
-  // Atendimento
   {
     company: "Atendimento",
     title: "Varejo (lojas físicas e e-commerce)",
@@ -59,7 +58,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Detalhes sobre acomodações, serviços oferecidos e reservas",
     category: "Atendimento",
   },
-  // Agendamento
   {
     company: "Agendamento",
     title: "Clínicas e consultórios",
@@ -102,7 +100,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Reserva de mesa",
     category: "Agendamento",
   },
-  // Qualificação de Leads
   {
     company: "Qualificação de Leads",
     title: "Imobiliárias",
@@ -140,7 +137,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Preferências, orçamento e urgência de compra",
     category: "Qualificação de Leads",
   },
-  // Leitura de Estoque
   {
     company: "Leitura de Estoque",
     title: "Varejo físico e e-commerce",
@@ -177,7 +173,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Verificação de produtos e rações",
     category: "Leitura de Estoque",
   },
-  // Suporte e Dúvidas
   {
     company: "Suporte e Dúvidas",
     title: "E-commerce",
@@ -214,7 +209,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Suporte para problemas técnicos e planos disponíveis",
     category: "Suporte e Dúvidas",
   },
-  // Disparo de Emails / WhatsApp
   {
     company: "Disparo de Emails / WhatsApp",
     title: "Varejo",
@@ -257,7 +251,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Newsletters e conteúdo educativo",
     category: "Disparo de Emails / WhatsApp",
   },
-  // Automação de Cobranças
   {
     company: "Automação de Cobranças",
     title: "Clínicas e consultórios",
@@ -300,7 +293,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Parcelas atrasadas",
     category: "Automação de Cobranças",
   },
-  // Projetos personalizados
   {
     company: "Projetos personalizados",
     title: "Projetos sob medida",
@@ -342,7 +334,7 @@ const caseItems: CaseItem[] = [
   },
 ];
 
-const NichosSection = () => {
+const NichosImpactoSection = () => {
   const [selected, setSelected] = useState(categories[0]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -446,4 +438,4 @@ const NichosSection = () => {
   );
 };
 
-export default NichosSection;
+export default NichosImpactoSection;

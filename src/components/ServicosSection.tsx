@@ -32,7 +32,7 @@ const services = [
   },
 ];
 
-const ServicesSection = () => {
+const ServicosSection = () => {
   return (
     <section
       id="servicos"
@@ -80,4 +80,4 @@ const ServicesSection = () => {
   );
 };
 
-export default ServicesSection;
+export default ServicosSection;

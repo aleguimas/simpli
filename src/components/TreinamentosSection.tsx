@@ -36,7 +36,7 @@ const trainings = [
   },
 ];
 
-const TestimonialsSection = () => {
+const TreinamentosSection = () => {
   return (
     <section
       id="treinamento"
@@ -108,4 +108,4 @@ const TestimonialsSection = () => {
   );
 };
 
-export default TestimonialsSection;
+export default TreinamentosSection;
