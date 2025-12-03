@@ -8,7 +8,7 @@ const DiagnosticoSection = () => {
         className="absolute inset-0 bg-center bg-cover opacity-50"
         style={{
           backgroundImage:
-            "url('https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEauhePJBF8GkPX2cwREIBOA1KmZx5CpJ0DtMd')",
+            "url('https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE7Cpjs4JbNsEXlrThLj3By4kOfWQ51aHmIixU')",
         }}
       />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08),_transparent_55%)]" />
