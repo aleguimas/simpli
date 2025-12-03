@@ -30,8 +30,17 @@ const DiagnosticoSection = () => {
           <div className="pointer-events-none absolute inset-0 rounded-[16px] shadow-[inset_0_0_80px_12px_rgba(0,0,0,0.9),inset_0_0_28px_2px_rgba(0,0,0,0.7)]" />
         </div>
 
-        <Button className="mt-8 h-12 rounded-xl border border-white/0 bg-white px-7 text-lg font-semibold text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white">
-          Fazer diagnóstico gratuito
+        <Button
+          asChild
+          className="mt-8 h-12 rounded-xl border border-white/0 bg-white px-7 text-lg font-semibold text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white"
+        >
+          <a
+            href="https://agente.simpli.ia.br/diagnostico"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Fazer diagnóstico gratuito
+          </a>
         </Button>
         <div className="mt-4 text-xs uppercase tracking-[0.14em] text-white/60">
           Gratuito • Rápido • Relatório personalizado
