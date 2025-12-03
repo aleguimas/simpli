@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import {
-  ArrowRight,
   BarChart3,
   CheckCircle2,
-  Laptop,
   Monitor,
   Rocket,
   Search,
@@ -109,7 +107,7 @@ const cases = [
 const DesenvolvimentoWeb = () => {
   const heroGradient = useMemo(
     () =>
-      "linear-gradient(120deg, #9cff1d 0%, #10d6a1 55%, #00c6ff 100%)",
+      "linear-gradient(120deg, rgba(12,20,15,0.8), rgba(28,51,36,0.85)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop')",
     [],
   );
 
@@ -119,20 +117,21 @@ const DesenvolvimentoWeb = () => {
       <main>
         <section
           className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
-          style={{ backgroundImage: heroGradient }}
+          style={{
+            backgroundImage: heroGradient,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.15),_transparent_40%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
           <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
-            <h1 className="text-4xl font-semibold md:text-5xl">
-              Desenvolvimento Web
-            </h1>
-            <p className="max-w-2xl text-lg text-white/90 md:text-xl">
-              Criamos sites e landing pages modernos e responsivos que convertem
-              visitantes em clientes.
+            <h1 className="text-4xl font-semibold md:text-5xl">Desenvolvimento Web</h1>
+            <p className="max-w-2xl text-lg text-white/80 md:text-xl">
+              Criamos sites e landing pages modernos e responsivos que convertem visitantes em clientes.
             </p>
             <Button
               asChild
-              className="h-12 rounded-xl bg-white px-7 text-base font-semibold text-[#0C140F] shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+              className="h-12 rounded-xl border border-transparent bg-white px-7 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
             >
               <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
                 Solicitar Orçamento
@@ -141,72 +140,65 @@ const DesenvolvimentoWeb = () => {
           </div>
         </section>
 
-        <section className="bg-white px-6 py-16 text-[#0f172a] md:px-10 md:py-20">
-          <div className="mx-auto flex max-w-6xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-3xl space-y-4">
-              <h2 className="text-3xl font-semibold md:text-4xl">
-                O que é Desenvolvimento Web?
-              </h2>
-              <p className="text-base leading-relaxed text-slate-700">
-                O desenvolvimento web é o processo de criação de sites e aplicações
-                web que funcionam na internet. Envolve desde a criação de sites
-                institucionais até e-commerces complexos e aplicações web
-                avançadas.
+        <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
+          <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+            <div className="space-y-4">
+              <p className="text-sm uppercase tracking-[0.18em] text-white/50">
+                O que fazemos
               </p>
-              <p className="text-base leading-relaxed text-slate-700">
-                Utilizamos as tecnologias mais modernas do mercado, como React,
-                Next.js, TypeScript e Node.js, para criar soluções que não apenas
-                impressionam visualmente, mas também oferecem performance
-                excepcional e experiência de usuário superior.
+              <h2 className="text-3xl font-semibold md:text-4xl">O que é Desenvolvimento Web?</h2>
+              <p className="text-base leading-relaxed text-white/70">
+                O desenvolvimento web é o processo de criação de sites e aplicações web que funcionam na internet. Envolve
+                desde a criação de sites institucionais até e-commerces complexos e aplicações web avançadas.
               </p>
-              <p className="text-base leading-relaxed text-slate-700">
-                Nossa abordagem combina design criativo com desenvolvimento
-                técnico robusto, garantindo que cada projeto seja único, funcional e
-                alinhado com os objetivos de negócio dos nossos clientes.
+              <p className="text-base leading-relaxed text-white/70">
+                Utilizamos as tecnologias mais modernas do mercado, como React, Next.js, TypeScript e Node.js, para criar
+                soluções que não apenas impressionam visualmente, mas também oferecem performance excepcional e experiência
+                de usuário superior.
+              </p>
+              <p className="text-base leading-relaxed text-white/70">
+                Nossa abordagem combina design criativo com desenvolvimento técnico robusto, garantindo que cada projeto seja
+                único, funcional e alinhado com os objetivos de negócio dos nossos clientes.
               </p>
             </div>
-            <Card className="w-full max-w-md border-slate-100 bg-slate-50 shadow-md">
+            <Card className="border-white/10 bg-[#0C140F]/80 shadow-2xl shadow-black/30">
               <CardContent className="flex flex-col items-center gap-3 p-6 text-center">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#9cff1d] to-[#00c6ff] text-white shadow-lg">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black">
                   <Monitor size={22} />
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900">
-                  Tecnologias Modernas
-                </h3>
-                <p className="text-sm text-slate-600">
-                  React, Next.js, TypeScript, Node.js e muito mais para criar
-                  experiências web excepcionais.
+                <h3 className="text-lg font-semibold text-white">Tecnologias Modernas</h3>
+                <p className="text-sm text-white/65">
+                  React, Next.js, TypeScript, Node.js e muito mais para criar experiências web excepcionais.
                 </p>
               </CardContent>
             </Card>
           </div>
         </section>
 
-        <section className="bg-[#f7f9fb] px-6 py-16 text-[#0f172a] md:px-10 md:py-20">
+        <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">
+            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
+              Benefícios
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
               Benefícios do Desenvolvimento Web
             </h2>
-            <p className="mt-2 text-base text-slate-600">
+            <p className="mt-2 text-base text-white/70">
               Por que escolher nossos serviços de desenvolvimento web?
             </p>
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {benefits.map((item) => (
                 <Card
                   key={item.title}
-                  className="border-slate-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  className="border-white/10 bg-white/5 shadow-lg shadow-black/30"
                 >
                   <CardContent className="flex flex-col gap-3 p-5 text-left">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#d7f7a6] text-[#0f172a]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#86efac] to-white text-black">
                       <item.icon size={18} />
                     </div>
                     <div>
-                      <h3 className="text-base font-semibold text-slate-900">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-slate-600">
-                        {item.description}
-                      </p>
+                      <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                      <p className="mt-1 text-sm text-white/70">{item.description}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -215,35 +207,37 @@ const DesenvolvimentoWeb = () => {
           </div>
         </section>
 
-        <section className="bg-white px-6 py-16 text-[#0f172a] md:px-10 md:py-20">
+        <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">Como Fazemos</h2>
-            <p className="mt-2 text-base text-slate-600">
-              Nosso processo de desenvolvimento web em 4 etapas
+            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
+              Processo
             </p>
+            <h2 className="text-3xl font-semibold md:text-4xl">Como Fazemos</h2>
+            <p className="mt-2 text-base text-white/70">Nosso processo de desenvolvimento web em 4 etapas</p>
             <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step) => (
                 <div
                   key={step.label}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50 p-6 text-center shadow-sm"
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 text-center shadow-2xl shadow-black/20"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#9cff1d] to-[#00c6ff] text-base font-semibold text-white shadow-md">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-md">
                     {step.label}
                   </div>
-                  <h3 className="text-base font-semibold text-slate-900">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-slate-600">{step.description}</p>
+                  <h3 className="text-base font-semibold text-white">{step.title}</h3>
+                  <p className="text-sm text-white/70">{step.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="bg-[#f7f9fb] px-6 py-16 text-[#0f172a] md:px-10 md:py-20">
+        <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
+            <p className="text-sm uppercase tracking-[0.18em] text-white/50">
+              Cases de sucesso
+            </p>
             <h2 className="text-3xl font-semibold md:text-4xl">Cases de Sucesso</h2>
-            <p className="mt-2 text-base text-slate-600">
+            <p className="mt-2 text-base text-white/70">
               Conheça alguns dos projetos que desenvolvemos e os resultados alcançados
             </p>
           </div>
@@ -252,62 +246,43 @@ const DesenvolvimentoWeb = () => {
             {cases.map((item, idx) => (
               <Card
                 key={item.title}
-                className="overflow-hidden border-slate-100 bg-white shadow-md"
+                className="overflow-hidden border-white/10 bg-[#0F1D15]/80 shadow-2xl shadow-black/40"
               >
                 <CardContent className="grid gap-6 p-6 md:grid-cols-[1.1fr_0.9fr] md:p-8">
                   <div className="space-y-4 text-left">
-                    <h3 className="text-xl font-semibold text-slate-900">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-slate-700">
-                      {item.description}
-                    </p>
-                    <ul className="space-y-2 text-sm text-slate-700">
+                    <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                    <p className="text-sm leading-relaxed text-white/75">{item.description}</p>
+                    <ul className="space-y-2 text-sm text-white/75">
                       {item.bullets.map((bullet) => (
                         <li key={bullet} className="flex items-start gap-2">
-                          <CheckCircle2
-                            size={16}
-                            className="mt-0.5 text-[#22c55e]"
-                          />
+                          <CheckCircle2 size={16} className="mt-0.5 text-[#4ADE80]" />
                           <span>{bullet}</span>
                         </li>
                       ))}
                     </ul>
-                    <blockquote className="rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700">
+                    <blockquote className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/75">
                       {item.quote}
-                      <span className="mt-2 block text-xs text-slate-500">
-                        {item.author}
-                      </span>
+                      <span className="mt-2 block text-xs text-white/60">{item.author}</span>
                     </blockquote>
                   </div>
 
                   <div
-                    className={`flex flex-col items-center justify-center gap-4 rounded-2xl border border-slate-100 ${
-                      idx % 2 === 0
-                        ? "bg-gradient-to-br from-[#e8fff3] to-[#dff7ff]"
-                        : "bg-gradient-to-br from-[#e9e9ff] to-[#dfe9ff]"
-                    } p-6 text-center`}
+                    className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-gradient-to-br from-[#123026] via-[#16402F] to-[#0F1D15] p-6 text-center shadow-inner shadow-black/20"
                   >
-                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#9cff1d] to-[#00c6ff] text-white shadow-lg">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black shadow-lg">
                       {idx === 0 ? <Rocket size={22} /> : <BarChart3 size={22} />}
                     </div>
-                    <h4 className="text-lg font-semibold text-slate-900">
-                      {item.resultTitle}
-                    </h4>
-                    <div className="flex flex-col gap-1 text-sm text-slate-700">
+                    <h4 className="text-lg font-semibold text-white">{item.resultTitle}</h4>
+                    <div className="flex flex-col gap-1 text-sm text-white/80">
                       {item.resultStats.map((stat) => (
                         <div key={stat.label} className="flex flex-col">
-                          <span className="text-xl font-semibold text-slate-900">
-                            {stat.value}
-                          </span>
-                          <span className="text-xs text-slate-600">
-                            {stat.label}
-                          </span>
+                          <span className="text-xl font-semibold text-white">{stat.value}</span>
+                          <span className="text-xs text-white/60">{stat.label}</span>
                         </div>
                       ))}
                     </div>
                     {item.badge && (
-                      <span className="mt-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#2563eb] shadow">
+                      <span className="mt-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">
                         {item.badge}
                       </span>
                     )}
@@ -318,15 +293,14 @@ const DesenvolvimentoWeb = () => {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-gradient-to-r from-[#1C3324] via-[#16402F] to-[#0F1D15] px-6 py-16 text-white md:px-10 md:py-20">
+        <section className="relative overflow-hidden bg-gradient-to-r from-[#1C3324] via-[#16402F] to-[#0F1D15] px-6 py-16 md:px-10 md:py-20">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.12),_transparent_55%)]" />
           <div className="relative mx-auto max-w-5xl text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">
               Pronto para iniciar seu projeto web?
             </h2>
             <p className="mt-3 text-base text-white/80 md:text-lg">
-              Fale com nosso time e descubra como podemos criar um site moderno,
-              rápido e seguro para o seu negócio.
+              Fale com nosso time e descubra como podemos criar um site moderno, rápido e seguro para o seu negócio.
             </p>
             <div className="mt-7 flex justify-center">
               <Button
