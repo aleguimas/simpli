@@ -7,17 +7,17 @@ const companyLinks = [
   { label: "Treinamento", href: "#treinamento" },
 ];
 
-const productLinks = [
-  { label: "Documentação", href: "#" },
-  { label: "Privacidade", href: "#" },
-  { label: "Termos de Uso", href: "#" },
-];
-
 const socialLinks = [
   { label: "X", href: "#", Icon: Twitter },
   { label: "Instagram", href: "#", Icon: Instagram },
   { label: "LinkedIn", href: "#", Icon: Linkedin },
   { label: "YouTube", href: "#", Icon: Youtube },
+];
+
+const contactInfo = [
+  { label: "contato@simpli.ia.br", href: "mailto:contato@simpli.ia.br" },
+  { label: "+55 (81) 99194-2628", href: "tel:+5581991942628" },
+  { label: "Recife, PE - Brasil" },
 ];
 
 const SiteFooter = () => {
@@ -72,17 +72,21 @@ const SiteFooter = () => {
             </div>
           </div>
           <div>
-            <h4 className="text-base font-semibold text-white">Produto</h4>
+            <h4 className="text-base font-semibold text-white">Contato</h4>
             <div className="mt-3 flex flex-col gap-2">
-              {productLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="transition hover:text-white"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {contactInfo.map((item) =>
+                item.href ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="transition hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <span key={item.label}>{item.label}</span>
+                ),
+              )}
             </div>
           </div>
         </div>
