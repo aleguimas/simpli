@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Target } from "lucide-react";
+import { ArrowLeft, ArrowRight, Brain, Target } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -64,6 +64,7 @@ const Diagnostico = () => {
 
   const current = steps.find((s) => s.step === currentStep)!;
   const selected = selectedByStep[currentStep] ?? [];
+  const Icon = current.stageLabel === "Desafios atuais" ? Brain : Target;
 
   const toggleOption = (value: string) => {
     setSelectedByStep((prev) => {
@@ -130,7 +131,7 @@ const Diagnostico = () => {
             <CardContent className="space-y-6 p-6 md:p-8">
               <div className="flex items-start gap-3">
                 <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white">
-                  <Target size={20} />
+                  <Icon size={20} />
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-2xl font-semibold text-white md:text-3xl">
