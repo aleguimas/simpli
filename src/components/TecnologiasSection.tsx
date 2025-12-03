@@ -18,7 +18,7 @@ const team = [
     title: "O Tráfego",
     bio: "Tráfego Pago e Marketing Digital, focado em estratégias para aumentar o faturamento.",
     image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE3iT5EHtlXpfOwIErqgV4Y1jUPA8ys5KotB0b",
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEslhK3qURvumjDTaW8whPIYnNpgbMFyHqVOAZ",
   },
   {
     name: "Caio Souza",
