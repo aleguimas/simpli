@@ -102,7 +102,7 @@ const Navbar = () => {
             <DropdownMenuContent
               align="start"
               sideOffset={8}
-              className="w-72 border border-white/10 bg-[#0F1620]/95 backdrop-blur"
+              className="w-72 border border-white/10 bg-[#0b1711]/95 backdrop-blur"
             >
               {serviceItems.map((item) => (
                 <DropdownMenuItem
@@ -126,7 +126,7 @@ const Navbar = () => {
             <DropdownMenuContent
               align="start"
               sideOffset={8}
-              className="w-80 border border-white/10 bg-[#0F1620]/95 backdrop-blur"
+              className="w-80 border border-white/10 bg-[#0b1711]/95 backdrop-blur"
             >
               {trainingItems.map((item) => (
                 <DropdownMenuItem
