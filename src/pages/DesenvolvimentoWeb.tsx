@@ -213,18 +213,32 @@ const DesenvolvimentoWeb = () => {
               Processo
             </p>
             <h2 className="text-3xl font-semibold md:text-4xl">Como Fazemos</h2>
-            <p className="mt-2 text-base text-white/70">Nosso processo de desenvolvimento web em 4 etapas</p>
-            <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {steps.map((step) => (
-                <div
-                  key={step.label}
-                  className="flex flex-col items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 text-center shadow-2xl shadow-black/20"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-md">
-                    {step.label}
+            <p className="mt-2 text-base text-white/70">
+              Nosso processo de desenvolvimento web em passos claros e sequenciais
+            </p>
+            <div className="relative mx-auto mt-12 max-w-4xl space-y-8">
+              <div className="pointer-events-none absolute left-6 top-0 hidden h-full w-px bg-white/10 sm:block" />
+              {steps.map((step, idx) => (
+                <div key={step.label} className="relative flex gap-4 sm:gap-6">
+                  <div className="relative z-10 mt-1 flex flex-col items-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-base font-semibold text-black shadow-md">
+                      {step.label}
+                    </div>
+                    {idx < steps.length - 1 && (
+                      <div className="hidden h-full w-px bg-white/15 sm:block" />
+                    )}
                   </div>
-                  <h3 className="text-base font-semibold text-white">{step.title}</h3>
-                  <p className="text-sm text-white/70">{step.description}</p>
+                  <Card className="flex-1 border-white/10 bg-white/5 shadow-2xl shadow-black/20">
+                    <CardContent className="p-5 text-left sm:p-6">
+                      <div className="flex flex-col gap-2">
+                        <p className="text-xs uppercase tracking-[0.14em] text-white/60">
+                          Etapa {idx + 1}
+                        </p>
+                        <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+                        <p className="text-sm text-white/70">{step.description}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
               ))}
             </div>
@@ -266,9 +280,7 @@ const DesenvolvimentoWeb = () => {
                     </blockquote>
                   </div>
 
-                  <div
-                    className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-gradient-to-br from-[#123026] via-[#16402F] to-[#0F1D15] p-6 text-center shadow-inner shadow-black/20"
-                  >
+                  <div className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-gradient-to-br from-[#123026] via-[#16402F] to-[#0F1D15] p-6 text-center shadow-inner shadow-black/20">
                     <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-black shadow-lg">
                       {idx === 0 ? <Rocket size={22} /> : <BarChart3 size={22} />}
                     </div>
