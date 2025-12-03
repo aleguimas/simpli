@@ -70,7 +70,7 @@ const Navbar = () => {
     <header
       className={cn(
         "sticky top-0 z-50 h-16 w-full border-b border-white/10 transition-colors",
-        scrolled ? "bg-[#0B1117]/80 backdrop-blur-xl" : "bg-transparent",
+        scrolled ? "bg-[#0C140F]/80 backdrop-blur-xl" : "bg-transparent",
       )}
     >
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6 md:px-10">

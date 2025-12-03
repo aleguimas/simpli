@@ -36,7 +36,7 @@ const ServicosSection = () => {
   return (
     <section
       id="servicos"
-      className="bg-[#0B1117] px-6 py-16 md:px-10 md:py-24"
+      className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
         <div className="max-w-3xl">

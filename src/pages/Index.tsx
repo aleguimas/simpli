@@ -13,9 +13,9 @@ const Index = () => {
   const designTokens = useMemo(
     () =>
       ({
-        "--bg-dark": "#0B1117",
-        "--panel": "#141A21",
-        "--accent": "#262C36B2",
+        "--bg-dark": "#0C140F",
+        "--panel": "#0F1D15",
+        "--accent": "#1C3324B2",
       }) as React.CSSProperties,
     [],
   );

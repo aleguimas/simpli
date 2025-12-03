@@ -35,7 +35,7 @@ const BenefitsSection = () => {
     <section
       id="beneficios"
       ref={ref}
-      className="bg-[#0B1117] px-6 py-16 md:px-10 md:py-24"
+      className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
         <div
@@ -72,7 +72,7 @@ const BenefitsSection = () => {
           {detailedBenefits.map((item) => (
             <div
               key={item}
-              className="rounded-2xl border border-white/5 bg-[#0C1218] p-5 transition hover:border-white/15"
+              className="rounded-2xl border border-white/5 bg-[#0F1D15] p-5 transition hover:border-white/15"
             >
               <h4 className="text-lg font-semibold text-white">{item}</h4>
               <p className="mt-2 text-sm text-white/65">

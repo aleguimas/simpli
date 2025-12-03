@@ -346,7 +346,7 @@ const NichosImpactoSection = () => {
   return (
     <section
       id="nichos"
-      className="bg-[#0B1117] px-6 py-16 md:px-10 md:py-24"
+      className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -361,8 +361,8 @@ const NichosImpactoSection = () => {
         </div>
 
         <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/5 bg-white/5">
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#0B1117] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#0B1117] to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#0C140F] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#0C140F] to-transparent" />
           <div className="cases-scroll flex overflow-x-auto scroll-smooth px-4 py-3 text-sm text-white/80">
             <div className="flex gap-3">
               {categories.map((cat) => (
@@ -392,7 +392,7 @@ const NichosImpactoSection = () => {
                 href="#"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`nichos-card relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 ${
+                className={`nichos-card relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#0F1D15] to-[#0C140F] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 ${
                   isDimmed ? "opacity-50" : "opacity-100"
                 }`}
               >
@@ -419,19 +419,19 @@ const NichosImpactoSection = () => {
       </div>
       <style>{`
         .cases-scroll {
-          scrollbar-color: rgba(255,255,255,0.18) #0B1117;
+          scrollbar-color: rgba(255,255,255,0.18) #0C140F;
           scrollbar-width: thin;
         }
         .cases-scroll::-webkit-scrollbar {
           height: 10px;
         }
         .cases-scroll::-webkit-scrollbar-track {
-          background: #0B1117;
+          background: #0C140F;
         }
         .cases-scroll::-webkit-scrollbar-thumb {
           background: rgba(255,255,255,0.18);
           border-radius: 9999px;
-          border: 2px solid #0B1117;
+          border: 2px solid #0C140F;
         }
       `}</style>
     </section>

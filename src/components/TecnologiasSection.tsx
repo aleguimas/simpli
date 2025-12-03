@@ -27,7 +27,7 @@ const TecnologiasSection = () => {
   return (
     <section
       id="carreiras"
-      className="bg-[#0B1117] px-6 py-16 md:px-10 md:py-24"
+      className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto max-w-6xl text-center">
         <p className="text-sm uppercase tracking-[0.2em] text-white/50">

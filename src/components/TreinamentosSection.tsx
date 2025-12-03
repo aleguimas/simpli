@@ -40,7 +40,7 @@ const TreinamentosSection = () => {
   return (
     <section
       id="treinamento"
-      className="bg-[#0B1117] px-6 py-16 md:px-10 md:py-24"
+      className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
         <div className="max-w-4xl">
@@ -60,7 +60,7 @@ const TreinamentosSection = () => {
           {trainings.map((item) => (
             <div
               key={item.title}
-              className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-[#101722]/80 p-6 shadow-lg shadow-black/30 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#121a26]"
+              className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-[#0F1D15]/80 p-6 shadow-lg shadow-black/30 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#13241C]"
             >
               <div className="flex flex-col gap-3">
                 <Badge className="w-fit border border-white/20 bg-white/10 text-white">

@@ -49,7 +49,7 @@ const ClientesSection = () => {
   return (
     <section
       id="logos"
-      className="bg-[#0B1117] px-6 pt-16 pb-10 text-center md:px-10 md:pt-24 md:pb-16"
+      className="bg-[#0C140F] px-6 pt-16 pb-10 text-center md:px-10 md:pt-24 md:pb-16"
     >
       <div className="mx-auto max-w-4xl">
         <p className="text-xl font-medium text-white/80 md:text-2xl">
@@ -58,8 +58,8 @@ const ClientesSection = () => {
       </div>
 
       <div className="relative -mx-6 mt-12 overflow-hidden md:-mx-10">
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#0B1117] to-transparent" />
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#0B1117] to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#0C140F] to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#0C140F] to-transparent" />
 
         <div className="h-16 w-full overflow-hidden border-y border-white/10 bg-black md:h-20">
           <div className="flex w-max animate-[logo-marquee_26s_linear_infinite] items-center gap-3 px-4 md:gap-6 md:px-6">

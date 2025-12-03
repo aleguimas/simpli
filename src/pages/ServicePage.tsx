@@ -35,7 +35,7 @@ const ServicePage = () => {
 
   if (!service) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0B1117] px-6 text-white">
+      <div className="flex min-h-screen items-center justify-center bg-[#0C140F] px-6 text-white">
         <div className="max-w-xl text-center">
           <p className="text-2xl font-semibold">Serviço não encontrado</p>
           <p className="mt-3 text-white/70">
@@ -64,7 +64,7 @@ const ServicePage = () => {
   const Icon = service.Icon;
 
   return (
-    <div className="min-h-screen bg-[#0B1117] px-6 py-16 text-white md:px-10">
+    <div className="min-h-screen bg-[#0C140F] px-6 py-16 text-white md:px-10">
       <div className="mx-auto flex max-w-4xl flex-col gap-8">
         <Link
           to="/#servicos"
@@ -72,7 +72,7 @@ const ServicePage = () => {
         >
           ← Voltar para serviços
         </Link>
-        <div className="rounded-2xl border border-white/10 bg-[#101722]/90 p-8 shadow-xl shadow-black/30">
+        <div className="rounded-2xl border border-white/10 bg-[#0F1D15]/90 p-8 shadow-xl shadow-black/30">
           <div className="flex items-center gap-4">
             <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/10">
               <Icon size={26} className="text-white" />
