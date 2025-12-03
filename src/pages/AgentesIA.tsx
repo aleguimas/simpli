@@ -1,9 +1,11 @@
+import type React from "react";
 import { CheckCircle2, Zap, BarChart3, Clock3, TrendingUp, MessageCircle, NotebookPen, Brain, Cog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import SiteFooter from "@/components/SiteFooter";
+import { useInView } from "@/hooks/use-in-view";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG =
@@ -86,6 +88,7 @@ const performanceBars = [
 
 const AgentesIA = () => {
   const maxSeconds = Math.max(...performanceBars.map((bar) => bar.seconds));
+  const { ref: caseRef, isVisible: isCaseVisible } = useInView({ threshold: 0.35 });
 
   return (
     <div className="bg-[#0C140F] text-white">
@@ -185,7 +188,10 @@ const AgentesIA = () => {
         </div>
       </section>
 
-      <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
+      <section
+        ref={caseRef}
+        className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">Case de Sucesso</h2>
@@ -240,6 +246,13 @@ const AgentesIA = () => {
                     {performanceBars.map((bar, index) => {
                       const targetHeight = (bar.seconds / maxSeconds) * 100;
                       const isBefore = bar.color === "bg-white";
+                      const animationClass = isCaseVisible ? "bar-animate-vertical" : "";
+                      const style = {
+                        "--target-height": `${targetHeight}%`,
+                        animationDelay: isCaseVisible ? `${index * 0.2}s` : "0s",
+                        height: isCaseVisible ? undefined : 0,
+                      } as React.CSSProperties;
+
                       return (
                         <div key={bar.label} className="flex w-24 flex-col items-center">
                           <span className="text-xs font-medium text-white/70 text-center">
@@ -247,17 +260,12 @@ const AgentesIA = () => {
                           </span>
                           <div className="mt-2 flex h-52 w-full items-end justify-center rounded-2xl bg-white/5 p-2">
                             <div
-                              className={`bar-animate-vertical w-full rounded-xl ${
+                              className={`${animationClass} w-full rounded-xl ${
                                 isBefore
                                   ? "bg-white/85 shadow-[0_8px_28px_rgba(255,255,255,0.22)]"
                                   : "bg-[#86efac] shadow-[0_8px_28px_rgba(134,239,172,0.35)]"
                               }`}
-                              style={
-                                {
-                                  "--target-height": `${targetHeight}%`,
-                                  animationDelay: `${index * 0.2}s`,
-                                } as React.CSSProperties
-                              }
+                              style={style}
                             />
                           </div>
                           <span className="mt-2 text-lg font-semibold text-white">
