@@ -48,7 +48,11 @@ const SiteFooter = () => {
                 className="flex h-10 w-10 items-center justify-center text-white/80 transition hover:text-white"
               >
                 {imgSrc ? (
-                  <img src={imgSrc} alt={label} className="h-5 w-5" />
+                  <img
+                    src={imgSrc}
+                    alt={label}
+                    className="h-[18px] w-[18px]"
+                  />
                 ) : (
                   Icon && <Icon size={18} />
                 )}
