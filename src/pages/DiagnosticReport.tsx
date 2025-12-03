@@ -194,6 +194,54 @@ const DiagnosticReport = () => {
       ? `${summary.contact.firstName} ${summary.contact.lastName}`
       : "";
 
+  const phase1Tasks: string[] = [];
+  const phase2Tasks: string[] = [];
+
+  if (needsAutomation) {
+    phase1Tasks.push("Mapear processos críticos e desenhar agentes de IA");
+    phase2Tasks.push("Implantar agentes em produção e medir eficiência");
+  }
+  if (needsInsights) {
+    phase1Tasks.push("Organizar base de dados e configurar dashboards");
+    phase2Tasks.push("Habilitar analytics preditivo para decisões rápidas");
+  }
+  if (needsCX) {
+    phase1Tasks.push("Desenhar jornadas e scripts de atendimento inteligente");
+    phase2Tasks.push("Lançar chatbots/roteamento e ajustar pela satisfação");
+  }
+  if (needsGrowth) {
+    phase1Tasks.push("Priorizar funis de aquisição e definir ICP/lead scoring");
+    phase2Tasks.push("Automatizar nutrição e otimizar campanhas");
+  }
+  if (needsCost) {
+    phase1Tasks.push("Identificar gargalos de custo e definir KPIs de redução");
+    phase2Tasks.push("Automatizar tarefas repetitivas com foco em ROI");
+  }
+  if (needsScale) {
+    phase1Tasks.push("Definir padrões de integração e arquitetura escalável");
+    phase2Tasks.push("Automatizar handoffs entre times e expandir cobertura");
+  }
+
+  if (phase1Tasks.length === 0) {
+    phase1Tasks.push("Escolher processo-piloto e preparar dados/escopo");
+  }
+  if (phase2Tasks.length === 0) {
+    phase2Tasks.push("Executar piloto, medir impacto e planejar expansão");
+  }
+
+  const phase1Duration =
+    timeline.includes("Imediato") || timeline.includes("Curto")
+      ? "1-2 meses"
+      : timeline.includes("Médio") || timeline.includes("Longo")
+        ? "2-4 meses"
+        : "2-3 meses";
+  const phase2Duration =
+    timeline.includes("Imediato") || timeline.includes("Curto")
+      ? "2-4 meses"
+      : timeline.includes("Longo")
+        ? "4-6 meses"
+        : "3-5 meses";
+
   return (
     <div className="min-h-screen bg-[#0C140F] text-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 md:px-10">
@@ -402,24 +450,8 @@ const DiagnosticReport = () => {
               </p>
               <div className="space-y-6">
                 {[
-                  {
-                    title: "Fase 1: Fundação",
-                    duration: "2-3 meses",
-                    items: [
-                      "Estruturação de dados",
-                      "Treinamento básico da equipe",
-                      "Definição de KPIs",
-                    ],
-                  },
-                  {
-                    title: "Fase 2: Implementação",
-                    duration: "3-6 meses",
-                    items: [
-                      "Primeiros projetos piloto",
-                      "Integração de sistemas",
-                      "Expansão gradual",
-                    ],
-                  },
+                  { title: "Fase 1: Fundação", duration: phase1Duration, items: phase1Tasks },
+                  { title: "Fase 2: Implementação", duration: phase2Duration, items: phase2Tasks },
                 ].map((phase, idx) => (
                   <div
                     key={phase.title}
@@ -466,9 +498,15 @@ const DiagnosticReport = () => {
               digital.
             </p>
             <div className="mt-5 flex justify-center">
-              <Button className="h-11 rounded-full bg-white px-5 text-[#0C140F] shadow-md hover:bg-white/90">
-                <Calendar size={16} className="mr-2" />
-                Agendar Reunião Estratégica
+              <Button asChild className="h-11 rounded-full bg-white px-5 text-[#0C140F] shadow-md hover:bg-white/90">
+                <a
+                  href="https://api.whatsapp.com/send?phone=5581991942628&text=Quero%20agendar%20minha%20call"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <Calendar size={16} className="mr-2" />
+                  Agendar Reunião Estratégica
+                </a>
               </Button>
             </div>
             <p className="mt-3 text-xs text-white/70">
