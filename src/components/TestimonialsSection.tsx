@@ -40,15 +40,18 @@ const TestimonialsSection = () => {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-4xl">
           <p className="text-sm uppercase tracking-[0.2em] text-white/50">
-            Treinamentos In Company
+            Qualificação de equipes
           </p>
           <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
+            Treinamentos In Company
+          </h2>
+          <p className="mt-3 text-base text-white/70">
             Além de desenvolvimento e consultoria, oferecemos treinamentos
             corporativos especializados para transformar sua equipe e impulsionar
             os resultados da sua empresa.
-          </h2>
+          </p>
         </div>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {trainings.map((item) => (
             <div
               key={item.title}
