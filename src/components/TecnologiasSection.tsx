@@ -10,11 +10,15 @@ const team = [
     name: "Luciano Fernandes",
     title: "O Professor",
     bio: "Visual Merchandising e Trade Marketing com 35+ anos de experiência no mercado.",
+    image:
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEZuv3m784ELxHGVik9czW6J02qOuRdIN3ab71",
   },
   {
     name: "Rodrigo Lemos",
     title: "O Tráfego",
     bio: "Tráfego Pago e Marketing Digital, focado em estratégias para aumentar o faturamento.",
+    image:
+      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsELn57g0kZzK0dVWxMER8XGta73Nqwu1gBrDi6",
   },
   {
     name: "Caio Souza",
