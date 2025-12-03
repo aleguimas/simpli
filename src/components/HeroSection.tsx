@@ -37,15 +37,17 @@ const HeroSection = () => {
           </p>
           <div className="mt-9 mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-3 sm:flex-row sm:justify-center">
             <Button
+              asChild
               className={`${buttonBaseClasses} border border-white/0 bg-white text-black transition-colors hover:border-white/70 hover:bg-transparent hover:text-white`}
             >
-              Fale conosco
+              <a href="#carreiras">Sobre / Estratégistas</a>
             </Button>
             <Button
+              asChild
               variant="outline"
               className={`${buttonBaseClasses} border-white/20 bg-white/5 text-white transition-colors hover:border-white hover:bg-white hover:text-black`}
             >
-              Nossos Serviços
+              <a href="#servicos">Nossos Serviços</a>
             </Button>
           </div>
         </div>

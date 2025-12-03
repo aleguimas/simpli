@@ -12,7 +12,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
   { label: "Início", href: "#hero" },
-  { label: "Sobre", href: "#servicos" },
+  { label: "Sobre", href: "#carreiras" },
 ];
 
 const serviceItems = [
@@ -108,12 +108,15 @@ const Navbar = () => {
               {serviceItems.map((item) => (
                 <DropdownMenuItem
                   key={item.title}
+                  asChild
                   className="flex flex-col items-start gap-1 rounded-lg px-3 py-2 text-white focus:bg-white/5 focus:text-white"
                 >
-                  <span className="text-sm font-semibold">{item.title}</span>
-                  <span className="text-xs text-white/70">
-                    {item.description}
-                  </span>
+                  <a href="#servicos">
+                    <span className="text-sm font-semibold">{item.title}</span>
+                    <span className="text-xs text-white/70">
+                      {item.description}
+                    </span>
+                  </a>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
@@ -184,8 +187,9 @@ const Navbar = () => {
                   </p>
                   <div className="flex flex-col gap-2">
                     {serviceItems.map((item) => (
-                      <div
+                      <a
                         key={item.title}
+                        href="#servicos"
                         className="rounded-lg px-3 py-2 text-sm text-white/80 transition hover:bg-white/5"
                       >
                         <div className="font-semibold text-white">
@@ -194,7 +198,7 @@ const Navbar = () => {
                         <div className="text-xs text-white/60">
                           {item.description}
                         </div>
-                      </div>
+                      </a>
                     ))}
                   </div>
                 </div>
