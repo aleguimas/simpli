@@ -135,11 +135,6 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
         style={{ perspective: "1000px" }}
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.16),_transparent_58%)]" />
-        <div className="absolute z-10 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#4ADE80] via-[#22d3ee] to-[#7c3aed] animate-pulse shadow-[0_0_40px_rgba(74,222,128,0.45)]">
-          <div className="absolute h-20 w-20 rounded-full border border-white/20 animate-ping opacity-70" />
-          <div className="absolute h-24 w-24 rounded-full border border-white/10 animate-ping opacity-50 delay-500" />
-          <div className="h-8 w-8 rounded-full bg-white/80 backdrop-blur-md" />
-        </div>
 
         <div className="absolute h-96 w-96 rounded-full border border-white/10" />
 
