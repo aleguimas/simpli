@@ -8,6 +8,7 @@ import TecnologiasSection from "@/components/TecnologiasSection";
 import TransformarNegocioSection from "@/components/TransformarNegocioSection";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
+import DiagnosticoSection from "@/components/DiagnosticoSection";
 
 const Index = () => {
   const designTokens = useMemo(
@@ -31,6 +32,7 @@ const Index = () => {
         <ClientesSection />
         <ServicosSection />
         <NichosImpactoSection />
+        <DiagnosticoSection />
         <TreinamentosSection />
         <TecnologiasSection />
         <TransformarNegocioSection />
