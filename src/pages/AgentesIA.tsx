@@ -194,7 +194,7 @@ const AgentesIA = () => {
             </p>
           </div>
           <Card className="mt-10 border-white/10 bg-[#0C140F]/70 shadow-2xl shadow-black/40">
-            <CardContent className="grid gap-8 p-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+            <CardContent className="grid gap-8 px-4 py-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-6">
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-white">
                   Natal Home Center - Atendimento Inteligente
