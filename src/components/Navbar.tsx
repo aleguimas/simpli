@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
   { label: "Início", href: "#hero" },
@@ -147,6 +148,84 @@ const Navbar = () => {
           <Button className="bg-white text-black transition-colors hover:border hover:border-white/70 hover:bg-transparent hover:text-white">
             Fale conosco
           </Button>
+        </div>
+
+        <div className="flex items-center md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                className="h-10 w-10 rounded-xl border border-white/10 bg-white/5 p-0 text-white transition hover:border-white/30 hover:bg-white/10"
+                aria-label="Abrir menu"
+              >
+                <Menu size={20} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-[280px] border-white/10 bg-[#0b1711] text-white"
+            >
+              <div className="mt-6 flex flex-col gap-5">
+                <div className="flex flex-col gap-2 text-sm">
+                  {navLinks.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="rounded-lg px-3 py-2 transition hover:bg-white/5"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+
+                <div className="space-y-2">
+                  <p className="px-3 text-xs uppercase tracking-[0.12em] text-white/50">
+                    Serviços
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {serviceItems.map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-lg px-3 py-2 text-sm text-white/80 transition hover:bg-white/5"
+                      >
+                        <div className="font-semibold text-white">
+                          {item.title}
+                        </div>
+                        <div className="text-xs text-white/60">
+                          {item.description}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <p className="px-3 text-xs uppercase tracking-[0.12em] text-white/50">
+                    Treinamento
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {trainingItems.map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-lg px-3 py-2 text-sm text-white/80 transition hover:bg-white/5"
+                      >
+                        <div className="font-semibold text-white">
+                          {item.title}
+                        </div>
+                        <div className="text-xs text-white/60">
+                          {item.description}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <Button className="mt-2 h-11 rounded-xl border border-white/0 bg-white text-black transition hover:border-white/70 hover:bg-transparent hover:text-white">
+                  Fale conosco
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
