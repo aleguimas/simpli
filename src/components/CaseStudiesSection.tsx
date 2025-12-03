@@ -9,7 +9,16 @@ type CaseItem = {
   bulletPoints?: string[];
 };
 
-const categories = ["Atendimento"];
+const categories = [
+  "Atendimento",
+  "Agendamento",
+  "Qualificação de leads",
+  "Leitura de estoque",
+  "Suporte e dúvidas",
+  "Disparo de emails / WhatsApp",
+  "Automação de cobranças",
+  "Projeto personalizados",
+];
 
 const caseItems: CaseItem[] = [
   {
