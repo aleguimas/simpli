@@ -99,7 +99,7 @@ const TestimonialsSection = () => {
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <Button className="h-12 rounded-xl bg-white px-6 text-base font-semibold text-black hover:bg-white/90">
+          <Button className="h-12 rounded-xl bg-white px-6 text-base font-semibold text-black transition hover:border hover:border-white/70 hover:bg-black hover:text-white">
             Solicitar Orçamento dos Treinamentos
           </Button>
         </div>
