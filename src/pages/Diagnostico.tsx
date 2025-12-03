@@ -678,6 +678,7 @@ const Diagnostico = () => {
                   <SelectValue placeholder="Selecione" />
                 </SelectTrigger>
                 <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
+                  <SelectItem value="1-5">Micro (1-5 funcionários)</SelectItem>
                   <SelectItem value="1-50">Pequena (1-50)</SelectItem>
                   <SelectItem value="51-200">Média (51-200)</SelectItem>
                   <SelectItem value="201-1000">Grande (200-1000)</SelectItem>
@@ -775,11 +776,14 @@ const Diagnostico = () => {
                   <SelectValue placeholder="Selecione" />
                 </SelectTrigger>
                 <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
-                  <SelectItem value="tecnologia">Tecnologia / Produto</SelectItem>
-                  <SelectItem value="operacoes">Operações</SelectItem>
-                  <SelectItem value="marketing">Marketing / Vendas</SelectItem>
-                  <SelectItem value="financas">Finanças</SelectItem>
+                  <SelectItem value="inovacao">Inovação</SelectItem>
                   <SelectItem value="rh">RH</SelectItem>
+                  <SelectItem value="marketing">Marketing</SelectItem>
+                  <SelectItem value="ti">TI</SelectItem>
+                  <SelectItem value="operacoes">Operações</SelectItem>
+                  <SelectItem value="pd">P&amp;D</SelectItem>
+                  <SelectItem value="vendas">Vendas</SelectItem>
+                  <SelectItem value="outros">Outros</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -796,7 +800,7 @@ const Diagnostico = () => {
 
           <div className="pt-2">
             <Button
-              className="h-11 w-full rounded-xl border border-transparent bg-[#8BE0A3] text-[#0C140F] transition hover:bg-[#7ad48f]"
+              className="h-11 w-full rounded-xl border border-transparent bg-[#1C3324] text-white transition hover:bg-[#15271b]"
               onClick={handleDetailsSubmit}
             >
               Acessar Relatório Completo
