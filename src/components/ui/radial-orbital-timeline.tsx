@@ -131,7 +131,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
 
   return (
     <div
-      className="relative flex h-[540px] w-full items-center justify-center bg-transparent"
+      className="relative flex h-[540px] w-full items-center justify-center bg-transparent opacity-90"
       ref={containerRef}
       onClick={handleContainerClick}
     >
@@ -144,7 +144,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
         <div className="absolute z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white animate-pulse shadow-[0_0_40px_rgba(255,255,255,0.4)]">
           <div className="absolute h-20 w-20 rounded-full border border-white/60 animate-ping opacity-70" />
           <div className="absolute h-24 w-24 rounded-full border border-white/40 animate-ping opacity-50 delay-500" />
-          <div className="h-8 w-8 rounded-full bg-black shadow-inner shadow-black/60 backdrop-blur-md" />
+          <div className="h-8 w-8 rounded-full bg-[#1a1a1a] shadow-inner shadow-black/40 backdrop-blur-md" />
         </div>
 
         <div className="absolute h-96 w-96 rounded-full border border-white/10" />
