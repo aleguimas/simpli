@@ -21,7 +21,6 @@ const categories = [
 ];
 
 const caseItems: CaseItem[] = [
-  // Atendimento
   {
     company: "Atendimento",
     title: "Varejo (lojas físicas e e-commerce)",
@@ -59,7 +58,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Detalhes sobre acomodações, serviços oferecidos e reservas",
     category: "Atendimento",
   },
-  // Agendamento
   {
     company: "Agendamento",
     title: "Clínicas e consultórios",
@@ -102,7 +100,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Reserva de mesa",
     category: "Agendamento",
   },
-  // Qualificação de Leads
   {
     company: "Qualificação de Leads",
     title: "Imobiliárias",
@@ -140,7 +137,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Preferências, orçamento e urgência de compra",
     category: "Qualificação de Leads",
   },
-  // Leitura de Estoque
   {
     company: "Leitura de Estoque",
     title: "Varejo físico e e-commerce",
@@ -177,7 +173,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Verificação de produtos e rações",
     category: "Leitura de Estoque",
   },
-  // Suporte e Dúvidas
   {
     company: "Suporte e Dúvidas",
     title: "E-commerce",
@@ -214,7 +209,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Suporte para problemas técnicos e planos disponíveis",
     category: "Suporte e Dúvidas",
   },
-  // Disparo de Emails / WhatsApp
   {
     company: "Disparo de Emails / WhatsApp",
     title: "Varejo",
@@ -257,7 +251,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Newsletters e conteúdo educativo",
     category: "Disparo de Emails / WhatsApp",
   },
-  // Automação de Cobranças
   {
     company: "Automação de Cobranças",
     title: "Clínicas e consultórios",
@@ -300,7 +293,6 @@ const caseItems: CaseItem[] = [
     subtitle: "Parcelas atrasadas",
     category: "Automação de Cobranças",
   },
-  // Projetos personalizados
   {
     company: "Projetos personalizados",
     title: "Projetos sob medida",
@@ -394,7 +386,7 @@ const NichosSection = () => {
             <a
               key={`${item.category}-${item.title}`}
               href="#"
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 transition duration-300 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40 group-hover/card-grid:opacity-60 hover:opacity-100"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-[#141A21] to-[#0B1117] p-6 transition duration-300 group-hover/card-grid:[&:not(:hover)]:opacity-60"
             >
               <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
                 <div className="h-full w-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.16),_transparent_58%)]" />
