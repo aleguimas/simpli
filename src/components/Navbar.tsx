@@ -15,6 +15,7 @@ const navLinks = [
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -44,6 +45,11 @@ const Navbar = () => {
     }
     const el = document.getElementById(target);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleMobileNavClick = (event: React.MouseEvent, target: string) => {
+    handleNavClick(event, target);
+    setMenuOpen(false);
   };
 
   return (
@@ -89,7 +95,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center md:hidden">
-          <Sheet>
+          <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
@@ -109,7 +115,7 @@ const Navbar = () => {
                     <Link
                       key={item.target}
                       to={`/#${item.target}`}
-                      onClick={(e) => handleNavClick(e, item.target)}
+                      onClick={(e) => handleMobileNavClick(e, item.target)}
                       className="rounded-lg px-3 py-2 transition hover:bg-white/5"
                     >
                       {item.label}
@@ -117,8 +123,16 @@ const Navbar = () => {
                   ))}
                 </div>
 
-                <Button className="mt-2 h-11 rounded-xl border border-white/0 bg-white text-black transition hover:border-white/70 hover:bg-transparent hover:text-white" asChild>
-                  <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+                <Button
+                  className="mt-2 h-11 rounded-xl border border-white/0 bg-white text-black transition hover:border-white/70 hover:bg-transparent hover:text-white"
+                  asChild
+                >
+                  <a
+                    href="https://wa.link/cpk8xf"
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setMenuOpen(false)}
+                  >
                     Fale conosco
                   </a>
                 </Button>
