@@ -28,7 +28,6 @@ const DiagnosticoSection = () => {
             alt="Visual da plataforma Simplí"
             className="h-full w-full object-cover"
           />
-          <div className="pointer-events-none absolute inset-0 rounded-[16px] shadow-[inset_0_0_80px_12px_rgba(0,0,0,0.9),inset_0_0_28px_2px_rgba(0,0,0,0.7)]" />
         </div>
 
         <Button
