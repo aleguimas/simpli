@@ -87,14 +87,6 @@ const TreinamentosSection = () => {
                   </span>
                 </div>
               </div>
-              <div className="mt-4">
-                <Button
-                  variant="outline"
-                  className="w-full rounded-xl border-white/30 bg-white/5 text-white transition hover:border-white hover:bg-white hover:text-[#0B1117]"
-                >
-                  Saiba Mais
-                </Button>
-              </div>
             </div>
           ))}
         </div>
