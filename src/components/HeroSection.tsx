@@ -23,7 +23,7 @@ const HeroSection = () => {
           }`}
         >
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEsCzKr2uURvumjDTaW8whPIYnNpgbMFyHqVOA"
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEC5TQ8yp21UvLpyMJBwa8FG4e7tORbIrXYjEk"
             alt="Tela.com logo"
             className="mx-auto h-10 w-auto opacity-90 md:h-12"
             loading="lazy"

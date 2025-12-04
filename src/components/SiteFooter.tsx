@@ -31,7 +31,7 @@ const SiteFooter = () => {
       <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm">
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEsCzKr2uURvumjDTaW8whPIYnNpgbMFyHqVOA"
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEC5TQ8yp21UvLpyMJBwa8FG4e7tORbIrXYjEk"
             alt="Tela.com logo"
             className="h-9 w-auto"
             loading="lazy"

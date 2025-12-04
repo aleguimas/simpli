@@ -60,7 +60,7 @@ const Navbar = () => {
           onClick={(e) => handleNavClick(e, "hero")}
         >
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEsCzKr2uURvumjDTaW8whPIYnNpgbMFyHqVOA"
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEC5TQ8yp21UvLpyMJBwa8FG4e7tORbIrXYjEk"
             alt="Tela.com logo"
             className="h-8 w-auto"
             loading="lazy"
