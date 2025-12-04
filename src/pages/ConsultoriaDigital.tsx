@@ -118,7 +118,7 @@ const ConsultoriaDigital = () => {
             </div>
             <Card className="border-white/10 bg-white/5 shadow-2xl shadow-black/30">
               <CardContent className="flex flex-col gap-3 p-6 md:p-7">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#4ADE80] to-[#22c55e] text-black shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#4ADE80] to-white text-black shadow-lg">
                   <Sparkles size={22} />
                 </div>
                 <h3 className="text-xl font-semibold text-white">
@@ -249,7 +249,7 @@ const ConsultoriaDigital = () => {
           className="relative overflow-hidden px-6 py-16 md:px-10 md:py-20"
           style={{
             backgroundImage:
-              "linear-gradient(120deg, rgba(28,51,36,0.9), rgba(12,20,15,0.92))",
+              "linear-gradient(to right, #1C3324, #16402F, #0F1D15)",
           }}
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.12),_transparent_55%)]" />
