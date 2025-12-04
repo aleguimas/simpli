@@ -1,278 +1,152 @@
-import { useEffect, useRef, useState, type ElementType } from "react";
-import { ArrowRight, Link, Zap } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type React from "react";
+import type { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-type TimelineStatus = "completed" | "in-progress" | "pending";
-
-interface TimelineItem {
+type TimelineItem = {
   id: number;
   title: string;
   date: string;
   content: string;
   category: string;
-  icon: ElementType;
-  relatedIds: number[];
-  status: TimelineStatus;
-  energy: number;
-}
-
-interface RadialOrbitalTimelineProps {
-  timelineData: TimelineItem[];
-}
-
-const stageLabels: Record<number, string> = {
-  1: "Análise",
-  2: "Planejamento",
-  3: "Execução",
-  4: "Conclusão",
+  icon: LucideIcon;
+  relatedIds?: number[];
+  status?: "completed" | "in-progress" | "pending";
+  energy?: number;
 };
 
-const badgeStyle = (id: number) =>
-  id === 4
-    ? "bg-emerald-500 text-white border-emerald-400"
-    : "bg-white text-[#0C140F] border-white";
+type RadialOrbitalTimelineProps = {
+  timelineData: TimelineItem[];
+  className?: string;
+};
 
-const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => {
-  const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
-  const [rotationAngle, setRotationAngle] = useState<number>(0);
-  const [autoRotate, setAutoRotate] = useState<boolean>(true);
-  const [pulseEffect, setPulseEffect] = useState<Record<number, boolean>>({});
-  const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const orbitRef = useRef<HTMLDivElement>(null);
-  const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
+const statusStyles: Record<
+  NonNullable<TimelineItem["status"]>,
+  { badge: string; ring: string }
+> = {
+  completed: {
+    badge: "bg-[#86efac] text-[#0C140F] border-[#86efac]",
+    ring: "shadow-[0_0_0_6px_rgba(134,239,172,0.15)]",
+  },
+  "in-progress": {
+    badge: "bg-white/10 text-white border-white/25",
+    ring: "shadow-[0_0_0_6px_rgba(255,255,255,0.12)]",
+  },
+  pending: {
+    badge: "bg-[#111f18] text-white/70 border-white/15",
+    ring: "shadow-[0_0_0_6px_rgba(255,255,255,0.06)]",
+  },
+};
 
-  const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === containerRef.current || e.target === orbitRef.current) {
-      setExpandedItems({});
-      setActiveNodeId(null);
-      setPulseEffect({});
-      setAutoRotate(true);
-    }
-  };
-
-  const getRelatedItems = (itemId: number): number[] => {
-    const currentItem = timelineData.find((item) => item.id === itemId);
-    return currentItem ? currentItem.relatedIds : [];
-  };
-
-  const toggleItem = (id: number) => {
-    setExpandedItems((prev) => {
-      const nextState: Record<number, boolean> = {};
-      timelineData.forEach((item) => {
-        nextState[item.id] = item.id === id ? !prev[id] : false;
-      });
-
-      if (!prev[id]) {
-        setActiveNodeId(id);
-        setAutoRotate(false);
-
-        const relatedItems = getRelatedItems(id);
-        const newPulse: Record<number, boolean> = {};
-        relatedItems.forEach((relId) => {
-          newPulse[relId] = true;
-        });
-        setPulseEffect(newPulse);
-
-        centerViewOnNode(id);
-      } else {
-        setActiveNodeId(null);
-        setAutoRotate(true);
-        setPulseEffect({});
-      }
-
-      return nextState;
-    });
-  };
-
-  useEffect(() => {
-    let rotationTimer: NodeJS.Timeout | undefined;
-
-    if (autoRotate) {
-      rotationTimer = setInterval(() => {
-        setRotationAngle((prev) => Number(((prev + 0.3) % 360).toFixed(3)));
-      }, 50);
-    }
-
-    return () => {
-      if (rotationTimer) clearInterval(rotationTimer);
-    };
-  }, [autoRotate]);
-
-  const centerViewOnNode = (nodeId: number) => {
-    const nodeIndex = timelineData.findIndex((item) => item.id === nodeId);
-    if (nodeIndex === -1) return;
-    const totalNodes = timelineData.length;
-    const targetAngle = (nodeIndex / totalNodes) * 360;
-    setRotationAngle(270 - targetAngle);
-  };
-
-  const calculateNodePosition = (index: number, total: number) => {
-    const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radius = 200;
-    const radian = (angle * Math.PI) / 180;
-
-    const x = radius * Math.cos(radian);
-    const y = radius * Math.sin(radian);
-
-    const zIndex = Math.round(100 + 50 * Math.cos(radian));
-    return { x, y, zIndex };
-  };
-
-  const isRelatedToActive = (itemId: number): boolean => {
-    if (!activeNodeId) return false;
-    const relatedItems = getRelatedItems(activeNodeId);
-    return relatedItems.includes(itemId);
-  };
+const RadialOrbitalTimeline: React.FC<RadialOrbitalTimelineProps> = ({
+  timelineData,
+  className,
+}) => {
+  const orbitRadius = "clamp(140px, 28vw, 220px)";
+  // Halo central 20% menor (80% do tamanho anterior padrão)
+  const haloSize = "240px";
 
   return (
     <div
-      className="relative flex h-[540px] w-full items-center justify-center bg-transparent"
-      ref={containerRef}
-      onClick={handleContainerClick}
+      className={cn(
+        "relative flex min-h-[520px] w-full items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#0C140F] via-[#0F1D15] to-[#10271d] px-6 py-10 text-white shadow-2xl shadow-black/40",
+        className,
+      )}
+      style={
+        {
+          "--orbit-radius": orbitRadius,
+          "--halo-size": haloSize,
+        } as React.CSSProperties
+      }
     >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(134,239,172,0.06),transparent_55%)]" />
+
       <div
-        className="relative flex h-full w-full max-w-4xl items-center justify-center"
-        ref={orbitRef}
-        style={{ perspective: "1000px" }}
-      >
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.16),_transparent_58%)]" />
-        <div className="absolute z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white animate-pulse shadow-[0_0_40px_rgba(255,255,255,0.4)]">
-          <div className="absolute h-20 w-20 rounded-full border border-white/60 animate-ping opacity-70" />
-          <div className="absolute h-24 w-24 rounded-full border border-white/40 animate-ping opacity-50 delay-500" />
-          <div className="h-8 w-8 rounded-full bg-[#1a1a1a] shadow-inner shadow-black/40 backdrop-blur-md" />
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+        style={{
+          width: "var(--halo-size)",
+          height: "var(--halo-size)",
+          background:
+            "radial-gradient(circle, rgba(134,239,172,0.26), rgba(12,20,15,0.08) 55%, transparent 72%)",
+        }}
+      />
+
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 opacity-70"
+        style={{
+          width: "calc(var(--halo-size) * 0.9)",
+          height: "calc(var(--halo-size) * 0.9)",
+        }}
+      />
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 opacity-30"
+        style={{
+          width: "calc(var(--halo-size) * 1.1)",
+          height: "calc(var(--halo-size) * 1.1)",
+        }}
+      />
+
+      <div className="relative z-10 flex h-28 w-28 items-center justify-center rounded-full border border-white/20 bg-[#0C140F] shadow-[0_0_0_18px_rgba(134,239,172,0.08),0_25px_80px_rgba(0,0,0,0.45)]">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#86efac] to-white text-[#0C140F] font-semibold shadow-[0_10px_40px_rgba(134,239,172,0.35)]">
+          IA
         </div>
+      </div>
 
-        <div className="absolute h-96 w-96 rounded-full border border-white/10" />
+      {timelineData.map((item, index) => {
+        const angle = (index / timelineData.length) * 360;
+        const status = item.status ?? "pending";
+        const { badge, ring } = statusStyles[status];
+        const energyFill = Math.max(0, Math.min(100, item.energy ?? 70));
 
-        {timelineData.map((item, index) => {
-          const position = calculateNodePosition(index, timelineData.length);
-          const isExpanded = expandedItems[item.id];
-          const isRelated = isRelatedToActive(item.id);
-          const isPulsing = pulseEffect[item.id];
-          const Icon = item.icon;
-          const opacity = activeNodeId
-            ? item.id === activeNodeId
-              ? 1
-              : 0.4
-            : 1;
-
-          return (
+        return (
+          <div
+            key={item.id}
+            className="absolute left-1/2 top-1/2"
+            style={{
+              transform: `translate(-50%, -50%) rotate(${angle}deg) translate(var(--orbit-radius)) rotate(${-angle}deg)`,
+            }}
+          >
             <div
-              key={item.id}
-              ref={(el) => (nodeRefs.current[item.id] = el)}
-              className="absolute cursor-pointer transition-all duration-700"
-              style={{
-                transform: `translate(${position.x}px, ${position.y}px)`,
-                zIndex: isExpanded ? 200 : position.zIndex,
-                opacity,
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleItem(item.id);
-              }}
+              className={cn(
+                "relative flex h-24 w-24 items-center justify-center rounded-2xl border border-white/10 bg-[#0F1D15]/90 p-3 text-center shadow-lg shadow-black/40 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#0F1D15]",
+                ring,
+              )}
             >
               <div
-                className={`absolute -inset-1 rounded-full ${isPulsing ? "animate-pulse" : ""}`}
+                className="absolute inset-0 rounded-2xl"
                 style={{
-                  background:
-                    "radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%)",
-                  width: `${item.energy * 0.5 + 40}px`,
-                  height: `${item.energy * 0.5 + 40}px`,
-                  left: `-${(item.energy * 0.5 + 40 - 40) / 2}px`,
-                  top: `-${(item.energy * 0.5 + 40 - 40) / 2}px`,
+                  background: `conic-gradient(from -90deg, rgba(134,239,172,0.5) ${energyFill}%, rgba(255,255,255,0.08) ${energyFill}% 100%)`,
+                  opacity: 0.7,
+                  maskImage:
+                    "radial-gradient(circle at center, transparent 58%, black 60%)",
+                  WebkitMaskImage:
+                    "radial-gradient(circle at center, transparent 58%, black 60%)",
                 }}
               />
-
-              <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all duration-300 ${
-                  isExpanded
-                    ? "scale-150 bg-white text-[#0C140F] border-white shadow-lg shadow-white/30"
-                    : isRelated
-                      ? "bg-white/50 text-[#0C140F] border-white animate-pulse"
-                      : "bg-black text-white border-white/40"
-                }`}
-              >
-                <Icon size={16} />
+              <div className="relative z-10 flex flex-col items-center gap-2">
+                <span
+                  className={cn(
+                    "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em]",
+                    badge,
+                  )}
+                >
+                  <item.icon size={12} />
+                  {item.date}
+                </span>
+                <div className="text-xs font-semibold leading-tight text-white">
+                  {item.title}
+                </div>
+                <p className="text-[11px] leading-tight text-white/65">
+                  {item.category}
+                </p>
               </div>
-
-              <div
-                className={`absolute top-12 whitespace-nowrap text-xs font-semibold tracking-wider transition-all duration-300 ${
-                  isExpanded ? "scale-125 text-white" : "text-white/70"
-                }`}
-              >
-                {item.title}
-              </div>
-
-              {isExpanded && (
-                <Card className="absolute left-1/2 top-20 w-64 -translate-x-1/2 border-white/30 bg-[#1a1a1a] backdrop-blur-lg shadow-xl shadow-white/10">
-                  <div className="absolute -top-3 left-1/2 h-3 w-px -translate-x-1/2 bg-white/50" />
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center justify-between">
-                      <Badge className={`px-2 text-xs uppercase ${badgeStyle(item.id)}`}>
-                        {stageLabels[item.id] ?? "Etapa"}
-                      </Badge>
-                      <span className="text-xs font-mono text-white/50">{item.date}</span>
-                    </div>
-                    <CardTitle className="mt-2 text-sm text-white">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-xs text-white/80">
-                    <p>{item.content}</p>
-
-                    <div className="mt-4 border-t border-white/10 pt-3">
-                      <div className="mb-1 flex items-center justify-between text-xs">
-                        <span className="flex items-center">
-                          <Zap size={10} className="mr-1" />
-                          Progresso
-                        </span>
-                        <span className="font-mono">{item.energy}%</span>
-                      </div>
-                      <div className="h-1 w-full overflow-hidden rounded-full bg-white/10">
-                        <div
-                          className="h-full bg-gradient-to-r from-[#4ADE80] to-[#22d3ee]"
-                          style={{ width: `${item.energy}%` }}
-                        />
-                      </div>
-                    </div>
-
-                    {item.relatedIds.length > 0 && (
-                      <div className="mt-4 border-t border-white/10 pt-3">
-                        <div className="mb-2 flex items-center">
-                          <Link size={10} className="mr-1 text-white/70" />
-                          <h4 className="text-xs font-medium uppercase tracking-wider text-white/70">
-                            Conexões
-                          </h4>
-                        </div>
-                        <div className="flex flex-wrap gap-1">
-                          {item.relatedIds.map((relatedId) => {
-                            const relatedItem = timelineData.find((i) => i.id === relatedId);
-                            return (
-                              <Button
-                                key={relatedId}
-                                variant="outline"
-                                size="sm"
-                                className="flex h-6 items-center px-2 py-0 text-xs bg-[#1f1f1f] text-white border-[#1f1f1f] transition-all hover:bg-white hover:text-[#0C140F] hover:border-white"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  toggleItem(relatedId);
-                                }}
-                              >
-                                {relatedItem?.title}
-                                <ArrowRight size={8} className="ml-1 transition-colors" />
-                              </Button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              )}
             </div>
-          );
-        })}
+          </div>
+        );
+      })}
+
+      <div className="absolute bottom-6 left-1/2 z-10 w-full max-w-[420px] -translate-x-1/2 text-center text-xs text-white/60">
+        Etapas posicionadas ao redor do núcleo — halo central reduzido em 20% para
+        menos dispersão do brilho.
       </div>
     </div>
   );
