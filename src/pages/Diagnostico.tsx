@@ -32,6 +32,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { showError } from "@/utils/toast";
 
 type StepConfig = {
   step: number;
@@ -330,7 +331,51 @@ const Diagnostico = () => {
   const goPrev = () => setCurrentStep((prev) => Math.max(1, prev - 1));
   const goNext = () => setCurrentStep((prev) => Math.min(steps.length, prev + 1));
 
+  const validateCurrentStep = () => {
+    if (currentStep === 1 && selected.length === 0) {
+      showError("Selecione pelo menos um objetivo para avançar.");
+      return false;
+    }
+    if (currentStep === 2 && selected.length === 0) {
+      showError("Selecione pelo menos um desafio para avançar.");
+      return false;
+    }
+    if (currentStep === 3) {
+      if (!selectedLevel) {
+        showError("Escolha o nível de maturidade digital para avançar.");
+        return false;
+      }
+      if (selected.length === 0) {
+        showError("Selecione ao menos uma tecnologia utilizada.");
+        return false;
+      }
+    }
+    if (currentStep === 4) {
+      if (!selectedBudget) {
+        showError("Informe o orçamento disponível para avançar.");
+        return false;
+      }
+      if (!selectedTimeline) {
+        showError("Informe o prazo desejado para avançar.");
+        return false;
+      }
+      if (!selectedNotes.trim()) {
+        showError("Descreva brevemente seu projeto antes de avançar.");
+        return false;
+      }
+    }
+    if (currentStep === 5) {
+      const { team, knowledge, training } = readiness;
+      if (!team || !knowledge || !training) {
+        showError("Responda todos os campos de prontidão para avançar.");
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handlePrimaryAction = () => {
+    if (!validateCurrentStep()) return;
     if (currentStep === steps.length) {
       setShowResultsDialog(true);
       return;
