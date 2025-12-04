@@ -1,11 +1,13 @@
+import { useCallback } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Globe, Instagram, Linkedin, Youtube } from "lucide-react";
 
 const companyLinks = [
-  { label: "Início", href: "#hero" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "IA", href: "#nichos" },
-  { label: "Treinamentos", href: "#treinamento" },
-  { label: "Sobre", href: "#carreiras" },
+  { label: "Início", target: "hero" },
+  { label: "Serviços", target: "servicos" },
+  { label: "IA", target: "nichos" },
+  { label: "Treinamentos", target: "treinamento" },
+  { label: "Sobre", target: "carreiras" },
 ];
 
 const socialLinks = [
@@ -26,6 +28,22 @@ const contactInfo = [
 ];
 
 const SiteFooter = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleSectionClick = useCallback(
+    (event: React.MouseEvent, target: string) => {
+      event.preventDefault();
+      if (location.pathname !== "/") {
+        navigate(`/#${target}`);
+        return;
+      }
+      const el = document.getElementById(target);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    },
+    [location.pathname, navigate],
+  );
+
   return (
     <footer className="border-t border-white/10 bg-[#0b1711] px-6 py-12 md:px-10 md:py-16">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-start md:justify-between">
@@ -74,13 +92,14 @@ const SiteFooter = () => {
             <h4 className="text-base font-semibold text-white">Empresa</h4>
             <div className="mt-3 flex flex-col gap-2">
               {companyLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
+                  to={`/#${link.target}`}
+                  onClick={(e) => handleSectionClick(e, link.target)}
                   className="transition hover:text-white"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
