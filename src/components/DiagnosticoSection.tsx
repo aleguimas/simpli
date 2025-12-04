@@ -1,6 +1,7 @@
 import { Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { GlowEffect } from "@/components/ui/glow-effect";
 
 const DiagnosticoSection = () => {
   return (
@@ -23,10 +24,17 @@ const DiagnosticoSection = () => {
         </p>
 
         <div className="relative mt-10 w-full max-w-4xl overflow-hidden rounded-[16px] border border-white/15 bg-white/5 shadow-2xl shadow-black/40 aspect-[16/9]">
+          <GlowEffect
+            colors={["#86efac", "#4ade80", "#a7f3d0"]}
+            mode="pulse"
+            blur="stronger"
+            scale={1.1}
+            className="opacity-75"
+          />
           <img
             src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE7Cpjs4JbNsEXlrThLj3By4kOfWQ51aHmIixU"
             alt="Visual da plataforma Simplí"
-            className="h-full w-full object-cover"
+            className="relative h-full w-full object-cover"
           />
         </div>
 
