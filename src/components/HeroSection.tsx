@@ -23,9 +23,9 @@ const HeroSection = () => {
           }`}
         >
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEC5TQ8yp21UvLpyMJBwa8FG4e7tORbIrXYjEk"
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsESG9QwVRNPlEoRcVxpjTndZFs8IqQ6NKb4Xhi"
             alt="Tela.com logo"
-            className="mx-auto h-10 w-auto opacity-90 md:h-12"
+            className="mx-auto h-11 w-auto opacity-90 md:h-14"
             loading="lazy"
           />
           <h1 className="mt-6 pb-3 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-5xl font-semibold leading-[1.28] text-transparent sm:text-6xl md:text-7xl">
