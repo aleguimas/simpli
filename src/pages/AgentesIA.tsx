@@ -182,8 +182,10 @@ const AgentesIA = () => {
           <p className="mt-2 text-base text-white/70">
             Visualize as etapas do nosso processo de criação de agentes de IA.
           </p>
-          <div className="mt-10">
-            <RadialOrbitalTimeline timelineData={processTimeline} />
+          <div className="mt-10 -mx-2 flex justify-center sm:mx-0">
+            <div className="w-full max-w-[520px] origin-top scale-[0.9] sm:max-w-[640px] sm:scale-100 md:max-w-5xl">
+              <RadialOrbitalTimeline timelineData={processTimeline} />
+            </div>
           </div>
         </div>
       </section>
@@ -202,7 +204,7 @@ const AgentesIA = () => {
           <Card className="mt-10 border-white/10 bg-[#0C140F]/70 shadow-2xl shadow-black/40">
             <CardContent className="grid gap-8 px-4 py-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-6">
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
+                <div className="flex items:center gap-3">
                   <img
                     src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx"
                     alt="Natal Home Center"
