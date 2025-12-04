@@ -18,6 +18,9 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 
+const HERO_BG =
+  "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEl0IBtmnC1gi0eAP7XFElWz8cvS9UtBdY3wsV";
+
 const benefits = [
   {
     title: "Estratégia Clara",
@@ -77,8 +80,9 @@ const ConsultoriaDigital = () => {
         <section
           className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
           style={{
-            backgroundImage:
-              "linear-gradient(120deg, rgba(28,51,36,0.9), rgba(12,20,15,0.92))",
+            backgroundImage: `linear-gradient(120deg, rgba(28,51,36,0.9), rgba(12,20,15,0.92)), url('${HERO_BG}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
