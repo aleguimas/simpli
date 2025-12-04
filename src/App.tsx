@@ -11,6 +11,7 @@ import DiagnosticReport from "./pages/DiagnosticReport";
 import AgentesIA from "./pages/AgentesIA";
 import DesenvolvimentoWeb from "./pages/DesenvolvimentoWeb";
 import TrafegoPago from "./pages/TrafegoPago";
+import ConsultoriaDigital from "./pages/ConsultoriaDigital";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/servicos/desenvolvimento-web" element={<DesenvolvimentoWeb />} />
           <Route path="/servicos/agentes-de-ia" element={<AgentesIA />} />
           <Route path="/servicos/trafego-pago" element={<TrafegoPago />} />
+          <Route path="/servicos/consultoria-digital" element={<ConsultoriaDigital />} />
           <Route path="/servicos/:slug" element={<ServicePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
