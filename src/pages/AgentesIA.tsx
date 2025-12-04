@@ -183,7 +183,7 @@ const AgentesIA = () => {
             Visualize as etapas do nosso processo de criação de agentes de IA.
           </p>
           <div className="mt-10 flex justify-center overflow-hidden px-2">
-            <div className="w-full max-w-[380px] origin-top scale-[0.85] sm:max-w-[640px] sm:scale-100 md:max-w-5xl">
+            <div className="w-full max-w-[300px] origin-top scale-[0.7] sm:max-w-[520px] sm:scale-90 md:max-w-5xl md:scale-100">
               <RadialOrbitalTimeline timelineData={processTimeline} />
             </div>
           </div>
