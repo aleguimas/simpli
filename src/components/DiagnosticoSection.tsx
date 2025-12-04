@@ -1,6 +1,7 @@
 import { Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 const DiagnosticoSection = () => {
   return (
@@ -27,6 +28,14 @@ const DiagnosticoSection = () => {
             src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE7Cpjs4JbNsEXlrThLj3By4kOfWQ51aHmIixU"
             alt="Visual da plataforma Simplí"
             className="h-full w-full object-cover"
+          />
+          <BorderBeam
+            size={240}
+            duration={12}
+            borderWidth={1.5}
+            colorFrom="#4ADE80"
+            colorTo="#ffffff"
+            className="rounded-[16px]"
           />
         </div>
 
