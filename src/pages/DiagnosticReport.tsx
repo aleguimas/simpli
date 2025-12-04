@@ -248,7 +248,7 @@ const DiagnosticReport = () => {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 md:px-10">
         <Link to="/" className="text-sm text-white">
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEsCzKr2uURvumjDTaW8whPIYnNpgbMFyHqVOA"
+            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsESG9QwVRNPlEoRcVxpjTndZFs8IqQ6NKb4Xhi"
             alt="Simplí"
             className="h-9 w-auto"
             loading="lazy"
