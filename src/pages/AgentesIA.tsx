@@ -149,34 +149,7 @@ const AgentesIA = () => {
         </div>
       </section>
 
-      <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto max-w-6xl text-center">
-          <h2 className="text-3xl font-semibold md:text-4xl">Benefícios dos Agentes de IA</h2>
-          <p className="mt-2 text-base text-white/70">
-            Por que implementar agentes de IA no seu negócio?
-          </p>
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {benefits.map((item) => (
-              <Card
-                key={item.title}
-                className="border-white/10 bg-white/5 shadow-lg shadow-black/30"
-              >
-                <CardContent className="flex flex-col gap-3 p-5 text-left">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[#86efac] to-white text-black">
-                    <item.icon size={18} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-sm text-white/70">{item.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-16 md:px-10 md:py-20">
+      <section className="px-6 pt-16 pb-12 md:px-10 md:pt-20 md:pb-14">
         <div className="mx-auto max-w-6xl text-center">
           <h2 className="text-3xl font-semibold md:text-4xl">Como Desenvolvemos</h2>
           <p className="mt-2 text-base text-white/70">
