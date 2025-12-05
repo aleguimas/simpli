@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Globe, Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 
 const companyLinks = [
   { label: "Início", target: "hero" },
@@ -72,14 +72,6 @@ const SiteFooter = () => {
                 <Icon size={18} />
               </a>
             ))}
-          </div>
-          <div className="mt-4 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70">
-            <Globe size={18} className="text-white/80" />
-            <select className="bg-transparent text-white/80 outline-none">
-              <option className="bg-[#0b1711] text-white">Português BR</option>
-              <option className="bg-[#0b1711] text-white">English</option>
-              <option className="bg-[#0b1711] text-white">Español</option>
-            </select>
           </div>
         </div>
 
