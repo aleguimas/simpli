@@ -10,7 +10,6 @@ const HeroSection = () => {
     <section
       id="hero"
       ref={ref}
-      style={{ fontFamily: "'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" }}
       className="relative overflow-hidden bg-[#0C140F] px-6 pb-24 pt-24 md:px-10 md:pb-28 md:pt-28"
     >
       <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#1C3324] blur-3xl opacity-70" />
