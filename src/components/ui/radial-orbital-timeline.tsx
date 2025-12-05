@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { LucideIcon } from "lucide-react";
+import { ArrowRight, Link as LinkIcon, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type TimelineStatus = "completed" | "in-progress" | "pending";
@@ -26,6 +27,9 @@ const statusRings: Record<TimelineStatus, string> = {
   pending: "border-white/30 bg-white/5",
 };
 
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max);
+
 const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => {
   const [activeId, setActiveId] = useState<number | null>(
     timelineData[0]?.id ?? null,
@@ -44,33 +48,40 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
         ...item,
         x: Math.cos(angle) * radius,
         y: Math.sin(angle) * radius,
+        step: index + 1,
       };
     });
   }, [timelineData]);
 
   const activeItem = items.find((item) => item.id === activeId) ?? items[0];
+  const activeIndex = items.findIndex((item) => item.id === activeItem?.id);
 
   const advanceStep = () => {
     if (!items.length) return;
-    const currentIndex = items.findIndex((item) => item.id === activeId);
-    const nextIndex = (currentIndex + 1) % items.length;
+    const nextIndex = (activeIndex + 1) % items.length;
     setActiveId(items[nextIndex].id);
   };
 
+  const progressFor = (item: TimelineItem) => {
+    if (item.energy !== undefined) return clamp(item.energy, 5, 100);
+    if (item.status === "completed") return 100;
+    if (item.status === "in-progress") return 75;
+    return 40;
+  };
+
+  const connectionTitles =
+    activeItem?.relatedIds
+      ?.map((relId) => items.find((i) => i.id === relId)?.title)
+      .filter(Boolean) ?? [];
+
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-10">
       <div
-        className="relative flex h-[520px] w-full max-w-4xl items-center justify-center"
+        className="relative flex h-[560px] w-full max-w-4xl items-center justify-center bg-transparent"
         style={{ perspective: "1000px" }}
         onClick={advanceStep}
       >
-        <div className="absolute flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-[0_0_40px_rgba(255,255,255,0.25)]">
-          <div className="absolute h-20 w-20 rounded-full border border-white/40 opacity-70" />
-          <div className="absolute h-24 w-24 rounded-full border border-white/30 opacity-50" />
-          <div className="h-8 w-8 rounded-full bg-[#1a1a1a] shadow-inner shadow-black/40 backdrop-blur-md" />
-        </div>
-
-        <div className="absolute h-96 w-96 rounded-full border border-white/10" />
+        <div className="absolute h-[430px] w-[430px] rounded-full border border-white/10" />
 
         {items.map((item, index) => {
           const Icon = item.icon;
@@ -84,7 +95,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
               style={{
                 transform: `translate(${item.x}px, ${item.y}px)`,
                 zIndex: isActive ? 150 : 60 + index,
-                opacity: 1,
+                opacity: isActive ? 1 : 0.28,
               }}
               onClick={(e) => {
                 e.stopPropagation();
@@ -95,42 +106,109 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
             >
               <div
                 className={cn(
-                  "flex h-10 w-10 items-center justify-center rounded-full border-2 bg-black text-white shadow-[0_12px_30px_rgba(0,0,0,0.35)]",
+                  "flex h-12 w-12 items-center justify-center rounded-full border-2 bg-white text-[#0C140F] shadow-[0_10px_35px_rgba(0,0,0,0.35)]",
                   statusClass,
-                  isActive && "scale-110 border-white",
+                  isActive && "scale-105 border-white/90",
                 )}
               >
                 <Icon size={18} />
               </div>
-              <div className="absolute top-12 whitespace-nowrap text-xs font-semibold tracking-wider text-white/70">
+              <div
+                className={cn(
+                  "absolute top-14 w-max -translate-x-1/2 text-xs font-semibold tracking-wider text-white/60",
+                  isActive && "text-white",
+                )}
+                style={{ left: "50%" }}
+              >
                 {item.title}
               </div>
             </div>
           );
         })}
-      </div>
 
-      {activeItem && (
-        <div className="w-full max-w-3xl rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl shadow-black/30">
-          <div className="flex flex-wrap items-center gap-3 text-sm text-white/80">
-            <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-white/70">
-              {activeItem.category}
-            </span>
-            <span className="text-white/70">{activeItem.date}</span>
-            {activeItem.relatedIds?.length ? (
-              <span className="text-white/60">
-                {activeItem.relatedIds.length} conexões
-              </span>
-            ) : null}
+        {activeItem && (
+          <div
+            className="pointer-events-auto absolute inset-0 flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative w-full max-w-md translate-y-6">
+              <div className="absolute -top-16 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/70 bg-white text-[#0C140F] shadow-[0_10px_40px_rgba(0,0,0,0.4)]">
+                  <activeItem.icon size={22} />
+                </div>
+                <div className="text-sm font-semibold tracking-wide text-white">
+                  {activeItem.title}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/12 bg-[#0b1711] px-6 py-5 shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
+                <div className="flex items-center justify-between text-xs font-semibold text-white/70">
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-white">
+                    {activeItem.category}
+                  </span>
+                  <span className="text-[11px]">Etapa {activeItem.step}</span>
+                </div>
+
+                <div className="mt-3 text-center text-lg font-semibold text-white">
+                  {activeItem.title}
+                </div>
+                <p className="mt-2 text-center text-sm leading-relaxed text-white/70">
+                  {activeItem.content}
+                </p>
+
+                <div className="mt-5 border-t border-white/10 pt-4">
+                  <div className="flex items-center justify-between text-[13px] font-semibold text-white/75">
+                    <span className="inline-flex items-center gap-2">
+                      <Zap size={14} className="text-white/70" />
+                      Progresso
+                    </span>
+                    <span>{progressFor(activeItem)}%</span>
+                  </div>
+                  <div className="mt-2 h-1.5 rounded-full bg-white/10">
+                    <div
+                      className="h-1.5 rounded-full bg-[#1ab6d6] transition-all"
+                      style={{ width: `${progressFor(activeItem)}%` }}
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-5 border-t border-white/10 pt-4">
+                  <div className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/70">
+                    Conexões
+                  </div>
+                  {connectionTitles.length > 0 ? (
+                    <div className="mt-3 flex flex-col gap-2">
+                      {connectionTitles.map((title) => (
+                        <button
+                          key={title}
+                          className="group inline-flex items-center justify-between rounded-lg border border-white/12 bg-white/5 px-3 py-2 text-sm font-semibold text-white/90 transition hover:border-white/25 hover:bg-white/10"
+                          onClick={() => {
+                            const target = items.find((i) => i.title === title);
+                            if (target) setActiveId(target.id);
+                          }}
+                        >
+                          <span className="inline-flex items-center gap-2">
+                            <LinkIcon size={14} className="text-white/60" />
+                            {title}
+                          </span>
+                          <ArrowRight
+                            size={16}
+                            className="transition group-hover:translate-x-0.5"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-2 text-sm text-white/55">
+                      Sem conexões.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 className="mt-3 text-xl font-semibold text-white">
-            {activeItem.title}
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-white/70">
-            {activeItem.content}
-          </p>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
