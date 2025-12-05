@@ -53,7 +53,7 @@ const ClientesSection = () => {
     >
       <div className="mx-auto max-w-4xl">
         <p className="text-xl font-medium text-white/80 md:text-2xl">
-          Empresas que confiam no trabalho da Simplí
+          Empresas que confiam na Simplí
         </p>
       </div>
 
