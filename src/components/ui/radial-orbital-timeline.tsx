@@ -64,7 +64,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
   const progressValue = clampProgress(activeItem?.energy);
 
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-6">
       <div
         className="relative flex h-[520px] w-full max-w-4xl items-center justify-center"
         style={{ perspective: "1000px" }}
@@ -89,7 +89,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
               style={{
                 transform: `translate(${item.x}px, ${item.y}px)`,
                 zIndex: isActive ? 150 : 60 + index,
-                opacity: 1,
+                opacity: isActive ? 1 : 0.55,
               }}
               onMouseEnter={() => setActiveId(item.id)}
               onFocus={() => setActiveId(item.id)}
@@ -109,65 +109,89 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
             </div>
           );
         })}
+
+        {activeItem && (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <div className="pointer-events-auto relative flex flex-col items-center gap-2 animate-[pull-up_0.65s_ease]">
+              <div className="flex flex-col items-center gap-2 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#0c130f] shadow-[0_14px_40px_rgba(0,0,0,0.35)]">
+                  <activeItem.icon size={20} />
+                </div>
+                <div className="text-sm font-semibold text-white">
+                  {activeItem.title}
+                </div>
+                <div className="h-5 w-px bg-white/25" />
+              </div>
+
+              <div className="w-[min(92vw,380px)] rounded-2xl border border-white/10 bg-[#0c130f]/95 p-5 text-white shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-sm">
+                <div className="flex items-center justify-between text-[11px] font-semibold text-white/75">
+                  <span className="inline-flex items-center rounded-full bg-white/8 px-3 py-1 uppercase tracking-[0.18em] text-white">
+                    {activeItem.category}
+                  </span>
+                  <span className="text-white/60">{activeItem.date}</span>
+                </div>
+
+                <div className="mt-3 text-center">
+                  <h3 className="text-lg font-semibold text-white">
+                    {activeItem.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/80">
+                    {activeItem.content}
+                  </p>
+                </div>
+
+                <div className="mt-5 space-y-2 border-t border-white/10 pt-4">
+                  <div className="flex items-center justify-between text-xs font-semibold text-white/80">
+                    <span className="inline-flex items-center gap-2">
+                      <Zap size={14} className="text-[#5ad1ff]" />
+                      Progresso
+                    </span>
+                    <span>{progressValue}%</span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-white/10">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-[#4ADE80] via-[#5ad1ff] to-white"
+                      style={{ width: `${progressValue}%` }}
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-5 border-t border-white/10 pt-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
+                    Conexões
+                  </p>
+                  {connections.length > 0 ? (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {connections.map((connection) => (
+                        <button
+                          key={connection}
+                          className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/85 transition hover:border-white/30"
+                        >
+                          <Link2 size={14} />
+                          {connection}
+                          <ArrowRight size={14} />
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-3 text-xs text-white/60">
+                      Nenhuma conexão listada.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
-      {activeItem && (
-        <div className="w-full max-w-md rounded-2xl border border-white/10 bg-[#0c130f]/95 p-5 text-white shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-sm">
-          <div className="flex items-center justify-between text-[11px] font-semibold text-white/75">
-            <span className="inline-flex items-center rounded-full bg-white/8 px-3 py-1 uppercase tracking-[0.18em] text-white">
-              {activeItem.category}
-            </span>
-            <span className="text-white/60">{activeItem.date}</span>
-          </div>
-
-          <div className="mt-4 flex flex-col items-center text-center">
-            <h3 className="text-xl font-semibold text-white">{activeItem.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-white/80">
-              {activeItem.content}
-            </p>
-          </div>
-
-          <div className="mt-6 space-y-2 border-t border-white/10 pt-4">
-            <div className="flex items-center justify-between text-xs font-semibold text-white/80">
-              <span className="inline-flex items-center gap-2">
-                <Zap size={14} className="text-[#5ad1ff]" />
-                Progresso
-              </span>
-              <span>{progressValue}%</span>
-            </div>
-            <div className="h-1.5 rounded-full bg-white/10">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-[#4ADE80] via-[#5ad1ff] to-white"
-                style={{ width: `${progressValue}%` }}
-              />
-            </div>
-          </div>
-
-          <div className="mt-5 border-t border-white/10 pt-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
-              Conexões
-            </p>
-            {connections.length > 0 ? (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {connections.map((connection) => (
-                  <button
-                    key={connection}
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/85 transition hover:border-white/30"
-                  >
-                    <Link2 size={14} />
-                    {connection}
-                    <ArrowRight size={14} />
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <p className="mt-3 text-xs text-white/60">
-                Nenhuma conexão listada.
-              </p>
-            )}
-          </div>
-        </div>
-      )}
+      <style>{`
+        @keyframes pull-up {
+          0% { transform: translateY(40px) scale(0.96); opacity: 0; }
+          60% { transform: translateY(-6px) scale(1.02); opacity: 1; }
+          100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 };
