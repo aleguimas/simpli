@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight, Link2, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type TimelineStatus = "completed" | "in-progress" | "pending";
@@ -27,13 +26,6 @@ const statusRings: Record<TimelineStatus, string> = {
   pending: "border-white/30 bg-white/5",
 };
 
-const clampProgress = (value?: number) => {
-  if (typeof value !== "number") return 70;
-  if (value < 0) return 0;
-  if (value > 100) return 100;
-  return Math.round(value);
-};
-
 const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => {
   const [activeId, setActiveId] = useState<number | null>(
     timelineData[0]?.id ?? null,
@@ -57,11 +49,6 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
   }, [timelineData]);
 
   const activeItem = items.find((item) => item.id === activeId) ?? items[0];
-  const connections =
-    activeItem?.relatedIds
-      ?.map((id) => items.find((item) => item.id === id)?.title)
-      .filter(Boolean) ?? [];
-  const progressValue = clampProgress(activeItem?.energy);
 
   return (
     <div className="flex flex-col items-center gap-8">
@@ -75,6 +62,7 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
           <div className="h-8 w-8 rounded-full bg-[#1a1a1a] shadow-inner shadow-black/40 backdrop-blur-md" />
         </div>
 
+        {/* Antes: h-96 w-96 */}
         <div className="absolute h-80 w-80 md:h-96 md:w-96 rounded-full border border-white/10" />
 
         {items.map((item, index) => {
@@ -112,60 +100,24 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
       </div>
 
       {activeItem && (
-        <div className="w-full max-w-md rounded-2xl border border-white/10 bg-[#0c130f]/95 p-5 text-white shadow-[0_24px_90px_rgba(0,0,0,0.55)] backdrop-blur-sm">
-          <div className="flex items-center justify-between text-[11px] font-semibold text-white/75">
-            <span className="inline-flex items-center rounded-full bg-white/8 px-3 py-1 uppercase tracking-[0.18em] text-white">
+        <div className="w-full max-w-3xl rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl shadow-black/30">
+          <div className="flex flex-wrap items-center gap-3 text-sm text-white/80">
+            <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-white/70">
               {activeItem.category}
             </span>
-            <span className="text-white/60">{activeItem.date}</span>
-          </div>
-
-          <div className="mt-4 flex flex-col items-center text-center">
-            <h3 className="text-xl font-semibold text-white">{activeItem.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-white/80">
-              {activeItem.content}
-            </p>
-          </div>
-
-          <div className="mt-6 space-y-2 border-t border-white/10 pt-4">
-            <div className="flex items-center justify-between text-xs font-semibold text-white/80">
-              <span className="inline-flex items-center gap-2">
-                <Zap size={14} className="text-[#5ad1ff]" />
-                Progresso
+            <span className="text-white/70">{activeItem.date}</span>
+            {activeItem.relatedIds?.length ? (
+              <span className="text-white/60">
+                {activeItem.relatedIds.length} conexões
               </span>
-              <span>{progressValue}%</span>
-            </div>
-            <div className="h-1.5 rounded-full bg-white/10">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-[#4ADE80] via-[#5ad1ff] to-white"
-                style={{ width: `${progressValue}%` }}
-              />
-            </div>
+            ) : null}
           </div>
-
-          <div className="mt-5 border-t border-white/10 pt-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
-              Conexões
-            </p>
-            {connections.length > 0 ? (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {connections.map((connection) => (
-                  <button
-                    key={connection}
-                    className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/85 transition hover:border-white/30"
-                  >
-                    <Link2 size={14} />
-                    {connection}
-                    <ArrowRight size={14} />
-                  </button>
-                ))}
-              </div>
-            ) : (
-              <p className="mt-3 text-xs text-white/60">
-                Nenhuma conexão listada.
-              </p>
-            )}
-          </div>
+          <h3 className="mt-3 text-xl font-semibold text-white">
+            {activeItem.title}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-white/70">
+            {activeItem.content}
+          </p>
         </div>
       )}
     </div>
