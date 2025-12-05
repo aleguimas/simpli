@@ -37,21 +37,12 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
 
   const items = useMemo(() => {
     if (timelineData.length === 0) return [];
-    const useCardinal = timelineData.length === 4;
     const angleStep = (2 * Math.PI) / timelineData.length;
-    const baseRadius = 170;
+    const baseRadius = 155;
     const radiusScale = 0.6;
-    const cardinalAngles = [
-      -Math.PI / 2, // top
-      0, // right
-      Math.PI / 2, // bottom
-      Math.PI, // left
-    ];
 
     return timelineData.map((item, index) => {
-      const angle = useCardinal
-        ? cardinalAngles[index]
-        : angleStep * index - Math.PI / 2;
+      const angle = angleStep * index - Math.PI / 2;
       const radius = baseRadius + (item.energy ?? 0) * radiusScale;
       return {
         ...item,
