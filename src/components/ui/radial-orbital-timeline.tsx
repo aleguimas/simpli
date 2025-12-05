@@ -50,15 +50,23 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
 
   const activeItem = items.find((item) => item.id === activeId) ?? items[0];
 
+  const advanceStep = () => {
+    if (!items.length) return;
+    const currentIndex = items.findIndex((item) => item.id === activeId);
+    const nextIndex = (currentIndex + 1) % items.length;
+    setActiveId(items[nextIndex].id);
+  };
+
   return (
     <div className="flex flex-col items-center gap-8">
       <div
         className="relative flex h-[520px] w-full max-w-4xl items-center justify-center"
         style={{ perspective: "1000px" }}
+        onClick={advanceStep}
       >
-        <div className="absolute z-10 flex h-16 w-16 items-center justify-center rounded-full bg-white animate-pulse shadow-[0_0_40px_rgba(255,255,255,0.4)]">
-          <div className="absolute h-20 w-20 rounded-full border border-white/60 animate-ping opacity-70" />
-          <div className="absolute h-24 w-24 rounded-full border border-white/40 animate-ping opacity-50 delay-500" />
+        <div className="absolute flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-[0_0_40px_rgba(255,255,255,0.25)]">
+          <div className="absolute h-20 w-20 rounded-full border border-white/40 opacity-70" />
+          <div className="absolute h-24 w-24 rounded-full border border-white/30 opacity-50" />
           <div className="h-8 w-8 rounded-full bg-[#1a1a1a] shadow-inner shadow-black/40 backdrop-blur-md" />
         </div>
 
@@ -72,18 +80,22 @@ const RadialOrbitalTimeline = ({ timelineData }: RadialOrbitalTimelineProps) => 
           return (
             <div
               key={item.id}
-              className="absolute cursor-pointer transition-all duration-700"
+              className="absolute cursor-pointer transition-all duration-300"
               style={{
                 transform: `translate(${item.x}px, ${item.y}px)`,
                 zIndex: isActive ? 150 : 60 + index,
                 opacity: 1,
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveId(item.id);
               }}
               onMouseEnter={() => setActiveId(item.id)}
               onFocus={() => setActiveId(item.id)}
             >
               <div
                 className={cn(
-                  "flex h-10 w-10 items-center justify-center rounded-full border-2 bg-black text-white transition-all duration-300 shadow-[0_12px_30px_rgba(0,0,0,0.35)]",
+                  "flex h-10 w-10 items-center justify-center rounded-full border-2 bg-black text-white shadow-[0_12px_30px_rgba(0,0,0,0.35)]",
                   statusClass,
                   isActive && "scale-110 border-white",
                 )}
