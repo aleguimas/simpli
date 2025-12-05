@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Globe, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Globe, Instagram, Linkedin } from "lucide-react";
 
 const companyLinks = [
   { label: "Início", target: "hero" },
@@ -12,13 +12,15 @@ const companyLinks = [
 
 const socialLinks = [
   {
-    label: "X",
-    href: "#",
-    imgSrc: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEzZ4hxkTVEPnyAFJoasTGbvdMur17i69pZSRC",
+    label: "Instagram",
+    href: "https://www.instagram.com/simpli.inovacao/",
+    Icon: Instagram,
   },
-  { label: "Instagram", href: "#", Icon: Instagram },
-  { label: "LinkedIn", href: "#", Icon: Linkedin },
-  { label: "YouTube", href: "#", Icon: Youtube },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/simpli-inovacao-digital/",
+    Icon: Linkedin,
+  },
 ];
 
 const contactInfo = [
@@ -58,22 +60,16 @@ const SiteFooter = () => {
             Consultoria e tecnologia de ponta para transformação digital.
           </p>
           <div className="mt-4 flex items-center gap-1.5">
-            {socialLinks.map(({ label, href, Icon, imgSrc }) => (
+            {socialLinks.map(({ label, href, Icon }) => (
               <a
                 key={label}
                 href={href}
                 aria-label={label}
+                target="_blank"
+                rel="noreferrer"
                 className="flex h-10 w-10 items-center justify-center text-white/80 transition hover:text-white"
               >
-                {imgSrc ? (
-                  <img
-                    src={imgSrc}
-                    alt={label}
-                    className="h-[18px] w-[18px]"
-                  />
-                ) : (
-                  Icon && <Icon size={18} />
-                )}
+                <Icon size={18} />
               </a>
             ))}
           </div>
