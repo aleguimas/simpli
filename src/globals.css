@@ -103,4 +103,8 @@
 .bg-\[radial-gradient\(circle_at_center\2c _rgba\(255\2c 255\2c 255\2c 0\.16\)\2c _transparent_58\%\)\] {
   width: 90vw;
   height: 90vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
