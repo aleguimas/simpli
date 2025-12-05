@@ -149,7 +149,7 @@ const AgentesIA = () => {
         </div>
       </section>
 
-      <section className="px-6 pt-16 pb-12 md:px-10 md:pt-20 md:pb-14">
+      <section className="px-6 pt-16 pb-6 md:px-10 md:pt-20 md:pb-14">
         <div className="mx-auto max-w-6xl text-center">
           <h2 className="text-3xl font-semibold md:text-4xl">Como Desenvolvemos</h2>
           <p className="mt-2 text-base text-white/70">
