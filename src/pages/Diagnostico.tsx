@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { SEO } from "@/components/SEO";
 import {
   ArrowLeft,
   ArrowRight,
@@ -460,6 +461,13 @@ const Diagnostico = () => {
 
   return (
     <div className="relative min-h-screen bg-[#0C140F] text-white">
+      <SEO
+        title="Diagnóstico de IA | Avalie a Maturidade Digital da Sua Empresa"
+        description="Faça um diagnóstico completo da maturidade digital da sua empresa e descubra como a Inteligência Artificial pode transformar seu negócio. Avaliação gratuita e personalizada."
+        keywords="diagnóstico IA, maturidade digital, avaliação de IA, diagnóstico empresarial, transformação digital, análise de processos, Recife"
+        canonical="/diagnostico"
+        noindex={true}
+      />
       <div className="pointer-events-none absolute -left-20 top-10 h-80 w-80 rounded-full bg-[#1C3324] opacity-50 blur-3xl" />
       <div className="pointer-events-none absolute right-0 bottom-10 h-96 w-96 rounded-full bg-white/5 opacity-50 blur-3xl" />
 

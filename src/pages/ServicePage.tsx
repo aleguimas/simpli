@@ -3,6 +3,7 @@ import { Bot, Laptop, Lightbulb, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
+import { SEO } from "@/components/SEO";
 
 const services = {
   "desenvolvimento-web": {
@@ -68,8 +69,26 @@ const ServicePage = () => {
 
   const Icon = service.Icon;
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: service.title,
+    provider: {
+      "@type": "Organization",
+      name: "Simplí",
+      url: "https://www.simpli.ia.br",
+    },
+    description: service.description,
+  };
+
   return (
     <div className="min-h-screen bg-[#0C140F] text-white">
+      <SEO
+        title={service.title}
+        description={service.description}
+        canonical={`/servicos/${slug}`}
+        structuredData={structuredData}
+      />
       <Navbar />
       <div className="px-6 py-16 md:px-10">
         <div className="mx-auto flex max-w-4xl flex-col gap-8">

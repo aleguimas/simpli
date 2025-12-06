@@ -6,6 +6,7 @@ import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import SiteFooter from "@/components/SiteFooter";
 import { useInView } from "@/hooks/use-in-view";
 import Navbar from "@/components/Navbar";
+import { SEO } from "@/components/SEO";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG =
@@ -90,8 +91,31 @@ const AgentesIA = () => {
   const maxSeconds = Math.max(...performanceBars.map((bar) => bar.seconds));
   const { ref: caseRef, isVisible: isCaseVisible } = useInView({ threshold: 0.35 });
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Agentes de Inteligência Artificial",
+    provider: {
+      "@type": "Organization",
+      name: "Simplí",
+      url: "https://www.simpli.ia.br",
+    },
+    description: "Desenvolvemos agentes de Inteligência Artificial personalizados para automatizar processos e aumentar a eficiência do seu negócio. Chatbots inteligentes, automação de atendimento e machine learning.",
+    offers: {
+      "@type": "Offer",
+      description: "Desenvolvimento de agentes de IA com machine learning, NLP e integrações com APIs",
+    },
+  };
+
   return (
     <div className="bg-[#0C140F] text-white">
+      <SEO
+        title="Agentes de IA | Chatbots Inteligentes e Automação"
+        description="Desenvolvemos agentes de Inteligência Artificial personalizados para automatizar processos e aumentar a eficiência. Chatbots inteligentes, automação de atendimento 24/7 e machine learning."
+        keywords="agentes de IA, inteligência artificial, chatbots, automação, machine learning, NLP, processamento de linguagem natural, automação de atendimento, IA para negócios, Recife"
+        canonical="/servicos/agentes-de-ia"
+        structuredData={structuredData}
+      />
       <Navbar />
       <section
         className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"

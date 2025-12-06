@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
+import { SEO } from "@/components/SEO";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 
@@ -111,8 +112,35 @@ const DesenvolvimentoWeb = () => {
     [],
   );
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Desenvolvimento Web",
+    provider: {
+      "@type": "Organization",
+      name: "Simplí",
+      url: "https://www.simpli.ia.br",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Brasil",
+    },
+    description: "Criamos sites e landing pages modernos e responsivos que convertem visitantes em clientes. Utilizamos React, Next.js, TypeScript e Node.js para criar soluções com performance excepcional.",
+    offers: {
+      "@type": "Offer",
+      description: "Desenvolvimento web completo com foco em SEO, performance e experiência do usuário",
+    },
+  };
+
   return (
     <div className="bg-[#0C140F] text-white">
+      <SEO
+        title="Desenvolvimento Web | Sites Modernos e Responsivos"
+        description="Criamos sites e landing pages modernos e responsivos que convertem visitantes em clientes. Sites otimizados para SEO, performance e experiência do usuário. Tecnologias: React, Next.js, TypeScript."
+        keywords="desenvolvimento web, criação de sites, landing pages, sites responsivos, React, Next.js, TypeScript, SEO, performance web, sites institucionais, desenvolvimento frontend, Recife"
+        canonical="/servicos/desenvolvimento-web"
+        structuredData={structuredData}
+      />
       <Navbar />
       <main>
         <section

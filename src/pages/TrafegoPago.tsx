@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
+import { SEO } from "@/components/SEO";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG =
@@ -80,8 +81,31 @@ const TrafegoPago = () => {
   const progress =
     process.length > 1 ? (activeStep / (process.length - 1)) * 100 : 100;
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Gestão de Tráfego Pago",
+    provider: {
+      "@type": "Organization",
+      name: "Simplí",
+      url: "https://www.simpli.ia.br",
+    },
+    description: "Planejamos, executamos e otimizamos campanhas em Google Ads, Meta Ads e LinkedIn Ads para maximizar ROI com inteligência e velocidade. Segmentação avançada e remarketing.",
+    offers: {
+      "@type": "Offer",
+      description: "Gestão completa de campanhas de tráfego pago com foco em ROI e resultados mensuráveis",
+    },
+  };
+
   return (
     <div className="bg-[#0C140F] text-white">
+      <SEO
+        title="Tráfego Pago | Google Ads, Facebook Ads e LinkedIn Ads"
+        description="Gestão completa de campanhas de tráfego pago em Google Ads, Meta Ads e LinkedIn Ads. Maximize ROI com segmentação avançada, remarketing e otimização contínua."
+        keywords="tráfego pago, Google Ads, Facebook Ads, LinkedIn Ads, gestão de campanhas, remarketing, segmentação, ROI, marketing digital, anúncios online, Recife"
+        canonical="/servicos/trafego-pago"
+        structuredData={structuredData}
+      />
       <Navbar />
 
       <main>

@@ -1,14 +1,13 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+# Robots.txt para simpli.ia.br
+# Otimizado para SEO e indexação
 
 User-agent: *
 Allow: /
+Disallow: /diagnostico/resultado
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://www.simpli.ia.br/sitemap.xml
+
+# Crawl-delay (opcional, para evitar sobrecarga)
+Crawl-delay: 1

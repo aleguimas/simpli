@@ -15,6 +15,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SEO } from "@/components/SEO";
 
 type SummaryState = {
   selections?: Record<number, string[]>;
@@ -245,6 +246,13 @@ const DiagnosticReport = () => {
 
   return (
     <div className="min-h-screen bg-[#0C140F] text-white">
+      <SEO
+        title="Relatório de Diagnóstico de IA | Resultado da Análise"
+        description="Acesse seu relatório completo de diagnóstico de maturidade digital e descubra recomendações personalizadas para implementar IA na sua empresa."
+        canonical="/diagnostico/resultado"
+        noindex={true}
+        nofollow={true}
+      />
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 md:px-10">
         <Link to="/" className="text-sm text-white">
           <img

@@ -15,6 +15,7 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 
@@ -72,8 +73,31 @@ const steps = [
 ];
 
 const ConsultoriaDigital = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Consultoria Digital",
+    provider: {
+      "@type": "Organization",
+      name: "Simplí",
+      url: "https://www.simpli.ia.br",
+    },
+    description: "Estratégia completa de transformação digital sob medida para sua empresa. Acompanhamos sua transformação digital do planejamento à execução, integrando tecnologia e processos.",
+    offers: {
+      "@type": "Offer",
+      description: "Consultoria digital com metodologias comprovadas: Design Thinking, Agile, Lean Startup",
+    },
+  };
+
   return (
     <div className="bg-[#0C140F] text-white">
+      <SEO
+        title="Consultoria Digital | Transformação Digital Estratégica"
+        description="Estratégia completa de transformação digital sob medida para sua empresa. Consultoria digital com metodologias comprovadas: Design Thinking, Agile, Lean Startup."
+        keywords="consultoria digital, transformação digital, estratégia digital, Design Thinking, Agile, Lean Startup, digitalização, inovação, tecnologia, Recife"
+        canonical="/servicos/consultoria-digital"
+        structuredData={structuredData}
+      />
       <Navbar />
 
       <main>
