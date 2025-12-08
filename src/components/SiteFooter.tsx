@@ -47,8 +47,8 @@ const SiteFooter = () => {
   );
 
   return (
-    <footer className="border-t border-white/10 bg-[#0b1711] px-6 py-12 md:px-10 md:py-16">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-start md:justify-between">
+    <footer className="border-t border-white/10 bg-[#0b1711] px-4 py-10 sm:px-6 sm:py-12 md:px-10 md:py-16">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:gap-10 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm">
           <img
             src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsESG9QwVRNPlEoRcVxpjTndZFs8IqQ6NKb4Xhi"
@@ -67,7 +67,7 @@ const SiteFooter = () => {
                 aria-label={label}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center text-white/80 transition hover:text-white"
+                className="flex min-h-[44px] min-w-[44px] h-10 w-10 items-center justify-center text-white/80 transition active:scale-95 hover:text-white touch-manipulation"
               >
                 <Icon size={18} />
               </a>
@@ -84,7 +84,7 @@ const SiteFooter = () => {
                   key={link.label}
                   to={`/#${link.target}`}
                   onClick={(e) => handleSectionClick(e, link.target)}
-                  className="transition hover:text-white"
+                  className="min-h-[44px] flex items-center transition active:opacity-70 hover:text-white touch-manipulation"
                 >
                   {link.label}
                 </Link>
@@ -99,7 +99,7 @@ const SiteFooter = () => {
                   <a
                     key={item.label}
                     href={item.href}
-                    className="transition hover:text-white"
+                    className="min-h-[44px] flex items-center transition active:opacity-70 hover:text-white touch-manipulation"
                   >
                     {item.label}
                   </a>

@@ -13,6 +13,8 @@ import DesenvolvimentoWeb from "./pages/DesenvolvimentoWeb";
 import TrafegoPago from "./pages/TrafegoPago";
 import ConsultoriaDigital from "./pages/ConsultoriaDigital";
 import ScrollToTop from "./components/ScrollToTop";
+import { GoogleAnalytics } from "./components/GoogleAnalytics";
+import { GoogleTagManager } from "./components/GoogleTagManager";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <GoogleTagManager />
+        <GoogleAnalytics />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />

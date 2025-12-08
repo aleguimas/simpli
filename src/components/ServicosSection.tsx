@@ -1,5 +1,7 @@
 import { Bot, Laptop, Lightbulb, Megaphone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { trackEvent } from "@/components/GoogleAnalytics";
+import { trackGTMServiceClick } from "@/components/GoogleTagManager";
 
 const services = [
   {
@@ -36,24 +38,28 @@ const ServicosSection = () => {
   return (
     <section
       id="servicos"
-      className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-24"
+      className="bg-[#0C140F] px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-24"
     >
       <div className="mx-auto max-w-6xl">
         <div className="max-w-3xl">
           <p className="text-sm uppercase tracking-[0.2em] text-white/50">
             Nossos Serviços
           </p>
-          <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
+          <h2 className="mt-2 text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl">
             Oferecemos soluções completas para transformação digital
           </h2>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           {services.map(({ slug, title, description, Icon }) => (
             <Link
               key={slug}
               to={`/servicos/${slug}`}
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f241c]/90 p-6 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#123026] hover:shadow-xl hover:shadow-black/30"
+              onClick={() => {
+                trackEvent("click", "service_card", title);
+                trackGTMServiceClick(title);
+              }}
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f241c]/90 p-5 transition active:scale-[0.98] sm:p-6 sm:hover:-translate-y-1 sm:hover:border-white/20 sm:hover:bg-[#123026] sm:hover:shadow-xl sm:hover:shadow-black/30"
             >
               <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
                 <div className="h-full w-full bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />

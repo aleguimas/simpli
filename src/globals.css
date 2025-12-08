@@ -97,6 +97,36 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Prevenir zoom automático em inputs no iOS */
+    font-size: 16px;
+    /* Melhorar renderização de texto */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Melhorar scroll em mobile */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Melhorar áreas de toque em mobile */
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Garantir tamanho mínimo de fonte para evitar zoom automático */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  @media (max-width: 640px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
   }
 }
 

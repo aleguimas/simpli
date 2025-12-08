@@ -59,7 +59,7 @@ const Navbar = () => {
         scrolled ? "bg-[#0C140F]/80 backdrop-blur-xl" : "bg-transparent",
       )}
     >
-      <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6 md:px-10">
+      <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6 md:px-10">
         <Link
           to="/#hero"
           className="flex items-center"
@@ -99,8 +99,8 @@ const Navbar = () => {
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
-                className="h-10 w-10 rounded-xl border border-white/10 bg-white/5 p-0 text-white transition hover:border-white/30 hover:bg-white/10"
-                aria-label="Abrir menu"
+                className="min-h-[44px] min-w-[44px] h-10 w-10 rounded-xl border border-white/10 bg-white/5 p-0 text-white transition active:scale-95 hover:border-white/30 hover:bg-white/10 touch-manipulation"
+                aria-label="Abrir menu de navegação"
               >
                 <Menu size={20} />
               </Button>
@@ -124,7 +124,7 @@ const Navbar = () => {
                 </div>
 
                 <Button
-                  className="mt-2 h-11 rounded-xl border border-white/0 bg-white text-black transition hover:border-white/70 hover:bg-transparent hover:text-white"
+                  className="mt-2 min-h-[48px] h-12 rounded-xl border border-white/0 bg-white text-base font-semibold text-black transition active:scale-95 hover:border-white/70 hover:bg-transparent hover:text-white touch-manipulation"
                   asChild
                 >
                   <a
