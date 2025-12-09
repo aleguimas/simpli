@@ -471,11 +471,7 @@ const Diagnostico = () => {
   };
 
   const handleDialogOpenChange = (nextOpen: boolean) => {
-    if (detailsCompleted || nextOpen) {
-      setShowDetailsDialog(nextOpen);
-    } else {
-      setShowDetailsDialog(true);
-    }
+    setShowDetailsDialog(nextOpen);
   };
 
   useEffect(() => {
