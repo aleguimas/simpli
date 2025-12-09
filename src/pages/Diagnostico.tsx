@@ -776,14 +776,21 @@ const Diagnostico = () => {
             />
           </div>
 
-          <label className="flex items-center gap-3 text-sm text-[#0C140F]">
-            <Checkbox
-              checked={hasCompany}
-              onCheckedChange={(checked) => setHasCompany(!!checked)}
-              className="border-[#0C140F66] data-[state=checked]:bg-[#1C3324] data-[state=checked]:text-white"
-            />
-            Possui empresa?
-          </label>
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#0C140F]">Possui empresa?</label>
+            <Select
+              value={hasCompany ? "sim" : "nao"}
+              onValueChange={(value) => setHasCompany(value === "sim")}
+            >
+              <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
+                <SelectValue placeholder="Selecione" />
+              </SelectTrigger>
+              <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
+                <SelectItem value="sim">Sim</SelectItem>
+                <SelectItem value="nao">Não</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
           {hasCompany && (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
