@@ -365,6 +365,13 @@ const Diagnostico = () => {
     };
   };
 
+  const sendToWebhook = (body: unknown) =>
+    fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
   const validateCurrentStep = () => {
     if (!detailsCompleted) {
       setShowDetailsDialog(true);
@@ -459,19 +466,30 @@ const Diagnostico = () => {
     return true;
   };
 
-  const handleDetailsSubmit = () => {
+  const handleDetailsSubmit = async () => {
     if (!validateDetails()) return;
+
+    await sendToWebhook({
+      formType: "diagnostico_ia_lead",
+      timestamp: new Date().toISOString(),
+      contact: {
+        nome: firstName,
+        sobrenome: lastName,
+        telefone: phone,
+        email,
+        possuiEmpresa: hasCompany,
+        empresa: hasCompany ? companyName : "",
+        funcionarios: hasCompany ? employeesCount : "",
+      },
+    });
+
     setDetailsCompleted(true);
     setShowDetailsDialog(false);
   };
 
   const handleFinish = async () => {
     const payload = buildPayload();
-    await fetch(WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    await sendToWebhook(payload);
 
     const summary = buildSummary();
     navigate("/diagnostico/resultado", { state: { summary } });
