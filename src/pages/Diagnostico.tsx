@@ -469,19 +469,8 @@ const Diagnostico = () => {
   const handleDetailsSubmit = async () => {
     if (!validateDetails()) return;
 
-    await sendToWebhook({
-      formType: "diagnostico_ia_lead",
-      timestamp: new Date().toISOString(),
-      contact: {
-        nome: firstName,
-        sobrenome: lastName,
-        telefone: phone,
-        email,
-        possuiEmpresa: hasCompany,
-        empresa: hasCompany ? companyName : "",
-        funcionarios: hasCompany ? employeesCount : "",
-      },
-    });
+    const leadPayload = buildPayload();
+    await sendToWebhook(leadPayload);
 
     setDetailsCompleted(true);
     setShowDetailsDialog(false);
