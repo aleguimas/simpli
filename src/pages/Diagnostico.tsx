@@ -276,6 +276,7 @@ const Diagnostico = () => {
   });
 
   const [showDetailsDialog, setShowDetailsDialog] = useState(true);
+  const [detailsCompleted, setDetailsCompleted] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -318,6 +319,10 @@ const Diagnostico = () => {
   const goNext = () => setCurrentStep((prev) => Math.min(steps.length, prev + 1));
 
   const validateCurrentStep = () => {
+    if (!detailsCompleted) {
+      setShowDetailsDialog(true);
+      return false;
+    }
     if (currentStep === 1 && selected.length === 0) {
       showError("Selecione pelo menos um objetivo para avançar.");
       return false;
@@ -460,8 +465,17 @@ const Diagnostico = () => {
         employeesCount: hasCompany ? employeesCount : "",
       },
     };
+    setDetailsCompleted(true);
     setShowDetailsDialog(false);
     navigate("/diagnostico/resultado", { state: { summary } });
+  };
+
+  const handleDialogOpenChange = (nextOpen: boolean) => {
+    if (detailsCompleted || nextOpen) {
+      setShowDetailsDialog(nextOpen);
+    } else {
+      setShowDetailsDialog(true);
+    }
   };
 
   useEffect(() => {
@@ -709,7 +723,7 @@ const Diagnostico = () => {
         </main>
       </div>
 
-      <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
+      <Dialog open={showDetailsDialog} onOpenChange={handleDialogOpenChange}>
         <DialogContent className="max-w-xl rounded-2xl border border-transparent bg-white text-[#0C140F] shadow-xl">
           <DialogHeader className="space-y-2">
             <div className="flex items-center gap-2 text-[#1C3324]">
