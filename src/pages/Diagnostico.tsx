@@ -318,6 +318,53 @@ const Diagnostico = () => {
   const goPrev = () => setCurrentStep((prev) => Math.max(1, prev - 1));
   const goNext = () => setCurrentStep((prev) => Math.min(steps.length, prev + 1));
 
+  const buildSummary = () => ({
+    selections: selectedByStep,
+    maturityLevel: selectedLevelByStep[3] ?? "",
+    budget: budgetByStep[4] ?? "",
+    timeline: timelineByStep[4] ?? "",
+    notes: notesByStep[4] ?? "",
+    readiness: readinessByStep[5] ?? { team: "", knowledge: "", training: "" },
+    contact: {
+      email,
+      firstName,
+      lastName,
+      phone,
+      hasCompany,
+      company: hasCompany ? companyName : "",
+      employeesCount: hasCompany ? employeesCount : "",
+    },
+  });
+
+  const buildPayload = () => {
+    const levelText = selectedLevelByStep[3] ?? "";
+    const score = maturityScore(levelText);
+    return {
+      formType: "diagnostico_ia",
+      timestamp: new Date().toISOString(),
+      completeData: {
+        nome: firstName,
+        sobrenome: lastName,
+        telefone: phone,
+        email,
+        possuiEmpresa: hasCompany,
+        empresa: hasCompany ? companyName : "",
+        funcionarios: hasCompany ? employeesCount : "",
+        desafios: selectedByStep[2] ?? [],
+        objetivos: selectedByStep[1] ?? [],
+        tecnologias: selectedByStep[3] ?? [],
+        maturidade: maturityMap[levelText] ?? "",
+        orcamento: budgetMap[budgetByStep[4] ?? ""] ?? "",
+        prazo: timelineMap[timelineByStep[4] ?? ""] ?? "",
+        descricao: notesByStep[4] ?? "",
+        equipeTecnica: teamMap[readinessByStep[5]?.team ?? ""] ?? "",
+        conhecimentoIA: knowledgeMap[readinessByStep[5]?.knowledge ?? ""] ?? "",
+        disponibilidadeTreinamento: trainingMap[readinessByStep[5]?.training ?? ""] ?? "",
+        IMD: score,
+      },
+    };
+  };
+
   const validateCurrentStep = () => {
     if (!detailsCompleted) {
       setShowDetailsDialog(true);
@@ -368,7 +415,7 @@ const Diagnostico = () => {
   const handlePrimaryAction = () => {
     if (!validateCurrentStep()) return;
     if (currentStep === steps.length) {
-      setShowDetailsDialog(true);
+      handleFinish();
       return;
     }
     goNext();
@@ -412,61 +459,21 @@ const Diagnostico = () => {
     return true;
   };
 
-  const handleDetailsSubmit = async () => {
+  const handleDetailsSubmit = () => {
     if (!validateDetails()) return;
+    setDetailsCompleted(true);
+    setShowDetailsDialog(false);
+  };
 
-    const levelText = selectedLevelByStep[3] ?? "";
-    const score = maturityScore(levelText);
-    const payload = {
-      formType: "diagnostico_ia",
-      timestamp: new Date().toISOString(),
-      completeData: {
-        nome: firstName,
-        sobrenome: lastName,
-        telefone: phone,
-        email,
-        possuiEmpresa: hasCompany,
-        empresa: hasCompany ? companyName : "",
-        funcionarios: hasCompany ? employeesCount : "",
-        desafios: selectedByStep[2] ?? [],
-        objetivos: selectedByStep[1] ?? [],
-        tecnologias: selectedByStep[3] ?? [],
-        maturidade: maturityMap[levelText] ?? "",
-        orcamento: budgetMap[budgetByStep[4] ?? ""] ?? "",
-        prazo: timelineMap[timelineByStep[4] ?? ""] ?? "",
-        descricao: notesByStep[4] ?? "",
-        equipeTecnica: teamMap[readinessByStep[5]?.team ?? ""] ?? "",
-        conhecimentoIA: knowledgeMap[readinessByStep[5]?.knowledge ?? ""] ?? "",
-        disponibilidadeTreinamento: trainingMap[readinessByStep[5]?.training ?? ""] ?? "",
-        IMD: score,
-      },
-    };
-
+  const handleFinish = async () => {
+    const payload = buildPayload();
     await fetch(WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
 
-    const summary = {
-      selections: selectedByStep,
-      maturityLevel: selectedLevelByStep[3] ?? "",
-      budget: budgetByStep[4] ?? "",
-      timeline: timelineByStep[4] ?? "",
-      notes: notesByStep[4] ?? "",
-      readiness: readinessByStep[5] ?? { team: "", knowledge: "", training: "" },
-      contact: {
-        email,
-        firstName,
-        lastName,
-        phone,
-        hasCompany,
-        company: hasCompany ? companyName : "",
-        employeesCount: hasCompany ? employeesCount : "",
-      },
-    };
-    setDetailsCompleted(true);
-    setShowDetailsDialog(false);
+    const summary = buildSummary();
     navigate("/diagnostico/resultado", { state: { summary } });
   };
 
@@ -705,7 +712,7 @@ const Diagnostico = () => {
             >
               {currentStep === steps.length ? (
                 <>
-                  Ver diagnóstico
+                  Acessar relatório
                   <CheckCircle2 size={18} className="ml-2" />
                 </>
               ) : (
@@ -806,7 +813,7 @@ const Diagnostico = () => {
               className="h-11 w-full rounded-xl border border-transparent bg-[#1C3324] text-white transition hover:bg-[#15271b]"
               onClick={handleDetailsSubmit}
             >
-              Acessar Relatório Completo
+              Fazer diagnóstico
             </Button>
           </div>
         </DialogContent>
