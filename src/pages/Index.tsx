@@ -27,7 +27,7 @@ const Index = () => {
     "@type": "Organization",
     name: "Simplí",
     url: "https://www.simpli.ia.br",
-    logo: "https://www.simpli.ia.br/logo.png",
+    logo: "/logonome-branca-cortada.webp",
     description: "Simplí oferece soluções completas de transformação digital: desenvolvimento web, agentes de IA, tráfego pago e consultoria digital.",
     address: {
       "@type": "PostalAddress",

@@ -47,12 +47,12 @@ const SiteFooter = () => {
   );
 
   return (
-    <footer className="border-t border-white/10 bg-[#0b1711] px-4 py-10 sm:px-6 sm:py-12 md:px-10 md:py-16">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:gap-10 md:flex-row md:items-start md:justify-between">
+    <footer className="border-t border-white/10 bg-[#0b1711] px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-12">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:gap-8 md:flex-row md:items-start md:justify-between">
         <div className="max-w-sm">
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsESG9QwVRNPlEoRcVxpjTndZFs8IqQ6NKb4Xhi"
-            alt="Tela.com logo"
+            src="/logonome-branca-cortada.webp"
+            alt="Simpli logo"
             className="h-10 w-auto"
             loading="lazy"
           />
@@ -75,16 +75,16 @@ const SiteFooter = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 text-sm text-white/70 md:grid-cols-2">
+        <div className="grid grid-cols-2 gap-6 text-sm text-white/70 md:grid-cols-2">
           <div>
             <h4 className="text-base font-semibold text-white">Empresa</h4>
-            <div className="mt-3 flex flex-col gap-2">
+            <div className="mt-2 flex flex-col gap-1.5">
               {companyLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={`/#${link.target}`}
                   onClick={(e) => handleSectionClick(e, link.target)}
-                  className="min-h-[44px] flex items-center transition active:opacity-70 hover:text-white touch-manipulation"
+                  className="min-h-[36px] flex items-center transition active:opacity-70 hover:text-white touch-manipulation"
                 >
                   {link.label}
                 </Link>
@@ -93,13 +93,13 @@ const SiteFooter = () => {
           </div>
           <div>
             <h4 className="text-base font-semibold text-white">Contato</h4>
-            <div className="mt-3 flex flex-col gap-2">
+            <div className="mt-2 flex flex-col gap-1.5">
               {contactInfo.map((item) =>
                 item.href ? (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="min-h-[44px] flex items-center transition active:opacity-70 hover:text-white touch-manipulation"
+                    className="min-h-[36px] flex items-center transition active:opacity-70 hover:text-white touch-manipulation"
                   >
                     {item.label}
                   </a>
@@ -111,7 +111,7 @@ const SiteFooter = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-10 max-w-6xl border-t border-white/5 pt-6 text-xs text-white/50">
+      <div className="mx-auto mt-8 max-w-6xl border-t border-white/5 pt-5 text-xs text-white/50">
         © {new Date().getFullYear()} Simplí. Todos os direitos reservados.
       </div>
     </footer>

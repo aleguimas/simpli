@@ -66,8 +66,8 @@ const Navbar = () => {
           onClick={(e) => handleNavClick(e, "hero")}
         >
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsESG9QwVRNPlEoRcVxpjTndZFs8IqQ6NKb4Xhi"
-            alt="Tela.com logo"
+            src="/logonome-branca-cortada.webp"
+            alt="Simpli logo"
             className="h-8 w-auto"
             loading="lazy"
           />

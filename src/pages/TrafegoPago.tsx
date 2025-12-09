@@ -16,7 +16,7 @@ import { SEO } from "@/components/SEO";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG =
-  "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE9K2mTqgbF0t15iaTHu2MwmqGXE64dxSPAlrk";
+  "/trafego-pago.webp";
 
 const benefits = [
   {

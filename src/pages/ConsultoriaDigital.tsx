@@ -20,7 +20,7 @@ import { SEO } from "@/components/SEO";
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 
 const HERO_BG =
-  "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEl0IBtmnC1gi0eAP7XFElWz8cvS9UtBdY3wsV";
+  "/fundo-consultoria.webp";
 
 const benefits = [
   {

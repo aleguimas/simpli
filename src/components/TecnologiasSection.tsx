@@ -3,29 +3,25 @@ const team = [
     name: "Alexandre Guimarães",
     title: "O Estrategista",
     bio: "Transformação Digital e Inteligência Artificial com 20+ anos de gestão corporativa.",
-    image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEauhePJBF8GkPX2cwREIBOA1KmZx5CpJ0DtMd",
+    image: "/guimas.webp",
   },
   {
     name: "Luciano Fernandes",
     title: "O Professor",
     bio: "Visual Merchandising e Trade Marketing com 35+ anos de experiência no mercado.",
-    image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEICbbBm7mMh5zL6vCXuUPodEBkaJDQn2c4rpG",
+    image: "/luciano.webp",
   },
   {
     name: "Rodrigo Lemos",
     title: "O Tráfego",
     bio: "Tráfego Pago e Marketing Digital, focado em estratégias para aumentar o faturamento.",
-    image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEslhK3qURvumjDTaW8whPIYnNpgbMFyHqVOAZ",
+    image: "/rodrigo.webp",
   },
   {
     name: "Caio Souza",
     title: "O Agente",
     bio: "Desenvolvimento web e arquitetura de automação com Inteligência Artificial.",
-    image:
-      "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEtUmhv4n0k0d8pmGzXQeVxIluNUWFAC75ZS49",
+    image: "/caio.webp",
   },
 ];
 

@@ -1,48 +1,14 @@
 const logos = [
-  {
-    name: "Jusbrasil",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsExco3zp1deM4WnXr8mYypFcOSAIPdGN6HTBV5",
-  },
-  {
-    name: "Vórtx",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEeV4mo4HwmbEWM0XkgZJFzH2fIpryq6ljVUcL",
-  },
-  {
-    name: "Ultra",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE6z8rLjZi7ToKv0aVd1rQNMIwhkCLjxBuJelc",
-  },
-  {
-    name: "Unimed",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx",
-  },
-  {
-    name: "Loft",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEZk3ALi084ELxHGVik9czW6J02qOuRdIN3ab7",
-  },
-  {
-    name: "Ernesto Borges",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE9eYm9hDgbF0t15iaTHu2MwmqGXE64dxSPAlr",
-  },
-  {
-    name: "Machado Meyer",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEuo0aOjAlPByubrRVGe5Dxp4iNQ2vSgwE3McT",
-  },
-  {
-    name: "Cliente 8",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE0rGDOPsDdGhWFTqILyHmz7NRarSkQjZciOft",
-  },
-  {
-    name: "Cliente 9",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE8Rz6idcLjbd3I06D4f7MtmWUYaBeikhEJP1z",
-  },
-  {
-    name: "Cliente 10",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEaye5CLpBF8GkPX2cwREIBOA1KmZx5CpJ0DtM",
-  },
-  {
-    name: "Cliente 11",
-    src: "https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEoIHFQz9OJaIS09Uc6ZPQhnpHLiB72tXfzTAw",
-  },
+  { name: "Cliente 1", src: "/1.webp" },
+  { name: "Cliente 2", src: "/2.webp" },
+  { name: "Cliente 3", src: "/3.webp" },
+  { name: "Cliente 4", src: "/4.webp" },
+  { name: "Cliente 5", src: "/5.webp" },
+  { name: "Cliente 6", src: "/6.webp" },
+  { name: "Cliente 7", src: "/7.webp" },
+  { name: "Cliente 8", src: "/8.webp" },
+  { name: "Cliente 9", src: "/9.webp" },
+  { name: "Cliente 10", src: "/10.webp" },
 ];
 
 const ClientesSection = () => {

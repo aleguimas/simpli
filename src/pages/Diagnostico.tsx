@@ -478,8 +478,8 @@ const Diagnostico = () => {
             className="flex items-center gap-3 text-sm font-medium text-white/80 transition hover:text-white"
           >
             <img
-              src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsESG9QwVRNPlEoRcVxpjTndZFs8IqQ6NKb4Xhi"
-              alt="Simplí"
+              src="/logonome-branca-cortada.webp"
+              alt="Simpli logo"
               className="h-9 w-auto"
               loading="lazy"
             />

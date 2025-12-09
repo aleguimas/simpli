@@ -24,8 +24,8 @@ const DiagnosticoSection = () => {
 
         <div className="relative mt-10 w-full max-w-4xl overflow-hidden rounded-[16px] border border-white/15 bg-white/5 shadow-2xl shadow-black/40 aspect-[16/9]">
           <img
-            src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsE7Cpjs4JbNsEXlrThLj3By4kOfWQ51aHmIixU"
-            alt="Visual da plataforma Simplí"
+            src="/Horizontal - Agentes IA v2.webp"
+            alt="Visual do diagnostico de agentes de IA"
             className="h-full w-full object-cover"
           />
         </div>

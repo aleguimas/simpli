@@ -108,7 +108,7 @@ const cases = [
 const DesenvolvimentoWeb = () => {
   const heroGradient = useMemo(
     () =>
-      "linear-gradient(120deg, rgba(12,20,15,0.8), rgba(28,51,36,0.85)), url('https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEOhLCzGvlFckbRnSjQ8zYfpeZKW20DUVLvgE5')",
+      "linear-gradient(120deg, rgba(12,20,15,0.8), rgba(28,51,36,0.85)), url('/fundo-devweb.webp')",
     [],
   );
 
