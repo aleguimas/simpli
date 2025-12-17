@@ -51,7 +51,7 @@ type StepConfig = {
 
 type ReadinessKey = "team" | "knowledge" | "training";
 
-const WEBHOOK_URL = "https://webhook.n8n1.agenciaevodigital.com/webhook/forms1";
+const WEBHOOK_URL = "https://webhook.n8n.simplidigital.dev/webhook/forms1";
 
 const steps: StepConfig[] = [
   {
