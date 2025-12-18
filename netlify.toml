@@ -2,6 +2,13 @@
   command = "npm run build"
   publish = "dist"
 
+# Redirects para URLs antigas (301 - Permanent Redirect)
+[[redirects]]
+  from = "/servicos/agentes-ia"
+  to = "/servicos/agentes-de-ia"
+  status = 301
+
+# SPA redirect (deve ser o último)
 [[redirects]]
   from = "/*"
   to = "/index.html"
