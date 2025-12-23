@@ -32,7 +32,20 @@ export const SEO = ({
   nofollow = false,
 }: SEOProps) => {
   const fullTitle = title ? `${title} | Simplí` : DEFAULT_TITLE;
-  const canonicalUrl = canonical ? `${BASE_URL}${canonical}` : BASE_URL;
+  
+  // Garantir que canonical seja sempre absoluta e limpa (sem trailing slash, sem query params)
+  const getCanonicalUrl = () => {
+    if (canonical) {
+      // Remover trailing slash e garantir que comece com /
+      const cleanCanonical = canonical.startsWith('/') 
+        ? canonical.replace(/\/$/, '') || '/' 
+        : `/${canonical.replace(/\/$/, '')}`;
+      return `${BASE_URL}${cleanCanonical}`;
+    }
+    return BASE_URL;
+  };
+  
+  const canonicalUrl = getCanonicalUrl();
 
   useEffect(() => {
     // Update document title

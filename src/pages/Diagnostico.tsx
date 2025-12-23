@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import {
@@ -11,7 +11,6 @@ import {
   Mail,
   Target,
   TrendingUp,
-  UserRound,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -25,13 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { showError } from "@/utils/toast";
 
@@ -58,7 +51,7 @@ type StepConfig = {
 
 type ReadinessKey = "team" | "knowledge" | "training";
 
-const WEBHOOK_URL = "https://webhook.n8n1.agenciaevodigital.com/webhook/forms1";
+const WEBHOOK_URL = "https://webhook.n8n.simplidigital.dev/webhook/forms1";
 
 const steps: StepConfig[] = [
   {
@@ -264,9 +257,7 @@ const Diagnostico = () => {
     4: [],
     5: [],
   });
-  const [selectedLevelByStep, setSelectedLevelByStep] = useState<
-    Record<number, string>
-  >({
+  const [selectedLevelByStep, setSelectedLevelByStep] = useState<Record<number, string>>({
     3: "Iniciante - Processos majoritariamente manuais",
   });
   const [budgetByStep, setBudgetByStep] = useState<Record<number, string>>({
@@ -283,18 +274,16 @@ const Diagnostico = () => {
   >({
     5: { team: "", knowledge: "", training: "" },
   });
-  const [showResultsDialog, setShowResultsDialog] = useState(false);
-  const [showDetailsDialog, setShowDetailsDialog] = useState(false);
+
+  const [showDetailsDialog, setShowDetailsDialog] = useState(true);
+  const [detailsCompleted, setDetailsCompleted] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
-  const [company, setCompany] = useState("");
-  const [companySize, setCompanySize] = useState("");
-  const [companySector, setCompanySector] = useState("");
-  const [role, setRole] = useState("");
-  const [roleArea, setRoleArea] = useState("");
-  const [subscribeNews, setSubscribeNews] = useState(false);
+  const [hasCompany, setHasCompany] = useState(false);
+  const [companyName, setCompanyName] = useState("");
+  const [employeesCount, setEmployeesCount] = useState("");
 
   const current = steps.find((s) => s.step === currentStep)!;
   const selected = selectedByStep[currentStep] ?? [];
@@ -308,16 +297,13 @@ const Diagnostico = () => {
     training: "",
   };
 
-  const Icon =
-    current.stageLabel === "Desafios atuais"
-      ? Brain
-      : current.stageLabel.startsWith("Maturidade")
-        ? TrendingUp
-        : current.stageLabel.startsWith("Investimento")
-          ? Calendar
-          : current.stageLabel.includes("Recursos")
-            ? BookOpen
-            : Target;
+  const Icon = useMemo(() => {
+    if (current.stageLabel === "Desafios atuais") return Brain;
+    if (current.stageLabel.startsWith("Maturidade")) return TrendingUp;
+    if (current.stageLabel.startsWith("Investimento")) return Calendar;
+    if (current.stageLabel.includes("Recursos")) return BookOpen;
+    return Target;
+  }, [current.stageLabel]);
 
   const toggleOption = (value: string) => {
     setSelectedByStep((prev) => {
@@ -332,7 +318,65 @@ const Diagnostico = () => {
   const goPrev = () => setCurrentStep((prev) => Math.max(1, prev - 1));
   const goNext = () => setCurrentStep((prev) => Math.min(steps.length, prev + 1));
 
+  const buildSummary = () => ({
+    selections: selectedByStep,
+    maturityLevel: selectedLevelByStep[3] ?? "",
+    budget: budgetByStep[4] ?? "",
+    timeline: timelineByStep[4] ?? "",
+    notes: notesByStep[4] ?? "",
+    readiness: readinessByStep[5] ?? { team: "", knowledge: "", training: "" },
+    contact: {
+      email,
+      firstName,
+      lastName,
+      phone,
+      hasCompany,
+      company: hasCompany ? companyName : "",
+      employeesCount: hasCompany ? employeesCount : "",
+    },
+  });
+
+  const buildPayload = () => {
+    const levelText = selectedLevelByStep[3] ?? "";
+    const score = maturityScore(levelText);
+    return {
+      formType: "diagnostico_ia",
+      timestamp: new Date().toISOString(),
+      completeData: {
+        nome: firstName,
+        sobrenome: lastName,
+        telefone: phone,
+        email,
+        possuiEmpresa: hasCompany,
+        empresa: hasCompany ? companyName : "",
+        funcionarios: hasCompany ? employeesCount : "",
+        desafios: selectedByStep[2] ?? [],
+        objetivos: selectedByStep[1] ?? [],
+        tecnologias: selectedByStep[3] ?? [],
+        maturidade: maturityMap[levelText] ?? "",
+        orcamento: budgetMap[budgetByStep[4] ?? ""] ?? "",
+        prazo: timelineMap[timelineByStep[4] ?? ""] ?? "",
+        descricao: notesByStep[4] ?? "",
+        equipeTecnica: teamMap[readinessByStep[5]?.team ?? ""] ?? "",
+        conhecimentoIA: knowledgeMap[readinessByStep[5]?.knowledge ?? ""] ?? "",
+        disponibilidadeTreinamento: trainingMap[readinessByStep[5]?.training ?? ""] ?? "",
+        IMD: score,
+      },
+    };
+  };
+
+  const sendToWebhook = (body: unknown) =>
+    fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
   const validateCurrentStep = () => {
+    if (!detailsCompleted) {
+      setShowDetailsDialog(true);
+      return false;
+    }
     if (currentStep === 1 && selected.length === 0) {
       showError("Selecione pelo menos um objetivo para avançar.");
       return false;
@@ -378,15 +422,10 @@ const Diagnostico = () => {
   const handlePrimaryAction = () => {
     if (!validateCurrentStep()) return;
     if (currentStep === steps.length) {
-      setShowResultsDialog(true);
+      handleFinish();
       return;
     }
     goNext();
-  };
-
-  const openDetailsModal = () => {
-    setShowResultsDialog(false);
-    setShowDetailsDialog(true);
   };
 
   const maturityScore = (level: string) => {
@@ -397,67 +436,61 @@ const Diagnostico = () => {
     return 20;
   };
 
+  const validateDetails = () => {
+    if (!firstName.trim()) {
+      showError("Informe seu nome.");
+      return false;
+    }
+    if (!lastName.trim()) {
+      showError("Informe seu sobrenome.");
+      return false;
+    }
+    if (!email.trim()) {
+      showError("Informe seu e-mail.");
+      return false;
+    }
+    if (!phone.trim()) {
+      showError("Informe seu WhatsApp.");
+      return false;
+    }
+    if (hasCompany) {
+      if (!companyName.trim()) {
+        showError("Informe o nome da empresa.");
+        return false;
+      }
+      if (!employeesCount.trim()) {
+        showError("Informe quantos funcionários.");
+        return false;
+      }
+    }
+    return true;
+  };
+
   const handleDetailsSubmit = async () => {
-    const levelText = selectedLevelByStep[3] ?? "";
-    const score = maturityScore(levelText);
-    const payload = {
-      formType: "diagnostico_ia",
-      timestamp: new Date().toISOString(),
-      completeData: {
-        nome: firstName,
-        sobrenome: lastName,
-        telefone: phone,
-        email,
-        empresa: company,
-        cargo: role,
-        area: roleArea,
-        setor: companySector,
-        tamanho: companySize,
-        desafios: selectedByStep[2] ?? [],
-        objetivos: selectedByStep[1] ?? [],
-        tecnologias: selectedByStep[3] ?? [],
-        maturidade: maturityMap[levelText] ?? "",
-        orcamento: budgetMap[budgetByStep[4] ?? ""] ?? "",
-        prazo: timelineMap[timelineByStep[4] ?? ""] ?? "",
-        descricao: notesByStep[4] ?? "",
-        equipeTecnica: teamMap[readinessByStep[5]?.team ?? ""] ?? "",
-        conhecimentoIA: knowledgeMap[readinessByStep[5]?.knowledge ?? ""] ?? "",
-        disponibilidadeTreinamento:
-          trainingMap[readinessByStep[5]?.training ?? ""] ?? "",
-        newsletter: subscribeNews,
-        IMD: score,
-      },
-    };
+    if (!validateDetails()) return;
 
-    await fetch(WEBHOOK_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    const leadPayload = buildPayload();
+    await sendToWebhook(leadPayload);
 
-    const summary = {
-      selections: selectedByStep,
-      maturityLevel: selectedLevelByStep[3] ?? "",
-      budget: budgetByStep[4] ?? "",
-      timeline: timelineByStep[4] ?? "",
-      notes: notesByStep[4] ?? "",
-      readiness: readinessByStep[5] ?? { team: "", knowledge: "", training: "" },
-      contact: {
-        email,
-        firstName,
-        lastName,
-        phone,
-        company,
-        companySize,
-        companySector,
-        role,
-        roleArea,
-        subscribeNews,
-      },
-    };
+    setDetailsCompleted(true);
     setShowDetailsDialog(false);
+  };
+
+  const handleFinish = async () => {
+    const payload = buildPayload();
+    await sendToWebhook(payload);
+
+    const summary = buildSummary();
     navigate("/diagnostico/resultado", { state: { summary } });
   };
+
+  const handleDialogOpenChange = (nextOpen: boolean) => {
+    setShowDetailsDialog(nextOpen);
+  };
+
+  useEffect(() => {
+    setShowDetailsDialog(true);
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-[#0C140F] text-white">
@@ -499,18 +532,11 @@ const Diagnostico = () => {
         <main className="mt-10 space-y-6">
           <div className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 md:flex-row md:items-center md:justify-between">
             <div className="text-sm text-white/80">
-              <span className="font-semibold text-white">
-                Passo {current.step} de 5
-              </span>{" "}
+              <span className="font-semibold text-white">Passo {current.step} de 5</span>{" "}
               • {current.stageLabel}
             </div>
-            <div className="text-sm font-semibold text-[#4ADE80]">
-              {current.progress}% completo
-            </div>
-            <Progress
-              value={current.progress}
-              className="h-2 bg-white/10 [&>div]:bg-white"
-            />
+            <div className="text-sm font-semibold text-[#4ADE80]">{current.progress}% completo</div>
+            <Progress value={current.progress} className="h-2 bg-white/10 [&>div]:bg-white" />
           </div>
 
           <Card className="border border-white/10 bg-[#0F1D15]/90 shadow-2xl shadow-black/30">
@@ -520,20 +546,14 @@ const Diagnostico = () => {
                   <Icon size={20} />
                 </div>
                 <div className="space-y-2">
-                  <h2 className="text-2xl font-semibold text-white md:text-3xl">
-                    {current.heading}
-                  </h2>
-                  <p className="text-sm text-white/70 md:text-base">
-                    {current.subheading}
-                  </p>
+                  <h2 className="text-2xl font-semibold text-white md:text-3xl">{current.heading}</h2>
+                  <p className="text-sm text-white/70 md:text-base">{current.subheading}</p>
                 </div>
               </div>
 
               {current.selectOptions && (
                 <div className="space-y-2">
-                  <p className="text-base font-semibold text-white">
-                    {current.selectLabel}
-                  </p>
+                  <p className="text-base font-semibold text-white">{current.selectLabel}</p>
                   <Select
                     value={selectedLevel}
                     onValueChange={(value) =>
@@ -548,11 +568,7 @@ const Diagnostico = () => {
                     </SelectTrigger>
                     <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
                       {current.selectOptions.map((option) => (
-                        <SelectItem
-                          key={option}
-                          value={option}
-                          className="text-white/90"
-                        >
+                        <SelectItem key={option} value={option} className="text-white/90">
                           {option}
                         </SelectItem>
                       ))}
@@ -563,9 +579,7 @@ const Diagnostico = () => {
 
               {current.budgetOptions && (
                 <div className="space-y-2">
-                  <p className="text-base font-semibold text-white">
-                    {current.budgetLabel}
-                  </p>
+                  <p className="text-base font-semibold text-white">{current.budgetLabel}</p>
                   <Select
                     value={selectedBudget}
                     onValueChange={(value) =>
@@ -577,11 +591,7 @@ const Diagnostico = () => {
                     </SelectTrigger>
                     <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
                       {current.budgetOptions.map((option) => (
-                        <SelectItem
-                          key={option}
-                          value={option}
-                          className="text-white/90"
-                        >
+                        <SelectItem key={option} value={option} className="text-white/90">
                           {option}
                         </SelectItem>
                       ))}
@@ -592,9 +602,7 @@ const Diagnostico = () => {
 
               {current.timelineOptions && (
                 <div className="space-y-2">
-                  <p className="text-base font-semibold text-white">
-                    {current.timelineLabel}
-                  </p>
+                  <p className="text-base font-semibold text-white">{current.timelineLabel}</p>
                   <Select
                     value={selectedTimeline}
                     onValueChange={(value) =>
@@ -609,11 +617,7 @@ const Diagnostico = () => {
                     </SelectTrigger>
                     <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
                       {current.timelineOptions.map((option) => (
-                        <SelectItem
-                          key={option}
-                          value={option}
-                          className="text-white/90"
-                        >
+                        <SelectItem key={option} value={option} className="text-white/90">
                           {option}
                         </SelectItem>
                       ))}
@@ -624,9 +628,7 @@ const Diagnostico = () => {
 
               {current.notesLabel && (
                 <div className="space-y-2">
-                  <p className="text-base font-semibold text-white">
-                    {current.notesLabel}
-                  </p>
+                  <p className="text-base font-semibold text-white">{current.notesLabel}</p>
                   <Textarea
                     value={selectedNotes}
                     onChange={(e) =>
@@ -645,9 +647,7 @@ const Diagnostico = () => {
                 <div className="space-y-4">
                   {readinessSelects.map((select) => (
                     <div key={select.key} className="space-y-2">
-                      <p className="text-base font-semibold text-white">
-                        {select.label}
-                      </p>
+                      <p className="text-base font-semibold text-white">{select.label}</p>
                       <Select
                         value={readiness[select.key]}
                         onValueChange={(value) =>
@@ -669,11 +669,7 @@ const Diagnostico = () => {
                         </SelectTrigger>
                         <SelectContent className="border-white/10 bg-[#0F1D15] text-white">
                           {select.options.map((option) => (
-                            <SelectItem
-                              key={option}
-                              value={option}
-                              className="text-white/90"
-                            >
+                            <SelectItem key={option} value={option} className="text-white/90">
                               {option}
                             </SelectItem>
                           ))}
@@ -686,9 +682,7 @@ const Diagnostico = () => {
 
               {current.options.length > 0 && current.prompt && (
                 <div>
-                  <p className="text-base font-semibold text-white">
-                    {current.prompt}
-                  </p>
+                  <p className="text-base font-semibold text-white">{current.prompt}</p>
                   <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
                     {current.options.map((option) => (
                       <label
@@ -725,7 +719,7 @@ const Diagnostico = () => {
             >
               {currentStep === steps.length ? (
                 <>
-                  Ver diagnóstico
+                  Acessar relatório
                   <CheckCircle2 size={18} className="ml-2" />
                 </>
               ) : (
@@ -739,62 +733,18 @@ const Diagnostico = () => {
         </main>
       </div>
 
-      <Dialog open={showResultsDialog} onOpenChange={setShowResultsDialog}>
-        <DialogContent className="max-w-md rounded-2xl border border-transparent bg-white text-[#0C140F] shadow-xl">
-          <DialogHeader className="space-y-2">
-            <div className="flex items-center gap-2 text-[#1C3324]">
-              <Mail size={20} />
-              <DialogTitle className="text-lg font-semibold">
-                Acesse seus Resultados
-              </DialogTitle>
-            </div>
-            <DialogDescription className="text-sm text-[#0C140F]/70">
-              Insira seu email para visualizar o relatório completo
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="space-y-2">
-            <label className="text-sm font-semibold text-[#0C140F]">
-              E-mail Corporativo *
-            </label>
-            <Input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="seuemail@empresa.com"
-              className="h-11 rounded-xl border-[#0C140F33] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
-            />
-          </div>
-
-          <div className="pt-4">
-            <Button
-              className="h-11 w-full rounded-xl border border-transparent bg-[#1C3324] text-white transition hover:bg-[#15271b]"
-              onClick={openDetailsModal}
-            >
-              Continuar
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
+      <Dialog open={showDetailsDialog} onOpenChange={handleDialogOpenChange}>
         <DialogContent className="max-w-xl rounded-2xl border border-transparent bg-white text-[#0C140F] shadow-xl">
           <DialogHeader className="space-y-2">
             <div className="flex items-center gap-2 text-[#1C3324]">
-              <UserRound size={20} />
-              <DialogTitle className="text-lg font-semibold">
-                Complete seus Dados
-              </DialogTitle>
+              <Mail size={20} />
+              <DialogTitle className="text-lg font-semibold">Acesse seus Resultados</DialogTitle>
             </div>
-            <DialogDescription className="text-sm text-[#0C140F]/70">
-              Para acessar o relatório, precisamos de algumas informações adicionais:
-            </DialogDescription>
           </DialogHeader>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-1">
-              <label className="text-sm font-semibold text-[#0C140F]">
-                Nome *
-              </label>
+              <label className="text-sm font-semibold text-[#0C140F]">Nome *</label>
               <Input
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
@@ -803,9 +753,7 @@ const Diagnostico = () => {
               />
             </div>
             <div className="space-y-1">
-              <label className="text-sm font-semibold text-[#0C140F]">
-                Sobrenome *
-              </label>
+              <label className="text-sm font-semibold text-[#0C140F]">Sobrenome *</label>
               <Input
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -816,9 +764,17 @@ const Diagnostico = () => {
           </div>
 
           <div className="space-y-1">
-            <label className="text-sm font-semibold text-[#0C140F]">
-              Número de telefone WhatsApp *
-            </label>
+            <label className="text-sm font-semibold text-[#0C140F]">E-mail *</label>
+            <Input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="seuemail@empresa.com"
+              className="h-11 rounded-xl border-[#0C140F33] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
+            />
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-sm font-semibold text-[#0C140F]">WhatsApp *</label>
             <Input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -827,154 +783,51 @@ const Diagnostico = () => {
             />
           </div>
 
-          <div className="space-y-1">
-            <label className="text-sm font-semibold text-[#0C140F]">
-              Nome da empresa *
-            </label>
-            <Input
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-              placeholder="Minha Empresa Ltda"
-              className="h-11 rounded-xl border-[#0C140F26] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
-            />
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#0C140F]">Possui empresa?</label>
+            <Select
+              value={hasCompany ? "sim" : "nao"}
+              onValueChange={(value) => setHasCompany(value === "sim")}
+            >
+              <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
+                <SelectValue placeholder="Selecione" />
+              </SelectTrigger>
+              <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
+                <SelectItem value="sim">Sim</SelectItem>
+                <SelectItem value="nao">Não</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="space-y-1">
-              <label className="text-sm font-semibold text-[#0C140F]">
-                Qual é o tamanho da sua empresa? *
-              </label>
-              <Select value={companySize} onValueChange={setCompanySize}>
-                <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
-                  <SelectValue placeholder="Selecione" />
-                </SelectTrigger>
-                <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
-                  <SelectItem value="1-5">Micro (1-5 funcionários)</SelectItem>
-                  <SelectItem value="1-50">Pequena (1-50)</SelectItem>
-                  <SelectItem value="51-200">Média (51-200)</SelectItem>
-                  <SelectItem value="201-1000">Grande (200-1000)</SelectItem>
-                  <SelectItem value="1000+">Enterprise (1000+)</SelectItem>
-                </SelectContent>
-              </Select>
+          {hasCompany && (
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="space-y-1">
+                <label className="text-sm font-semibold text-[#0C140F]">Nome da empresa *</label>
+                <Input
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  placeholder="Minha Empresa Ltda"
+                  className="h-11 rounded-xl border-[#0C140F26] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-sm font-semibold text-[#0C140F]">Quantos funcionários *</label>
+                <Input
+                  value={employeesCount}
+                  onChange={(e) => setEmployeesCount(e.target.value)}
+                  placeholder="Ex: 20"
+                  className="h-11 rounded-xl border-[#0C140F26] bg-white text-[#0C140F] placeholder:text-[#0C140F80] focus:border-[#1C3324] focus:ring-0"
+                />
+              </div>
             </div>
-            <div className="space-y-1">
-              <label className="text-sm font-semibold text-[#0C140F]">
-                Qual é o setor de atuação da sua empresa? *
-              </label>
-              <Select value={companySector} onValueChange={setCompanySector}>
-                <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
-                  <SelectValue placeholder="Selecione" />
-                </SelectTrigger>
-                <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
-                  <SelectItem value="financeiro">
-                    Financeiro (Bancos & Pagamentos)
-                  </SelectItem>
-                  <SelectItem value="seguros">Seguros</SelectItem>
-                  <SelectItem value="tecnologia">
-                    Tecnologia (Software & Cloud)
-                  </SelectItem>
-                  <SelectItem value="telecomunicacoes">Telecomunicações</SelectItem>
-                  <SelectItem value="varejo">
-                    Varejo & E-commerce
-                  </SelectItem>
-                  <SelectItem value="industria">
-                    Indústria & Manufatura
-                  </SelectItem>
-                  <SelectItem value="energia">
-                    Energia & Combustíveis (Distribuição/Downstream)
-                  </SelectItem>
-                  <SelectItem value="utilities">
-                    Serviços de Eletricidade, Gás, Água e Esgoto (Utilities)
-                  </SelectItem>
-                  <SelectItem value="logistica">
-                    Logística, Transporte & Mobilidade
-                  </SelectItem>
-                  <SelectItem value="imobiliario">
-                    Imobiliário / Construção civil
-                  </SelectItem>
-                  <SelectItem value="agronegocio">Agronegócio</SelectItem>
-                  <SelectItem value="saude">
-                    Saúde (Prestadores & Planos)
-                  </SelectItem>
-                  <SelectItem value="farmaceutica">
-                    Farmacêutica & Biotecnologia
-                  </SelectItem>
-                  <SelectItem value="educacao">
-                    Educação (Educação & Treinamentos)
-                  </SelectItem>
-                  <SelectItem value="midia">Mídia / Publishers</SelectItem>
-                  <SelectItem value="martech">Agências / Martech</SelectItem>
-                  <SelectItem value="publico">Setor Público (Governo)</SelectItem>
-                  <SelectItem value="outro">Outro</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="space-y-1">
-              <label className="text-sm font-semibold text-[#0C140F]">
-                Cargo na Empresa *
-              </label>
-              <Select value={role} onValueChange={setRole}>
-                <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
-                  <SelectValue placeholder="Selecione" />
-                </SelectTrigger>
-                <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
-                  <SelectItem value="founder">Founder</SelectItem>
-                  <SelectItem value="presidente">Presidente</SelectItem>
-                  <SelectItem value="ceo">CEO</SelectItem>
-                  <SelectItem value="clevel">C-Level</SelectItem>
-                  <SelectItem value="vp">VP</SelectItem>
-                  <SelectItem value="diretor">Diretor</SelectItem>
-                  <SelectItem value="superintendente">Superintendente</SelectItem>
-                  <SelectItem value="head">Head</SelectItem>
-                  <SelectItem value="gerente">Gerente</SelectItem>
-                  <SelectItem value="coordenador">Coordenador</SelectItem>
-                  <SelectItem value="especialista">Especialista</SelectItem>
-                  <SelectItem value="analista">Analista</SelectItem>
-                  <SelectItem value="assistente">Assistente</SelectItem>
-                  <SelectItem value="estagiario">Estagiário</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-1">
-              <label className="text-sm font-semibold text-[#0C140F]">
-                Área de atuação do seu cargo? *
-              </label>
-              <Select value={roleArea} onValueChange={setRoleArea}>
-                <SelectTrigger className="h-11 w-full rounded-xl border-[#0C140F26] bg-white text-left text-[#0C140F] hover:border-[#1C3324] focus:border-[#1C3324] focus:ring-0">
-                  <SelectValue placeholder="Selecione" />
-                </SelectTrigger>
-                <SelectContent className="border-[#0C140F26] bg-white text-[#0C140F]">
-                  <SelectItem value="inovacao">Inovação</SelectItem>
-                  <SelectItem value="rh">RH</SelectItem>
-                  <SelectItem value="marketing">Marketing</SelectItem>
-                  <SelectItem value="ti">TI</SelectItem>
-                  <SelectItem value="operacoes">Operações</SelectItem>
-                  <SelectItem value="pd">P&amp;D</SelectItem>
-                  <SelectItem value="vendas">Vendas</SelectItem>
-                  <SelectItem value="outros">Outros</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          <label className="flex items-center gap-3 text-sm text-[#0C140F]">
-            <Checkbox
-              checked={subscribeNews}
-              onCheckedChange={(checked) => setSubscribeNews(!!checked)}
-              className="border-[#0C140F66] data-[state=checked]:bg-[#1C3324] data-[state=checked]:text-white"
-            />
-            Quero assinar a Simplí News: AI
-          </label>
+          )}
 
           <div className="pt-2">
             <Button
               className="h-11 w-full rounded-xl border border-transparent bg-[#1C3324] text-white transition hover:bg-[#15271b]"
               onClick={handleDetailsSubmit}
             >
-              Acessar Relatório Completo
+              Fazer diagnóstico
             </Button>
           </div>
         </DialogContent>
