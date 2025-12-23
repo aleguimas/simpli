@@ -3,7 +3,6 @@ const logos = [
   { name: "Cliente 2", src: "/2.webp" },
   { name: "Cliente 3", src: "/3.webp" },
   { name: "Cliente 4", src: "/4.webp" },
-  { name: "Cliente 5", src: "/5.webp" },
   { name: "Cliente 6", src: "/6.webp" },
   { name: "Cliente 7", src: "/7.webp" },
   { name: "Cliente 8", src: "/8.webp" },
