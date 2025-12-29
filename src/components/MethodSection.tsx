@@ -2,17 +2,47 @@ import { useMemo } from "react";
 
 type Pillar = {
   letter: string;
-  title: string;
+  titleLine: string;
   description: string;
 };
 
 const pillars: Pillar[] = [
-  { letter: "S", title: "Segurança", description: "Operação monitorada 24/7." },
-  { letter: "I", title: "Inovação", description: "Antecipamos problemas e oportunidades." },
-  { letter: "M", title: "Mapeamento", description: "Diagnóstico antes de investir." },
-  { letter: "P", title: "Personalização", description: "IA criada pro seu negócio." },
-  { letter: "L", title: "Lapidação", description: "Melhoria contínua dos modelos." },
-  { letter: "Í", title: "Impacto", description: "Resultado metrificado em dados reais." },
+  {
+    letter: "S",
+    titleLine: "Segurança: operação monitorada 24/7.",
+    description:
+      'Seu negócio nunca fica na mão. Em um mundo onde a IA pode "alucinar" ou servidores podem oscilar, a Simplí garante a estabilidade.',
+  },
+  {
+    letter: "I",
+    titleLine: "Inovação: antecipamos problemas e oportunidades.",
+    description:
+      'Não somos apenas "implementadores", somos parceiros estratégicos. Olhamos para sua empresa buscando onde a IA pode resolver o próximo grande problema.',
+  },
+  {
+    letter: "M",
+    titleLine: "Mapeamento: diagnóstico antes de investir.",
+    description:
+      "Sua empresa não investe errado. Filtramos o que é de fato um gargalo de alavancagem para solucionarmos com IA.",
+  },
+  {
+    letter: "P",
+    titleLine: "Personalização: IA criada pro seu negócio.",
+    description:
+      "Seu negócio não usa a mesma ferramenta que o concorrente. Construímos uma arquitetura que reflete a cultura e o modo de operar específico da empresa.",
+  },
+  {
+    letter: "L",
+    titleLine: "Lapidação: melhoria contínua dos modelos.",
+    description:
+      "A IA não fica obsoleta. O que entregamos hoje será ainda melhor amanhã através de ajustes de prompts e novos dados.",
+  },
+  {
+    letter: "Í",
+    titleLine: "Impacto: resultado metrificado em dados reais.",
+    description:
+      "O que não é medido não é gerido. Entregamos métricas que provam que o investimento tem impacto direto na performance do negócio.",
+  },
 ];
 
 const MethodSection = () => {
@@ -52,7 +82,9 @@ const MethodSection = () => {
                 {pillar.letter}
               </div>
               <div className="space-y-1">
-                <div className="text-base font-semibold text-white">{pillar.title}</div>
+                <div className="text-base font-semibold text-white">
+                  {pillar.titleLine}
+                </div>
                 <p className="text-sm leading-relaxed text-white/70">
                   {pillar.description}
                 </p>
