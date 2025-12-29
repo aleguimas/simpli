@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import HeroSection from "@/components/HeroSection";
 import ClientesSection from "@/components/ClientesSection";
 import ServicosSection from "@/components/ServicosSection";
+import MethodSection from "@/components/MethodSection";
 import NichosImpactoSection from "@/components/NichosImpactoSection";
 import TreinamentosSection from "@/components/TreinamentosSection";
 import TecnologiasSection from "@/components/TecnologiasSection";
@@ -28,7 +29,8 @@ const Index = () => {
     name: "Simplí",
     url: "https://www.simpli.ia.br",
     logo: "/logonome-branca-cortada.webp",
-    description: "Simplí oferece soluções completas de transformação digital: desenvolvimento web, agentes de IA, tráfego pago e consultoria digital.",
+    description:
+      "Simplí oferece soluções completas de transformação digital: desenvolvimento web, agentes de IA, tráfego pago e consultoria digital.",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Recife",
@@ -83,6 +85,7 @@ const Index = () => {
         <HeroSection />
         <ClientesSection />
         <ServicosSection />
+        <MethodSection />
         <NichosImpactoSection />
         <DiagnosticoSection />
         <TreinamentosSection />
