@@ -48,7 +48,7 @@ const MethodSection = () => {
               key={pillar.letter}
               className="group relative flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
             >
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white p-3 text-lg font-bold text-[#4ADE80] shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/10 p-3 text-lg font-bold text-white shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
                 {pillar.letter}
               </div>
               <div className="space-y-1">
