@@ -38,7 +38,7 @@ const MethodSection = () => {
             IA sem método vira custo.
           </h2>
           <p className="text-base leading-relaxed text-white/75">
-            O Simplí AI Method™ é a nossa metodologia para transformar processos em IA aplicada, trazendo resultado real.
+            O <span className="font-semibold">Simplí AI Method™</span> é a nossa metodologia para transformar processos em IA aplicada, trazendo resultado real.
           </p>
         </div>
 
