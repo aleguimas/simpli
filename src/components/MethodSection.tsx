@@ -7,12 +7,42 @@ type Pillar = {
 };
 
 const pillars: Pillar[] = [
-  { letter: "S", title: "Segurança", description: "Operação monitorada 24/7." },
-  { letter: "I", title: "Inovação", description: "Antecipamos problemas e oportunidades." },
-  { letter: "M", title: "Mapeamento", description: "Diagnóstico antes de investir." },
-  { letter: "P", title: "Personalização", description: "IA criada pro seu negócio." },
-  { letter: "L", title: "Lapidação", description: "Melhoria contínua dos modelos." },
-  { letter: "Í", title: "Impacto", description: "Resultado metrificado em dados reais." },
+  {
+    letter: "S",
+    title: "Segurança",
+    description:
+      'Operação monitorada 24/7. Seu negócio nunca fica na mão. Em um mundo onde a IA pode "alucinar" ou servidores podem oscilar, a Simplí garante a estabilidade.',
+  },
+  {
+    letter: "I",
+    title: "Inovação",
+    description:
+      "Antecipamos problemas e oportunidades. Não somos apenas “implementadores”, somos parceiros estratégicos. Olhamos para sua empresa buscando onde a IA pode resolver o próximo grande problema.",
+  },
+  {
+    letter: "M",
+    title: "Mapeamento",
+    description:
+      "Diagnóstico antes de investir. Sua empresa não investe errado. Filtramos o que é de fato um gargalo de alavancagem para solucionarmos com IA.",
+  },
+  {
+    letter: "P",
+    title: "Personalização",
+    description:
+      "IA criada pro seu negócio. Seu negócio não usa a mesma ferramenta que o concorrente. Construímos uma arquitetura que reflete a cultura e o modo de operar específico da empresa.",
+  },
+  {
+    letter: "L",
+    title: "Lapidação",
+    description:
+      "Melhoria contínua dos modelos. A IA não fica obsoleta. O que entregamos hoje será ainda melhor amanhã através de ajustes de prompts e novos dados.",
+  },
+  {
+    letter: "Í",
+    title: "Impacto",
+    description:
+      "Resultado metrificado em dados reais. O que não é medido não é gerido. Entregamos métricas que provam que o investimento tem impacto direto na performance do negócio.",
+  },
 ];
 
 const MethodSection = () => {
