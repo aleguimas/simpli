@@ -67,7 +67,7 @@ const MethodSection = () => {
           <h2 className="text-3xl font-semibold text-white md:text-4xl">
             IA sem método vira custo.
           </h2>
-          <p className="text-base leading-relaxed text-white/75">
+          <p className="text-base leading-relaxed text-white/75 md:whitespace-nowrap">
             O <span className="font-semibold">Simplí AI Method™</span> é a nossa metodologia para transformar processos em IA aplicada, trazendo resultado real.
           </p>
         </div>
