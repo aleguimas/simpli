@@ -18,6 +18,15 @@ import ScrollToTop from "./components/ScrollToTop";
 import { GoogleAnalytics } from "./components/GoogleAnalytics";
 import { GoogleTagManager } from "./components/GoogleTagManager";
 
+const STUDIO_URL = "https://simpli-cms.sanity.studio";
+
+const StudioRedirect = () => {
+  if (typeof window !== "undefined") {
+    window.location.replace(STUDIO_URL);
+  }
+  return null;
+};
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -40,6 +49,7 @@ const App = () => (
           <Route path="/servicos/:slug" element={<ServicePage />} />
           <Route path="/conteudo" element={<Conteudo />} />
           <Route path="/conteudo/:slug" element={<ConteudoPost />} />
+          <Route path="/studio" element={<StudioRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

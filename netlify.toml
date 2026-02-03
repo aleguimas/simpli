@@ -8,6 +8,12 @@
   to = "/servicos/agentes-de-ia"
   status = 301
 
+# /studio -> Sanity Studio (CMS)
+[[redirects]]
+  from = "/studio"
+  to = "https://simpli-cms.sanity.studio"
+  status = 302
+
 # SPA redirect (deve ser o último)
 [[redirects]]
   from = "/*"
