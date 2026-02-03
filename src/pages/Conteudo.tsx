@@ -81,8 +81,8 @@ const Conteudo = () => {
               </p>
             )}
             {!isLoading && !error && posts.length === 0 && (
-              <p className="text-center text-white/70">
-                Nenhum conteúdo publicado ainda.
+              <p className="text-center text-xl text-white/80">
+                Em breve.
               </p>
             )}
             {!isLoading && !error && posts.length > 0 && (
