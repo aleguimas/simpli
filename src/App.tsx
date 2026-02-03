@@ -12,6 +12,8 @@ import AgentesIA from "./pages/AgentesIA";
 import DesenvolvimentoWeb from "./pages/DesenvolvimentoWeb";
 import TrafegoPago from "./pages/TrafegoPago";
 import ConsultoriaDigital from "./pages/ConsultoriaDigital";
+import Conteudo from "./pages/Conteudo";
+import ConteudoPost from "./pages/ConteudoPost";
 import ScrollToTop from "./components/ScrollToTop";
 import { GoogleAnalytics } from "./components/GoogleAnalytics";
 import { GoogleTagManager } from "./components/GoogleTagManager";
@@ -36,6 +38,8 @@ const App = () => (
           <Route path="/servicos/trafego-pago" element={<TrafegoPago />} />
           <Route path="/servicos/consultoria-digital" element={<ConsultoriaDigital />} />
           <Route path="/servicos/:slug" element={<ServicePage />} />
+          <Route path="/conteudo" element={<Conteudo />} />
+          <Route path="/conteudo/:slug" element={<ConteudoPost />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

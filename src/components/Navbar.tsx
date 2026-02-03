@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Serviços", target: "servicos" },
   { label: "IA", target: "nichos" },
   { label: "Treinamentos", target: "treinamento" },
+  { label: "Conteúdo", href: "/conteudo" },
   { label: "Sobre", target: "carreiras" },
 ];
 
@@ -74,16 +75,26 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden items-center gap-2 text-sm text-white/80 md:flex">
-          {navLinks.map((item) => (
-            <Link
-              key={item.target}
-              to={`/#${item.target}`}
-              onClick={(e) => handleNavClick(e, item.target)}
-              className="rounded-lg px-3 py-2 transition hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navLinks.map((item) =>
+            "href" in item ? (
+              <Link
+                key={item.href}
+                to={item.href}
+                className="rounded-lg px-3 py-2 transition hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <Link
+                key={item.target}
+                to={`/#${item.target}`}
+                onClick={(e) => handleNavClick(e, item.target)}
+                className="rounded-lg px-3 py-2 transition hover:text-white"
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="hidden items-center md:flex">
@@ -111,16 +122,27 @@ const Navbar = () => {
             >
               <div className="mt-6 flex flex-col gap-5">
                 <div className="flex flex-col gap-2 text-sm">
-                  {navLinks.map((item) => (
-                    <Link
-                      key={item.target}
-                      to={`/#${item.target}`}
-                      onClick={(e) => handleMobileNavClick(e, item.target)}
-                      className="rounded-lg px-3 py-2 transition hover:bg-white/5"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
+                  {navLinks.map((item) =>
+                    "href" in item ? (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="rounded-lg px-3 py-2 transition hover:bg-white/5"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <Link
+                        key={item.target}
+                        to={`/#${item.target}`}
+                        onClick={(e) => handleMobileNavClick(e, item.target)}
+                        className="rounded-lg px-3 py-2 transition hover:bg-white/5"
+                      >
+                        {item.label}
+                      </Link>
+                    )
+                  )}
                 </div>
 
                 <Button
