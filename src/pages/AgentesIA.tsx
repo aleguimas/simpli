@@ -1,10 +1,8 @@
-import type React from "react";
-import { CheckCircle2, Zap, BarChart3, Clock3, TrendingUp, MessageCircle, NotebookPen, Brain, Cog } from "lucide-react";
+import { Zap, BarChart3, Clock3, TrendingUp, MessageCircle, NotebookPen, Brain, Cog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 import SiteFooter from "@/components/SiteFooter";
-import { useInView } from "@/hooks/use-in-view";
 import Navbar from "@/components/Navbar";
 import { SEO } from "@/components/SEO";
 
@@ -82,14 +80,8 @@ const processTimeline = [
   },
 ];
 
-const performanceBars = [
-  { label: "Antes da Simplí", seconds: 90, color: "bg-white" },
-  { label: "Depois da Simplí", seconds: 8, color: "bg-[#86efac]" },
-];
 
 const AgentesIA = () => {
-  const maxSeconds = Math.max(...performanceBars.map((bar) => bar.seconds));
-  const { ref: caseRef, isVisible: isCaseVisible } = useInView({ threshold: 0.35 });
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -187,112 +179,6 @@ const AgentesIA = () => {
         </div>
       </section>
 
-      <section
-        ref={caseRef}
-        className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20"
-      >
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">Case de Sucesso</h2>
-            <p className="mt-2 text-base text-white/70">
-              Veja como automatizamos o atendimento da Natal Home Center
-            </p>
-          </div>
-          <Card className="mt-10 border-white/10 bg-[#0C140F]/70 shadow-2xl shadow-black/40">
-            <CardContent className="grid gap-8 px-4 py-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:px-6">
-              <div className="space-y-4">
-                <div className="flex items:center gap-3">
-                  <img
-                    src="https://5d8szluqid.ufs.sh/f/7g9uOybJbNsEXtz4bC6KFM7di45lIyuB6KcNW8RQmHaYwAJx"
-                    alt="Natal Home Center"
-                    className="h-12 w-auto rounded-md border border-white/10 bg-white/5 p-1"
-                    loading="lazy"
-                  />
-                  <h3 className="text-xl font-semibold text-white">
-                    Natal Home Center - Atendimento Inteligente
-                  </h3>
-                </div>
-                <p className="text-sm leading-relaxed text-white/70">
-                  Implementamos um agente de IA completo para atendimento via WhatsApp,
-                  integrando CRM e base de dados, com plataforma de apoio para a equipe.
-                </p>
-                <ul className="space-y-2 text-sm text-white/75">
-                  {[
-                    "Agente de IA 24/7 no WhatsApp",
-                    "Integração com CRM e base de dados",
-                    "Plataforma de atendimento para equipe",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <CheckCircle2 size={16} className="text-[#4ADE80]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <blockquote className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/75">
-                  “A Simplí revolucionou nosso atendimento. O agente de IA reduziu o tempo em 90% e elevou a satisfação
-                  dos clientes. Atendemos 24/7, mesmo fora do horário comercial.”
-                  <span className="mt-2 block text-xs text-white/60">
-                    — Kleber Carvalho, CEO da Natal Home Center
-                  </span>
-                </blockquote>
-              </div>
-              <div className="flex flex-col gap-6 rounded-2xl border border-white/10 bg-white/5 p-6 text-center">
-                <div className="w-full max-w-md self-center text-center">
-                  <h4 className="text-lg font-semibold uppercase tracking-[0.12em] text-white">
-                    Tempo de atendimento
-                  </h4>
-                  <div className="mt-6 flex items-end justify-center gap-[25px]">
-                    {performanceBars.map((bar, index) => {
-                      const targetHeight = (bar.seconds / maxSeconds) * 100;
-                      const isBefore = bar.color === "bg-white";
-                      const animationClass = isCaseVisible ? "bar-animate-vertical" : "";
-                      const style = {
-                        "--target-height": `${targetHeight}%`,
-                        animationDelay: isCaseVisible ? `${index * 0.2}s` : "0s",
-                        height: isCaseVisible ? undefined : 0,
-                      } as React.CSSProperties;
-
-                      return (
-                        <div key={bar.label} className="flex w-24 flex-col items-center">
-                          <span className="text-xs font-medium text-white/70 text-center">
-                            {bar.label}
-                          </span>
-                          <div className="mt-2 flex h-52 w-full items-end justify-center rounded-2xl bg-white/5 p-2">
-                            <div
-                              className={`${animationClass} w-full rounded-xl ${
-                                isBefore
-                                  ? "bg-white/85 shadow-[0_8px_28px_rgba(255,255,255,0.22)]"
-                                  : "bg-[#86efac] shadow-[0_8px_28px_rgba(134,239,172,0.35)]"
-                              }`}
-                              style={style}
-                            />
-                          </div>
-                          <span className="mt-2 text-lg font-semibold text-white">
-                            {bar.seconds}s
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <p className="mt-4 text-center text-xs uppercase tracking-[0.18em] text-white/60">
-                    aumento brutal na eficiência no atendimento
-                  </p>
-                </div>
-                <style>{`
-                  @keyframes bar-grow-vertical {
-                    from { height: 0; }
-                    to { height: var(--target-height); }
-                  }
-                  .bar-animate-vertical {
-                    height: 0;
-                    animation: bar-grow-vertical 1.6s ease-out forwards;
-                  }
-                `}</style>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
 
       <section className="relative overflow-hidden bg-gradient-to-r from-[#1C3324] via-[#16402F] to-[#0F1D15] px-6 py-16 md:px-10 md:py-20">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.12),_transparent_55%)]" />
