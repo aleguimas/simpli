@@ -9,6 +9,13 @@ import SiteFooter from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
 import { sanityClient, urlFor } from "@/lib/sanity";
 
+interface PostSeo {
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  ogImage?: { _type: string; asset?: { _ref: string } };
+}
+
 interface Post {
   _id: string;
   title: string;
@@ -17,6 +24,7 @@ interface Post {
   mainImage?: { _type: string; asset?: { _ref: string } };
   publishedAt?: string;
   body?: PortableTextBlock[];
+  seo?: PostSeo;
 }
 
 const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
@@ -26,7 +34,13 @@ const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   excerpt,
   mainImage,
   publishedAt,
-  body
+  body,
+  seo {
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+    ogImage
+  }
 }`;
 
 const ConteudoPost = () => {
@@ -100,6 +114,8 @@ const ConteudoPost = () => {
   }
 
   const mainImageUrl = urlFor(post.mainImage)?.width(1200).url();
+  const ogImageUrl =
+    urlFor(post.seo?.ogImage)?.width(1200).url() ?? mainImageUrl ?? undefined;
 
   const portableTextComponents = {
     block: {
@@ -140,9 +156,11 @@ const ConteudoPost = () => {
   return (
     <div className="min-h-screen bg-[#0C140F] text-white">
       <SEO
-        title={post.title}
-        description={post.excerpt ?? undefined}
+        title={post.seo?.metaTitle ?? post.title}
+        description={post.seo?.metaDescription ?? post.excerpt ?? undefined}
+        keywords={post.seo?.metaKeywords ?? undefined}
         canonical={`/conteudo/${post.slug.current}`}
+        ogImage={ogImageUrl}
         ogType="article"
       />
       <Navbar />

@@ -4,17 +4,23 @@ export const post = defineType({
   name: 'post',
   title: 'Post',
   type: 'document',
+  groups: [
+    { name: 'content', title: 'Conteúdo', default: true },
+    { name: 'seo', title: 'SEO' },
+  ],
   fields: [
     {
       name: 'title',
       title: 'Título',
       type: 'string',
+      group: 'content',
       validation: (Rule) => Rule.required(),
     },
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      group: 'content',
       options: {
         source: 'title',
         maxLength: 96,
@@ -26,11 +32,13 @@ export const post = defineType({
       title: 'Resumo',
       type: 'text',
       rows: 3,
+      group: 'content',
     },
     {
       name: 'mainImage',
       title: 'Imagem principal',
       type: 'image',
+      group: 'content',
       options: {
         hotspot: true,
       },
@@ -39,11 +47,13 @@ export const post = defineType({
       name: 'publishedAt',
       title: 'Data de publicação',
       type: 'datetime',
+      group: 'content',
     },
     {
       name: 'body',
       title: 'Conteúdo',
       type: 'array',
+      group: 'content',
       of: [
         defineArrayMember({
           type: 'block',
@@ -59,6 +69,12 @@ export const post = defineType({
           options: { hotspot: true },
         }),
       ],
+    },
+    {
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
+      group: 'seo',
     },
   ],
   preview: {
