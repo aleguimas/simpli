@@ -67,3 +67,39 @@ Resumo:
 
 - **Projeto na conta** = usar um `projectId` que existe na **sua** conta em manage.sanity.io.
 - **Studio “criado” na conta** = depois de `sanity login` e `sanity deploy`, o studio implantado aparece no seu projeto em manage.sanity.io.
+
+## 3. Conteúdo publicado no Studio não aparece na página /conteudo
+
+Se você publicou um post no Sanity Studio mas ele não aparece na página de conteúdo do site, confira o seguinte.
+
+### 3.1 CORS (muito comum)
+
+O site (Netlify) precisa estar autorizado a chamar a API do Sanity. Caso contrário, o navegador bloqueia a requisição e a lista fica vazia ou aparece erro.
+
+**O que fazer:**
+
+1. Acesse **[manage.sanity.io](https://manage.sanity.io)** → seu projeto.
+2. Vá em **API** → **CORS origins**.
+3. Adicione a URL do seu site (ex.: `https://seu-site.netlify.app` ou `https://www.simpli.ia.br`) **sem** barra no final.
+4. Para desenvolvimento local, adicione também `http://localhost:5173` (ou a porta que o Vite usar).
+5. Salve.
+
+Sem a URL do site em CORS, o front-end não consegue buscar os posts.
+
+### 3.2 Project ID e dataset
+
+O site usa o **projectId** e o **dataset** definidos em `src/lib/sanity.ts`. Eles precisam ser **exatamente** os do projeto onde você publica no Studio.
+
+- **Project ID:** em manage.sanity.io → seu projeto → **API** → **Project ID**.
+- No código: `src/lib/sanity.ts` (site) e `simpli/sanity.config.ts` / `simpli/sanity.cli.ts` (Studio) devem usar o **mesmo** projectId.
+- **Dataset:** em geral `production`. Se no Studio você usa outro dataset, altere também em `src/lib/sanity.ts`.
+
+Se o Studio estiver em outro projeto (ex.: outro projectId), o conteúdo fica em outro lugar e o site não o enxerga.
+
+### 3.3 Apenas publicados
+
+As queries do site já filtram só documentos **publicados** (excluem rascunhos). Não é preciso marcar nada extra no Studio além de **Publicar** o post.
+
+### 3.4 Cache do CDN
+
+Com `useCdn: true`, o Sanity usa CDN. Um post recém-publicado pode levar **1–2 minutos** para aparecer na lista. Se CORS e projectId estiverem corretos e o post publicado, espere um pouco e recarregue a página.

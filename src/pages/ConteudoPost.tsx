@@ -27,7 +27,7 @@ interface Post {
   seo?: PostSeo;
 }
 
-const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
+const postBySlugQuery = `*[_type == "post" && !(_id in path("drafts.**")) && slug.current == $slug][0] {
   _id,
   title,
   slug,
