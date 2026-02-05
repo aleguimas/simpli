@@ -14,6 +14,13 @@
   to = "https://simpli-cms.sanity.studio"
   status = 302
 
+# /conteudo/:slug -> HTML com meta OG do post (para WhatsApp, Facebook, etc.)
+[[redirects]]
+  from = "/conteudo/*"
+  to = "/.netlify/functions/og-html?splat=:splat"
+  status = 200
+  force = true
+
 # SPA redirect (deve ser o último)
 [[redirects]]
   from = "/*"
