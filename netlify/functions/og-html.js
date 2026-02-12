@@ -11,10 +11,17 @@ const SANITY_API_VERSION = '2024-01-01'
 const GROQ_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) && slug.current == $slug][0]{
   title,
   excerpt,
+  publishedAt,
+  author,
+  category,
+  tags,
   "mainImageUrl": mainImage.asset->url,
   seo {
     metaTitle,
     metaDescription,
+    canonical,
+    ogTitle,
+    ogDescription,
     "ogImageUrl": ogImage.asset->url
   }
 }`
@@ -36,9 +43,18 @@ function escapeAttr(s) {
 
 function replaceMeta(html, replacements) {
   let out = html
-  const { title, description, image, canonical } = replacements
+  const {
+    title,
+    description,
+    ogTitle,
+    ogDescription,
+    image,
+    canonical,
+  } = replacements
   const safeTitle = escapeAttr(title)
   const safeDesc = escapeAttr(description)
+  const safeOgTitle = escapeAttr(ogTitle ?? title)
+  const safeOgDesc = escapeAttr(ogDescription ?? description)
   const safeImage = escapeAttr(image)
   const safeCanonical = escapeAttr(canonical)
 
@@ -50,11 +66,11 @@ function replaceMeta(html, replacements) {
     )
     out = out.replace(
       /<meta\s+property="og:title"\s+content="[^"]*"/i,
-      `<meta property="og:title" content="${safeTitle}"`
+      `<meta property="og:title" content="${safeOgTitle}"`
     )
     out = out.replace(
       /<meta\s+name="twitter:title"\s+content="[^"]*"/i,
-      `<meta name="twitter:title" content="${safeTitle}"`
+      `<meta name="twitter:title" content="${safeOgTitle}"`
     )
   }
   if (description) {
@@ -64,11 +80,11 @@ function replaceMeta(html, replacements) {
     )
     out = out.replace(
       /<meta\s+property="og:description"\s+content="[^"]*"/i,
-      `<meta property="og:description" content="${safeDesc}"`
+      `<meta property="og:description" content="${safeOgDesc}"`
     )
     out = out.replace(
       /<meta\s+name="twitter:description"\s+content="[^"]*"/i,
-      `<meta name="twitter:description" content="${safeDesc}"`
+      `<meta name="twitter:description" content="${safeOgDesc}"`
     )
   }
   if (image) {
@@ -145,17 +161,50 @@ export async function handler(event) {
   }
 
   const title = post.seo?.metaTitle || post.title
+  const ogTitle = post.seo?.ogTitle || title
   const description = (post.seo?.metaDescription || post.excerpt || '').slice(0, 160)
+  const ogDescription = post.seo?.ogDescription || description
   let image = post.seo?.ogImageUrl || post.mainImageUrl || `${baseUrl}/og-image.jpg`
   if (image && !image.startsWith('http')) image = `${baseUrl}${image.startsWith('/') ? '' : '/'}${image}`
   const fullTitle = title ? `${title} | Simplí` : 'Simplí'
+  const ogTitleFinal = ogTitle ? `${ogTitle} | Simplí` : fullTitle
+  const canonicalFinal =
+    post.seo?.canonical && post.seo.canonical.startsWith('http')
+      ? post.seo.canonical
+      : canonical
 
-  const html = replaceMeta(indexHtml, {
+  let html = replaceMeta(indexHtml, {
     title: fullTitle,
-    description: description.slice(0, 160),
+    description,
+    ogTitle: ogTitleFinal,
+    ogDescription: ogDescription.slice(0, 160),
     image,
-    canonical,
+    canonical: canonicalFinal,
   })
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: fullTitle,
+    description: description,
+    image: image,
+    author: post.author
+      ? { '@type': 'Person', name: post.author, url: baseUrl }
+      : { '@type': 'Organization', name: 'Simplí', url: baseUrl },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Simplí',
+      logo: { '@type': 'ImageObject', url: `${baseUrl}/logonome-branca-cortada.webp` },
+    },
+    datePublished: post.publishedAt || undefined,
+    dateModified: post.publishedAt || undefined,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalFinal },
+    keywords: post.tags?.length ? post.tags.join(', ') : undefined,
+    articleSection: post.category,
+    inLanguage: 'pt-BR',
+  }
+  const jsonLdScript = `<script type="application/ld+json">${JSON.stringify(articleJsonLd)}</script>`
+  html = html.replace('</head>', `${jsonLdScript}</head>`)
 
   return {
     statusCode: 200,

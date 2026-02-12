@@ -9,11 +9,24 @@ import SiteFooter from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
 import { sanityClient, urlFor } from "@/lib/sanity";
 
+const BASE_URL = 'https://www.simpli.ia.br';
+
+interface PostSeoFaq {
+  pergunta?: string;
+  resposta?: string;
+}
+
 interface PostSeo {
   metaTitle?: string;
   metaDescription?: string;
   metaKeywords?: string;
+  canonical?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: { _type: string; asset?: { _ref: string } };
+  faq?: PostSeoFaq[];
 }
 
 interface Post {
@@ -23,6 +36,9 @@ interface Post {
   excerpt?: string;
   mainImage?: { _type: string; asset?: { _ref: string } };
   publishedAt?: string;
+  author?: string;
+  category?: string;
+  tags?: string[];
   body?: PortableTextBlock[];
   seo?: PostSeo;
 }
@@ -34,12 +50,21 @@ const postBySlugQuery = `*[_type == "post" && !(_id in path("drafts.**")) && slu
   excerpt,
   mainImage,
   publishedAt,
+  author,
+  category,
+  tags,
   body,
   seo {
     metaTitle,
     metaDescription,
     metaKeywords,
-    ogImage
+    canonical,
+    noindex,
+    nofollow,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    faq[] { pergunta, resposta }
   }
 }`;
 
@@ -117,6 +142,52 @@ const ConteudoPost = () => {
   const ogImageUrl =
     urlFor(post.seo?.ogImage)?.width(1200).url() ?? mainImageUrl ?? undefined;
 
+  const seoTitle = post.seo?.metaTitle ?? post.title;
+  const seoDescription = post.seo?.metaDescription ?? post.excerpt ?? '';
+  const canonicalPath = post.seo?.canonical || `/conteudo/${post.slug.current}`;
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: seoTitle,
+    description: seoDescription,
+    image: ogImageUrl ?? mainImageUrl,
+    author: post.author
+      ? { '@type': 'Person', name: post.author, url: BASE_URL }
+      : { '@type': 'Organization', name: 'Simplí', url: BASE_URL },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Simplí',
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/logonome-branca-cortada.webp` },
+    },
+    datePublished: post.publishedAt || undefined,
+    dateModified: post.publishedAt || undefined,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalPath.startsWith('http') ? canonicalPath : `${BASE_URL}${canonicalPath}`,
+    },
+    keywords: post.tags?.length ? post.tags.join(', ') : post.seo?.metaKeywords,
+    articleSection: post.category,
+    inLanguage: 'pt-BR',
+  };
+
+  const faqJsonLd =
+    post.seo?.faq && post.seo.faq.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: post.seo.faq
+            .filter((item) => item.pergunta && item.resposta)
+            .map((item) => ({
+              '@type': 'Question',
+              name: item.pergunta,
+              acceptedAnswer: { '@type': 'Answer', text: item.resposta },
+            })),
+        }
+      : null;
+
+  const structuredData = faqJsonLd ? [articleJsonLd, faqJsonLd] : [articleJsonLd];
+
   const portableTextComponents = {
     block: {
       normal: ({ children }: { children?: React.ReactNode }) => (
@@ -156,12 +227,18 @@ const ConteudoPost = () => {
   return (
     <div className="min-h-screen bg-[#0C140F] text-white">
       <SEO
-        title={post.seo?.metaTitle ?? post.title}
-        description={post.seo?.metaDescription ?? post.excerpt ?? undefined}
+        title={seoTitle}
+        description={seoDescription || undefined}
         keywords={post.seo?.metaKeywords ?? undefined}
-        canonical={`/conteudo/${post.slug.current}`}
+        canonical={canonicalPath}
         ogImage={ogImageUrl}
+        ogTitle={post.seo?.ogTitle}
+        ogDescription={post.seo?.ogDescription}
         ogType="article"
+        twitterCard={ogImageUrl ? 'summary_large_image' : 'summary'}
+        structuredData={structuredData}
+        noindex={post.seo?.noindex === true}
+        nofollow={post.seo?.nofollow === true}
       />
       <Navbar />
       <main>
@@ -183,40 +260,58 @@ const ConteudoPost = () => {
             <h1 className="mt-6 text-3xl font-semibold md:text-4xl">
               {post.title}
             </h1>
-            {post.publishedAt && (
-              <div className="mt-4 flex items-center gap-2 text-sm text-white/60">
-                <Calendar size={16} />
-                {new Date(post.publishedAt).toLocaleDateString("pt-BR", {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                })}
+            {(post.publishedAt || post.author) && (
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/60">
+                {post.publishedAt && (
+                  <>
+                    <span aria-hidden><Calendar size={16} className="inline-block align-middle" /></span>
+                    <time dateTime={post.publishedAt}>
+                      {new Date(post.publishedAt).toLocaleDateString('pt-BR', {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </time>
+                  </>
+                )}
+                {post.author && <span>{post.author}</span>}
               </div>
             )}
           </div>
         </section>
 
-        <section className="bg-[#0f1d15] px-6 py-12 md:px-10 md:py-16">
+        <section className="bg-[#0f1d15] px-6 py-12 md:px-10 md:py-16" aria-label="Conteúdo do artigo">
           <div className="mx-auto max-w-3xl">
-            {mainImageUrl && (
-              <figure className="mb-10 overflow-hidden rounded-xl border border-white/10">
-                <img
-                  src={mainImageUrl}
-                  alt=""
-                  className="w-full object-cover"
-                />
-              </figure>
-            )}
-            {post.body && post.body.length > 0 ? (
-              <div className="prose prose-invert max-w-none">
-                <PortableText
-                  value={post.body}
-                  components={portableTextComponents}
-                />
-              </div>
-            ) : (
-              <p className="text-white/60">Sem conteúdo publicado.</p>
-            )}
+            <article>
+              {mainImageUrl && (
+                <figure className="mb-10 overflow-hidden rounded-xl border border-white/10">
+                  <img
+                    src={mainImageUrl}
+                    alt={`Imagem de capa: ${post.title}`}
+                    className="w-full object-cover"
+                  />
+                </figure>
+              )}
+              {post.body && post.body.length > 0 ? (
+                <div className="prose prose-invert max-w-none">
+                  <PortableText
+                    value={post.body}
+                    components={portableTextComponents}
+                  />
+                </div>
+              ) : (
+                <p className="text-white/60">Sem conteúdo publicado.</p>
+              )}
+              {post.tags && post.tags.length > 0 && (
+                <div className="mt-8 flex flex-wrap gap-2" role="list" aria-label="Tags do artigo">
+                  {post.tags.map((tag) => (
+                    <span key={tag} className="rounded-full bg-white/10 px-3 py-1 text-sm text-white/80" role="listitem">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </article>
           </div>
         </section>
       </main>

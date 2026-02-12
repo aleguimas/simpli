@@ -6,6 +6,8 @@ export interface SEOProps {
   keywords?: string;
   canonical?: string;
   ogImage?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   ogType?: string;
   twitterCard?: string;
   structuredData?: object | object[];
@@ -25,6 +27,8 @@ export const SEO = ({
   keywords = DEFAULT_KEYWORDS,
   canonical,
   ogImage = DEFAULT_OG_IMAGE,
+  ogTitle,
+  ogDescription,
   ogType = "website",
   twitterCard = "summary_large_image",
   structuredData,
@@ -32,13 +36,17 @@ export const SEO = ({
   nofollow = false,
 }: SEOProps) => {
   const fullTitle = title ? `${title} | Simplí` : DEFAULT_TITLE;
+  const ogTitleFinal = ogTitle ?? fullTitle;
+  const ogDescFinal = ogDescription ?? description;
   
   // Garantir que canonical seja sempre absoluta e limpa (sem trailing slash, sem query params)
   const getCanonicalUrl = () => {
     if (canonical) {
-      // Remover trailing slash e garantir que comece com /
-      const cleanCanonical = canonical.startsWith('/') 
-        ? canonical.replace(/\/$/, '') || '/' 
+      if (canonical.startsWith('http')) {
+        return canonical.replace(/\/$/, '') || canonical;
+      }
+      const cleanCanonical = canonical.startsWith('/')
+        ? canonical.replace(/\/$/, '') || '/'
         : `/${canonical.replace(/\/$/, '')}`;
       return `${BASE_URL}${cleanCanonical}`;
     }
@@ -68,8 +76,8 @@ export const SEO = ({
     updateMetaTag("robots", `${noindex ? "noindex" : "index"}, ${nofollow ? "nofollow" : "follow"}`);
 
     // Open Graph tags
-    updateMetaTag("og:title", fullTitle, "property");
-    updateMetaTag("og:description", description, "property");
+    updateMetaTag("og:title", ogTitleFinal, "property");
+    updateMetaTag("og:description", ogDescFinal, "property");
     updateMetaTag("og:image", ogImage, "property");
     updateMetaTag("og:url", canonicalUrl, "property");
     updateMetaTag("og:type", ogType, "property");
@@ -78,8 +86,8 @@ export const SEO = ({
 
     // Twitter Card tags
     updateMetaTag("twitter:card", twitterCard);
-    updateMetaTag("twitter:title", fullTitle);
-    updateMetaTag("twitter:description", description);
+    updateMetaTag("twitter:title", ogTitleFinal);
+    updateMetaTag("twitter:description", ogDescFinal);
     updateMetaTag("twitter:image", ogImage);
 
     // Canonical URL
@@ -110,7 +118,7 @@ export const SEO = ({
     // Update lang attribute
     const html = document.documentElement;
     html.setAttribute("lang", "pt-BR");
-  }, [fullTitle, description, keywords, canonicalUrl, ogImage, ogType, twitterCard, structuredData, noindex, nofollow]);
+  }, [fullTitle, description, keywords, canonicalUrl, ogImage, ogTitleFinal, ogDescFinal, ogType, twitterCard, structuredData, noindex, nofollow]);
 
   return null;
 };
