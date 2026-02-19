@@ -14,7 +14,24 @@
   to = "https://simpli-cms.sanity.studio"
   status = 302
 
-# /conteudo/:slug -> HTML com meta OG do post (para WhatsApp, Facebook, etc.)
+# Trailing slash: redirecionar para URL sem barra (canonical consistente)
+[[redirects]]
+  from = "/conteudo/"
+  to = "/conteudo"
+  status = 301
+[[redirects]]
+  from = "/conteudo/*/"
+  to = "/conteudo/:splat"
+  status = 301
+
+# /conteudo (listagem) -> HTML com canonical e meta corretos (evita "página alternativa")
+[[redirects]]
+  from = "/conteudo"
+  to = "/.netlify/functions/og-html?list=1"
+  status = 200
+  force = true
+
+# /conteudo/:slug -> HTML com canonical e meta do post
 [[redirects]]
   from = "/conteudo/*"
   to = "/.netlify/functions/og-html?splat=:splat"

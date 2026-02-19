@@ -111,22 +111,62 @@ function replaceMeta(html, replacements) {
       `<link rel="canonical" href="${safeCanonical}"`
     )
   }
-  out = out.replace(
-    /<meta\s+property="og:type"\s+content="[^"]*"/i,
-    '<meta property="og:type" content="article"'
-  )
+  const ogType = replacements.ogType
+  if (ogType) {
+    out = out.replace(
+      /<meta\s+property="og:type"\s+content="[^"]*"/i,
+      `<meta property="og:type" content="${escapeAttr(replacements.ogType)}"`
+    )
+  }
   return out
 }
 
-export async function handler(event) {
-  const slug = event.queryStringParameters?.splat || event.queryStringParameters?.slug || ''
-  if (!slug) {
-    return { statusCode: 404, body: 'Not found' }
+async function serveListPage(baseUrl) {
+  let indexHtml
+  try {
+    const indexRes = await fetch(`${baseUrl}/`)
+    indexHtml = await indexRes.text()
+  } catch (e) {
+    console.error('Index fetch error:', e)
+    return {
+      statusCode: 500,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      body: '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Error</title></head><body>Erro ao carregar.</body></html>',
+    }
   }
+  const canonical = `${baseUrl}/conteudo`
+  const title = 'Conteúdo | Artigos e Materiais | Simplí'
+  const description =
+    'Artigos e materiais sobre transformação digital, desenvolvimento web, IA, tráfego pago e consultoria. Simplí.'
+  const html = replaceMeta(indexHtml, {
+    title,
+    description,
+    canonical,
+    ogType: 'website',
+  })
+  return {
+    statusCode: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    body: html,
+  }
+}
+
+export async function handler(event) {
+  const isList = event.queryStringParameters?.list === '1'
+  const slug = event.queryStringParameters?.splat || event.queryStringParameters?.slug || ''
 
   const proto = event.headers['x-forwarded-proto'] || 'https'
   const host = event.headers['x-forwarded-host'] || event.headers['host'] || 'www.simpli.ia.br'
   const baseUrl = `${proto}://${host}`
+
+  if (isList) {
+    return serveListPage(baseUrl, event)
+  }
+
+  if (!slug) {
+    return { statusCode: 404, body: 'Not found' }
+  }
+
   const canonical = `${baseUrl}/conteudo/${slug}`
 
   let post = null
@@ -180,6 +220,7 @@ export async function handler(event) {
     ogDescription: ogDescription.slice(0, 160),
     image,
     canonical: canonicalFinal,
+    ogType: 'article',
   })
 
   const articleJsonLd = {
