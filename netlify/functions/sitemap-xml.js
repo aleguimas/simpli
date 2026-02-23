@@ -68,7 +68,9 @@ export async function handler() {
       ),
   ]
 
+  const postCount = posts.filter((p) => p.slug).length
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sitemap dinamico - Netlify Function - ${urls.length} URLs incl. ${postCount} posts Sanity -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
@@ -80,7 +82,7 @@ ${urls.join('\n')}
     statusCode: 200,
     headers: {
       'Content-Type': 'application/xml',
-      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+      'Cache-Control': 'public, max-age=300, s-maxage=300',
     },
     body: xml,
   }
