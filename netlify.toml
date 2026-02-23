@@ -38,13 +38,6 @@
   status = 200
   force = true
 
-# Sitemap dinâmico (páginas estáticas + posts do Sanity)
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/.netlify/functions/sitemap-xml"
-  status = 200
-  force = true
-
 # SPA redirect (deve ser o último)
 [[redirects]]
   from = "/*"
