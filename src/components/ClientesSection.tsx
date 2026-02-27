@@ -8,6 +8,8 @@ const logos = [
   { name: "Cliente 8", src: "/8.webp" },
   { name: "Cliente 9", src: "/9.webp" },
   { name: "Cliente 10", src: "/10.webp" },
+  { name: "Cliente 11", src: "/11.webp" },
+  { name: "Cliente 12", src: "/12.webp" },
 ];
 
 const ClientesSection = () => {
