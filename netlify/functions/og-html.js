@@ -98,18 +98,22 @@ function replaceMeta(html, replacements) {
     )
   }
   if (canonical) {
-    out = out.replace(
-      /<meta\s+property="og:url"\s+content="[^"]*"/i,
-      `<meta property="og:url" content="${safeCanonical}"`
-    )
-    out = out.replace(
-      /<meta\s+name="twitter:url"\s+content="[^"]*"/i,
-      `<meta name="twitter:url" content="${safeCanonical}"`
-    )
-    out = out.replace(
-      /<link\s+rel="canonical"\s+href="[^"]*"/i,
-      `<link rel="canonical" href="${safeCanonical}"`
-    )
+    if (out.match(/<meta\s+property="og:url"/i)) {
+      out = out.replace(/<meta\s+property="og:url"\s+content="[^"]*"/i, `<meta property="og:url" content="${safeCanonical}"`)
+    } else {
+      out = out.replace('</head>', `<meta property="og:url" content="${safeCanonical}"/>\n</head>`)
+    }
+    if (out.match(/<meta\s+name="twitter:url"/i)) {
+      out = out.replace(/<meta\s+name="twitter:url"\s+content="[^"]*"/i, `<meta name="twitter:url" content="${safeCanonical}"`)
+    } else {
+      out = out.replace('</head>', `<meta name="twitter:url" content="${safeCanonical}"/>\n</head>`)
+    }
+    if (out.includes('rel="canonical"')) {
+      out = out.replace(/<link\s+rel="canonical"\s+href="[^"]*"/i, `<link rel="canonical" href="${safeCanonical}"`)
+    } else {
+      const inject = `<link rel="canonical" href="${safeCanonical}"/>\n</head>`
+      out = out.replace('</head>', inject)
+    }
   }
   const ogType = replacements.ogType
   if (ogType) {

@@ -39,7 +39,8 @@ export const SEO = ({
   const ogTitleFinal = ogTitle ?? fullTitle;
   const ogDescFinal = ogDescription ?? description;
   
-  // Garantir que canonical seja sempre absoluta e limpa (sem trailing slash, sem query params)
+  // Garantir que canonical seja sempre absoluta e limpa (sem trailing slash, sem query params).
+  // Se não houver canonical, usa pathname atual (evita que todas as páginas canonicem para a home).
   const getCanonicalUrl = () => {
     if (canonical) {
       if (canonical.startsWith('http')) {
@@ -49,6 +50,10 @@ export const SEO = ({
         ? canonical.replace(/\/$/, '') || '/'
         : `/${canonical.replace(/\/$/, '')}`;
       return `${BASE_URL}${cleanCanonical}`;
+    }
+    if (typeof window !== 'undefined' && window.location.pathname) {
+      const path = window.location.pathname.replace(/\/$/, '') || '/';
+      return `${BASE_URL}${path}`;
     }
     return BASE_URL;
   };
