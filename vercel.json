@@ -1,4 +1,5 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
       "source": "/conteudo",
@@ -9,15 +10,9 @@
       "destination": "/api/seo?list=1"
     },
     {
-      "source": "/conteudo/:slug*",
-      "destination": "/api/seo?slug=:slug*"
-    }
-  ]
-}
-
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
+      "source": "/conteudo/:path*",
+      "destination": "/api/seo?slug=:path*"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"

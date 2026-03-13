@@ -1,3 +1,6 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
 const SANITY_PROJECT_ID = 'olcfi9tu';
 const SANITY_DATASET = 'production';
 const SANITY_API_VERSION = '2024-01-01';
@@ -142,25 +145,27 @@ function replaceMeta(html, replacements) {
   return out;
 }
 
-async function fetchIndexHtml(baseUrl) {
-  const res = await fetch(`${baseUrl}/`);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch index.html: ${res.status}`);
-  }
-  return await res.text();
+async function fetchIndexHtml() {
+  const indexPath =
+    process.env.INDEX_HTML_PATH ||
+    path.join(process.cwd(), 'dist', 'index.html');
+  return await fs.readFile(indexPath, 'utf8');
 }
 
 function injectArticleSnippet(html, text) {
   const safe = escapeHtml(text);
   if (!safe) return html;
-  const snippet = `<div id="__seo-snippet" style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">${safe}</div>`;
+  const snippet = `<div id="seo-content" style="display:none;" aria-hidden="true">${safe}</div>`;
+  if (html.includes('<body>')) {
+    return html.replace('<body>', `<body>\n${snippet}`);
+  }
   return html.replace('</body>', `${snippet}</body>`);
 }
 
 async function serveListPage(baseUrl) {
   let indexHtml;
   try {
-    indexHtml = await fetchIndexHtml(baseUrl);
+    indexHtml = await fetchIndexHtml();
   } catch (e) {
     console.error('Index fetch error:', e);
     return {
@@ -230,7 +235,7 @@ export default async function handler(req, res) {
 
   let indexHtml;
   try {
-    indexHtml = await fetchIndexHtml(baseUrl);
+    indexHtml = await fetchIndexHtml();
   } catch (e) {
     console.error('Index fetch error:', e);
     res
