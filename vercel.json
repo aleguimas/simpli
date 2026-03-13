@@ -1,4 +1,21 @@
 {
+  "rewrites": [
+    {
+      "source": "/conteudo",
+      "destination": "/api/seo?list=1"
+    },
+    {
+      "source": "/conteudo/",
+      "destination": "/api/seo?list=1"
+    },
+    {
+      "source": "/conteudo/:slug*",
+      "destination": "/api/seo?slug=:slug*"
+    }
+  ]
+}
+
+{
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {

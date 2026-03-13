@@ -1,0 +1,319 @@
+const SANITY_PROJECT_ID = 'olcfi9tu';
+const SANITY_DATASET = 'production';
+const SANITY_API_VERSION = '2024-01-01';
+
+// Inclui também texto do corpo para o snippet de conteúdo.
+const GROQ_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) && slug.current == $slug][0]{
+  title,
+  excerpt,
+  "bodyText": pt::text(body),
+  publishedAt,
+  author,
+  category,
+  tags,
+  "mainImageUrl": mainImage.asset->url,
+  seo {
+    metaTitle,
+    metaDescription,
+    canonical,
+    ogTitle,
+    ogDescription,
+    "ogImageUrl": ogImage.asset->url
+  }
+}`;
+
+function buildSanityUrl(slug) {
+  const query = encodeURIComponent(GROQ_QUERY);
+  return `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}&$slug=${encodeURIComponent(
+    JSON.stringify(slug),
+  )}`;
+}
+
+function escapeAttr(s) {
+  if (!s) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function replaceMeta(html, replacements) {
+  let out = html;
+  const { title, description, ogTitle, ogDescription, image, canonical } =
+    replacements;
+  const safeTitle = escapeAttr(title);
+  const safeDesc = escapeAttr(description);
+  const safeOgTitle = escapeAttr(ogTitle ?? title);
+  const safeOgDesc = escapeAttr(ogDescription ?? description);
+  const safeImage = escapeAttr(image);
+  const safeCanonical = escapeAttr(canonical);
+
+  if (title) {
+    out = out.replace(
+      /<title>[\s\S]*?<\/title>/i,
+      `<title>${safeTitle}</title>`,
+    );
+    out = out.replace(
+      /<meta\s+name="title"\s+content="[^"]*"/i,
+      `<meta name="title" content="${safeTitle}"`,
+    );
+    out = out.replace(
+      /<meta\s+property="og:title"\s+content="[^"]*"/i,
+      `<meta property="og:title" content="${safeOgTitle}"`,
+    );
+    out = out.replace(
+      /<meta\s+name="twitter:title"\s+content="[^"]*"/i,
+      `<meta name="twitter:title" content="${safeOgTitle}"`,
+    );
+  }
+  if (description) {
+    out = out.replace(
+      /<meta\s+name="description"\s+content="[^"]*"/i,
+      `<meta name="description" content="${safeDesc}"`,
+    );
+    out = out.replace(
+      /<meta\s+property="og:description"\s+content="[^"]*"/i,
+      `<meta property="og:description" content="${safeOgDesc}"`,
+    );
+    out = out.replace(
+      /<meta\s+name="twitter:description"\s+content="[^"]*"/i,
+      `<meta name="twitter:description" content="${safeOgDesc}"`,
+    );
+  }
+  if (image) {
+    out = out.replace(
+      /<meta\s+property="og:image"\s+content="[^"]*"/i,
+      `<meta property="og:image" content="${safeImage}"`,
+    );
+    out = out.replace(
+      /<meta\s+name="twitter:image"\s+content="[^"]*"/i,
+      `<meta name="twitter:image" content="${safeImage}"`,
+    );
+  }
+  if (canonical) {
+    if (out.match(/<meta\s+property="og:url"/i)) {
+      out = out.replace(
+        /<meta\s+property="og:url"\s+content="[^"]*"/i,
+        `<meta property="og:url" content="${safeCanonical}"`,
+      );
+    } else {
+      out = out.replace(
+        '</head>',
+        `<meta property="og:url" content="${safeCanonical}"/>\n</head>`,
+      );
+    }
+    if (out.match(/<meta\s+name="twitter:url"/i)) {
+      out = out.replace(
+        /<meta\s+name="twitter:url"\s+content="[^"]*"/i,
+        `<meta name="twitter:url" content="${safeCanonical}"`,
+      );
+    } else {
+      out = out.replace(
+        '</head>',
+        `<meta name="twitter:url" content="${safeCanonical}"/>\n</head>`,
+      );
+    }
+    if (out.includes('rel="canonical"')) {
+      out = out.replace(
+        /<link\s+rel="canonical"\s+href="[^"]*"/i,
+        `<link rel="canonical" href="${safeCanonical}"`,
+      );
+    } else {
+      const inject = `<link rel="canonical" href="${safeCanonical}"/>\n</head>`;
+      out = out.replace('</head>', inject);
+    }
+  }
+  const ogType = replacements.ogType;
+  if (ogType) {
+    out = out.replace(
+      /<meta\s+property="og:type"\s+content="[^"]*"/i,
+      `<meta property="og:type" content="${escapeAttr(replacements.ogType)}"`,
+    );
+  }
+  return out;
+}
+
+async function fetchIndexHtml(baseUrl) {
+  const res = await fetch(`${baseUrl}/`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch index.html: ${res.status}`);
+  }
+  return await res.text();
+}
+
+function injectArticleSnippet(html, text) {
+  const safe = escapeHtml(text);
+  if (!safe) return html;
+  const snippet = `<div id="__seo-snippet" style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;" aria-hidden="true">${safe}</div>`;
+  return html.replace('</body>', `${snippet}</body>`);
+}
+
+async function serveListPage(baseUrl) {
+  let indexHtml;
+  try {
+    indexHtml = await fetchIndexHtml(baseUrl);
+  } catch (e) {
+    console.error('Index fetch error:', e);
+    return {
+      status: 500,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      body: '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Error</title></head><body>Erro ao carregar.</body></html>',
+    };
+  }
+  const canonical = `${baseUrl}/conteudo`;
+  const title = 'Conteúdo | Artigos e Materiais | Simplí';
+  const description =
+    'Artigos e materiais sobre transformação digital, desenvolvimento web, IA, tráfego pago e consultoria. Simplí.';
+  const html = replaceMeta(indexHtml, {
+    title,
+    description,
+    canonical,
+    ogType: 'website',
+  });
+  return {
+    status: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    body: html,
+  };
+}
+
+export default async function handler(req, res) {
+  const query = req.query || {};
+  const isList = query.list === '1';
+  const slug = query.slug || query.splat || '';
+
+  const proto =
+    req.headers['x-forwarded-proto'] ||
+    (Array.isArray(req.headers['x-forwarded-proto'])
+      ? req.headers['x-forwarded-proto'][0]
+      : 'https');
+  const host =
+    req.headers['x-forwarded-host'] ||
+    req.headers.host ||
+    'www.simpli.ia.br';
+  const baseUrl = `${proto}://${host}`;
+
+  if (isList) {
+    const result = await serveListPage(baseUrl);
+    res
+      .status(result.status)
+      .setHeader('Content-Type', result.headers['Content-Type'])
+      .send(result.body);
+    return;
+  }
+
+  if (!slug) {
+    res.status(404).send('Not found');
+    return;
+  }
+
+  const canonical = `${baseUrl}/conteudo/${slug}`;
+
+  let post = null;
+  try {
+    const sanityUrl = buildSanityUrl(slug);
+    const sanityRes = await fetch(sanityUrl);
+    const data = await sanityRes.json();
+    post = data?.result || null;
+  } catch (e) {
+    console.error('Sanity fetch error:', e);
+  }
+
+  let indexHtml;
+  try {
+    indexHtml = await fetchIndexHtml(baseUrl);
+  } catch (e) {
+    console.error('Index fetch error:', e);
+    res
+      .status(500)
+      .setHeader('Content-Type', 'text/html; charset=utf-8')
+      .send(
+        '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Error</title></head><body>Erro ao carregar.</body></html>',
+      );
+    return;
+  }
+
+  if (!post) {
+    res
+      .status(200)
+      .setHeader('Content-Type', 'text/html; charset=utf-8')
+      .send(indexHtml);
+    return;
+  }
+
+  const title = post.seo?.metaTitle || post.title;
+  const ogTitle = post.seo?.ogTitle || title;
+  const description = (post.seo?.metaDescription || post.excerpt || '').slice(
+    0,
+    160,
+  );
+  const ogDescription = post.seo?.ogDescription || description;
+  let image =
+    post.seo?.ogImageUrl || post.mainImageUrl || `${baseUrl}/og-image.jpg`;
+  if (image && !image.startsWith('http')) {
+    image = `${baseUrl}${image.startsWith('/') ? '' : '/'}${image}`;
+  }
+  const fullTitle = title ? `${title} | Simplí` : 'Simplí';
+  const ogTitleFinal = ogTitle ? `${ogTitle} | Simplí` : fullTitle;
+  const canonicalFinal =
+    post.seo?.canonical && post.seo.canonical.startsWith('http')
+      ? post.seo.canonical
+      : canonical;
+
+  let html = replaceMeta(indexHtml, {
+    title: fullTitle,
+    description,
+    ogTitle: ogTitleFinal,
+    ogDescription: ogDescription.slice(0, 160),
+    image,
+    canonical: canonicalFinal,
+    ogType: 'article',
+  });
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: fullTitle,
+    description: description,
+    image: image,
+    author: post.author
+      ? { '@type': 'Person', name: post.author, url: baseUrl }
+      : { '@type': 'Organization', name: 'Simplí', url: baseUrl },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Simplí',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logonome-branca-cortada.webp`,
+      },
+    },
+    datePublished: post.publishedAt || undefined,
+    dateModified: post.publishedAt || undefined,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalFinal },
+    keywords: post.tags?.length ? post.tags.join(', ') : undefined,
+    articleSection: post.category,
+    inLanguage: 'pt-BR',
+  };
+  const jsonLdScript = `<script type="application/ld+json">${JSON.stringify(
+    articleJsonLd,
+  )}</script>`;
+  html = html.replace('</head>', `${jsonLdScript}</head>`);
+
+  const contentText = post.bodyText || post.excerpt || '';
+  html = injectArticleSnippet(html, contentText);
+
+  res
+    .status(200)
+    .setHeader('Content-Type', 'text/html; charset=utf-8')
+    .send(html);
+}
+
