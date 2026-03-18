@@ -5,34 +5,26 @@ const trainings = [
   {
     title: "Imersão de IA para Negócios",
     description:
-      "Transforme desafios em oportunidades com um workshop intensivo de 10 horas.",
+      "Transforme desafios em oportunidades com um treinamento intensivo que prepara sua equipe para usar IA no dia a dia da empresa.",
     duration: "10 horas",
     format: "Presencial + Online",
-    tag: "Tecnologia",
+    tag: "Inteligência Artificial",
   },
   {
-    title: "Atendimento ao Cliente",
+    title: "Workshop IA na Prática",
     description:
-      "Excelência no atendimento físico e online. Aumente a satisfação em 85% e reduza reclamações em 70%.",
-    duration: "12 horas",
-    format: "Presencial",
-    tag: "Vendas",
+      "Mãos na massa com as principais ferramentas de IA do mercado. Sua equipe sai aplicando no mesmo dia.",
+    duration: "4 horas",
+    format: "Presencial + Online",
+    tag: "Inteligência Artificial",
   },
   {
-    title: "Técnicas de Vendas",
+    title: "Workshop Ecossistema Google AI",
     description:
-      "Vendas que convertem em qualquer ambiente. Aumente as vendas em 150% e melhore a conversão em 80%.",
-    duration: "20 horas",
-    format: "Presencial/Híbrido",
-    tag: "Vendas",
-  },
-  {
-    title: "Visual Merchandising",
-    description:
-      "Transforme seu ponto de venda. Aumente o ticket médio em 25% e melhore a conversão em 40%.",
-    duration: "8 horas",
-    format: "Presencial/Online",
-    tag: "Vendas",
+      "Domine o ecossistema de ferramentas de IA do Google: Gemini, NotebookLM, Google AI Studio e muito mais.",
+    duration: "4 horas",
+    format: "Presencial + Online",
+    tag: "Inteligência Artificial",
   },
 ];
 
@@ -56,7 +48,7 @@ const TreinamentosSection = () => {
             os resultados da sua empresa.
           </p>
         </div>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           {trainings.map((item) => (
             <div
               key={item.title}

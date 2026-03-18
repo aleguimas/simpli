@@ -6,12 +6,6 @@ const team = [
     image: "/guimas.webp",
   },
   {
-    name: "Luciano Fernandes",
-    title: "O Professor",
-    bio: "Visual Merchandising e Trade Marketing com 35+ anos de experiência no mercado.",
-    image: "/luciano.webp",
-  },
-  {
     name: "Rodrigo Lemos",
     title: "O Tráfego",
     bio: "Tráfego Pago e Marketing Digital, focado em estratégias para aumentar o faturamento.",
@@ -38,7 +32,7 @@ const TecnologiasSection = () => {
         <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
           Conheça os especialistas que transformam ideias em soluções inovadoras.
         </h2>
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {team.map((person) => (
             <div
               key={person.name}

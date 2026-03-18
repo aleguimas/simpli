@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import HeroSection from "@/components/HeroSection";
 import ClientesSection from "@/components/ClientesSection";
 import ServicosSection from "@/components/ServicosSection";
+import SolucoesSection from "@/components/SolucoesSection";
 import MethodSection from "@/components/MethodSection";
 import NichosImpactoSection from "@/components/NichosImpactoSection";
 import TreinamentosSection from "@/components/TreinamentosSection";
@@ -9,7 +10,6 @@ import TecnologiasSection from "@/components/TecnologiasSection";
 import TransformarNegocioSection from "@/components/TransformarNegocioSection";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
-import DiagnosticoSection from "@/components/DiagnosticoSection";
 import { SEO } from "@/components/SEO";
 
 const Index = () => {
@@ -85,9 +85,9 @@ const Index = () => {
         <HeroSection />
         <ClientesSection />
         <ServicosSection />
+        <SolucoesSection />
         <MethodSection />
         <NichosImpactoSection />
-        <DiagnosticoSection />
         <TreinamentosSection />
         <TecnologiasSection />
         <TransformarNegocioSection />

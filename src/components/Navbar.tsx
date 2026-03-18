@@ -1,9 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown, MessageCircle, Kanban, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+
+const solucoes = [
+  {
+    href: "/solucoes/simpli-agent",
+    label: "Simplí Agent",
+    description: "Atendimento com IA 24h",
+    Icon: MessageCircle,
+  },
+  {
+    href: "/solucoes/simpli-crm",
+    label: "Simplí CRM",
+    description: "Gestão de vendas com IA",
+    Icon: Kanban,
+  },
+  {
+    href: "/solucoes/simpli-estoque",
+    label: "Simplí Estoque",
+    description: "Gestão de estoque preditiva",
+    Icon: Package,
+  },
+];
 
 const navLinks = [
   { label: "Início", target: "hero" },
@@ -17,6 +38,9 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [solucoesOpen, setSolucoesOpen] = useState(false);
+  const [mobileSolucoesOpen, setMobileSolucoesOpen] = useState(false);
+  const solucoesRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -25,6 +49,16 @@ const Navbar = () => {
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (solucoesRef.current && !solucoesRef.current.contains(e.target as Node)) {
+        setSolucoesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -75,7 +109,63 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden items-center gap-2 text-sm text-white/80 md:flex">
-          {navLinks.map((item) =>
+          {navLinks.slice(0, 2).map((item) =>
+            "href" in item ? (
+              <Link
+                key={item.href}
+                to={item.href}
+                className="rounded-lg px-3 py-2 transition hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <Link
+                key={item.target}
+                to={`/#${item.target}`}
+                onClick={(e) => handleNavClick(e, item.target)}
+                className="rounded-lg px-3 py-2 transition hover:text-white"
+              >
+                {item.label}
+              </Link>
+            )
+          )}
+
+          {/* Dropdown Soluções */}
+          <div ref={solucoesRef} className="relative">
+            <button
+              onClick={() => setSolucoesOpen((v) => !v)}
+              className="flex items-center gap-1 rounded-lg px-3 py-2 transition hover:text-white"
+            >
+              Soluções
+              <ChevronDown
+                size={14}
+                className={cn("transition-transform", solucoesOpen && "rotate-180")}
+              />
+            </button>
+
+            {solucoesOpen && (
+              <div className="absolute left-0 top-full mt-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-[#0f1d15] shadow-xl shadow-black/40">
+                {solucoes.map(({ href, label, description, Icon }) => (
+                  <Link
+                    key={href}
+                    to={href}
+                    onClick={() => setSolucoesOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 transition hover:bg-white/5"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#86efac]/15 text-[#86efac]">
+                      <Icon size={15} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-white">{label}</p>
+                      <p className="text-xs text-white/50">{description}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {navLinks.slice(2).map((item) =>
             "href" in item ? (
               <Link
                 key={item.href}
@@ -122,7 +212,58 @@ const Navbar = () => {
             >
               <div className="mt-6 flex flex-col gap-5">
                 <div className="flex flex-col gap-2 text-sm">
-                  {navLinks.map((item) =>
+                  {navLinks.slice(0, 2).map((item) =>
+                    "href" in item ? (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="rounded-lg px-3 py-2 transition hover:bg-white/5"
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <Link
+                        key={item.target}
+                        to={`/#${item.target}`}
+                        onClick={(e) => handleMobileNavClick(e, item.target)}
+                        className="rounded-lg px-3 py-2 transition hover:bg-white/5"
+                      >
+                        {item.label}
+                      </Link>
+                    )
+                  )}
+
+                  {/* Soluções mobile */}
+                  <div>
+                    <button
+                      onClick={() => setMobileSolucoesOpen((v) => !v)}
+                      className="flex w-full items-center justify-between rounded-lg px-3 py-2 transition hover:bg-white/5"
+                    >
+                      <span>Soluções</span>
+                      <ChevronDown
+                        size={14}
+                        className={cn("transition-transform", mobileSolucoesOpen && "rotate-180")}
+                      />
+                    </button>
+                    {mobileSolucoesOpen && (
+                      <div className="ml-3 mt-1 flex flex-col gap-1 border-l border-white/10 pl-3">
+                        {solucoes.map(({ href, label, Icon }) => (
+                          <Link
+                            key={href}
+                            to={href}
+                            onClick={() => { setMenuOpen(false); setMobileSolucoesOpen(false); }}
+                            className="flex items-center gap-2 rounded-lg px-3 py-2 text-white/70 transition hover:bg-white/5 hover:text-white"
+                          >
+                            <Icon size={14} className="text-[#86efac]" />
+                            {label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {navLinks.slice(2).map((item) =>
                     "href" in item ? (
                       <Link
                         key={item.href}
