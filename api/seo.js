@@ -5,6 +5,24 @@ const SANITY_PROJECT_ID = 'olcfi9tu';
 const SANITY_DATASET = 'production';
 const SANITY_API_VERSION = '2024-01-01';
 const SOLUTIONS_SEO = {
+  'servico-desenvolvimento-web': {
+    title: 'Desenvolvimento Web | Sites Modernos e Responsivos | Simplí',
+    ogTitle: 'Desenvolvimento Web | Sites Modernos e Responsivos | Simplí',
+    description:
+      'Criamos sites e landing pages modernos e responsivos que convertem visitantes em clientes. Sites otimizados para SEO, performance e experiência do usuário.',
+    canonicalPath: '/servicos/desenvolvimento-web',
+    snippet:
+      'Desenvolvimento de sites e landing pages com foco em SEO técnico, performance, UX e conversão para geração de oportunidades e vendas.',
+  },
+  'servico-agentes-de-ia': {
+    title: 'Agentes de IA | Chatbots Inteligentes e Automação | Simplí',
+    ogTitle: 'Agentes de IA | Chatbots Inteligentes e Automação | Simplí',
+    description:
+      'Desenvolvemos agentes de Inteligência Artificial personalizados para automatizar processos e aumentar a eficiência. Chatbots inteligentes e automação de atendimento 24/7.',
+    canonicalPath: '/servicos/agentes-de-ia',
+    snippet:
+      'Agentes de IA personalizados para atendimento, qualificação de leads e automação de processos com integração aos canais e sistemas da empresa.',
+  },
   'simpli-agent': {
     title: 'Simplí Agent — Atendimento com IA 24h | Simplí',
     ogTitle: 'Simplí Agent — Agente de IA para Atendimento 24h | Simplí',
@@ -32,6 +50,25 @@ const SOLUTIONS_SEO = {
     canonicalPath: '/servicos/trafego-pago',
     snippet:
       'Planejamento, execução e otimização contínua de campanhas em Google Ads, Meta Ads e LinkedIn Ads para gerar mais leads e vendas com ROI previsível.',
+  },
+  'servico-consultoria-digital': {
+    title: 'Consultoria Digital | Transformação Digital Estratégica | Simplí',
+    ogTitle:
+      'Consultoria Digital | Transformação Digital Estratégica | Simplí',
+    description:
+      'Estratégia completa de transformação digital sob medida para sua empresa. Consultoria com metodologias comprovadas como Design Thinking, Agile e Lean Startup.',
+    canonicalPath: '/servicos/consultoria-digital',
+    snippet:
+      'Consultoria para transformação digital com diagnóstico, priorização de iniciativas e execução orientada a resultado para crescimento sustentável.',
+  },
+  'simpli-crm': {
+    title: 'Simplí CRM — Gestão de Vendas com IA | Simplí',
+    ogTitle: 'Simplí CRM — Funil de Vendas Automatizado com IA | Simplí',
+    description:
+      'CRM integrado à IA que transforma atendimentos em vendas. Funil Kanban, alimentação automática de leads, follow-up contextual e automações.',
+    canonicalPath: '/solucoes/simpli-crm',
+    snippet:
+      'Simplí CRM organiza funil comercial, automatiza follow-up e prioriza leads com IA para aumentar conversão e produtividade do time de vendas.',
   },
 };
 

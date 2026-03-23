@@ -6,12 +6,28 @@
       "destination": "/api/seo?route=simpli-agent"
     },
     {
+      "source": "/solucoes/simpli-crm",
+      "destination": "/api/seo?route=simpli-crm"
+    },
+    {
       "source": "/solucoes/simpli-estoque",
       "destination": "/api/seo?route=simpli-estoque"
     },
     {
+      "source": "/servicos/desenvolvimento-web",
+      "destination": "/api/seo?route=servico-desenvolvimento-web"
+    },
+    {
+      "source": "/servicos/agentes-de-ia",
+      "destination": "/api/seo?route=servico-agentes-de-ia"
+    },
+    {
       "source": "/servicos/trafego-pago",
       "destination": "/api/seo?route=servico-trafego-pago"
+    },
+    {
+      "source": "/servicos/consultoria-digital",
+      "destination": "/api/seo?route=servico-consultoria-digital"
     },
     {
       "source": "/conteudo",
@@ -37,13 +53,33 @@
       "permanent": true
     },
     {
+      "source": "/solucoes/simpli-crm/",
+      "destination": "/solucoes/simpli-crm",
+      "permanent": true
+    },
+    {
       "source": "/solucoes/simpli-estoque/",
       "destination": "/solucoes/simpli-estoque",
       "permanent": true
     },
     {
+      "source": "/servicos/desenvolvimento-web/",
+      "destination": "/servicos/desenvolvimento-web",
+      "permanent": true
+    },
+    {
+      "source": "/servicos/agentes-de-ia/",
+      "destination": "/servicos/agentes-de-ia",
+      "permanent": true
+    },
+    {
       "source": "/servicos/trafego-pago/",
       "destination": "/servicos/trafego-pago",
+      "permanent": true
+    },
+    {
+      "source": "/servicos/consultoria-digital/",
+      "destination": "/servicos/consultoria-digital",
       "permanent": true
     }
   ]
