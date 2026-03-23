@@ -23,6 +23,16 @@ const SOLUTIONS_SEO = {
     snippet:
       'Simplí Estoque usa IA preditiva para reduzir rupturas, excesso de estoque e melhorar decisões com base em demanda, margem, giro e dados do ERP.',
   },
+  'servico-trafego-pago': {
+    title: 'Tráfego Pago | Google Ads, Facebook Ads e LinkedIn Ads | Simplí',
+    ogTitle:
+      'Tráfego Pago | Google Ads, Facebook Ads e LinkedIn Ads | Simplí',
+    description:
+      'Gestão completa de campanhas de tráfego pago em Google Ads, Meta Ads e LinkedIn Ads. Maximize ROI com segmentação avançada, remarketing e otimização contínua.',
+    canonicalPath: '/servicos/trafego-pago',
+    snippet:
+      'Planejamento, execução e otimização contínua de campanhas em Google Ads, Meta Ads e LinkedIn Ads para gerar mais leads e vendas com ROI previsível.',
+  },
 };
 
 // Inclui também texto do corpo para o snippet de conteúdo.

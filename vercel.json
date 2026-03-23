@@ -10,6 +10,10 @@
       "destination": "/api/seo?route=simpli-estoque"
     },
     {
+      "source": "/servicos/trafego-pago",
+      "destination": "/api/seo?route=servico-trafego-pago"
+    },
+    {
       "source": "/conteudo",
       "destination": "/api/seo?list=1"
     },
@@ -35,6 +39,11 @@
     {
       "source": "/solucoes/simpli-estoque/",
       "destination": "/solucoes/simpli-estoque",
+      "permanent": true
+    },
+    {
+      "source": "/servicos/trafego-pago/",
+      "destination": "/servicos/trafego-pago",
       "permanent": true
     }
   ]
