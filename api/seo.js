@@ -4,6 +4,26 @@ import path from 'node:path';
 const SANITY_PROJECT_ID = 'olcfi9tu';
 const SANITY_DATASET = 'production';
 const SANITY_API_VERSION = '2024-01-01';
+const SOLUTIONS_SEO = {
+  'simpli-agent': {
+    title: 'Simplí Agent — Atendimento com IA 24h | Simplí',
+    ogTitle: 'Simplí Agent — Agente de IA para Atendimento 24h | Simplí',
+    description:
+      'Automatize o atendimento da sua empresa com IA. Resposta em 15s, disponível 24h, omnichannel no WhatsApp, Instagram e Chat.',
+    canonicalPath: '/solucoes/simpli-agent',
+    snippet:
+      'Simplí Agent automatiza atendimento com IA 24h, responde em segundos, integra canais e utiliza RAG treinado com os dados do seu negócio.',
+  },
+  'simpli-estoque': {
+    title: 'Simplí Estoque — Gestão de Estoque com IA Preditiva | Simplí',
+    ogTitle: 'Simplí Estoque — Gestão de Estoque com IA Preditiva | Simplí',
+    description:
+      'Elimine rupturas e excesso de estoque com IA. Dashboards em tempo real, previsão de demanda, análise de SKUs e integração com ERP.',
+    canonicalPath: '/solucoes/simpli-estoque',
+    snippet:
+      'Simplí Estoque usa IA preditiva para reduzir rupturas, excesso de estoque e melhorar decisões com base em demanda, margem, giro e dados do ERP.',
+  },
+};
 
 // Inclui também texto do corpo para o snippet de conteúdo.
 const GROQ_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) && slug.current == $slug][0]{
@@ -191,10 +211,51 @@ async function serveListPage(baseUrl) {
   };
 }
 
+async function serveSolutionPage(baseUrl, solutionSlug) {
+  const config = SOLUTIONS_SEO[solutionSlug];
+  if (!config) {
+    return {
+      status: 404,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      body: 'Not found',
+    };
+  }
+
+  let indexHtml;
+  try {
+    indexHtml = await fetchIndexHtml();
+  } catch (e) {
+    console.error('Index fetch error:', e);
+    return {
+      status: 500,
+      headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      body: '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Error</title></head><body>Erro ao carregar.</body></html>',
+    };
+  }
+
+  const canonical = `${baseUrl}${config.canonicalPath}`;
+  let html = replaceMeta(indexHtml, {
+    title: config.title,
+    ogTitle: config.ogTitle,
+    description: config.description,
+    ogDescription: config.description,
+    canonical,
+    ogType: 'website',
+  });
+  html = injectArticleSnippet(html, config.snippet);
+
+  return {
+    status: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    body: html,
+  };
+}
+
 export default async function handler(req, res) {
   const query = req.query || {};
   const isList = query.list === '1';
   const slug = query.slug || query.splat || '';
+  const route = query.route || '';
 
   const proto =
     req.headers['x-forwarded-proto'] ||
@@ -209,6 +270,15 @@ export default async function handler(req, res) {
 
   if (isList) {
     const result = await serveListPage(baseUrl);
+    res
+      .status(result.status)
+      .setHeader('Content-Type', result.headers['Content-Type'])
+      .send(result.body);
+    return;
+  }
+
+  if (route) {
+    const result = await serveSolutionPage(baseUrl, route);
     res
       .status(result.status)
       .setHeader('Content-Type', result.headers['Content-Type'])
