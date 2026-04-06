@@ -1,7 +1,8 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   BarChart3,
   CheckCircle2,
+  ChevronDown,
   Monitor,
   Rocket,
   Search,
@@ -21,45 +22,53 @@ const benefits = [
   {
     icon: Zap,
     title: "Performance Otimizada",
-    description: "Sites rápidos e responsivos que carregam em segundos",
+    description:
+      "Sites com carregamento em menos de 2 segundos, melhorando a experiência do usuário e o posicionamento no Google.",
   },
   {
     icon: Search,
-    title: "SEO Avançado",
-    description: "Otimização completa para motores de busca",
+    title: "SEO Técnico Avançado",
+    description:
+      "Estrutura de URLs amigáveis, meta tags, dados estruturados, sitemap e Core Web Vitals otimizados desde o primeiro dia.",
   },
   {
     icon: Smartphone,
     title: "Design Responsivo",
-    description: "Funciona perfeitamente em todos os dispositivos",
+    description:
+      "Layout adaptável que funciona perfeitamente em celular, tablet e desktop — onde seus clientes estiverem.",
   },
   {
     icon: Shield,
     title: "Segurança Garantida",
-    description: "Proteção completa contra ameaças digitais",
+    description:
+      "HTTPS, proteção contra ataques, backups automáticos e boas práticas de segurança para manter seu site protegido.",
   },
 ];
 
 const steps = [
   {
     label: "01",
-    title: "Discovery & Planning",
-    description: "Análise profunda das necessidades e objetivos do projeto",
+    title: "Descoberta e Planejamento",
+    description:
+      "Análise das necessidades, objetivos de negócio e público-alvo para definir a melhor estratégia para o projeto.",
   },
   {
     label: "02",
-    title: "Design & Prototyping",
-    description: "Criação de wireframes e protótipos interativos",
+    title: "Design e Prototipagem",
+    description:
+      "Criação de wireframes, identidade visual e protótipos interativos aprovados pelo cliente antes do desenvolvimento.",
   },
   {
     label: "03",
-    title: "Development",
-    description: "Desenvolvimento com as melhores tecnologias do mercado",
+    title: "Desenvolvimento",
+    description:
+      "Codificação com as melhores tecnologias do mercado: React, Next.js, TypeScript e Node.js.",
   },
   {
     label: "04",
-    title: "Testing & Launch",
-    description: "Testes rigorosos e lançamento otimizado",
+    title: "Testes e Publicação",
+    description:
+      "Testes de performance, acessibilidade, SEO técnico e lançamento com monitoramento contínuo.",
   },
 ];
 
@@ -74,7 +83,7 @@ const cases = [
       "Landing page otimizada para conversões",
     ],
     quote:
-      "“A Simplí transformou completamente nossa presença online. O novo site www.martaamaliaestetica.com.br aumentou significativamente nosso tráfego orgânico e conversões. Agora nossos clientes encontram facilmente nossos serviços e conseguimos mais agendamentos.”",
+      '\u201cA Simplí transformou completamente nossa presença online. O novo site www.martaamaliaestetica.com.br aumentou significativamente nosso tráfego orgânico e conversões. Agora nossos clientes encontram facilmente nossos serviços e conseguimos mais agendamentos.\u201d',
     author: "– Marta Amália, Esteticista",
     resultTitle: "Resultados",
     resultStats: [
@@ -93,7 +102,7 @@ const cases = [
       "Integração com banco de dados municipal",
     ],
     quote:
-      "“O portal superou todas as expectativas, batendo recorde de participação e demonstrando a eficiência da solução desenvolvida pela Simplí.”",
+      '\u201cO portal superou todas as expectativas, batendo recorde de participação e demonstrando a eficiência da solução desenvolvida pela Simplí.\u201d',
     author:
       "– Norma Selene Guimarães, Secretária Executiva de Planejamento e Gestão",
     resultTitle: "Resultados Impressionantes",
@@ -105,44 +114,134 @@ const cases = [
   },
 ];
 
+const faqs = [
+  {
+    question: "Quanto tempo leva para criar um site profissional?",
+    answer:
+      "O prazo varia conforme a complexidade. Uma landing page fica pronta em até 1 semana; um site institucional leva de 2 a 4 semanas. Projetos maiores, como e-commerces e sistemas web, podem levar de 6 a 12 semanas. Sempre definimos o prazo junto com o cliente antes de começar.",
+  },
+  {
+    question: "Qual a diferença entre site institucional e landing page?",
+    answer:
+      "Um site institucional apresenta sua empresa de forma completa, com múltiplas páginas (sobre, serviços, portfólio, contato). Já uma landing page é uma página única, focada em converter o visitante em lead ou cliente — ideal para campanhas e lançamentos de produtos.",
+  },
+  {
+    question: "O site vai aparecer no Google?",
+    answer:
+      "Sim. Todo site que desenvolvemos já sai com SEO técnico implementado: URLs amigáveis, meta tags, dados estruturados, sitemap.xml, robots.txt e Core Web Vitals otimizados. Isso cria uma base sólida para ranquear nos resultados do Google desde o lançamento.",
+  },
+  {
+    question: "Vocês oferecem manutenção após a entrega?",
+    answer:
+      "Sim. Oferecemos planos de manutenção e suporte contínuo para manter o site seguro, atualizado e com bom desempenho. Assim você foca no seu negócio enquanto cuidamos da tecnologia.",
+  },
+  {
+    question: "Quanto custa criar um site profissional?",
+    answer:
+      "O investimento varia conforme o escopo do projeto. Entre em contato para receber um orçamento personalizado — analisamos suas necessidades e apresentamos a melhor solução dentro do seu orçamento.",
+  },
+];
+
 const DesenvolvimentoWeb = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   const heroGradient = useMemo(
     () =>
       "linear-gradient(120deg, rgba(12,20,15,0.8), rgba(28,51,36,0.85)), url('/fundo-devweb.webp')",
     [],
   );
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: "Desenvolvimento Web",
-    provider: {
-      "@type": "Organization",
-      name: "Simplí",
-      url: "https://www.simpli.ia.br",
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Desenvolvimento Web",
+      name: "Criação de Sites Profissionais e Landing Pages",
+      provider: {
+        "@type": "Organization",
+        name: "Simplí",
+        url: "https://www.simpli.ia.br",
+        telephone: "",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Recife",
+          addressRegion: "PE",
+          addressCountry: "BR",
+        },
+      },
+      areaServed: [
+        { "@type": "City", name: "Recife" },
+        { "@type": "State", name: "Pernambuco" },
+        { "@type": "Country", name: "Brasil" },
+      ],
+      description:
+        "Criamos sites profissionais, landing pages e sistemas web que convertem visitantes em clientes. Foco em SEO técnico, performance e experiência do usuário.",
+      offers: {
+        "@type": "Offer",
+        description:
+          "Desenvolvimento web completo com foco em SEO, performance e experiência do usuário para empresas em Recife e em todo o Brasil.",
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Serviços de Desenvolvimento Web",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Site Institucional" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Landing Page" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "E-commerce" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Sistema Web" } },
+        ],
+      },
     },
-    areaServed: {
-      "@type": "Country",
-      name: "Brasil",
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Início",
+          item: "https://www.simpli.ia.br",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Serviços",
+          item: "https://www.simpli.ia.br/#servicos",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Desenvolvimento Web",
+          item: "https://www.simpli.ia.br/servicos/desenvolvimento-web",
+        },
+      ],
     },
-    description: "Criamos sites e landing pages modernos e responsivos que convertem visitantes em clientes. Utilizamos React, Next.js, TypeScript e Node.js para criar soluções com performance excepcional.",
-    offers: {
-      "@type": "Offer",
-      description: "Desenvolvimento web completo com foco em SEO, performance e experiência do usuário",
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
     },
-  };
+  ];
 
   return (
     <div className="bg-[#0C140F] text-white">
       <SEO
-        title="Desenvolvimento Web | Sites Modernos e Responsivos"
-        description="Criamos sites e landing pages modernos e responsivos que convertem visitantes em clientes. Sites otimizados para SEO, performance e experiência do usuário. Tecnologias: React, Next.js, TypeScript."
-        keywords="desenvolvimento web, criação de sites, landing pages, sites responsivos, React, Next.js, TypeScript, SEO, performance web, sites institucionais, desenvolvimento frontend, Recife"
+        title="Criação de Sites Profissionais | Desenvolvimento Web"
+        description="Criamos sites profissionais, landing pages e sistemas web que convertem visitantes em clientes. Agência de desenvolvimento web em Recife com foco em SEO, performance e resultado."
+        keywords="criação de sites, desenvolvimento web, sites profissionais, landing page profissional, agência de desenvolvimento web, site para empresa, desenvolvimento web Recife, criar site para negócio, sites responsivos, React, Next.js, TypeScript"
         canonical="/servicos/desenvolvimento-web"
         structuredData={structuredData}
       />
       <Navbar />
       <main>
+        {/* Hero */}
         <section
           className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
           style={{
@@ -153,9 +252,11 @@ const DesenvolvimentoWeb = () => {
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
           <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
-            <h1 className="text-4xl font-semibold md:text-5xl">Desenvolvimento Web</h1>
+            <h1 className="text-4xl font-semibold md:text-5xl">
+              Criação de Sites Profissionais e Landing Pages
+            </h1>
             <p className="max-w-2xl text-lg text-white/80 md:text-xl">
-              Criamos sites e landing pages modernos e responsivos que convertem visitantes em clientes.
+              Desenvolvemos sites que atraem clientes e geram resultados reais — com SEO, performance e design moderno, para empresas em Recife e em todo o Brasil.
             </p>
             <Button
               asChild
@@ -168,22 +269,19 @@ const DesenvolvimentoWeb = () => {
           </div>
         </section>
 
+        {/* O que é */}
         <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
             <div className="space-y-4">
               <h2 className="text-3xl font-semibold md:text-4xl">O que é Desenvolvimento Web?</h2>
               <p className="text-base leading-relaxed text-white/70">
-                O desenvolvimento web é o processo de criação de sites e aplicações web que funcionam na internet. Envolve
-                desde a criação de sites institucionais até e-commerces complexos e aplicações web avançadas.
+                O desenvolvimento web é o processo de criação de sites e aplicações web que funcionam na internet. Envolve desde landing pages e sites institucionais até e-commerces e sistemas web complexos — sempre com foco em conversão e resultado para o negócio.
               </p>
               <p className="text-base leading-relaxed text-white/70">
-                Utilizamos as tecnologias mais modernas do mercado, como React, Next.js, TypeScript e Node.js, para criar
-                soluções que não apenas impressionam visualmente, mas também oferecem performance excepcional e experiência
-                de usuário superior.
+                Na Simplí, utilizamos as tecnologias mais modernas do mercado — React, Next.js, TypeScript e Node.js — para criar soluções que não apenas impressionam visualmente, mas também entregam performance excepcional e experiência de usuário superior.
               </p>
               <p className="text-base leading-relaxed text-white/70">
-                Nossa abordagem combina design criativo com desenvolvimento técnico robusto, garantindo que cada projeto seja
-                único, funcional e alinhado com os objetivos de negócio dos nossos clientes.
+                Atendemos empresas em Recife, Pernambuco e em todo o Brasil. Nossa abordagem combina design criativo com desenvolvimento técnico robusto, garantindo que cada projeto seja único, funcional e alinhado com os objetivos de negócio do cliente.
               </p>
             </div>
             <Card className="border-white/10 bg-[#0C140F]/80 shadow-2xl shadow-black/30">
@@ -193,20 +291,21 @@ const DesenvolvimentoWeb = () => {
                 </div>
                 <h3 className="text-lg font-semibold text-white">Tecnologias Modernas</h3>
                 <p className="text-sm text-white/65">
-                  React, Next.js, TypeScript, Node.js e muito mais para criar experiências web excepcionais.
+                  React, Next.js, TypeScript e Node.js para criar experiências web rápidas, seguras e escaláveis.
                 </p>
               </CardContent>
             </Card>
           </div>
         </section>
 
+        {/* Benefícios */}
         <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
             <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
-              Benefícios do Desenvolvimento Web
+              Benefícios do Desenvolvimento Web Profissional
             </h2>
             <p className="mt-2 text-base text-white/70">
-              Por que escolher nossos serviços de desenvolvimento web?
+              Por que escolher a Simplí para criar o site da sua empresa?
             </p>
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {benefits.map((item) => (
@@ -229,11 +328,12 @@ const DesenvolvimentoWeb = () => {
           </div>
         </section>
 
+        {/* Como Fazemos */}
         <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">Como Fazemos</h2>
+            <h2 className="text-3xl font-semibold md:text-4xl">Como Desenvolvemos Seu Site</h2>
             <p className="mt-2 text-base text-white/70">
-              Nosso processo de desenvolvimento web em passos claros e sequenciais
+              Nosso processo de criação de sites em etapas claras e transparentes
             </p>
             <div className="relative mx-auto mt-12 max-w-4xl space-y-8">
               <div className="pointer-events-none absolute left-6 top-0 hidden h-full w-px bg-white/10 sm:block" />
@@ -264,6 +364,7 @@ const DesenvolvimentoWeb = () => {
           </div>
         </section>
 
+        {/* Cases de Sucesso */}
         <section className="bg-[#0C140F] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">Cases de Sucesso</h2>
@@ -321,14 +422,49 @@ const DesenvolvimentoWeb = () => {
           </div>
         </section>
 
+        {/* FAQ */}
+        <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
+          <div className="mx-auto max-w-3xl">
+            <div className="mb-10 text-center">
+              <h2 className="text-3xl font-semibold md:text-4xl">Perguntas Frequentes</h2>
+              <p className="mt-2 text-base text-white/70">
+                Dúvidas sobre criação de sites e desenvolvimento web
+              </p>
+            </div>
+            <div className="flex flex-col divide-y divide-white/10">
+              {faqs.map((faq, idx) => (
+                <div key={faq.question}>
+                  <button
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    aria-expanded={openFaq === idx}
+                  >
+                    <span className="text-base font-medium text-white">{faq.question}</span>
+                    <ChevronDown
+                      size={18}
+                      className={`shrink-0 text-white/50 transition-transform duration-200 ${
+                        openFaq === idx ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {openFaq === idx && (
+                    <p className="pb-5 text-sm leading-relaxed text-white/70">{faq.answer}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Final */}
         <section className="relative overflow-hidden bg-gradient-to-r from-[#1C3324] via-[#16402F] to-[#0F1D15] px-6 py-16 md:px-10 md:py-20">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.12),_transparent_55%)]" />
           <div className="relative mx-auto max-w-5xl text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">
-              Pronto para iniciar seu projeto web?
+              Pronto para criar o site da sua empresa?
             </h2>
             <p className="mt-3 text-base text-white/80 md:text-lg">
-              Fale com nosso time e descubra como podemos criar um site moderno, rápido e seguro para o seu negócio.
+              Fale com nosso time e descubra como podemos criar um site moderno, rápido e otimizado para o seu negócio.
             </p>
             <div className="mt-7 flex justify-center">
               <Button

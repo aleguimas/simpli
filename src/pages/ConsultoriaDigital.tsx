@@ -1,9 +1,11 @@
+import { useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
   BarChart3,
   Brain,
   CheckCircle2,
+  ChevronDown,
   Compass,
   Layers,
   Rocket,
@@ -18,29 +20,31 @@ import { Card, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
-
-const HERO_BG =
-  "/fundo-consultoria.webp";
+const HERO_BG = "/fundo-consultoria.webp";
 
 const benefits = [
   {
     title: "Estratégia Clara",
-    description: "Roadmap estruturado para transformação digital.",
+    description:
+      "Roadmap estruturado com prioridades definidas, metas mensuráveis e etapas sequenciais para a transformação digital do seu negócio.",
     icon: Compass,
   },
   {
     title: "Maior Eficiência",
-    description: "Otimização de processos e redução de custos.",
+    description:
+      "Otimização de processos internos com eliminação de gargalos, automação de tarefas e redução de custos operacionais.",
     icon: Shield,
   },
   {
-    title: "Inovação",
-    description: "Aplicação das melhores práticas e tecnologias.",
+    title: "Inovação Aplicada",
+    description:
+      "Aplicação das melhores práticas e tecnologias — IA, automação, dados — adaptadas à realidade e ao momento da sua empresa.",
     icon: Sparkles,
   },
   {
     title: "Resultados Mensuráveis",
-    description: "KPIs claros e ROI acompanhado em tempo real.",
+    description:
+      "KPIs definidos desde o início, dashboards de acompanhamento e ROI calculado ao longo de todo o projeto.",
     icon: BarChart3,
   },
 ];
@@ -49,58 +53,155 @@ const steps = [
   {
     label: "01",
     title: "Diagnóstico",
-    description: "Análise completa da situação atual.",
+    description:
+      "Mapeamento completo da situação atual: processos, tecnologia, pessoas e oportunidades de melhoria com maior impacto.",
     icon: Brain,
   },
   {
     label: "02",
     title: "Planejamento",
-    description: "Estratégia e plano detalhado de transformação.",
+    description:
+      "Definição de estratégia, priorização de iniciativas, roadmap de transformação e metas claras para cada etapa.",
     icon: Layers,
   },
   {
     label: "03",
     title: "Implementação",
-    description: "Execução das soluções priorizadas.",
+    description:
+      "Execução das soluções priorizadas com metodologias ágeis, gestão de mudança e suporte à adoção pela equipe.",
     icon: Rocket,
   },
   {
     label: "04",
     title: "Monitoramento",
-    description: "Acompanhamento e otimização contínua.",
+    description:
+      "Acompanhamento contínuo dos indicadores, ajustes de rota e relatórios periódicos para garantir os resultados esperados.",
     icon: BadgeCheck,
   },
 ];
 
+const faqs = [
+  {
+    question: "O que inclui uma consultoria digital?",
+    answer:
+      "Nossa consultoria digital inclui diagnóstico da situação atual, definição de estratégia, roadmap de transformação, acompanhamento da implementação e monitoramento de resultados. Cobrimos processos, tecnologia, marketing digital e cultura organizacional conforme a necessidade de cada empresa.",
+  },
+  {
+    question: "Minha empresa precisa de consultoria digital?",
+    answer:
+      "Se sua empresa enfrenta processos manuais e ineficientes, dificuldade de escalar, baixa visibilidade online ou quer adotar tecnologias como IA e automação, a consultoria digital é o ponto de partida ideal. Atendemos desde pequenas empresas até organizações de grande porte.",
+  },
+  {
+    question: "Qual a diferença entre consultoria digital e agência de marketing?",
+    answer:
+      "Uma agência de marketing foca na execução de campanhas e canais de comunicação. A consultoria digital tem escopo mais amplo: envolve estratégia, processos internos, tecnologia, cultura e transformação organizacional. As duas são complementares e podem atuar juntas.",
+  },
+  {
+    question: "Quanto tempo dura um projeto de consultoria digital?",
+    answer:
+      "Depende do escopo. Um diagnóstico inicial pode ser entregue em 2 a 4 semanas. Projetos de transformação digital mais abrangentes costumam durar de 3 a 12 meses. Trabalhamos com sprints curtos para que os resultados apareçam ao longo do projeto, não só no final.",
+  },
+  {
+    question: "Como é mensurado o resultado da consultoria?",
+    answer:
+      "Definimos KPIs no início do projeto e acompanhamos periodicamente. Os indicadores variam conforme o objetivo: redução de custo operacional, aumento de receita, melhora em NPS, velocidade de processos ou adoção de novas tecnologias.",
+  },
+];
+
 const ConsultoriaDigital = () => {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: "Consultoria Digital",
-    provider: {
-      "@type": "Organization",
-      name: "Simplí",
-      url: "https://www.simpli.ia.br",
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "Consultoria Digital",
+      name: "Consultoria Digital e Transformação Digital para Empresas",
+      provider: {
+        "@type": "Organization",
+        name: "Simplí",
+        url: "https://www.simpli.ia.br",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Recife",
+          addressRegion: "PE",
+          addressCountry: "BR",
+        },
+      },
+      areaServed: [
+        { "@type": "City", name: "Recife" },
+        { "@type": "State", name: "Pernambuco" },
+        { "@type": "Country", name: "Brasil" },
+      ],
+      description:
+        "Consultoria digital estratégica para transformação de empresas em Recife e no Brasil. Diagnóstico, planejamento, implementação e monitoramento com metodologias comprovadas.",
+      offers: {
+        "@type": "Offer",
+        description:
+          "Consultoria digital com metodologias comprovadas: Design Thinking, Agile e Lean Startup para empresas em Recife e em todo o Brasil.",
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Serviços de Consultoria Digital",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Diagnóstico Digital" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Estratégia de Transformação Digital" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Implementação de Tecnologia" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Otimização de Processos" } },
+        ],
+      },
     },
-    description: "Estratégia completa de transformação digital sob medida para sua empresa. Acompanhamos sua transformação digital do planejamento à execução, integrando tecnologia e processos.",
-    offers: {
-      "@type": "Offer",
-      description: "Consultoria digital com metodologias comprovadas: Design Thinking, Agile, Lean Startup",
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Início",
+          item: "https://www.simpli.ia.br",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Serviços",
+          item: "https://www.simpli.ia.br/#servicos",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Consultoria Digital",
+          item: "https://www.simpli.ia.br/servicos/consultoria-digital",
+        },
+      ],
     },
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ];
 
   return (
     <div className="bg-[#0C140F] text-white">
       <SEO
-        title="Consultoria Digital | Transformação Digital Estratégica"
-        description="Estratégia completa de transformação digital sob medida para sua empresa. Consultoria digital com metodologias comprovadas: Design Thinking, Agile, Lean Startup."
-        keywords="consultoria digital, transformação digital, estratégia digital, Design Thinking, Agile, Lean Startup, digitalização, inovação, tecnologia, Recife"
+        title="Consultoria Digital | Transformação Digital para Empresas"
+        description="Consultoria digital estratégica para transformar empresas com tecnologia e inovação. Diagnóstico, planejamento e implementação sob medida — em Recife e em todo o Brasil."
+        keywords="consultoria digital, transformação digital, consultoria de tecnologia, digitalização de empresas, estratégia digital, consultoria digital Recife, inovação empresarial, otimização de processos, Design Thinking, Agile"
         canonical="/servicos/consultoria-digital"
         structuredData={structuredData}
       />
       <Navbar />
 
       <main>
+        {/* Hero */}
         <section
           className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
           style={{
@@ -112,22 +213,23 @@ const ConsultoriaDigital = () => {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
           <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
             <h1 className="text-4xl font-semibold md:text-5xl">
-              Consultoria Digital
+              Consultoria Digital e Transformação Digital para Empresas
             </h1>
             <p className="max-w-2xl text-lg text-white/75 md:text-xl">
-              Estratégia completa de transformação digital sob medida para sua empresa.
+              Acompanhamos sua empresa do diagnóstico à execução — com estratégia, tecnologia e metodologias comprovadas para gerar resultado real.
             </p>
             <Button
               asChild
               className="h-12 rounded-xl border border-transparent bg-white px-7 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
             >
               <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                Solicitar Orçamento
+                Falar com Especialista
               </a>
             </Button>
           </div>
         </section>
 
+        {/* O que é */}
         <section className="px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-center">
             <div className="space-y-4">
@@ -135,13 +237,13 @@ const ConsultoriaDigital = () => {
                 O que é Consultoria Digital?
               </h2>
               <p className="text-base leading-relaxed text-white/70">
-                Consultoria digital é o processo de orientar empresas na transformação dos seus
-                negócios através de tecnologia e inovação, desde análise estratégica até
-                implementação de soluções.
+                Consultoria digital é o processo de orientar empresas na transformação dos seus negócios por meio de tecnologia e inovação — desde a análise estratégica até a implementação de soluções que geram eficiência e crescimento.
               </p>
               <p className="text-base leading-relaxed text-white/70">
-                Trabalhamos com metodologias comprovadas, garantindo que a transformação seja
-                eficaz, mensurável e sustentável.
+                Trabalhamos com metodologias comprovadas como Design Thinking, Agile e Lean Startup, garantindo que cada iniciativa seja focada em resultado mensurável. Não entregamos apenas diagnóstico: acompanhamos a execução e medimos o impacto real no negócio.
+              </p>
+              <p className="text-base leading-relaxed text-white/70">
+                Atendemos empresas em Recife, Pernambuco e em todo o Brasil — desde pequenos negócios que dão os primeiros passos no digital até médias e grandes organizações que precisam escalar suas operações com tecnologia.
               </p>
             </div>
             <Card className="border-white/10 bg-white/5 shadow-2xl shadow-black/30">
@@ -153,20 +255,21 @@ const ConsultoriaDigital = () => {
                   Metodologias Comprovadas
                 </h3>
                 <p className="text-sm text-white/70">
-                  Design Thinking, Agile, Lean Startup e outras abordagens inovadoras aplicadas ao seu contexto.
+                  Design Thinking, Agile e Lean Startup aplicadas ao contexto real da sua empresa para gerar resultado com menos risco.
                 </p>
               </CardContent>
             </Card>
           </div>
         </section>
 
+        {/* Benefícios */}
         <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">
-              Benefícios da Consultoria Digital
+              Por que investir em Consultoria Digital?
             </h2>
             <p className="mt-2 text-base text-white/70">
-              Por que investir em consultoria digital?
+              Transformação com estratégia, execução e resultados mensuráveis — do início ao fim.
             </p>
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {benefits.map((item) => (
@@ -189,11 +292,12 @@ const ConsultoriaDigital = () => {
           </div>
         </section>
 
+        {/* Processo */}
         <section className="px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">Como Consultamos</h2>
+            <h2 className="text-3xl font-semibold md:text-4xl">Como Trabalhamos</h2>
             <p className="mt-2 text-base text-white/70">
-              Nosso processo de consultoria digital
+              Processo estruturado em 4 etapas para transformar seu negócio com segurança e resultado
             </p>
             <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map((step) => (
@@ -217,11 +321,12 @@ const ConsultoriaDigital = () => {
           </div>
         </section>
 
+        {/* Case */}
         <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
           <div className="mx-auto max-w-6xl text-center">
             <h2 className="text-3xl font-semibold md:text-4xl">Case de Sucesso</h2>
             <p className="mt-2 text-base text-white/70">
-              Veja como transformamos um cliente com consultoria digital
+              Como dobramos a eficiência e triplicamos as vendas de uma indústria tradicional
             </p>
             <Card className="mt-10 border-white/10 bg-[#0C140F]/80 shadow-2xl shadow-black/40">
               <CardContent className="grid gap-6 p-6 md:grid-cols-[1.1fr_0.9fr] md:p-8 md:items-center">
@@ -245,8 +350,7 @@ const ConsultoriaDigital = () => {
                     ))}
                   </ul>
                   <blockquote className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-white/75">
-                    “A consultoria foi fundamental para nossa transformação. Aumentamos a eficiência
-                    em 70% e abrimos novos mercados.”
+                    "A consultoria foi fundamental para nossa transformação. Aumentamos a eficiência em 70% e abrimos novos mercados."
                     <span className="mt-2 block text-xs text-white/60">
                       — Carlos Mendes, CEO da Indústria Moderna
                     </span>
@@ -273,18 +377,54 @@ const ConsultoriaDigital = () => {
           </div>
         </section>
 
+        {/* FAQ */}
+        <section className="px-6 py-16 md:px-10 md:py-20">
+          <div className="mx-auto max-w-3xl">
+            <div className="mb-10 text-center">
+              <h2 className="text-3xl font-semibold md:text-4xl">Perguntas Frequentes</h2>
+              <p className="mt-2 text-base text-white/70">
+                Dúvidas sobre consultoria digital e transformação digital
+              </p>
+            </div>
+            <div className="flex flex-col divide-y divide-white/10">
+              {faqs.map((faq, idx) => (
+                <div key={faq.question}>
+                  <button
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                    aria-expanded={openFaq === idx}
+                  >
+                    <span className="text-base font-medium text-white">{faq.question}</span>
+                    <ChevronDown
+                      size={18}
+                      className={`shrink-0 text-white/50 transition-transform duration-200 ${
+                        openFaq === idx ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {openFaq === idx && (
+                    <p className="pb-5 text-sm leading-relaxed text-white/70">{faq.answer}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
         <section
           className="relative overflow-hidden px-6 py-16 md:px-10 md:py-20"
           style={{
-            backgroundImage:
-              "linear-gradient(to right, #1C3324, #16402F, #0F1D15)",
+            backgroundImage: "linear-gradient(to right, #1C3324, #16402F, #0F1D15)",
           }}
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.12),_transparent_55%)]" />
           <div className="relative mx-auto max-w-5xl text-center">
-            <h2 className="text-3xl font-semibold md:text-4xl">Entre em Contato</h2>
+            <h2 className="text-3xl font-semibold md:text-4xl">
+              Pronto para transformar sua empresa com estratégia digital?
+            </h2>
             <p className="mt-3 text-base text-white/75 md:text-lg">
-              Pronto para transformar seu negócio? Fale conosco e descubra como podemos ajudar com soluções digitais inovadoras.
+              Fale com nosso time e descubra como podemos acelerar a transformação digital do seu negócio com resultado mensurável.
             </p>
             <div className="mt-6 flex justify-center">
               <Button
@@ -292,7 +432,7 @@ const ConsultoriaDigital = () => {
                 className="h-12 rounded-xl border border-transparent bg-white px-7 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
               >
                 <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                  Falar com especialista
+                  Falar com Especialista
                 </a>
               </Button>
             </div>

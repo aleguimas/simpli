@@ -6,22 +6,22 @@ const SANITY_DATASET = 'production';
 const SANITY_API_VERSION = '2024-01-01';
 const SOLUTIONS_SEO = {
   'servico-desenvolvimento-web': {
-    title: 'Desenvolvimento Web | Sites Modernos e Responsivos | Simplí',
-    ogTitle: 'Desenvolvimento Web | Sites Modernos e Responsivos | Simplí',
+    title: 'Criação de Sites Profissionais | Desenvolvimento Web | Simplí',
+    ogTitle: 'Criação de Sites Profissionais e Landing Pages | Simplí',
     description:
-      'Criamos sites e landing pages modernos e responsivos que convertem visitantes em clientes. Sites otimizados para SEO, performance e experiência do usuário.',
+      'Criamos sites profissionais, landing pages e sistemas web que convertem visitantes em clientes. Agência de desenvolvimento web em Recife com foco em SEO, performance e resultado.',
     canonicalPath: '/servicos/desenvolvimento-web',
     snippet:
-      'Desenvolvimento de sites e landing pages com foco em SEO técnico, performance, UX e conversão para geração de oportunidades e vendas.',
+      'A Simplí é uma agência de desenvolvimento web em Recife especializada em criação de sites profissionais, landing pages e sistemas web. Desenvolvemos com React, Next.js e TypeScript, entregando sites rápidos, responsivos e otimizados para SEO. Atendemos empresas em Recife, Pernambuco e em todo o Brasil com foco em conversão, performance e resultado real para o negócio.',
   },
   'servico-agentes-de-ia': {
-    title: 'Agentes de IA | Chatbots Inteligentes e Automação | Simplí',
-    ogTitle: 'Agentes de IA | Chatbots Inteligentes e Automação | Simplí',
+    title: 'Agentes de IA | Chatbots e Automação Inteligente para Empresas | Simplí',
+    ogTitle: 'Agentes de IA | Chatbots e Automação Inteligente para Empresas | Simplí',
     description:
-      'Desenvolvemos agentes de Inteligência Artificial personalizados para automatizar processos e aumentar a eficiência. Chatbots inteligentes e automação de atendimento 24/7.',
+      'Desenvolvemos agentes de IA personalizados para automatizar atendimento, qualificar leads e otimizar processos. Inteligência artificial para empresas em Recife e em todo o Brasil.',
     canonicalPath: '/servicos/agentes-de-ia',
     snippet:
-      'Agentes de IA personalizados para atendimento, qualificação de leads e automação de processos com integração aos canais e sistemas da empresa.',
+      'A Simplí desenvolve agentes de Inteligência Artificial personalizados para empresas em Recife e em todo o Brasil. Criamos chatbots inteligentes, automação de atendimento via WhatsApp, qualificação de leads e automação de processos internos com machine learning e NLP. Nossos agentes integram com CRM, ERP e canais de atendimento para operar 24h sem interrupção, escalando operações sem aumentar a equipe.',
   },
   'simpli-agent': {
     title: 'Simplí Agent — Atendimento com IA 24h | Simplí',
@@ -42,24 +42,22 @@ const SOLUTIONS_SEO = {
       'Simplí Estoque usa IA preditiva para reduzir rupturas, excesso de estoque e melhorar decisões com base em demanda, margem, giro e dados do ERP.',
   },
   'servico-trafego-pago': {
-    title: 'Tráfego Pago | Google Ads, Facebook Ads e LinkedIn Ads | Simplí',
-    ogTitle:
-      'Tráfego Pago | Google Ads, Facebook Ads e LinkedIn Ads | Simplí',
+    title: 'Gestão de Tráfego Pago | Google Ads, Meta Ads e LinkedIn Ads | Simplí',
+    ogTitle: 'Gestão de Tráfego Pago | Google Ads, Meta Ads e LinkedIn Ads | Simplí',
     description:
-      'Gestão completa de campanhas de tráfego pago em Google Ads, Meta Ads e LinkedIn Ads. Maximize ROI com segmentação avançada, remarketing e otimização contínua.',
+      'Gestão completa de campanhas de tráfego pago em Google Ads, Meta Ads e LinkedIn Ads. Agência de tráfego pago em Recife com foco em leads, vendas e ROI mensurável.',
     canonicalPath: '/servicos/trafego-pago',
     snippet:
-      'Planejamento, execução e otimização contínua de campanhas em Google Ads, Meta Ads e LinkedIn Ads para gerar mais leads e vendas com ROI previsível.',
+      'A Simplí é uma agência de tráfego pago em Recife especializada em gestão de campanhas no Google Ads, Meta Ads (Facebook e Instagram) e LinkedIn Ads. Planejamos, executamos e otimizamos campanhas com segmentação avançada, remarketing e testes A/B para gerar leads e vendas com ROI mensurável. Atendemos empresas em Recife, Pernambuco e em todo o Brasil com relatórios semanais e otimização contínua baseada em dados.',
   },
   'servico-consultoria-digital': {
-    title: 'Consultoria Digital | Transformação Digital Estratégica | Simplí',
-    ogTitle:
-      'Consultoria Digital | Transformação Digital Estratégica | Simplí',
+    title: 'Consultoria Digital | Transformação Digital para Empresas | Simplí',
+    ogTitle: 'Consultoria Digital | Transformação Digital para Empresas | Simplí',
     description:
-      'Estratégia completa de transformação digital sob medida para sua empresa. Consultoria com metodologias comprovadas como Design Thinking, Agile e Lean Startup.',
+      'Consultoria digital estratégica para transformar empresas com tecnologia e inovação. Diagnóstico, planejamento e implementação sob medida — em Recife e em todo o Brasil.',
     canonicalPath: '/servicos/consultoria-digital',
     snippet:
-      'Consultoria para transformação digital com diagnóstico, priorização de iniciativas e execução orientada a resultado para crescimento sustentável.',
+      'A Simplí oferece consultoria digital estratégica para empresas em Recife e em todo o Brasil. Realizamos diagnóstico completo, planejamento de transformação digital, implementação de soluções e monitoramento de resultados com metodologias comprovadas como Design Thinking, Agile e Lean Startup. Atendemos desde pequenas empresas até organizações de grande porte que precisam digitalizar processos e escalar com tecnologia.',
   },
   'simpli-crm': {
     title: 'Simplí CRM — Gestão de Vendas com IA | Simplí',
