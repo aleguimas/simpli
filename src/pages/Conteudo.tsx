@@ -88,14 +88,14 @@ const Conteudo = () => {
             {!isLoading && !error && posts.length > 0 && (
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post) => {
-                  const imgUrl = urlFor(post.mainImage)?.width(600).url();
+                  const imgUrl = urlFor(post.mainImage)?.width(940).height(726).url();
                   return (
                     <Link
                       key={post._id}
                       to={`/conteudo/${post.slug.current}`}
                       className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-white/20 hover:bg-white/[0.07]"
                     >
-                      <div className="aspect-video w-full overflow-hidden bg-white/5">
+                      <div className="aspect-[940/726] w-full overflow-hidden bg-white/5">
                         {imgUrl ? (
                           <img
                             src={imgUrl}
