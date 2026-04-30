@@ -394,16 +394,13 @@ const ConsultoriaDigital = () => {
                       </div>
                     ))}
 
-                    <div className="grid gap-4 pt-[29rem] sm:pt-[31rem] lg:hidden">
-                      {aiPillars.map((pillar) => (
-                        <div
-                          key={`${pillar.title}-mobile-copy`}
-                          className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-white/70"
-                        >
-                          <strong className="block text-white">{pillar.title}</strong>
-                          <span>{pillar.description}</span>
-                        </div>
-                      ))}
+                    <div className="pt-[29rem] sm:pt-[31rem] lg:hidden">
+                      <img
+                        src="/ai-roadmap-pillars-mobile.png"
+                        alt="AI Roadmap System com os quatro pilares: Mapeamento, Estrategia, Estimativa de Custos e Trilha de Implantacao"
+                        className="w-full rounded-[1.5rem] border border-white/10 object-cover shadow-xl shadow-black/30"
+                        loading="lazy"
+                      />
                     </div>
                   </div>
 
