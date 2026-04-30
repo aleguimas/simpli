@@ -34,8 +34,8 @@ const HeroSection = () => {
             Simplificando a Transformação Digital
           </h1>
           <p className="mt-4 text-base leading-relaxed text-white/70 sm:mt-6 sm:text-lg md:text-xl">
-            Transformamos ideias em soluções digitais inovadoras que impulsionam
-            seu negócio.
+            Transformamos empresas tradicionais em operações inteligentes com IA,
+            automação e dados.
           </p>
           <div className="mt-8 mx-auto flex w-full max-w-xl flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center sm:justify-center">
             <Button
