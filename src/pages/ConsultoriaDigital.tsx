@@ -321,12 +321,12 @@ const ConsultoriaDigital = () => {
               </div>
 
               <div className="rounded-[2rem] border border-white/10 bg-black/25 p-4 shadow-2xl shadow-black/40 md:p-6">
-                <div className="grid gap-5 lg:grid-cols-[1.4fr_0.92fr]">
-                  <div className="overflow-hidden rounded-[1.75rem] border border-white/8 bg-[radial-gradient(circle_at_center,_rgba(13,89,38,0.3),_rgba(0,0,0,0)_46%)] shadow-xl shadow-black/30">
+                <div className="grid gap-5 lg:items-start lg:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[minmax(0,1fr)_360px]">
+                  <div className="mx-auto aspect-square w-full max-w-[760px] self-start overflow-hidden rounded-[1.75rem] border border-white/8 bg-[radial-gradient(circle_at_center,_rgba(13,89,38,0.3),_rgba(0,0,0,0)_46%)] shadow-xl shadow-black/30">
                     <img
                       src="/ai-roadmap-pillars-mobile.png"
                       alt="AI Roadmap System com os quatro pilares: Mapeamento, Estratégia, Estimativa de Custos e Trilha de Implantação"
-                      className="block h-full w-full object-cover"
+                      className="block h-full w-full object-contain"
                       loading="lazy"
                     />
                   </div>
@@ -335,7 +335,7 @@ const ConsultoriaDigital = () => {
                     {aiDeliverables.map((item) => (
                       <Card
                         key={item.title}
-                        className="rounded-[1.8rem] border-white/10 bg-[linear-gradient(180deg,_rgba(9,9,9,0.96),_rgba(14,14,14,0.92))] shadow-xl shadow-black/40"
+                        className="rounded-[1.8rem] border-white/10 bg-[linear-gradient(180deg,_rgba(9,9,9,0.96),_rgba(14,14,14,0.92))] shadow-xl shadow-black/40 lg:min-h-[210px] xl:min-h-[232px]"
                       >
                         <CardContent className="flex h-full flex-col justify-center gap-4 p-6 text-center">
                           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80">
