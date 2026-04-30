@@ -21,37 +21,6 @@ import { SEO } from "@/components/SEO";
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
 const HERO_BG = "/ai-roadmap-system.png";
 
-const aiPillars = [
-  {
-    title: "Mapeamento",
-    description:
-      "Levantamento da operação atual, maturidade digital, gargalos e alavancas para IA.",
-    icon: Brain,
-    desktopClassName: "lg:left-[2%] lg:top-[7%]",
-  },
-  {
-    title: "Estratégia",
-    description:
-      "Priorização das frentes com maior impacto, risco controlado e retorno mais rápido.",
-    icon: Compass,
-    desktopClassName: "lg:right-[2%] lg:top-[7%]",
-  },
-  {
-    title: "Estimativa de Custos",
-    description:
-      "Clareza sobre investimento, esforço interno e viabilidade de implantação por fase.",
-    icon: BarChart3,
-    desktopClassName: "lg:bottom-[7%] lg:left-[2%]",
-  },
-  {
-    title: "Trilha de Implantação",
-    description:
-      "Plano prático para sair do diagnóstico e colocar automação e IA em produção.",
-    icon: Rocket,
-    desktopClassName: "lg:bottom-[7%] lg:right-[2%]",
-  },
-];
-
 const aiDeliverables = [
   {
     title: "Diagnóstico Completo",
@@ -353,55 +322,13 @@ const ConsultoriaDigital = () => {
 
               <div className="rounded-[2rem] border border-white/10 bg-black/25 p-4 shadow-2xl shadow-black/40 md:p-6">
                 <div className="grid gap-5 lg:grid-cols-[1.4fr_0.92fr]">
-                  <div className="relative min-h-[760px] overflow-hidden rounded-[1.75rem] border border-white/8 bg-[radial-gradient(circle_at_center,_rgba(13,89,38,0.3),_rgba(0,0,0,0)_46%)] p-4 sm:min-h-[820px] lg:min-h-[700px]">
-                    <div className="absolute inset-x-5 top-5 flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-white/28 sm:text-xs">
-                      <span>Escalabilidade</span>
-                      <span>Lucratividade</span>
-                    </div>
-                    <div className="absolute inset-x-8 bottom-5 flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-white/28 sm:text-xs">
-                      <span>Previsibilidade</span>
-                      <span>Eficiência</span>
-                    </div>
-
-                    <div className="absolute left-1/2 top-1/2 h-[56%] w-[56%] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white/85 sm:h-[58%] sm:w-[58%]" />
-                    <div className="absolute left-1/2 top-1/2 h-[72%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white/85 sm:h-[74%] sm:w-[74%]" />
-
-                    <div className="absolute left-1/2 top-1/2 flex w-[50%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
-                      <span className="text-[10px] uppercase tracking-[0.45em] text-white/45 sm:text-xs">
-                        The
-                      </span>
-                      <strong className="mt-2 text-2xl font-medium leading-none text-white sm:text-4xl">
-                        AI ROADMAP
-                      </strong>
-                      <span className="mt-2 text-sm uppercase tracking-[0.45em] text-white/45 sm:text-base">
-                        System
-                      </span>
-                    </div>
-
-                    {aiPillars.map((pillar) => (
-                      <div
-                        key={pillar.title}
-                        className={`hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,_rgba(9,9,9,0.96),_rgba(14,14,14,0.92))] p-5 shadow-xl shadow-black/40 backdrop-blur lg:absolute lg:flex lg:h-[178px] lg:w-[168px] lg:flex-col lg:items-start lg:justify-between ${pillar.desktopClassName}`}
-                      >
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/75">
-                          <pillar.icon size={20} />
-                        </div>
-                        <div className="mt-4 lg:mt-0">
-                          <h3 className="text-xl font-medium uppercase tracking-[0.04em] text-white">
-                            {pillar.title}
-                          </h3>
-                        </div>
-                      </div>
-                    ))}
-
-                    <div className="pt-[29rem] sm:pt-[31rem] lg:hidden">
-                      <img
-                        src="/ai-roadmap-pillars-mobile.png"
-                        alt="AI Roadmap System com os quatro pilares: Mapeamento, Estrategia, Estimativa de Custos e Trilha de Implantacao"
-                        className="w-full rounded-[1.5rem] border border-white/10 object-cover shadow-xl shadow-black/30"
-                        loading="lazy"
-                      />
-                    </div>
+                  <div className="overflow-hidden rounded-[1.75rem] border border-white/8 bg-[radial-gradient(circle_at_center,_rgba(13,89,38,0.3),_rgba(0,0,0,0)_46%)] shadow-xl shadow-black/30">
+                    <img
+                      src="/ai-roadmap-pillars-mobile.png"
+                      alt="AI Roadmap System com os quatro pilares: Mapeamento, Estratégia, Estimativa de Custos e Trilha de Implantação"
+                      className="block h-full w-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
 
                   <div className="flex flex-col justify-center gap-4">
