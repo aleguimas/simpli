@@ -329,29 +329,29 @@ const ConsultoriaDigital = () => {
                     loading="lazy"
                   />
                 </div>
-              </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                {aiDeliverables.map((item) => (
-                  <Card
-                    key={item.title}
-                    className="rounded-[1.8rem] border-white/10 bg-[linear-gradient(180deg,_rgba(9,9,9,0.96),_rgba(14,14,14,0.92))] shadow-xl shadow-black/40 xl:min-h-[232px]"
-                  >
-                    <CardContent className="flex h-full flex-col justify-center gap-4 p-6 text-center">
-                      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80">
-                        <item.icon size={24} />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-medium uppercase tracking-[0.04em] text-white">
-                          {item.title}
-                        </h3>
-                        <p className="mt-2 text-sm leading-relaxed text-white/60">
-                          {item.description}
-                        </p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {aiDeliverables.map((item) => (
+                    <Card
+                      key={item.title}
+                      className="rounded-[1.8rem] border-white/10 bg-[linear-gradient(180deg,_rgba(9,9,9,0.96),_rgba(14,14,14,0.92))] shadow-xl shadow-black/40 xl:min-h-[232px]"
+                    >
+                      <CardContent className="flex h-full flex-col justify-center gap-4 p-6 text-center">
+                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80">
+                          <item.icon size={24} />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-medium uppercase tracking-[0.04em] text-white">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 text-sm leading-relaxed text-white/60">
+                            {item.description}
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
