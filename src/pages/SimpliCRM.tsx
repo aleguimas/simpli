@@ -248,12 +248,12 @@ const SimpliCRM = () => {
   return (
     <div className="bg-[#0C140F] text-white">
       <SEO
-        title="Simplí CRM — Gestão de Vendas com IA"
-        description="CRM integrado à IA que transforma atendimentos em vendas. Funil Kanban, alimentação automática de leads, follow-up contextual e automações. Sem fidelidade. GoLive em 30 dias."
+        title="CRM — o CRM que se atualiza sozinho com IA B2B"
+        description="CRM com IA que registra interações automaticamente, pontua leads e alerta o vendedor na hora certa — sem ninguém precisar atualizar o funil de vendas."
         keywords="CRM com inteligência artificial, gestão de vendas IA, funil de vendas Kanban, follow-up automático WhatsApp, CRM integrado WhatsApp, automação comercial IA, Simplí CRM, pipeline de vendas automatizado, CRM para pequenas empresas, gestão de leads automática"
         canonical="/solucoes/simpli-crm"
-        ogTitle="Simplí CRM — Funil de Vendas Automatizado com IA"
-        ogDescription="Transforme atendimentos em fechamentos. Funil Kanban, leads qualificados pela IA, follow-up contextual e automações para escalar seu time comercial."
+        ogTitle="Simpli CRM — o CRM que se atualiza sozinho com IA"
+        ogDescription="CRM com IA que registra interações, pontua leads e alerta o vendedor na hora certa."
         structuredData={[serviceSchema, breadcrumbSchema, faqSchema]}
       />
       <Navbar />

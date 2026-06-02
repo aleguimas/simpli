@@ -45,7 +45,7 @@ const problems = [
     icon: TrendingDown,
     title: "Oportunidades Perdidas",
     description:
-      "Leads quentes esfriam rapidamente sem um atendimento imediato e proativo.",
+      "Leads quentes esfriam em minutos sem resposta. Cada segundo de atraso custa conversão.",
     badge: "Vendas Perdidas",
   },
   {
@@ -68,7 +68,7 @@ const solutionFeatures = [
     icon: Zap,
     title: "Resposta em 15s",
     description:
-      "Velocidade é conversão. Seu cliente é atendido instantaneamente, 24 horas por dia, sem filas de espera.",
+      "Velocidade é conversão. Seu lead é atendido em até 15 segundos do primeiro contato — sem fila, sem espera, sem perder o momento de compra.",
   },
   {
     icon: Link2,
@@ -83,7 +83,7 @@ const features1 = [
     icon: Zap,
     title: "Atendimento em 15s",
     description:
-      "Elimine filas de espera. O agente responde instantaneamente a qualquer interação do cliente, garantindo que o interesse de compra seja capturado no momento exato.",
+      "Elimine filas de espera. Quando um lead entra em contato, o agente responde em até 15 segundos — garantindo que o interesse de compra seja convertido no momento exato.",
   },
   {
     icon: Sun,
@@ -101,7 +101,7 @@ const features1 = [
     icon: Layers,
     title: "Multicanal Integrado",
     description:
-      "Uma única inteligência operando simultaneamente no WhatsApp, Instagram Direct e Chat do Site. Centralize o atendimento e mantenha a consistência da marca.",
+      "Uma única inteligência atende simultaneamente no WhatsApp, Instagram Direct e Chat do Site — onde quer que seu lead chegue, a resposta é imediata e consistente.",
   },
 ];
 
@@ -145,7 +145,7 @@ const channels = [
     icon: Monitor,
     title: "Chat no Site",
     description:
-      "Capture visitantes anônimos. O widget inteligente qualifica o lead antes de passar para o humano.",
+      "Atenda visitantes no momento em que chegam. O agente qualifica o lead e passa para o humano com contexto completo da conversa.",
     color: "text-blue-400",
   },
 ];
@@ -306,12 +306,12 @@ const SimpliAgent = () => {
   return (
     <div className="bg-[#0C140F] text-white">
       <SEO
-        title="Simplí Agent — Atendimento com IA 24h"
-        description="Automatize o atendimento da sua empresa com IA. Resposta em 15s, disponível 24h, omnichannel no WhatsApp, Instagram e Chat. RAG treinado com os dados do seu negócio. Sem fidelidade."
+        title="Simpli Agent — Atendimento com IA 24h | Simpli"
+        description="Agente de IA que atende leads no WhatsApp em até 15 segundos, qualifica com base nos dados do seu negócio e registra tudo no CRM automaticamente. Sem fila, sem espera."
         keywords="agente de IA atendimento, chatbot inteligente WhatsApp, atendimento automático 24 horas, IA para atendimento ao cliente, chatbot omnichannel, RAG inteligência artificial, Simplí Agent, automação de atendimento, chatbot WhatsApp Brasil, atendimento IA Recife"
         canonical="/solucoes/simpli-agent"
-        ogTitle="Simplí Agent — Agente de IA para Atendimento 24h"
-        ogDescription="Resposta em 15s, disponível 24h, integrado ao WhatsApp, Instagram e Chat do Site. IA treinada com os dados do seu negócio."
+        ogTitle="Simpli Agent — Atendimento com IA 24h | Simpli"
+        ogDescription="Agente de IA que atende leads no WhatsApp em até 15 segundos, qualifica com base nos dados do seu negócio e registra tudo no CRM automaticamente."
         structuredData={[serviceSchema, breadcrumbSchema, faqSchema]}
       />
       <Navbar />
@@ -328,22 +328,23 @@ const SimpliAgent = () => {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
         <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center gap-6">
           <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white/70">
-            Simplí Agent
+            Simpli Agent — Atendimento com IA 24h
           </span>
           <h1 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-            Agente de IA no{" "}
-            <span className="text-[#86efac]">Atendimento</span>
+            Seu lead chegou.{" "}
+            <span className="text-[#86efac]">O Simpli Agent atende em 15 segundos.</span>
           </h1>
           <p className="max-w-2xl text-lg text-white/75 md:text-xl">
-            Atendimento inteligente, rápido e integrado ao seu negócio.
-            Automatize sem perder a humanização e converta mais clientes com IA.
+            Atendimento com IA que responde leads no WhatsApp, Instagram e site
+            em até 15 segundos — 24h por dia, treinado com os dados do seu
+            negócio, integrado ao seu CRM.
           </p>
           <Button
             asChild
             className="h-12 rounded-xl border border-transparent bg-white px-8 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
           >
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-              Quero saber mais
+              Agendar diagnóstico gratuito
             </a>
           </Button>
         </div>
@@ -416,8 +417,8 @@ const SimpliAgent = () => {
             <span className="text-[#86efac]">Simplí Agent</span>
           </h2>
           <p className="mb-10 max-w-2xl text-white/60">
-            Esqueça os chatbots burros. Nossa IA é moldada ao seu negócio,
-            conectada aos seus dados e aprende com cada interação.
+            Não é chatbot. É um agente treinado nos dados reais do seu negócio
+            — responde com precisão, sem alucinar, e aprende com cada conversa.
           </p>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -610,11 +611,12 @@ const SimpliAgent = () => {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08),_transparent_55%)]" />
         <div className="relative mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold md:text-4xl">
-            Pronto para automatizar seu atendimento?
+            Quantos leads chegaram fora do horário essa semana e não foram atendidos?
           </h2>
           <p className="mt-4 text-base text-white/70 md:text-lg">
-            Fale com nossa equipe e descubra como o Simplí Agent pode
-            transformar o atendimento da sua empresa.
+            Agende um diagnóstico gratuito de 30 minutos. A gente mapeia seu
+            fluxo de atendimento atual e mostra exatamente como o Simpli Agent
+            funcionaria no seu negócio.
           </p>
           <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button
@@ -622,7 +624,7 @@ const SimpliAgent = () => {
               className="h-12 rounded-xl border border-transparent bg-white px-8 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
             >
               <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                Quero começar agora
+                Quero meu diagnóstico gratuito
                 <ArrowRight size={16} className="ml-2" />
               </a>
             </Button>
