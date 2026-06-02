@@ -216,10 +216,12 @@ const AgentesIA = () => {
   return (
     <div className="bg-[#0C140F] text-white">
       <SEO
-        title="Agentes de IA | Chatbots e Automação Inteligente para Empresas"
-        description="Desenvolvemos agentes de IA personalizados para automatizar atendimento, qualificar leads e otimizar processos. Inteligência artificial para empresas em Recife e em todo o Brasil."
+        title="Agentes de IA para Empresas — Recife e Brasil"
+        description="Agentes de IA personalizados para vendas, atendimento e operação. Integrados ao seu WhatsApp, CRM e n8n. Do diagnóstico à implementação em semanas."
         keywords="agentes de IA, inteligência artificial para empresas, chatbot inteligente, automação de atendimento, automação com IA, IA para negócios, agente de IA Recife, machine learning, NLP, automação de processos"
         canonical="/servicos/agentes-de-ia"
+        ogTitle="Agentes de IA para Empresas B2B — Simpli | Brasil"
+        ogDescription="Agentes de IA personalizados para vendas, atendimento e operação. Integrados ao WhatsApp, CRM e n8n."
         structuredData={structuredData}
       />
       <Navbar />

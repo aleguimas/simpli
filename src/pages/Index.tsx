@@ -74,10 +74,12 @@ const Index = () => {
       className="min-h-screen bg-[var(--bg-dark)] text-white antialiased"
     >
       <SEO
-        title="Transformação Digital e Inovação | Desenvolvimento Web, IA e Consultoria"
-        description="Simplí oferece soluções completas de transformação digital: desenvolvimento web, agentes de IA, tráfego pago e consultoria digital. Transforme seu negócio com tecnologia de ponta em Recife, PE."
+        title="Agentes de IA que vendem e qualificam sua empresa"
+        description="SDRs digitais, CRM com IA e automações que prospectam, qualificam e fecham vendas sem intervenção manual. Agende um diagnóstico estratégico com a Simpli."
         keywords="transformação digital, desenvolvimento web, agentes de IA, inteligência artificial, tráfego pago, Google Ads, Facebook Ads, consultoria digital, SEO, sites responsivos, automação, chatbots, marketing digital, Recife, Brasil"
         canonical="/"
+        ogTitle="Simpli — Agentes de IA que vendem e qualificam sua empresa"
+        ogDescription="SDRs digitais, CRM com IA e automações que prospectam e fecham sem intervenção manual."
         structuredData={[structuredData, websiteStructuredData]}
       />
       <Navbar />

@@ -277,12 +277,12 @@ const SimpliEstoque = () => {
   return (
     <div className="bg-[#0C140F] text-white">
       <SEO
-        title="Simplí Estoque — Gestão de Estoque com IA Preditiva"
-        description="Elimine rupturas e excesso de estoque com IA. Dashboards em tempo real, previsão de demanda, análise de SKUs e integração com ERP. Decisões automáticas baseadas nos seus dados reais."
+        title="Estoque — Controle de Estoque com IA para Empresas"
+        description="Estoque com IA que prevê ruptura, sugere reposição automática e integra com e-commerce e ERP. Chega de perder vendas por falta de produto ou capital parado."
         keywords="gestão de estoque com IA, previsão de demanda estoque, sistema de gestão de estoque, análise preditiva estoque, ERP integrado IA, gestão de SKUs varejo, Simplí Estoque, ruptura de estoque, dashboard de estoque, controle de estoque inteligente"
         canonical="/solucoes/simpli-estoque"
-        ogTitle="Simplí Estoque — Gestão de Estoque com IA Preditiva"
-        ogDescription="Elimine rupturas e excesso de estoque. Dashboards em tempo real, previsão de demanda e integração com ERP para decisões mais assertivas."
+        ogTitle="Simpli Estoque — Controle de Estoque com IA para Empresas"
+        ogDescription="IA que prevê ruptura, sugere reposição e integra com e-commerce e ERP."
         structuredData={[serviceSchema, breadcrumbSchema, faqSchema]}
       />
       <Navbar />
