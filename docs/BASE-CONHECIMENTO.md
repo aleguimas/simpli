@@ -19,16 +19,13 @@ Este projeto tem **dois remotes Git** que compartilham a base `b10b41e` mas
 - **Desenvolvimento e fonte da verdade:** `origin` (novo-site-simpli).
 - **Antes de cada push:** rode `git remote -v` e confirme o destino.
 
-### ⚠️ Ação pendente (resolver para parar de sofrer)
-A Vercel está conectada ao repo **`simpli` (aleguimas)**, não ao oficial.
-Enquanto isso não for resolvido, **um push só no `origin` NÃO faz deploy**.
-
-Duas saídas (escolher uma):
-1. **(Recomendado)** Reconectar o projeto na Vercel ao repo `CaioSouzaIA/novo-site-simpli`
-   (Vercel → Project Settings → Git → trocar o repositório). Depois disso,
-   basta `git push origin main`.
-2. **Paliativo:** continuar empurrando para os dois remotes manualmente
-   (ver "Como fazer deploy hoje" abaixo).
+### ✅ Decisão (2026-06-02): manter o setup atual
+O usuário decidiu **manter** a configuração como está:
+- `novo-site-simpli` (`origin`) = fonte da verdade / desenvolvimento.
+- A Vercel continua deployando do `simpli` (aleguimas) — **não reconectar**.
+- Logo, **um push só no `origin` NÃO faz deploy**. Para publicar, é preciso
+  empurrar também para `simpli` (ver "Como fazer deploy hoje" abaixo).
+- **Não** ficar sugerindo reconectar a Vercel.
 
 ### Como fazer deploy hoje (enquanto a Vercel = `simpli`)
 Como os históricos divergem, **não dá force-push**. Aplique o commit em cima
