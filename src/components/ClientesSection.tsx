@@ -10,6 +10,8 @@ const logos = [
   { name: "Cliente 10", src: "/10.webp" },
   { name: "Cliente 11", src: "/11.webp" },
   { name: "Cliente 12", src: "/12.webp" },
+  { name: "Revestir Homocenter", src: "/15.png" },
+  { name: "Editora Futura", src: "/16.png" },
 ];
 
 const ClientesSection = () => {
