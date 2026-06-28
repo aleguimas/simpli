@@ -83,7 +83,7 @@ const Index = () => {
         structuredData={[structuredData, websiteStructuredData]}
       />
       <Navbar />
-      <main className="overflow-hidden">
+      <main className="overflow-x-clip">
         <HeroSection />
         <ClientesSection />
         <ServicosSection />

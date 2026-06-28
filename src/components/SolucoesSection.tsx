@@ -1,5 +1,8 @@
-import { MessageCircle, Kanban, Package } from "lucide-react";
+import { ArrowUpRight, MessageCircle, Kanban, Package } from "lucide-react";
 import { Link } from "react-router-dom";
+
+const GLASS_BG =
+  "linear-gradient(to top left, rgba(255,255,255,0.14), rgba(255,255,255,0.03))";
 
 const solucoes = [
   {
@@ -42,9 +45,8 @@ const SolucoesSection = () => {
           <p className="text-sm uppercase tracking-[0.2em] text-white/50">
             Nossas Soluções
           </p>
-          <h2 className="mt-2 text-2xl font-semibold leading-tight text-white sm:text-3xl md:text-4xl">
-            Produtos desenvolvidos para{" "}
-            <span className="text-[#86efac]">escalar o seu negócio</span>
+          <h2 className="mt-2 bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-2xl font-semibold leading-tight text-transparent sm:text-3xl md:text-4xl">
+            Produtos desenvolvidos para escalar o seu negócio
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/60 sm:text-base">
             Ferramentas de IA integradas que automatizam atendimento, organizam
@@ -57,40 +59,40 @@ const SolucoesSection = () => {
             <Link
               key={slug}
               to={`/solucoes/${slug}`}
-              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0C140F]/80 p-5 transition active:scale-[0.98] sm:p-6 sm:hover:-translate-y-1 sm:hover:border-[#86efac]/30 sm:hover:bg-[#0f241c] sm:hover:shadow-xl sm:hover:shadow-black/30"
+              style={{ background: GLASS_BG }}
+              className="card-gradient-border group relative flex h-full flex-col rounded-3xl p-6 backdrop-blur-md transition active:scale-[0.98] sm:hover:-translate-y-1 sm:hover:shadow-xl sm:hover:shadow-black/40"
             >
-              <div className="absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
-                <div className="h-full w-full bg-[radial-gradient(circle_at_top_left,_rgba(134,239,172,0.06),_transparent_50%)]" />
-              </div>
-
-              <div className="relative flex flex-col gap-4 h-full">
+              <div className="flex h-full flex-col gap-4">
                 <div className="flex items-start justify-between">
-                  <div className="flex aspect-square h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-[#86efac]/10 p-3 text-[#86efac]">
+                  <span className="flex aspect-square h-12 w-12 items-center justify-center rounded-xl border border-white/15 bg-white/[0.08] p-3 text-white">
                     <Icon size={22} />
-                  </div>
+                  </span>
                   <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white/50">
                     {badge}
                   </span>
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-white">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/60">
+                  <h3 className="bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-xl font-semibold leading-tight text-transparent">
+                    {title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/70">
                     {description}
                   </p>
                 </div>
 
                 <ul className="mt-2 flex flex-col gap-1.5">
                   {highlights.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-xs text-white/50">
+                    <li key={item} className="flex items-center gap-2 text-xs text-white/55">
                       <span className="h-1 w-1 shrink-0 rounded-full bg-[#86efac]" />
                       {item}
                     </li>
                   ))}
                 </ul>
 
-                <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/70 transition group-hover:translate-x-1 group-hover:text-[#86efac]">
-                  Saiba mais →
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white transition group-hover:gap-3">
+                  Saiba mais
+                  <ArrowUpRight size={18} />
                 </span>
               </div>
             </Link>

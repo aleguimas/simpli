@@ -11,9 +11,8 @@ const DiagnosticoSection = () => {
           <Brain size={16} className="text-white" />
           <span>Agentes de IA para o seu negócio</span>
         </div>
-        <h2 className="text-2xl font-semibold leading-tight sm:text-3xl md:text-4xl lg:text-5xl">
-          Descubra o potencial da{" "}
-          <span className="text-[#4ADE80]">IA</span> na sua Empresa
+        <h2 className="bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-2xl font-semibold leading-tight text-transparent sm:text-3xl md:text-4xl lg:text-5xl">
+          Descubra o potencial da IA na sua Empresa
         </h2>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-base md:text-lg">
           Faça nosso diagnóstico gratuito e veja como os{" "}

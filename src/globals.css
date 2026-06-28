@@ -128,6 +128,14 @@
       font-size: 16px !important;
     }
   }
+
+  /* Freeze the hero background animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-halo-pulse-a,
+    .animate-halo-pulse-b {
+      animation: none !important;
+    }
+  }
 }
 
 .bg-\[radial-gradient\(circle_at_center\2c _rgba\(255\2c 255\2c 255\2c 0\.16\)\2c _transparent_58\%\)\] {
@@ -137,4 +145,26 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* Diagonal gradient border (white -> transparent, bottom-right to top-left),
+   respects border-radius via the padding + mask-composite technique. */
+.card-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    to top left,
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.06) 55%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }

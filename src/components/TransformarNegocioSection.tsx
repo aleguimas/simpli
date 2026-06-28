@@ -8,8 +8,8 @@ const TransformarNegocioSection = () => {
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.12),_transparent_55%)]" />
       <div className="relative mx-auto max-w-4xl text-center">
-        <h2 className="text-3xl font-semibold text-white md:text-5xl">
-          <span className="bg-gradient-to-br from-white to-white/50 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-semibold md:text-5xl">
+          <span className="bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-transparent">
             Pronto para Transformar seu Negócio?
           </span>
         </h2>

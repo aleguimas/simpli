@@ -85,10 +85,20 @@ export default {
             height: "0",
           },
         },
+        "halo-pulse-a": {
+          "0%, 100%": { opacity: "0.5", transform: "scale(1.05)" },
+          "50%": { opacity: "0.18", transform: "scale(0.9)" },
+        },
+        "halo-pulse-b": {
+          "0%, 100%": { opacity: "0.18", transform: "scale(0.9)" },
+          "50%": { opacity: "0.5", transform: "scale(1.08)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "halo-pulse-a": "halo-pulse-a 10s ease-in-out infinite",
+        "halo-pulse-b": "halo-pulse-b 10s ease-in-out infinite",
       },
     },
   },

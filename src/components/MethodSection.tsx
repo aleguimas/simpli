@@ -64,7 +64,7 @@ const MethodSection = () => {
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/60">
             Method
           </p>
-          <h2 className="text-3xl font-semibold text-white md:text-4xl">
+          <h2 className="bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-3xl font-semibold text-transparent md:text-4xl">
             IA sem método vira custo.
           </h2>
           <p className="text-base leading-relaxed text-white/75 md:whitespace-nowrap">

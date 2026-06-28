@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import HeroBackground from "@/components/ui/hero-background";
 import { useInView } from "@/hooks/use-in-view";
 import { trackWhatsAppClick } from "@/components/GoogleAnalytics";
 import { trackGTMWhatsAppClick } from "@/components/GoogleTagManager";
@@ -14,11 +15,9 @@ const HeroSection = () => {
       ref={ref}
       className="relative overflow-hidden bg-[#0C140F] px-4 pb-16 pt-20 sm:px-6 sm:pb-20 sm:pt-24 md:px-10 md:pb-28 md:pt-28"
     >
-      <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-[#1C3324] blur-3xl opacity-70" />
-      <div className="pointer-events-none absolute -right-24 top-40 h-80 w-80 rounded-full bg-[#1C3324] blur-3xl opacity-60" />
-      <div className="pointer-events-none absolute left-10 bottom-10 h-96 w-96 rounded-full bg-white/5 blur-3xl opacity-50" />
+      <HeroBackground />
 
-      <div className="mx-auto flex min-h-[80vh] max-w-6xl flex-col items-center justify-center text-center">
+      <div className="relative z-10 mx-auto flex min-h-[80vh] max-w-6xl flex-col items-center justify-center text-center">
         <div
           className={`max-w-3xl transition-all duration-700 ${
             isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"

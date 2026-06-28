@@ -39,7 +39,7 @@ const TreinamentosSection = () => {
           <p className="text-sm uppercase tracking-[0.2em] text-white/50">
             Qualificação de equipes
           </p>
-          <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
+          <h2 className="mt-2 bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-3xl font-semibold text-transparent md:text-4xl">
             Treinamentos In Company
           </h2>
           <p className="mt-3 text-base text-white/70">

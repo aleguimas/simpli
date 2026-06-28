@@ -46,7 +46,7 @@ const BenefitsSection = () => {
           <p className="text-sm uppercase tracking-[0.2em] text-white/50">
             Benefícios
           </p>
-          <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
+          <h2 className="mt-2 bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-3xl font-semibold text-transparent md:text-4xl">
             Automação Inteligente para empresas que pensam à frente
           </h2>
           <p className="mt-3 text-lg text-white/70">
