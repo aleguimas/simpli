@@ -30,8 +30,8 @@ const MarqueeRow = ({
 }) => (
   <div className={`relative flex w-full items-center overflow-hidden bg-black ${className}`}>
     {/* Top & bottom gradient borders (white -> green, 2px) */}
-    <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-0.5 bg-gradient-to-r from-white to-[#20E000]" />
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-0.5 bg-gradient-to-r from-white to-[#20E000]" />
+    <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-white to-[#20E000]" />
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-px bg-gradient-to-r from-white to-[#20E000]" />
     <div
       className="flex w-max items-center gap-5 px-4 md:gap-8 md:px-6"
       style={{ animation: `logo-marquee ${duration} linear infinite` }}
@@ -60,8 +60,13 @@ const ClientesSection = () => {
       className="bg-[#0C140F] px-6 pt-16 pb-10 text-center md:px-10 md:pt-24 md:pb-16"
     >
       <div className="mx-auto max-w-4xl">
-        <p className="inline-block bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-xl font-medium text-transparent md:text-2xl">
-          Empresas que confiam na Simplí
+        <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xl font-medium md:text-2xl">
+          <span className="text-white">Empresas que confiam na</span>
+          <img
+            src="/logonome-branca-cortada.webp"
+            alt="Simplí"
+            className="inline-block h-6 w-auto md:h-7"
+          />
         </p>
       </div>
 

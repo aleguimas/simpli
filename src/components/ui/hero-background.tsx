@@ -20,14 +20,12 @@ const GRID_MASK =
  *  1. Tech grid (static CSS lines)
  *  2. Energy pulses traveling along the grid lines (canvas + rAF)
  *  3. Two diagonal halos with pulsing opacity (CSS keyframes)
- *  4. Cursor glow following the mouse on desktop
  *
  * Respects prefers-reduced-motion and pauses the canvas while off-screen
  * or on a hidden tab.
  */
 const HeroBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const glowRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -35,9 +33,6 @@ const HeroBackground = () => {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    const isTouch = window.matchMedia("(hover: none)").matches;
-    const section = canvas.closest("section");
 
     let width = 0;
     let height = 0;
@@ -165,20 +160,6 @@ const HeroBackground = () => {
       else stop();
     };
 
-    const onMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const glowEl = glowRef.current;
-      if (glowEl) {
-        glowEl.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-        glowEl.style.setProperty("--my", `${e.clientY - rect.top}px`);
-        glowEl.style.opacity = "1";
-      }
-    };
-
-    const onMouseLeave = () => {
-      if (glowRef.current) glowRef.current.style.opacity = "0";
-    };
-
     const io = new IntersectionObserver(
       (entries) => {
         inView = entries[0]?.isIntersecting ?? false;
@@ -193,11 +174,6 @@ const HeroBackground = () => {
 
     document.addEventListener("visibilitychange", updateRunning);
 
-    if (!isTouch && section) {
-      section.addEventListener("mousemove", onMouseMove);
-      section.addEventListener("mouseleave", onMouseLeave);
-    }
-
     start();
 
     return () => {
@@ -205,10 +181,6 @@ const HeroBackground = () => {
       io.disconnect();
       ro.disconnect();
       document.removeEventListener("visibilitychange", updateRunning);
-      if (!isTouch && section) {
-        section.removeEventListener("mousemove", onMouseMove);
-        section.removeEventListener("mouseleave", onMouseLeave);
-      }
     };
   }, [prefersReducedMotion]);
 
@@ -236,16 +208,6 @@ const HeroBackground = () => {
       {/* Layer 3: two diagonal halos with pulsing opacity */}
       <div className="absolute -left-40 -top-40 h-[28rem] w-[28rem] animate-halo-pulse-a rounded-full bg-[#16402F] opacity-40 blur-3xl will-change-transform" />
       <div className="absolute -bottom-40 -right-40 h-[28rem] w-[28rem] animate-halo-pulse-b rounded-full bg-[#1C3324] opacity-40 blur-3xl will-change-transform" />
-
-      {/* Layer 4: cursor glow (desktop) */}
-      <div
-        ref={glowRef}
-        className="absolute inset-0 opacity-0 transition-opacity duration-500"
-        style={{
-          background:
-            "radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(134,239,172,0.12), transparent 70%)",
-        }}
-      />
     </div>
   );
 };

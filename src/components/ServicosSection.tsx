@@ -96,7 +96,13 @@ const ServicosSection = () => {
   const [active, setActive] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
   const trackRef = useRef<HTMLElement | null>(null);
+  const activeRef = useRef(0);
+  const wheelLock = useRef(false);
   const count = services.length;
+
+  useEffect(() => {
+    activeRef.current = active;
+  }, [active]);
 
   // Track desktop vs mobile so the fan can open wider on larger screens.
   useEffect(() => {
@@ -148,6 +154,36 @@ const ServicosSection = () => {
     const top = track.offsetTop + (clamped / (count - 1)) * scrollable;
     window.scrollTo({ top, behavior: "smooth" });
   };
+
+  // One wheel gesture advances exactly one card. The pinned track still forces
+  // the user through every card before the page can scroll past the section.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const onWheel = (e: WheelEvent) => {
+      const rect = track.getBoundingClientRect();
+      const pinned = rect.top <= 1 && rect.bottom >= window.innerHeight - 1;
+      if (!pinned) return; // section not filling the viewport -> normal scroll
+
+      const dir = e.deltaY > 0 ? 1 : -1;
+      const next = activeRef.current + dir;
+      if (next < 0 || next >= count) return; // boundary -> let the page leave
+
+      e.preventDefault();
+      if (wheelLock.current) return;
+      wheelLock.current = true;
+      activeRef.current = next;
+      scrollToIndex(next);
+      window.setTimeout(() => {
+        wheelLock.current = false;
+      }, 700);
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => window.removeEventListener("wheel", onWheel);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowRight" || e.key === "ArrowDown") {
