@@ -1,6 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+const GLASS_BG =
+  "linear-gradient(to top left, rgba(255,255,255,0.14), rgba(255,255,255,0.03))";
+
 const trainings = [
   {
     title: "Imersão de IA para Negócios",
@@ -52,13 +55,14 @@ const TreinamentosSection = () => {
           {trainings.map((item) => (
             <div
               key={item.title}
-              className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-[#0F1D15]/80 p-6 shadow-lg shadow-black/30 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#13241C]"
+              style={{ background: GLASS_BG }}
+              className="card-gradient-border group flex h-full flex-col justify-between rounded-3xl p-6 backdrop-blur-md transition sm:hover:-translate-y-1 sm:hover:shadow-xl sm:hover:shadow-black/40"
             >
               <div className="flex flex-col gap-3">
                 <Badge className="w-fit border border-white/20 bg-white/10 text-white">
                   {item.tag}
                 </Badge>
-                <h3 className="text-xl font-semibold text-white">
+                <h3 className="bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-xl font-semibold text-transparent">
                   {item.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-white/75">
