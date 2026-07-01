@@ -67,10 +67,7 @@ const ConteudoSection = () => {
                 />
               ))
             : posts.map((post) => {
-                const imgUrl = urlFor(post.mainImage)
-                  ?.width(800)
-                  .height(500)
-                  .url();
+                const imgUrl = urlFor(post.mainImage)?.width(800).url();
                 return (
                   <Link
                     key={post._id}
@@ -84,7 +81,7 @@ const ConteudoSection = () => {
                           src={imgUrl}
                           alt=""
                           loading="lazy"
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          className="h-full w-full object-cover object-[50%_20%] transition duration-500 group-hover:scale-105"
                         />
                       ) : (
                         <div className="flex h-full items-center justify-center text-white/30">
