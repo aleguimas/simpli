@@ -1,5 +1,8 @@
 import { useMemo } from "react";
 
+const GLASS_BG =
+  "linear-gradient(to top left, rgba(255,255,255,0.14), rgba(255,255,255,0.03))";
+
 type Pillar = {
   letter: string;
   titleLine: string;
@@ -76,9 +79,10 @@ const MethodSection = () => {
           {pillars.map((pillar) => (
             <div
               key={pillar.letter}
-              className="group relative flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+              style={{ background: GLASS_BG }}
+              className="card-gradient-border group relative flex items-start gap-4 rounded-3xl p-5 backdrop-blur-md transition sm:hover:-translate-y-1 sm:hover:shadow-xl sm:hover:shadow-black/40"
             >
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/10 p-3 text-lg font-bold text-white shadow-[0_10px_40px_rgba(0,0,0,0.18)]">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/[0.08] p-3 text-lg font-bold text-white">
                 {pillar.letter}
               </div>
               <div className="space-y-1">

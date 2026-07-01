@@ -4,9 +4,12 @@ import ClientesSection from "@/components/ClientesSection";
 import ServicosSection from "@/components/ServicosSection";
 import SolucoesSection from "@/components/SolucoesSection";
 import MethodSection from "@/components/MethodSection";
+import WhyUsSection from "@/components/WhyUsSection";
 import NichosImpactoSection from "@/components/NichosImpactoSection";
 import TreinamentosSection from "@/components/TreinamentosSection";
 import TecnologiasSection from "@/components/TecnologiasSection";
+import CasesSection from "@/components/CasesSection";
+import ConteudoSection from "@/components/ConteudoSection";
 import TransformarNegocioSection from "@/components/TransformarNegocioSection";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
@@ -89,7 +92,10 @@ const Index = () => {
         <ServicosSection />
         <SolucoesSection />
         <MethodSection />
+        <WhyUsSection />
         <NichosImpactoSection />
+        <CasesSection />
+        <ConteudoSection />
         <TreinamentosSection />
         <TecnologiasSection />
         <TransformarNegocioSection />

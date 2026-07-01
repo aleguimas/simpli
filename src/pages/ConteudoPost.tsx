@@ -7,7 +7,7 @@ import { Calendar, ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
-import { sanityClient, urlFor } from "@/lib/sanity";
+import { sanityFetch, urlFor } from "@/lib/sanity";
 
 const BASE_URL = 'https://www.simpli.ia.br';
 
@@ -72,7 +72,7 @@ const ConteudoPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const { data: post, isLoading, error } = useQuery<Post | null>({
     queryKey: ["conteudo-post", slug],
-    queryFn: () => sanityClient.fetch(postBySlugQuery, { slug: slug ?? "" }),
+    queryFn: () => sanityFetch<Post | null>(postBySlugQuery, { slug: slug ?? "" }),
     enabled: !!slug,
   });
 
