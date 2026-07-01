@@ -29,7 +29,7 @@ const solucoes = [
 const navLinks = [
   { label: "Início", target: "hero" },
   { label: "Serviços", target: "servicos" },
-  { label: "IA", target: "nichos" },
+  { label: "Cases", target: "cases" },
   { label: "Treinamentos", target: "treinamento" },
   { label: "Conteúdo", href: "/conteudo" },
   { label: "Sobre", target: "carreiras" },
