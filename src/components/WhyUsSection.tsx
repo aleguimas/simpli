@@ -118,6 +118,36 @@ const WhyUsSection = () => {
             })}
           </div>
         </div>
+
+        <div className="mt-6 md:mt-8">
+          <div
+            style={{
+              background:
+                "linear-gradient(to top left, rgba(255,255,255,0.14), rgba(255,255,255,0.03))",
+            }}
+            className="card-gradient-border flex flex-col items-center gap-6 rounded-3xl p-6 backdrop-blur-md md:flex-row md:gap-8 md:p-8"
+          >
+            <div className="flex w-full shrink-0 items-center justify-center rounded-2xl bg-white p-6 md:w-72">
+              <img
+                src="/Meta-Tech-Provider.webp"
+                alt="Meta Tech Provider"
+                className="h-auto w-full max-w-[240px] object-contain"
+                loading="lazy"
+              />
+            </div>
+            <div className="text-center md:text-left">
+              <h3 className="text-xl font-semibold text-white sm:text-2xl">
+                Simplí é Tech Provider certificado pela Meta
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/70 sm:text-base">
+                Essa certificação nos possibilita integração completa e
+                amplificada com o ecossistema da Meta, garantindo segurança,
+                qualidade e velocidade no fluxo de interações dentro do Simplí
+                CRM.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
