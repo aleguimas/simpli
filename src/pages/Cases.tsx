@@ -33,9 +33,14 @@ const Cases = () => {
             {cases.length === 0 ? (
               <p className="text-center text-xl text-white/80">Em breve.</p>
             ) : (
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
                 {cases.map((item) => (
-                  <CaseCard key={item.id} item={item} />
+                  <div
+                    key={item.id}
+                    className="w-[44vw] max-w-[240px] sm:w-[200px] md:w-[230px]"
+                  >
+                    <CaseCard item={item} />
+                  </div>
                 ))}
               </div>
             )}
