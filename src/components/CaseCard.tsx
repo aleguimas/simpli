@@ -8,12 +8,14 @@ const GLASS_BG =
 const CaseCard = ({ item }: { item: CaseItem }) => {
   const [playing, setPlaying] = useState(false);
   const vid = youtubeId(item.youtubeUrl);
-  const thumb = vid ? `https://img.youtube.com/vi/${vid}/hqdefault.jpg` : null;
+  const [thumbSrc, setThumbSrc] = useState(
+    vid ? `https://img.youtube.com/vi/${vid}/maxresdefault.jpg` : "",
+  );
 
   return (
     <div
       style={{ background: GLASS_BG }}
-      className="card-gradient-border group flex h-full flex-col overflow-hidden rounded-3xl backdrop-blur-md transition sm:hover:-translate-y-1 sm:hover:shadow-xl sm:hover:shadow-black/40"
+      className="card-gradient-border group mx-auto flex h-full w-full max-w-[340px] flex-col overflow-hidden rounded-3xl backdrop-blur-md transition sm:hover:-translate-y-1 sm:hover:shadow-xl sm:hover:shadow-black/40"
     >
       <div className="relative aspect-[9/16] w-full overflow-hidden bg-black/40">
         {playing && vid ? (
@@ -24,7 +26,7 @@ const CaseCard = ({ item }: { item: CaseItem }) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-        ) : thumb ? (
+        ) : vid ? (
           <button
             type="button"
             onClick={() => setPlaying(true)}
@@ -32,9 +34,15 @@ const CaseCard = ({ item }: { item: CaseItem }) => {
             className="absolute inset-0 h-full w-full"
           >
             <img
-              src={thumb}
+              src={thumbSrc}
               alt=""
               loading="lazy"
+              onError={(e) => {
+                // maxresdefault nem sempre existe — cai para hqdefault
+                if (vid && e.currentTarget.src.includes("maxresdefault")) {
+                  setThumbSrc(`https://img.youtube.com/vi/${vid}/hqdefault.jpg`);
+                }
+              }}
               className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
             />
             <span className="absolute inset-0 flex items-center justify-center bg-black/25 transition group-hover:bg-black/15">
