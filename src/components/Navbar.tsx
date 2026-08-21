@@ -1,11 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, ChevronDown, MessageCircle, Kanban, Package } from "lucide-react";
+import { Menu, ChevronDown, MessageCircle, Kanban, Package, Bot, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-const solucoes = [
+const solucoes: {
+  href: string;
+  label: string;
+  description: string;
+  Icon: LucideIcon;
+  // external: página fora do SPA (proxy no vercel.json) — precisa de <a>
+  // de verdade, senão o react-router intercepta e cai no NotFound
+  external?: boolean;
+}[] = [
   {
     href: "/solucoes/simpli-agent",
     label: "Simplí Agent",
@@ -23,6 +31,13 @@ const solucoes = [
     label: "Simplí Estoque",
     description: "Gestão de estoque preditiva",
     Icon: Package,
+  },
+  {
+    href: "/agenticoffice",
+    label: "Agentic Office",
+    description: "Sua empresa operada por IA",
+    Icon: Bot,
+    external: true,
   },
 ];
 
@@ -145,22 +160,40 @@ const Navbar = () => {
 
             {solucoesOpen && (
               <div className="absolute left-0 top-full mt-2 w-64 overflow-hidden rounded-xl border border-white/10 bg-[#0f1d15] shadow-xl shadow-black/40">
-                {solucoes.map(({ href, label, description, Icon }) => (
-                  <Link
-                    key={href}
-                    to={href}
-                    onClick={() => setSolucoesOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 transition hover:bg-white/5"
-                  >
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#86efac]/15 text-[#86efac]">
-                      <Icon size={15} />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-white">{label}</p>
-                      <p className="text-xs text-white/50">{description}</p>
-                    </div>
-                  </Link>
-                ))}
+                {solucoes.map(({ href, label, description, Icon, external }) => {
+                  const content = (
+                    <>
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#86efac]/15 text-[#86efac]">
+                        <Icon size={15} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-white">{label}</p>
+                        <p className="text-xs text-white/50">{description}</p>
+                      </div>
+                    </>
+                  );
+                  const className =
+                    "flex items-center gap-3 px-4 py-3 transition hover:bg-white/5";
+                  return external ? (
+                    <a
+                      key={href}
+                      href={href}
+                      onClick={() => setSolucoesOpen(false)}
+                      className={className}
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <Link
+                      key={href}
+                      to={href}
+                      onClick={() => setSolucoesOpen(false)}
+                      className={className}
+                    >
+                      {content}
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -248,17 +281,22 @@ const Navbar = () => {
                     </button>
                     {mobileSolucoesOpen && (
                       <div className="ml-3 mt-1 flex flex-col gap-1 border-l border-white/10 pl-3">
-                        {solucoes.map(({ href, label, Icon }) => (
-                          <Link
-                            key={href}
-                            to={href}
-                            onClick={() => { setMenuOpen(false); setMobileSolucoesOpen(false); }}
-                            className="flex items-center gap-2 rounded-lg px-3 py-2 text-white/70 transition hover:bg-white/5 hover:text-white"
-                          >
-                            <Icon size={14} className="text-[#86efac]" />
-                            {label}
-                          </Link>
-                        ))}
+                        {solucoes.map(({ href, label, Icon, external }) => {
+                          const className =
+                            "flex items-center gap-2 rounded-lg px-3 py-2 text-white/70 transition hover:bg-white/5 hover:text-white";
+                          const close = () => { setMenuOpen(false); setMobileSolucoesOpen(false); };
+                          return external ? (
+                            <a key={href} href={href} onClick={close} className={className}>
+                              <Icon size={14} className="text-[#86efac]" />
+                              {label}
+                            </a>
+                          ) : (
+                            <Link key={href} to={href} onClick={close} className={className}>
+                              <Icon size={14} className="text-[#86efac]" />
+                              {label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
