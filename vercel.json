@@ -42,11 +42,44 @@
       "destination": "/api/seo?slug=:path*"
     },
     {
+      "source": "/agenticoffice",
+      "destination": "https://agenticoffice.simpli.ia.br/agenticoffice"
+    },
+    {
+      "source": "/r/:path*",
+      "destination": "https://agenticoffice.simpli.ia.br/r/:path*"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "https://agenticoffice.simpli.ia.br/_next/:path*"
+    },
+    {
+      "source": "/api/track",
+      "destination": "https://agenticoffice.simpli.ia.br/api/track"
+    },
+    {
+      "source": "/agentic-header-lp.png",
+      "destination": "https://agenticoffice.simpli.ia.br/agentic-header-lp.png"
+    },
+    {
+      "source": "/agentic-logo-preto.png",
+      "destination": "https://agenticoffice.simpli.ia.br/agentic-logo-preto.png"
+    },
+    {
+      "source": "/simpli-branca.png",
+      "destination": "https://agenticoffice.simpli.ia.br/simpli-branca.png"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
   "redirects": [
+    {
+      "source": "/agenticoffice/",
+      "destination": "/agenticoffice",
+      "permanent": true
+    },
     {
       "source": "/solucoes/simpli-agent/",
       "destination": "/solucoes/simpli-agent",
