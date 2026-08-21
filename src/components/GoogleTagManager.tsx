@@ -32,9 +32,64 @@ export const pushToDataLayer = (data: {
   event: string;
   [key: string]: any;
 }) => {
-  if (typeof window.dataLayer !== "undefined") {
-    window.dataLayer.push(data);
+  if (typeof window === "undefined") return;
+  // Garante a fila mesmo se o snippet do GTM ainda não rodou (o GTM consome
+  // os eventos acumulados quando carrega) — evita perder conversão.
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(data);
+};
+
+// Evento de conversão consumido pelo pixel do ChatGPT Ads (OpenAI Ads).
+// O nome precisa ser exatamente "generate_lead".
+const GENERATE_LEAD_EVENT = "generate_lead";
+
+// Janela padrão de deduplicação: um mesmo visitante não gera dois leads
+// dentro desse intervalo (protege contra reload e contra clicar em mais de
+// um CTA na mesma página).
+const GENERATE_LEAD_DEDUPE_WINDOW_MS = 30 * 60 * 1000;
+
+const leadStorageKey = (dedupeKey: string) =>
+  `simpli_generate_lead_${dedupeKey}`;
+
+/**
+ * Dispara `dataLayer.push({ event: "generate_lead" })` uma única vez por
+ * janela de deduplicação.
+ *
+ * @returns true se o evento foi disparado agora, false se foi suprimido.
+ */
+export const trackGenerateLead = (options?: {
+  /** Identificador do funil/página. Mesma chave = mesma trava. */
+  dedupeKey?: string;
+  /** Sobrescreve a janela de deduplicação (ms). Use 0 para sempre disparar. */
+  dedupeWindowMs?: number;
+}) => {
+  if (typeof window === "undefined") return false;
+
+  const dedupeKey = options?.dedupeKey || "default";
+  const windowMs =
+    options?.dedupeWindowMs ?? GENERATE_LEAD_DEDUPE_WINDOW_MS;
+
+  if (windowMs > 0) {
+    try {
+      const last = window.localStorage.getItem(leadStorageKey(dedupeKey));
+      if (last && Date.now() - Number(last) < windowMs) {
+        return false;
+      }
+    } catch {
+      // localStorage bloqueado (navegação privada / cookies off):
+      // segue em frente e dispara — perder conversão é pior que duplicar.
+    }
   }
+
+  pushToDataLayer({ event: GENERATE_LEAD_EVENT });
+
+  try {
+    window.localStorage.setItem(leadStorageKey(dedupeKey), String(Date.now()));
+  } catch {
+    // idem acima: sem storage, seguimos sem a trava.
+  }
+
+  return true;
 };
 
 // Funções helpers para eventos comuns via GTM

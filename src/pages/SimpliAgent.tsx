@@ -23,8 +23,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
 import { SEO } from "@/components/SEO";
+import {
+  trackGenerateLead,
+  trackGTMWhatsAppClick,
+} from "@/components/GoogleTagManager";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
+const LEAD_DEDUPE_KEY = "simpli-agent";
 
 const problems = [
   {
@@ -173,6 +178,14 @@ const steps = [
 ];
 
 const SimpliAgent = () => {
+  // Conversão de lead da página: o clique no WhatsApp é o momento do
+  // "envio". Dispara generate_lead (pixel do ChatGPT Ads) com trava de
+  // deduplicação e mantém o whatsapp_click com contexto para o GA/GTM.
+  const handleLeadClick = (clickLocation: string) => {
+    trackGTMWhatsAppClick(`simpli_agent_${clickLocation}`);
+    trackGenerateLead({ dedupeKey: LEAD_DEDUPE_KEY });
+  };
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -343,7 +356,12 @@ const SimpliAgent = () => {
             asChild
             className="h-12 rounded-xl border border-transparent bg-white px-8 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
           >
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => handleLeadClick("hero")}
+            >
               Agendar diagnóstico gratuito
             </a>
           </Button>
@@ -623,7 +641,12 @@ const SimpliAgent = () => {
               asChild
               className="h-12 rounded-xl border border-transparent bg-white px-8 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
             >
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => handleLeadClick("cta_final")}
+              >
                 Quero meu diagnóstico gratuito
                 <ArrowRight size={16} className="ml-2" />
               </a>
