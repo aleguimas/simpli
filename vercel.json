@@ -81,6 +81,16 @@
       "permanent": true
     },
     {
+      "source": "/diagnostico",
+      "destination": "/agenticoffice",
+      "permanent": true
+    },
+    {
+      "source": "/diagnostico/:path*",
+      "destination": "/agenticoffice",
+      "permanent": true
+    },
+    {
       "source": "/solucoes/simpli-agent/",
       "destination": "/solucoes/simpli-agent",
       "permanent": true

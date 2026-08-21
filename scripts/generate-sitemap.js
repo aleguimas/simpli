@@ -53,7 +53,6 @@ async function main() {
     { path: '/servicos/agentes-de-ia', changefreq: 'monthly', priority: '0.9' },
     { path: '/servicos/trafego-pago', changefreq: 'monthly', priority: '0.9' },
     { path: '/servicos/consultoria-digital', changefreq: 'monthly', priority: '0.9' },
-    { path: '/diagnostico', changefreq: 'monthly', priority: '0.8' },
     { path: '/conteudo', changefreq: 'weekly', priority: '0.9' },
     { path: '/solucoes/simpli-agent', changefreq: 'monthly', priority: '0.9' },
     { path: '/solucoes/simpli-crm', changefreq: 'monthly', priority: '0.9' },
