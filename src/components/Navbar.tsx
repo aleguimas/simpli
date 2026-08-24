@@ -45,7 +45,7 @@ const navLinks = [
   { label: "Início", target: "hero" },
   { label: "Serviços", target: "servicos" },
   { label: "Cases", target: "cases" },
-  { label: "Treinamentos", target: "treinamento" },
+  { label: "AI Academy", target: "treinamento" },
   { label: "Conteúdo", href: "/conteudo" },
   { label: "Sobre", target: "carreiras" },
 ];

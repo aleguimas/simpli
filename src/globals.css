@@ -168,3 +168,87 @@
   mask-composite: exclude;
   pointer-events: none;
 }
+
+/* ==========================================================================
+   Simplí AI Academy — voz visual do braço educacional.
+   Tudo escopado em .academy para não vazar para o resto do site.
+   ========================================================================== */
+
+.academy {
+  /* Verde da logo AI Academy. O site usa #20E000 / #86efac; a Academy assina
+     com o verde da própria marca. Ver nota de inconsistência no brief. */
+  --academy-green: #12cc1e;
+  --academy-red: #ef4444;
+  font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  font-feature-settings: "ss01" on;
+}
+
+.academy h1,
+.academy h2,
+.academy h3,
+.academy .font-display {
+  /* Face pinada pelo brief da Academy (secao 5, Identidade visual). */
+  /* impeccable-disable-next-line overused-font -- pinada pelo brief */
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+/* Números de preço alinhados em coluna */
+.academy .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Superfícies do browser que o design system também deve cobrir */
+.academy ::selection {
+  background-color: rgba(18, 204, 30, 0.3);
+  color: #ffffff;
+}
+
+.academy :focus-visible {
+  outline: 2px solid var(--academy-green);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Momento autoral único: a abertura do hero.
+   O estado padrão é visível — a animação só empresta a entrada. */
+@keyframes academy-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    filter: blur(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.academy-rise {
+  animation: academy-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.academy-rise-1 { animation-delay: 80ms; }
+.academy-rise-2 { animation-delay: 200ms; }
+.academy-rise-3 { animation-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .academy-rise {
+    animation: none;
+  }
+}
+
+/* Régua de seção: some nas pontas, em vez de bater na borda */
+.academy-rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.14) 18%,
+    rgba(255, 255, 255, 0.14) 82%,
+    transparent
+  );
+}

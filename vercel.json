@@ -91,6 +91,11 @@
       "permanent": true
     },
     {
+      "source": "/ai-academy/",
+      "destination": "/ai-academy",
+      "permanent": true
+    },
+    {
       "source": "/solucoes/simpli-agent/",
       "destination": "/solucoes/simpli-agent",
       "permanent": true

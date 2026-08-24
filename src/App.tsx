@@ -18,6 +18,7 @@ import SimpliEstoque from "./pages/SimpliEstoque";
 import Conteudo from "./pages/Conteudo";
 import ConteudoPost from "./pages/ConteudoPost";
 import Cases from "./pages/Cases";
+import AIAcademy from "./pages/AIAcademy";
 import ScrollToTop from "./components/ScrollToTop";
 import { GoogleAnalytics } from "./components/GoogleAnalytics";
 import { GoogleTagManager } from "./components/GoogleTagManager";
@@ -57,6 +58,7 @@ const App = () => (
           <Route path="/conteudo" element={<Conteudo />} />
           <Route path="/conteudo/:slug" element={<ConteudoPost />} />
           <Route path="/cases" element={<Cases />} />
+          <Route path="/ai-academy" element={<AIAcademy />} />
           <Route path="/studio" element={<StudioRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

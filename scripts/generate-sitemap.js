@@ -58,6 +58,7 @@ async function main() {
     { path: '/solucoes/simpli-crm', changefreq: 'monthly', priority: '0.9' },
     { path: '/solucoes/simpli-estoque', changefreq: 'monthly', priority: '0.9' },
     { path: '/agenticoffice', changefreq: 'weekly', priority: '0.9' },
+    { path: '/ai-academy', changefreq: 'monthly', priority: '0.9' },
   ]
 
   let posts = []
