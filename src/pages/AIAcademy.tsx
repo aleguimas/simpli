@@ -102,7 +102,7 @@ const ProductBlock = ({ product }: { product: AcademyProduct }) => {
             {product.what}
           </p>
 
-          <h4 className="font-display mt-10 text-sm font-semibold uppercase tracking-[0.14em] text-white/55">
+          <h4 className="mt-10 text-sm font-semibold uppercase tracking-[0.14em] text-white/55">
             {product.includesTitle}
           </h4>
           <ul className="mt-5 space-y-5">
@@ -127,7 +127,7 @@ const ProductBlock = ({ product }: { product: AcademyProduct }) => {
 
           <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
             <div>
-              <h4 className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-white/55">
+              <h4 className="text-sm font-semibold uppercase tracking-[0.14em] text-white/55">
                 Para quem é
               </h4>
               <p className="mt-3 text-[0.9375rem] leading-relaxed text-white/75">
@@ -135,7 +135,7 @@ const ProductBlock = ({ product }: { product: AcademyProduct }) => {
               </p>
             </div>
             <div>
-              <h4 className="font-display text-sm font-semibold uppercase tracking-[0.14em] text-white/55">
+              <h4 className="text-sm font-semibold uppercase tracking-[0.14em] text-white/55">
                 Por que funciona
               </h4>
               <p className="mt-3 text-[0.9375rem] leading-relaxed text-white/75">
@@ -372,7 +372,7 @@ const AIAcademy = () => {
       <section className="px-6 py-16 md:px-10 md:py-24">
         <div className="mx-auto max-w-6xl">
           <hr className="academy-rule" />
-          <p className="font-display mt-14 max-w-[24ch] text-3xl font-bold leading-[1.2] text-white sm:text-4xl md:max-w-[26ch] md:text-[3.25rem]">
+          <p className="mt-14 max-w-[24ch] text-3xl font-bold leading-[1.2] text-white sm:text-4xl md:max-w-[26ch] md:text-[3.25rem]">
             A IA amplifica o processo que já existe.
           </p>
           <div className="mt-8 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-2">

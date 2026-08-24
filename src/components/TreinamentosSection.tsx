@@ -34,11 +34,8 @@ const TreinamentosSection = () => {
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {academyProducts.map(({ id, icon: Icon, shortName, promise, facts }) => {
-            const duration = facts.find((f) => f.label === "Duração")?.value;
-            const format = facts.find((f) => f.label === "Formato")?.value;
-
-            return (
+          {academyProducts.map(
+            ({ id, icon: Icon, shortName, promise, highlights }) => (
               <Link
                 key={id}
                 to={`/ai-academy#${id}`}
@@ -57,29 +54,26 @@ const TreinamentosSection = () => {
                   </p>
                 </div>
 
-                {/* Sem preço aqui de propósito: o investimento de cada
-                    programa vive na página da Academy. */}
-                <div className="mt-6 flex flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4 text-sm">
-                  {duration && (
-                    <div>
-                      <p className="text-white/60">Duração</p>
-                      <p className="mt-0.5 font-semibold text-white">
-                        {duration}
-                      </p>
+                {/* Tópicos do programa. Sem preço de propósito: o
+                    investimento de cada um vive na página da Academy. */}
+                <dl className="mt-6 space-y-1.5 border-t border-white/10 pt-5 text-sm leading-relaxed">
+                  {highlights.map((topic) => (
+                    <div key={topic.label} className="flex gap-2">
+                      {/* Largura fixa no rótulo: sem ela os valores
+                          começam em pontos diferentes e a coluna
+                          fica irregular. */}
+                      <dt className="w-[5.25rem] shrink-0 text-white/60">
+                        {topic.label}:
+                      </dt>
+                      <dd className="flex-1 font-semibold text-white">
+                        {topic.value}
+                      </dd>
                     </div>
-                  )}
-                  {format && (
-                    <div>
-                      <p className="text-white/60">Formato</p>
-                      <p className="mt-0.5 font-semibold text-white">
-                        {format}
-                      </p>
-                    </div>
-                  )}
-                </div>
+                  ))}
+                </dl>
               </Link>
-            );
-          })}
+            ),
+          )}
         </div>
 
         <div className="mt-10 flex justify-center">

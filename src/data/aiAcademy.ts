@@ -37,6 +37,8 @@ export type AcademyProduct = {
   /** Marca o produto de entrada — recebe destaque verde. */
   featured?: boolean;
   facts: { label: string; value: string }[];
+  /** Tópicos curtos do card da home. Resumem `facts` em uma linha cada. */
+  highlights: { label: string; value: string }[];
   /** "O que é" — dois a três períodos, voz direta. */
   what: string;
   /** Título da lista de entregáveis. */
@@ -65,6 +67,11 @@ export const academyProducts: AcademyProduct[] = [
       { label: "Formato", value: "Individual, ao vivo, remoto" },
       { label: "Quem conduz", value: "Um consultor Simplí" },
       { label: "Entregável", value: "Ambiente Claude configurado e funcionando" },
+    ],
+    highlights: [
+      { label: "Duração", value: "2h" },
+      { label: "Formato", value: "Individual, ao vivo, remoto" },
+      { label: "Quantidade", value: "1 pessoa" },
     ],
     what: "Uma sessão de trabalho, não uma aula. O consultor entra junto e configura o ambiente Claude do zero, adaptado ao seu negócio. Você sai da sessão com uma ferramenta montada — não com anotações sobre como montar depois.",
     includesTitle: "O que é configurado durante as 2 horas",
@@ -119,6 +126,11 @@ export const academyProducts: AcademyProduct[] = [
       { label: "Duração", value: "4 horas" },
       { label: "Formato", value: "Turma de até 10 pessoas, ao vivo" },
       { label: "Vagas", value: "10" },
+    ],
+    highlights: [
+      { label: "Duração", value: "4h" },
+      { label: "Formato", value: "Turma ao vivo" },
+      { label: "Quantidade", value: "Até 10 pessoas" },
     ],
     what: "Treinamento prático de uso do Claude aplicado ao trabalho. Turma pequena, com espaço reservado para cada participante aplicar no próprio contexto durante a aula.",
     includesTitle: "O que é ensinado",
@@ -178,6 +190,11 @@ export const academyProducts: AcademyProduct[] = [
       { label: "Formato", value: "Turma fechada, presencial ou remoto" },
       { label: "Público", value: "Equipes de uma mesma empresa" },
     ],
+    highlights: [
+      { label: "Duração", value: "A definir conforme escopo" },
+      { label: "Formato", value: "Presencial ou remoto" },
+      { label: "Quantidade", value: "A partir de 8 pessoas" },
+    ],
     what: "Treinamento desenhado sob medida para uma equipe específica, construído a partir dos processos reais daquela empresa. Não é o treinamento em grupo com a logo trocada — o conteúdo é montado depois de entender o que a equipe faz.",
     includesTitle: "Como funciona",
     includes: [
@@ -222,6 +239,11 @@ export const academyProducts: AcademyProduct[] = [
       { label: "Duração", value: "8 horas" },
       { label: "Formato", value: "Individual, ao vivo" },
       { label: "Incluso", value: "2 meses de Agentic Office sem custo" },
+    ],
+    highlights: [
+      { label: "Duração", value: "8h" },
+      { label: "Formato", value: "Individual, ao vivo" },
+      { label: "Quantidade", value: "1 pessoa" },
     ],
     what: "O produto mais profundo da Academy. Combina três coisas normalmente vendidas separadamente: treinamento, diagnóstico de processo e plataforma de agentes de IA. Não é aula — é um trabalho de consultoria com entregáveis.",
     includesTitle: "O que está incluso",

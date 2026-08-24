@@ -32,11 +32,14 @@ const CasesSection = () => {
           </Link>
         </div>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-4 sm:gap-5">
+        {/* No mobile vira trilho horizontal com scroll-snap: o card seguinte
+            fica espiando na borda e serve de convite para arrastar. A partir
+            de sm volta a ser a grade centralizada de sempre. */}
+        <div className="cases-rail -mx-6 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 sm:mx-0 sm:flex-wrap sm:justify-center sm:gap-5 sm:overflow-x-visible sm:px-0 sm:pb-0">
           {preview.map((item) => (
             <div
               key={item.id}
-              className="w-[44vw] max-w-[240px] sm:w-[200px] md:w-[230px]"
+              className="w-[62vw] max-w-[260px] shrink-0 snap-center sm:w-[200px] sm:shrink md:w-[230px]"
             >
               <CaseCard item={item} />
             </div>

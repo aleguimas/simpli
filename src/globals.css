@@ -179,19 +179,8 @@
      com o verde da própria marca. Ver nota de inconsistência no brief. */
   --academy-green: #12cc1e;
   --academy-red: #ef4444;
-  font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    Roboto, sans-serif;
-  font-feature-settings: "ss01" on;
-}
-
-.academy h1,
-.academy h2,
-.academy h3,
-.academy .font-display {
-  /* Face pinada pelo brief da Academy (secao 5, Identidade visual). */
-  /* impeccable-disable-next-line overused-font -- pinada pelo brief */
-  font-family: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  letter-spacing: -0.03em;
+  /* A tipografia é a mesma do resto do site: a Academy não carrega
+     fonte própria. */
 }
 
 /* Números de preço alinhados em coluna */
@@ -251,4 +240,24 @@
     rgba(255, 255, 255, 0.14) 82%,
     transparent
   );
+}
+
+/* Trilho horizontal dos cases no mobile: barra fina no lugar da barra
+   padrão do sistema, que aparece grossa em telas estreitas sem toque. */
+.cases-rail {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+.cases-rail::-webkit-scrollbar {
+  height: 4px;
+}
+
+.cases-rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cases-rail::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
 }
