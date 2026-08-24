@@ -16,7 +16,12 @@ import {
  * o CTA leva para o WhatsApp em vez de exibir um dado que ainda não existe.
  */
 
-export const ACADEMY_WHATSAPP = "https://wa.link/cpk8xf";
+/** WhatsApp comercial da Academy: consultoria 1v1, in-company e mentoria. */
+export const ACADEMY_WHATSAPP = "https://wa.link/jwsthm";
+
+/** Inscrição da turma aberta do Treinamento Claude em Grupo. */
+export const ACADEMY_TURMA_CHECKOUT =
+  "https://crm.simpli.ia.br/g/lancamento-simpli-ai-aca-1ltn87";
 
 export type AcademyProduct = {
   id: string;
@@ -43,7 +48,7 @@ export type AcademyProduct = {
   argument: string;
   /** Objeção esperada + resposta. Nem todo produto tem. */
   objection?: { question: string; answer: string };
-  cta: { label: string; note?: string };
+  cta: { label: string; href: string; note?: string };
 };
 
 export const academyProducts: AcademyProduct[] = [
@@ -98,7 +103,7 @@ export const academyProducts: AcademyProduct[] = [
       answer:
         "Consegue, com tempo. A questão é que configuração de ambiente é um trabalho de decisão, não de execução: o que vira skill, o que vira instrução de projeto, o que conectar. Errar essas decisões gera um ambiente que atrapalha mais do que ajuda. As duas horas compram as decisões certas, não os cliques.",
     },
-    cta: { label: "Agendar a configuração" },
+    cta: { label: "Agendar a configuração", href: ACADEMY_WHATSAPP },
   },
   {
     id: "turma",
@@ -156,7 +161,8 @@ export const academyProducts: AcademyProduct[] = [
     },
     cta: {
       label: "Garantir vaga na primeira turma",
-      note: "Data e horário da primeira turma saem no WhatsApp.",
+      href: ACADEMY_TURMA_CHECKOUT,
+      note: "Inscrição pela página da turma.",
     },
   },
   {
@@ -199,6 +205,7 @@ export const academyProducts: AcademyProduct[] = [
       "Treinamento genérico ensina a ferramenta. Treinamento in-company ensina a ferramenta dentro do processo que a equipe já executa — e por isso é aplicado no dia seguinte.",
     cta: {
       label: "Falar sobre a minha equipe",
+      href: ACADEMY_WHATSAPP,
       note: "Mande nome, empresa, tamanho da equipe e o que motivou o interesse.",
     },
   },
@@ -263,7 +270,7 @@ export const academyProducts: AcademyProduct[] = [
       answer:
         "É caro para um treinamento e barato para uma consultoria de processo com software incluso. A comparação correta não é com um curso — é com o custo de manter a operação como está por mais um ano.",
     },
-    cta: { label: "Conversar sobre a mentoria" },
+    cta: { label: "Conversar sobre a mentoria", href: ACADEMY_WHATSAPP },
   },
 ];
 

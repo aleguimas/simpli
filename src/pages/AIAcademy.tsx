@@ -11,6 +11,7 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
 import {
+  ACADEMY_TURMA_CHECKOUT,
   ACADEMY_WHATSAPP,
   academyInstructors,
   academyLadder,
@@ -83,7 +84,7 @@ const ProductBlock = ({ product }: { product: AcademyProduct }) => {
               asChild
               className="mt-7 h-12 w-full rounded-xl border border-transparent bg-white px-6 text-[0.9375rem] font-semibold text-[#0C140F] transition-colors hover:border-white/70 hover:bg-transparent hover:text-white"
             >
-              <a href={ACADEMY_WHATSAPP} target="_blank" rel="noreferrer">
+              <a href={product.cta.href} target="_blank" rel="noreferrer">
                 {product.cta.label}
               </a>
             </Button>
@@ -185,7 +186,7 @@ const faqs = [
   },
   {
     q: "Quando começa a próxima turma?",
-    a: "A data e o horário da primeira turma são confirmados no WhatsApp. São dez vagas reais por turma, e o valor de R$ 297 é a política da primeira turma — nas seguintes, o preço regular é R$ 497.",
+    a: "A data e o horário da turma aberta ficam na página de inscrição, no botão “Garantir vaga na primeira turma”. São dez vagas reais por turma, e o valor de R$ 297 é a política da primeira turma — nas seguintes, o preço regular é R$ 497.",
   },
   {
     q: "Preciso ser da área de tecnologia?",
@@ -313,7 +314,7 @@ const AIAcademy = () => {
           }}
           aria-hidden="true"
         />
-        <div className="relative mx-auto max-w-6xl">
+        <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
           {/* Logo da Academy. O PNG é 800×800 com muita margem transparente;
               o container em 4:1 com object-cover recorta a moldura vazia. */}
           <div className="academy-rise academy-rise-1 aspect-[4/1] w-full max-w-[380px] md:max-w-[460px]">
@@ -327,8 +328,8 @@ const AIAcademy = () => {
             />
           </div>
 
-          <h1 className="academy-rise academy-rise-2 mt-10 max-w-[20ch] text-[2.5rem] font-bold leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-[4.25rem]">
-            Do “ouvi falar de IA” ao “tenho IA rodando no meu processo”.
+          <h1 className="academy-rise academy-rise-2 mt-10 max-w-[26ch] text-balance text-[2.5rem] font-bold leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-[4.25rem]">
+            Inteligência artificial aplicada a negócios.
           </h1>
 
           <p className="academy-rise academy-rise-3 mt-7 max-w-[62ch] text-lg leading-relaxed text-white/75 md:text-xl">
@@ -337,13 +338,17 @@ const AIAcademy = () => {
             dentro da operação que a sua empresa já executa.
           </p>
 
-          <div className="academy-rise academy-rise-3 mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="academy-rise academy-rise-3 mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-center">
             <Button
               asChild
               className="h-12 rounded-xl border border-transparent px-7 text-base font-semibold text-[#06170A] transition-colors hover:brightness-110"
               style={{ backgroundColor: GREEN }}
             >
-              <a href={ACADEMY_WHATSAPP} target="_blank" rel="noreferrer">
+              <a
+                href={ACADEMY_TURMA_CHECKOUT}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Quero a próxima turma — R$ 297
               </a>
             </Button>
@@ -623,7 +628,11 @@ const AIAcademy = () => {
                 className="h-12 rounded-xl border border-transparent px-7 text-base font-semibold text-[#06170A] transition-colors hover:brightness-110"
                 style={{ backgroundColor: GREEN }}
               >
-                <a href={ACADEMY_WHATSAPP} target="_blank" rel="noreferrer">
+                <a
+                  href={ACADEMY_TURMA_CHECKOUT}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Garantir vaga na primeira turma
                 </a>
               </Button>
