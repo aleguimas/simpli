@@ -19,8 +19,11 @@ import {
 /** WhatsApp comercial da Academy: consultoria 1v1, in-company e mentoria. */
 export const ACADEMY_WHATSAPP = "https://wa.link/jwsthm";
 
-/** Inscrição da turma aberta do Treinamento Claude em Grupo. */
-export const ACADEMY_TURMA_CHECKOUT =
+/**
+ * Grupo de pré-lançamento da primeira turma do Treinamento Claude.
+ * Os 10 primeiros do grupo garantem a oferta de R$ 297.
+ */
+export const ACADEMY_GRUPO_PRELANCAMENTO =
   "https://crm.simpli.ia.br/g/lancamento-simpli-ai-aca-1ltn87";
 
 export type AcademyProduct = {
@@ -55,64 +58,6 @@ export type AcademyProduct = {
 
 export const academyProducts: AcademyProduct[] = [
   {
-    id: "configuracao",
-    icon: Boxes,
-    name: "Consultoria de Configuração de Ambiente",
-    shortName: "Configuração de Ambiente",
-    promise:
-      "Duas horas de trabalho conjunto. Você termina com o Claude montado em cima do seu negócio.",
-    price: "R$ 500",
-    facts: [
-      { label: "Duração", value: "2 horas" },
-      { label: "Formato", value: "Individual, ao vivo, remoto" },
-      { label: "Quem conduz", value: "Um consultor Simplí" },
-      { label: "Entregável", value: "Ambiente Claude configurado e funcionando" },
-    ],
-    highlights: [
-      { label: "Duração", value: "2h" },
-      { label: "Formato", value: "Individual, ao vivo, remoto" },
-      { label: "Quantidade", value: "1 pessoa" },
-    ],
-    what: "Uma sessão de trabalho, não uma aula. O consultor entra junto e configura o ambiente Claude do zero, adaptado ao seu negócio. Você sai da sessão com uma ferramenta montada — não com anotações sobre como montar depois.",
-    includesTitle: "O que é configurado durante as 2 horas",
-    includes: [
-      {
-        title: "Projeto no Claude",
-        detail:
-          "Espaço de trabalho dedicado ao seu negócio, com instruções permanentes que fazem o Claude entender o contexto da empresa sem precisar ser lembrado a cada conversa.",
-      },
-      {
-        title: "Skills customizadas",
-        detail:
-          "Rotinas reutilizáveis criadas sob medida para as tarefas recorrentes: gerar proposta no padrão da casa, responder atendimento no tom da marca, estruturar o relatório mensal. Escritas uma vez, usadas indefinidamente.",
-      },
-      {
-        title: "Conexões MCP",
-        detail:
-          "Integração do Claude com as ferramentas que a empresa já usa — Google Drive, Gmail, Google Calendar, entre outras — para que ele acesse documentos e dados reais em vez de trabalhar no vácuo.",
-      },
-      {
-        title: "Biblioteca de prompts",
-        detail:
-          "Conjunto de comandos prontos e testados para as demandas mais frequentes, entregue em documento consultável.",
-      },
-      {
-        title: "Persona e tom de voz",
-        detail:
-          "Como o Claude deve escrever em nome da empresa: vocabulário, nível de formalidade, o que evitar, referências de estilo.",
-      },
-    ],
-    who: "Quem já usa Claude ou ChatGPT de forma solta e percebe que repete as mesmas instruções toda vez, não confia no resultado, ou não consegue extrair nada além de texto genérico.",
-    argument:
-      "A diferença entre usar IA e ter IA configurada é a diferença entre pedir favor e ter funcionário. Em duas horas, o ambiente sai montado.",
-    objection: {
-      question: "Eu não consigo fazer isso sozinho vendo um tutorial?",
-      answer:
-        "Consegue, com tempo. A questão é que configuração de ambiente é um trabalho de decisão, não de execução: o que vira skill, o que vira instrução de projeto, o que conectar. Errar essas decisões gera um ambiente que atrapalha mais do que ajuda. As duas horas compram as decisões certas, não os cliques.",
-    },
-    cta: { label: "Agendar a configuração", href: ACADEMY_WHATSAPP },
-  },
-  {
     id: "turma",
     icon: Users,
     name: "Treinamento Claude em Grupo",
@@ -120,7 +65,8 @@ export const academyProducts: AcademyProduct[] = [
     promise:
       "Quatro horas com método, turma de dez. Cada participante aplica no próprio contexto durante a aula.",
     price: "R$ 297",
-    priceNote: "valor exclusivo da primeira turma · R$ 497 nas turmas seguintes",
+    priceNote:
+      "oferta dos 10 primeiros do grupo de pré-lançamento · R$ 497 depois",
     featured: true,
     facts: [
       { label: "Duração", value: "4 horas" },
@@ -172,10 +118,71 @@ export const academyProducts: AcademyProduct[] = [
         "Sim, e provavelmente mais. Quem já usa costuma ter vícios que limitam o resultado — prompts longos demais, contexto perdido, falta de estrutura. O treinamento corrige isso mais rápido do que ensina do zero.",
     },
     cta: {
-      label: "Garantir vaga na primeira turma",
-      href: ACADEMY_TURMA_CHECKOUT,
-      note: "Inscrição pela página da turma.",
+      label: "Entrar no grupo do pré-lançamento",
+      href: ACADEMY_GRUPO_PRELANCAMENTO,
+      note: "A data da primeira turma é anunciada no grupo. Os 10 primeiros garantem os R$ 297.",
     },
+  },
+  {
+    id: "configuracao",
+    icon: Boxes,
+    name: "Consultoria de Configuração de Ambiente",
+    shortName: "Configuração de Ambiente",
+    promise:
+      "Duas horas de trabalho conjunto. Você termina com o Claude montado em cima do seu negócio.",
+    price: "R$ 500",
+    facts: [
+      { label: "Duração", value: "2 horas" },
+      { label: "Formato", value: "Individual, ao vivo, remoto" },
+      { label: "Quem conduz", value: "Um consultor Simplí" },
+      {
+        label: "Entregável",
+        value: "Ambiente Claude configurado e funcionando",
+      },
+    ],
+    highlights: [
+      { label: "Duração", value: "2h" },
+      { label: "Formato", value: "Individual, ao vivo, remoto" },
+      { label: "Quantidade", value: "1 pessoa" },
+    ],
+    what: "Uma sessão de trabalho, não uma aula. O consultor entra junto e configura o ambiente Claude do zero, adaptado ao seu negócio. Você sai da sessão com uma ferramenta montada — não com anotações sobre como montar depois.",
+    includesTitle: "O que é configurado durante as 2 horas",
+    includes: [
+      {
+        title: "Projeto no Claude",
+        detail:
+          "Espaço de trabalho dedicado ao seu negócio, com instruções permanentes que fazem o Claude entender o contexto da empresa sem precisar ser lembrado a cada conversa.",
+      },
+      {
+        title: "Skills customizadas",
+        detail:
+          "Rotinas reutilizáveis criadas sob medida para as tarefas recorrentes: gerar proposta no padrão da casa, responder atendimento no tom da marca, estruturar o relatório mensal. Escritas uma vez, usadas indefinidamente.",
+      },
+      {
+        title: "Conexões MCP",
+        detail:
+          "Integração do Claude com as ferramentas que a empresa já usa — Google Drive, Gmail, Google Calendar, entre outras — para que ele acesse documentos e dados reais em vez de trabalhar no vácuo.",
+      },
+      {
+        title: "Biblioteca de prompts",
+        detail:
+          "Conjunto de comandos prontos e testados para as demandas mais frequentes, entregue em documento consultável.",
+      },
+      {
+        title: "Persona e tom de voz",
+        detail:
+          "Como o Claude deve escrever em nome da empresa: vocabulário, nível de formalidade, o que evitar, referências de estilo.",
+      },
+    ],
+    who: "Quem já usa Claude ou ChatGPT de forma solta e percebe que repete as mesmas instruções toda vez, não confia no resultado, ou não consegue extrair nada além de texto genérico.",
+    argument:
+      "A diferença entre usar IA e ter IA configurada é a diferença entre pedir favor e ter funcionário. Em duas horas, o ambiente sai montado.",
+    objection: {
+      question: "Eu não consigo fazer isso sozinho vendo um tutorial?",
+      answer:
+        "Consegue, com tempo. A questão é que configuração de ambiente é um trabalho de decisão, não de execução: o que vira skill, o que vira instrução de projeto, o que conectar. Errar essas decisões gera um ambiente que atrapalha mais do que ajuda. As duas horas compram as decisões certas, não os cliques.",
+    },
+    cta: { label: "Agendar a configuração", href: ACADEMY_WHATSAPP },
   },
   {
     id: "in-company",

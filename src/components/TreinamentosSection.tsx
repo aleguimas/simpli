@@ -35,7 +35,7 @@ const TreinamentosSection = () => {
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {academyProducts.map(
-            ({ id, icon: Icon, shortName, promise, highlights }) => (
+            ({ id, icon: Icon, shortName, promise, highlights, featured }) => (
               <Link
                 key={id}
                 to={`/ai-academy#${id}`}
@@ -48,6 +48,11 @@ const TreinamentosSection = () => {
                   </span>
                   <h3 className="text-lg font-semibold text-white">
                     {shortName}
+                    {featured && (
+                      <span className="ml-2 align-middle text-xs font-semibold text-[#86efac]">
+                        primeira turma em breve
+                      </span>
+                    )}
                   </h3>
                   <p className="text-sm leading-relaxed text-white/70">
                     {promise}
