@@ -12,6 +12,7 @@ const logos = [
   { name: "Cliente 12", src: "/12.webp" },
   { name: "Revestir Homocenter", src: "/15.png" },
   { name: "Editora Futura", src: "/16.png" },
+  { name: "Cliente 17", src: "/17.png" },
 ];
 
 const firstHalf = logos.slice(0, Math.ceil(logos.length / 2));
