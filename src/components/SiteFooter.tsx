@@ -6,7 +6,7 @@ const companyLinks = [
   { label: "Início", target: "hero" },
   { label: "Serviços", target: "servicos" },
   { label: "IA", target: "nichos" },
-  { label: "Treinamentos", target: "treinamento" },
+  { label: "AI Academy", target: "treinamento" },
   { label: "Sobre", target: "carreiras" },
 ];
 

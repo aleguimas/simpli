@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  ArrowRight,
   BadgeCheck,
   BarChart3,
   Brain,
@@ -20,7 +19,25 @@ import { Card, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
-const HERO_BG = "/fundo-consultoria.webp";
+const HERO_BG = "/ai-roadmap-system.png";
+
+const aiDeliverables = [
+  {
+    title: "Diagnóstico Completo",
+    description: "Leitura objetiva do cenário atual, maturidade e oportunidades prioritárias.",
+    icon: CheckCircle2,
+  },
+  {
+    title: "Plano de Ação Estratégico",
+    description: "Iniciativas ordenadas por impacto, urgência, capacidade e retorno esperado.",
+    icon: Layers,
+  },
+  {
+    title: "Viabilidade de Execução",
+    description: "Visão prática de custos, dependências e trilha de implementação.",
+    icon: Shield,
+  },
+];
 
 const benefits = [
   {
@@ -205,18 +222,22 @@ const ConsultoriaDigital = () => {
         <section
           className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24"
           style={{
-            backgroundImage: `linear-gradient(120deg, rgba(28,51,36,0.9), rgba(12,20,15,0.92)), url('${HERO_BG}')`,
+            backgroundImage: `linear-gradient(120deg, rgba(3,10,6,0.9), rgba(6,33,14,0.76), rgba(3,10,6,0.96)), url('${HERO_BG}')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.08),_transparent_45%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(14,104,43,0.22),_transparent_55%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,_rgba(6,12,9,0.95)_0%,_rgba(6,12,9,0.82)_36%,_rgba(6,12,9,0.58)_60%,_rgba(6,12,9,0.8)_100%)]" />
           <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
+            <div className="rounded-full border border-white/10 bg-black/25 px-4 py-1 text-xs font-medium uppercase tracking-[0.28em] text-white/70">
+              Diagnóstico de IA
+            </div>
             <h1 className="text-4xl font-semibold md:text-5xl">
               Consultoria Digital e Transformação Digital para Empresas
             </h1>
             <p className="max-w-2xl text-lg text-white/75 md:text-xl">
-              Acompanhamos sua empresa do diagnóstico à execução — com estratégia, tecnologia e metodologias comprovadas para gerar resultado real.
+              Transformamos empresas tradicionais em operações inteligentes com diagnóstico de IA, estratégia de execução e um roadmap claro para automatizar com segurança.
             </p>
             <Button
               asChild
@@ -259,6 +280,80 @@ const ConsultoriaDigital = () => {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Diagnostico de IA */}
+        <section className="relative overflow-hidden bg-[linear-gradient(135deg,_#020A05_0%,_#031D0D_45%,_#020A05_100%)] px-6 py-16 md:px-10 md:py-20">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.16),_transparent_38%)]" />
+          <div className="relative mx-auto max-w-7xl">
+            <div className="grid gap-8 xl:grid-cols-[0.92fr_1.4fr] xl:items-center">
+              <div className="space-y-5">
+                <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-medium uppercase tracking-[0.24em] text-white/65">
+                  AI Roadmap System
+                </div>
+                <div className="space-y-3">
+                  <p className="text-sm uppercase tracking-[0.3em] text-white/45">
+                    4 pilares do
+                  </p>
+                  <h2 className="text-3xl font-semibold leading-tight text-white md:text-5xl">
+                    Diagnóstico de IA para transformar operações com clareza.
+                  </h2>
+                </div>
+                <p className="max-w-xl text-base leading-relaxed text-white/72">
+                  Nosso diagnóstico avalia maturidade, oportunidades, custos e a
+                  trilha prática de implantação para levar IA e automação para a
+                  operação com previsibilidade, eficiência e escalabilidade.
+                </p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    "Mapeamos processos, dados e gargalos com maior potencial de automação.",
+                    "Definimos prioridades e uma estratégia viável para cada etapa da implantação.",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-relaxed text-white/72"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-[2rem] border border-white/10 bg-black/25 p-4 shadow-2xl shadow-black/40 md:p-6">
+                <div className="mx-auto aspect-square w-full max-w-[760px] overflow-hidden rounded-[1.75rem] border border-white/8 bg-[radial-gradient(circle_at_center,_rgba(13,89,38,0.3),_rgba(0,0,0,0)_46%)] shadow-xl shadow-black/30">
+                  <img
+                    src="/ai-roadmap-pillars-mobile.png"
+                    alt="AI Roadmap System com os quatro pilares: Mapeamento, Estratégia, Estimativa de Custos e Trilha de Implantação"
+                    className="block h-full w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {aiDeliverables.map((item) => (
+                    <Card
+                      key={item.title}
+                      className="rounded-[1.8rem] border-white/10 bg-[linear-gradient(180deg,_rgba(9,9,9,0.96),_rgba(14,14,14,0.92))] shadow-xl shadow-black/40 xl:min-h-[232px]"
+                    >
+                      <CardContent className="flex h-full flex-col justify-center gap-4 p-6 text-center">
+                        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/80">
+                          <item.icon size={24} />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-medium uppercase tracking-[0.04em] text-white">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 text-sm leading-relaxed text-white/60">
+                            {item.description}
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

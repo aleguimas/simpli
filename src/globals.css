@@ -128,6 +128,14 @@
       font-size: 16px !important;
     }
   }
+
+  /* Freeze the hero background animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-halo-pulse-a,
+    .animate-halo-pulse-b {
+      animation: none !important;
+    }
+  }
 }
 
 .bg-\[radial-gradient\(circle_at_center\2c _rgba\(255\2c 255\2c 255\2c 0\.16\)\2c _transparent_58\%\)\] {
@@ -137,4 +145,119 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* Diagonal gradient border (white -> transparent, bottom-right to top-left),
+   respects border-radius via the padding + mask-composite technique. */
+.card-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    to top left,
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.06) 55%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Simplí AI Academy — voz visual do braço educacional.
+   Tudo escopado em .academy para não vazar para o resto do site.
+   ========================================================================== */
+
+.academy {
+  /* Verde da logo AI Academy. O site usa #20E000 / #86efac; a Academy assina
+     com o verde da própria marca. Ver nota de inconsistência no brief. */
+  --academy-green: #12cc1e;
+  --academy-red: #ef4444;
+  /* A tipografia é a mesma do resto do site: a Academy não carrega
+     fonte própria. */
+}
+
+/* Números de preço alinhados em coluna */
+.academy .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Superfícies do browser que o design system também deve cobrir */
+.academy ::selection {
+  background-color: rgba(18, 204, 30, 0.3);
+  color: #ffffff;
+}
+
+.academy :focus-visible {
+  outline: 2px solid var(--academy-green);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Momento autoral único: a abertura do hero.
+   O estado padrão é visível — a animação só empresta a entrada. */
+@keyframes academy-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    filter: blur(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.academy-rise {
+  animation: academy-rise 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.academy-rise-1 { animation-delay: 80ms; }
+.academy-rise-2 { animation-delay: 200ms; }
+.academy-rise-3 { animation-delay: 320ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .academy-rise {
+    animation: none;
+  }
+}
+
+/* Régua de seção: some nas pontas, em vez de bater na borda */
+.academy-rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.14) 18%,
+    rgba(255, 255, 255, 0.14) 82%,
+    transparent
+  );
+}
+
+/* Trilho horizontal dos cases no mobile: barra fina no lugar da barra
+   padrão do sistema, que aparece grossa em telas estreitas sem toque. */
+.cases-rail {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+.cases-rail::-webkit-scrollbar {
+  height: 4px;
+}
+
+.cases-rail::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cases-rail::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
 }

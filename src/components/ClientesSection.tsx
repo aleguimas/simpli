@@ -10,7 +10,49 @@ const logos = [
   { name: "Cliente 10", src: "/10.webp" },
   { name: "Cliente 11", src: "/11.webp" },
   { name: "Cliente 12", src: "/12.webp" },
+  { name: "Revestir Homocenter", src: "/15.png" },
+  { name: "Editora Futura", src: "/16.png" },
+  { name: "Cliente 17", src: "/17.png" },
 ];
+
+const firstHalf = logos.slice(0, Math.ceil(logos.length / 2));
+const secondHalf = logos.slice(Math.ceil(logos.length / 2));
+
+type Logo = { name: string; src: string };
+
+const MarqueeRow = ({
+  items,
+  className = "",
+  duration,
+}: {
+  items: Logo[];
+  className?: string;
+  duration: string;
+}) => (
+  <div className={`relative flex w-full items-center overflow-hidden bg-black ${className}`}>
+    {/* Top & bottom gradient borders (white -> green, 2px) */}
+    <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-white to-[#20E000]" />
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-px bg-gradient-to-r from-white to-[#20E000]" />
+    <div
+      className="flex w-max items-center gap-5 px-4 md:gap-8 md:px-6"
+      style={{ animation: `logo-marquee ${duration} linear infinite` }}
+    >
+      {[...items, ...items].map((logo, idx) => (
+        <div
+          key={`${logo.name}-${idx}`}
+          className="flex h-full flex-shrink-0 items-center justify-center px-6"
+        >
+          <img
+            src={logo.src}
+            alt={logo.name}
+            className="block w-auto object-contain opacity-95"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const ClientesSection = () => {
   return (
@@ -19,8 +61,13 @@ const ClientesSection = () => {
       className="bg-[#0C140F] px-6 pt-16 pb-10 text-center md:px-10 md:pt-24 md:pb-16"
     >
       <div className="mx-auto max-w-4xl">
-        <p className="text-xl font-medium text-white/80 md:text-2xl">
-          Empresas que confiam na Simplí
+        <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xl font-medium md:text-2xl">
+          <span className="text-white">Empresas que confiam na</span>
+          <img
+            src="/logonome-branca-cortada.webp"
+            alt="Simplí"
+            className="inline-block h-6 w-auto md:h-7"
+          />
         </p>
       </div>
 
@@ -28,22 +75,25 @@ const ClientesSection = () => {
         <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#0C140F] to-transparent" />
         <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#0C140F] to-transparent" />
 
-        <div className="flex h-[88px] w-full items-center overflow-hidden border-y border-white/10 bg-black md:h-[112px]">
-          <div className="flex w-max animate-[logo-marquee_26s_linear_infinite] items-center gap-5 px-4 md:gap-8 md:px-6">
-            {[...logos, ...logos].map((logo, idx) => (
-              <div
-                key={`${logo.name}-${idx}`}
-                className="flex h-full flex-shrink-0 items-center justify-center px-6"
-              >
-                <img
-                  src={logo.src}
-                  alt={logo.name}
-                  className="block h-[72px] w-auto object-contain opacity-95 md:h-[88px]"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+        {/* Desktop: single row */}
+        <MarqueeRow
+          items={logos}
+          duration="26s"
+          className="hidden h-[112px] md:flex [&_img]:h-[101px]"
+        />
+
+        {/* Mobile: two stacked rows scrolling continuously, 5px apart */}
+        <div className="flex flex-col gap-[5px] md:hidden">
+          <MarqueeRow
+            items={firstHalf}
+            duration="28s"
+            className="h-[80px] [&_img]:h-[64px]"
+          />
+          <MarqueeRow
+            items={secondHalf}
+            duration="34s"
+            className="h-[80px] [&_img]:h-[64px]"
+          />
         </div>
       </div>
 

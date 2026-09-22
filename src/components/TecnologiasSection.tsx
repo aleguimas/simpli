@@ -1,3 +1,6 @@
+const GLASS_BG =
+  "linear-gradient(to top left, rgba(255,255,255,0.14), rgba(255,255,255,0.03))";
+
 const team = [
   {
     name: "Alexandre Guimarães",
@@ -29,16 +32,17 @@ const TecnologiasSection = () => {
         <p className="text-sm uppercase tracking-[0.2em] text-white/50">
           Nossa Equipe
         </p>
-        <h2 className="mt-2 text-3xl font-semibold text-white md:text-4xl">
+        <h2 className="mt-2 bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-3xl font-semibold text-transparent md:text-4xl">
           Conheça os especialistas que transformam ideias em soluções inovadoras.
         </h2>
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {team.map((person) => (
             <div
               key={person.name}
-              className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-[#0F1D15]/90 p-6 shadow-lg shadow-black/30 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#102419]"
+              style={{ background: GLASS_BG }}
+              className="card-gradient-border group flex h-full flex-col gap-4 rounded-3xl p-6 backdrop-blur-md transition sm:hover:-translate-y-1 sm:hover:shadow-xl sm:hover:shadow-black/40"
             >
-              <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#1C3324] via-[#0F1D15] to-[#0C140F] text-3xl font-semibold text-white/80">
+              <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[#0F1D15] text-3xl font-semibold text-white/80">
                 {person.image ? (
                   <img
                     src={person.image}

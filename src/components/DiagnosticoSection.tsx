@@ -1,6 +1,5 @@
 import { Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 
 const DiagnosticoSection = () => {
   return (
@@ -11,9 +10,8 @@ const DiagnosticoSection = () => {
           <Brain size={16} className="text-white" />
           <span>Agentes de IA para o seu negócio</span>
         </div>
-        <h2 className="text-2xl font-semibold leading-tight sm:text-3xl md:text-4xl lg:text-5xl">
-          Descubra o potencial da{" "}
-          <span className="text-[#4ADE80]">IA</span> na sua Empresa
+        <h2 className="bg-gradient-to-r from-white to-[#20E000] bg-clip-text pb-1 text-2xl font-semibold leading-tight text-transparent sm:text-3xl md:text-4xl lg:text-5xl">
+          Descubra o potencial da IA na sua Empresa
         </h2>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-base md:text-lg">
           Faça nosso diagnóstico gratuito e veja como os{" "}
@@ -34,7 +32,9 @@ const DiagnosticoSection = () => {
           asChild
           className="mt-6 min-h-[48px] h-12 w-full max-w-sm rounded-xl border border-white/0 bg-white px-6 text-base font-semibold text-black transition-colors active:scale-95 sm:mt-8 sm:w-auto sm:px-7 sm:text-lg hover:border-white/70 hover:bg-transparent hover:text-white touch-manipulation"
         >
-          <Link to="/diagnostico">Fazer diagnóstico gratuito</Link>
+          {/* <a> de verdade, não <Link>: /agenticoffice fica fora do SPA
+              (proxy pro Raio-X no vercel.json) — o router não pode interceptar */}
+          <a href="/agenticoffice">Fazer diagnóstico gratuito</a>
         </Button>
         <div className="mt-4 text-xs uppercase tracking-[0.14em] text-white/60">
           Gratuito • Rápido • Relatório personalizado

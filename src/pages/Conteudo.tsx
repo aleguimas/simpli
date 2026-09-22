@@ -5,7 +5,7 @@ import { Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
-import { sanityClient, urlFor } from "@/lib/sanity";
+import { sanityFetch, urlFor } from "@/lib/sanity";
 
 interface PostListItem {
   _id: string;
@@ -28,7 +28,7 @@ const postsQuery = `*[_type == "post" && !(_id in path("drafts.**"))] | order(pu
 const Conteudo = () => {
   const { data: posts = [], isLoading, error } = useQuery<PostListItem[]>({
     queryKey: ["conteudo-posts"],
-    queryFn: () => sanityClient.fetch(postsQuery),
+    queryFn: () => sanityFetch<PostListItem[]>(postsQuery),
   });
 
   const heroGradient = useMemo(
