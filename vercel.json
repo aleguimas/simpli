@@ -91,6 +91,11 @@
       "permanent": true
     },
     {
+      "source": "/i/:path*",
+      "destination": "https://agenticoffice.simpli.ia.br/i/:path*",
+      "permanent": false
+    },
+    {
       "source": "/ai-academy/",
       "destination": "/ai-academy",
       "permanent": true
