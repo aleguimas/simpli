@@ -6,14 +6,10 @@ const logos = [
   { name: "Cliente 6", src: "/6.webp" },
   { name: "Cliente 7", src: "/7.webp" },
   { name: "Cliente 8", src: "/8.webp" },
-  { name: "Cliente 9", src: "/9.webp" },
-  { name: "Cliente 10", src: "/10.webp" },
   { name: "Cliente 11", src: "/11.webp" },
   { name: "Cliente 12", src: "/12.webp" },
   { name: "Revestir Homocenter", src: "/15.png" },
   { name: "Editora Futura", src: "/16.png" },
-  { name: "Cliente 17", src: "/17.png" },
-  { name: "Cliente 18", src: "/18.png" },
   { name: "Cliente 19", src: "/19.png" },
 ];
 
