@@ -20,6 +20,14 @@ const logos = [
 const firstHalf = logos.slice(0, Math.ceil(logos.length / 2));
 const secondHalf = logos.slice(Math.ceil(logos.length / 2));
 
+const featuredLogos = [
+  { name: "Cliente 17", src: "/17.png" },
+  { name: "Cliente 18", src: "/18.png" },
+  { name: "Cliente 20", src: "/20.png" },
+  { name: "Cliente 9", src: "/9.webp" },
+  { name: "Cliente 10", src: "/10.webp" },
+];
+
 type Logo = { name: string; src: string };
 
 const MarqueeRow = ({
@@ -73,7 +81,19 @@ const ClientesSection = () => {
         </p>
       </div>
 
-      <div className="relative -mx-6 mt-12 overflow-hidden md:-mx-10">
+      <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-x-8 gap-y-6 bg-transparent md:gap-x-12">
+        {featuredLogos.map((logo) => (
+          <img
+            key={logo.name}
+            src={logo.src}
+            alt={logo.name}
+            className="block h-[64px] w-auto object-contain opacity-95 md:h-[101px]"
+            loading="lazy"
+          />
+        ))}
+      </div>
+
+      <div className="relative -mx-6 mt-8 overflow-hidden md:-mx-10">
         <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-[#0C140F] to-transparent" />
         <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-[#0C140F] to-transparent" />
 
