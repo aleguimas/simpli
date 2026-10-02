@@ -17,11 +17,11 @@ const firstHalf = logos.slice(0, Math.ceil(logos.length / 2));
 const secondHalf = logos.slice(Math.ceil(logos.length / 2));
 
 const featuredLogos = [
-  { name: "Cliente 17", src: "/17.png" },
-  { name: "Cliente 18", src: "/18.png" },
-  { name: "Cliente 20", src: "/20.png" },
-  { name: "Cliente 9", src: "/9.webp" },
-  { name: "Cliente 10", src: "/10.webp" },
+  { name: "TouTi", src: "/clientes-destaque/17.png" },
+  { name: "Yes Cosmetics", src: "/clientes-destaque/18.png" },
+  { name: "Shineray", src: "/clientes-destaque/20.png" },
+  { name: "Sebrae", src: "/clientes-destaque/9.png" },
+  { name: "Senac", src: "/clientes-destaque/10.png" },
 ];
 
 type Logo = { name: string; src: string };
