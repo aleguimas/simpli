@@ -83,7 +83,7 @@ const ClientesSection = () => {
             key={logo.name}
             src={logo.src}
             alt={logo.name}
-            className="block h-[64px] w-auto object-contain opacity-95 md:h-[101px]"
+            className="block h-[74px] w-auto object-contain opacity-95 md:h-[116px]"
             loading="lazy"
           />
         ))}
@@ -97,7 +97,7 @@ const ClientesSection = () => {
         <MarqueeRow
           items={logos}
           duration="26s"
-          className="hidden h-[112px] md:flex [&_img]:h-[101px]"
+          className="hidden h-[95px] md:flex [&_img]:h-[86px]"
         />
 
         {/* Mobile: two stacked rows scrolling continuously, 5px apart */}
@@ -105,12 +105,12 @@ const ClientesSection = () => {
           <MarqueeRow
             items={firstHalf}
             duration="28s"
-            className="h-[80px] [&_img]:h-[64px]"
+            className="h-[68px] [&_img]:h-[54px]"
           />
           <MarqueeRow
             items={secondHalf}
             duration="34s"
-            className="h-[80px] [&_img]:h-[64px]"
+            className="h-[68px] [&_img]:h-[54px]"
           />
         </div>
       </div>
