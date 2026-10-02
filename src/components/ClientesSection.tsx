@@ -13,6 +13,8 @@ const logos = [
   { name: "Revestir Homocenter", src: "/15.png" },
   { name: "Editora Futura", src: "/16.png" },
   { name: "Cliente 17", src: "/17.png" },
+  { name: "Cliente 18", src: "/18.png" },
+  { name: "Cliente 19", src: "/19.png" },
 ];
 
 const firstHalf = logos.slice(0, Math.ceil(logos.length / 2));
