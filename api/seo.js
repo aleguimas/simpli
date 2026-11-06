@@ -60,13 +60,13 @@ const SOLUTIONS_SEO = {
       'A Simplí oferece consultoria digital estratégica para empresas em Recife e em todo o Brasil. Realizamos diagnóstico completo, planejamento de transformação digital, implementação de soluções e monitoramento de resultados com metodologias comprovadas como Design Thinking, Agile e Lean Startup. Atendemos desde pequenas empresas até organizações de grande porte que precisam digitalizar processos e escalar com tecnologia.',
   },
   'simpli-crm': {
-    title: 'Simplí CRM — Gestão de Vendas com IA | Simplí',
-    ogTitle: 'Simplí CRM — Funil de Vendas Automatizado com IA | Simplí',
+    title: 'CRM com IA — atende, vende e gerencia no WhatsApp | Simplí',
+    ogTitle: 'Simplí CRM — o CRM com IA que atende, vende e gerencia',
     description:
-      'CRM integrado à IA que transforma atendimentos em vendas. Funil Kanban, alimentação automática de leads, follow-up contextual e automações.',
+      'O CRM com IA que atende, vende e gerencia: WhatsApp oficial da Meta, Instagram e agente de IA no mesmo lugar. Campanhas em massa, funil Kanban e dashboards.',
     canonicalPath: '/solucoes/simpli-crm',
     snippet:
-      'Simplí CRM organiza funil comercial, automatiza follow-up e prioriza leads com IA para aumentar conversão e produtividade do time de vendas.',
+      'Simplí CRM reúne WhatsApp oficial, Instagram e agente de IA em uma plataforma: atendimento, campanhas, funil de vendas e inteligência de clientes.',
   },
 };
 

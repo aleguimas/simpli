@@ -241,11 +241,11 @@ const SimpliCRM = () => {
   return (
     <div className="bg-[#0C140F] text-white">
       <SEO
-        title="CRM — atende, vende e gerencia com WhatsApp e IA"
-        description="O CRM que atende, vende e gerencia: WhatsApp oficial da Meta, Instagram e agente de IA no mesmo lugar. Campanhas em massa, funil Kanban e dashboards."
+        title="CRM com IA — atende, vende e gerencia no WhatsApp"
+        description="O CRM com IA que atende, vende e gerencia: WhatsApp oficial da Meta, Instagram e agente de IA no mesmo lugar. Campanhas em massa, funil Kanban e dashboards."
         keywords="CRM com inteligência artificial, WhatsApp API oficial Meta, atendimento omnichannel, disparo em massa WhatsApp, agente de IA WhatsApp, CRM integrado Instagram, funil de vendas Kanban, campanhas WhatsApp, grupos de WhatsApp vendas, CRM integrado ERP, Simplí CRM, CRM para varejo, CRM para agências"
         canonical="/solucoes/simpli-crm"
-        ogTitle="Simplí CRM — o CRM que atende, vende e gerencia"
+        ogTitle="Simplí CRM — o CRM com IA que atende, vende e gerencia"
         ogDescription="WhatsApp oficial, Instagram e IA no mesmo lugar: atendimento, campanhas e gestão de vendas em uma plataforma só."
         structuredData={[serviceSchema, breadcrumbSchema, faqSchema]}
       />
@@ -266,7 +266,7 @@ const SimpliCRM = () => {
             Simplí CRM
           </span>
           <h1 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-            O CRM que <span className="text-[#86efac]">atende, vende e gerencia</span>
+            O CRM com IA que <span className="text-[#86efac]">atende, vende e gerencia</span>
           </h1>
           <p className="max-w-2xl text-lg text-white/75 md:text-xl">
             WhatsApp oficial da Meta, Instagram e IA no mesmo lugar. Da primeira
