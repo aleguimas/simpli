@@ -9,6 +9,10 @@ declare global {
 
 const GTM_ID = "GTM-NCF67L6B";
 
+const WHATSAPP_LINK_PATTERN = /^https?:\/\/(wa\.link|wa\.me|api\.whatsapp\.com)\//i;
+// Chave única: um visitante conta como um lead por janela, em todo o site.
+const WHATSAPP_LEAD_DEDUPE_KEY = "whatsapp";
+
 export const GoogleTagManager = () => {
   const location = useLocation();
 
@@ -23,6 +27,23 @@ export const GoogleTagManager = () => {
       });
     }
   }, [location]);
+
+  useEffect(() => {
+    // Rastreio único de leads: qualquer link de WhatsApp do site conta, sem
+    // precisar de onClick em cada botão. Fase de captura para não depender
+    // de propagação.
+    const handleClick = (event: MouseEvent) => {
+      const link = (event.target as Element | null)?.closest?.("a[href]");
+      if (!(link instanceof HTMLAnchorElement)) return;
+      if (!WHATSAPP_LINK_PATTERN.test(link.href)) return;
+
+      trackGTMWhatsAppClick(window.location.pathname);
+      trackGenerateLead({ dedupeKey: WHATSAPP_LEAD_DEDUPE_KEY });
+    };
+
+    document.addEventListener("click", handleClick, true);
+    return () => document.removeEventListener("click", handleClick, true);
+  }, []);
 
   return null;
 };

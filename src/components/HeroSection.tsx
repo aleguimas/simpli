@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import HeroBackground from "@/components/ui/hero-background";
 import { useInView } from "@/hooks/use-in-view";
 import { trackWhatsAppClick } from "@/components/GoogleAnalytics";
-import { trackGTMWhatsAppClick } from "@/components/GoogleTagManager";
 
 const HeroSection = () => {
   const { ref, isVisible } = useInView({ threshold: 0.35 });
@@ -45,10 +44,7 @@ const HeroSection = () => {
                 href="https://wa.link/cpk8xf" 
                 target="_blank" 
                 rel="noreferrer"
-                onClick={() => {
-                  trackWhatsAppClick("hero_section");
-                  trackGTMWhatsAppClick("hero_section");
-                }}
+                onClick={() => trackWhatsAppClick("hero_section")}
               >
                 Fale conosco
               </a>
