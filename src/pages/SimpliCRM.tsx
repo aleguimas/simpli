@@ -281,6 +281,7 @@ const SimpliCRM = () => {
               Quero saber mais
             </a>
           </Button>
+          <p className="text-sm text-white/60">Planos a partir de R$ 798/mês</p>
         </div>
       </section>
 
