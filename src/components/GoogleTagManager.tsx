@@ -10,8 +10,11 @@ declare global {
 const GTM_ID = "GTM-NCF67L6B";
 
 const WHATSAPP_LINK_PATTERN = /^https?:\/\/(wa\.link|wa\.me|api\.whatsapp\.com)\//i;
-// Chave única: um visitante conta como um lead por janela, em todo o site.
-const WHATSAPP_LEAD_DEDUPE_KEY = "whatsapp";
+const PHONE_LINK_PATTERN = /^tel:/i;
+const EMAIL_LINK_PATTERN = /^mailto:/i;
+// Chave única: um visitante conta como um lead por janela, em todo o site,
+// seja qual for o canal de contato.
+const CONTACT_LEAD_DEDUPE_KEY = "contato";
 
 export const GoogleTagManager = () => {
   const location = useLocation();
@@ -29,16 +32,31 @@ export const GoogleTagManager = () => {
   }, [location]);
 
   useEffect(() => {
-    // Rastreio único de leads: qualquer link de WhatsApp do site conta, sem
-    // precisar de onClick em cada botão. Fase de captura para não depender
-    // de propagação.
+    // Rastreio único de leads: qualquer link de WhatsApp, telefone ou e-mail
+    // do site conta, sem precisar de onClick em cada botão. Fase de captura
+    // para não depender de propagação.
     const handleClick = (event: MouseEvent) => {
       const link = (event.target as Element | null)?.closest?.("a[href]");
       if (!(link instanceof HTMLAnchorElement)) return;
-      if (!WHATSAPP_LINK_PATTERN.test(link.href)) return;
 
-      trackGTMWhatsAppClick(window.location.pathname);
-      trackGenerateLead({ dedupeKey: WHATSAPP_LEAD_DEDUPE_KEY });
+      const { pathname } = window.location;
+      if (WHATSAPP_LINK_PATTERN.test(link.href)) {
+        trackGTMWhatsAppClick(pathname);
+      } else if (PHONE_LINK_PATTERN.test(link.href)) {
+        trackGTMEvent("contact_click", {
+          contact_method: "phone",
+          click_location: pathname,
+        });
+      } else if (EMAIL_LINK_PATTERN.test(link.href)) {
+        trackGTMEvent("contact_click", {
+          contact_method: "email",
+          click_location: pathname,
+        });
+      } else {
+        return;
+      }
+
+      trackGenerateLead({ dedupeKey: CONTACT_LEAD_DEDUPE_KEY });
     };
 
     document.addEventListener("click", handleClick, true);
