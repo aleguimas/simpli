@@ -28,9 +28,9 @@ const solucoes: {
     title: "Agentic Office",
     badge: "Operação com IA",
     description:
-      "Plataforma de agentes de IA que assume as tarefas repetitivas da sua operação. Começa por um diagnóstico de processos e entrega os agentes já configurados para a sua empresa.",
+      "Agentes de IA com o conhecimento da sua empresa para executar rotinas, analisar o estoque e criar posts para redes sociais. Delegue tarefas e acompanhe as entregas em um só painel.",
     Icon: Bot,
-    highlights: ["Diagnóstico gratuito de processos", "Agentes já configurados", "Sua empresa operada por IA"],
+    highlights: ["Inteligência de estoque", "Criação automática de posts", "Rotinas e relatórios com IA"],
     external: true,
   },
   {

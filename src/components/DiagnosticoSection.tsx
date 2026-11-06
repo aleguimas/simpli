@@ -14,7 +14,7 @@ const DiagnosticoSection = () => {
           Descubra o potencial da IA na sua Empresa
         </h2>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-base md:text-lg">
-          Faça nosso diagnóstico gratuito e veja como os{" "}
+          Conheça o Agentic Office e veja como os{" "}
           <span className="text-[#4ADE80]">Agentes de IA</span> podem otimizar
           processos, reduzir custos e impulsionar a competitividade do seu
           negócio.
@@ -23,7 +23,7 @@ const DiagnosticoSection = () => {
         <div className="relative mt-10 w-full max-w-4xl overflow-hidden rounded-[16px] border border-white/15 bg-white/5 shadow-2xl shadow-black/40 aspect-[16/9]">
           <img
             src="/Horizontal - Agentes IA v2.webp"
-            alt="Visual do diagnostico de agentes de IA"
+            alt="Agentes de IA do Agentic Office"
             className="h-full w-full object-cover"
           />
         </div>
@@ -32,12 +32,11 @@ const DiagnosticoSection = () => {
           asChild
           className="mt-6 min-h-[48px] h-12 w-full max-w-sm rounded-xl border border-white/0 bg-white px-6 text-base font-semibold text-black transition-colors active:scale-95 sm:mt-8 sm:w-auto sm:px-7 sm:text-lg hover:border-white/70 hover:bg-transparent hover:text-white touch-manipulation"
         >
-          {/* <a> de verdade, não <Link>: /agenticoffice fica fora do SPA
-              (proxy pro Raio-X no vercel.json) — o router não pode interceptar */}
-          <a href="/agenticoffice">Fazer diagnóstico gratuito</a>
+          {/* Contato comercial direto pelo WhatsApp. */}
+          <a href="https://api.whatsapp.com/send?phone=5581975062426&text=Quero+saber+mais+sobre+o+Agentic+Office&utm_source=site-agentic-office&utm_medium=social&utm_content=botao-site" target="_blank" rel="noopener noreferrer">Entrar em contato</a>
         </Button>
         <div className="mt-4 text-xs uppercase tracking-[0.14em] text-white/60">
-          Gratuito • Rápido • Relatório personalizado
+          Estoque • Conteúdo • Rotinas automáticas
         </div>
       </div>
     </section>
