@@ -277,6 +277,12 @@ export const crmFeatureSections: CrmFeatureSection[] = [
           "Enviado, entregue, lido e respondido — métrica por mensagem, direto da Meta, para medir o retorno real de cada campanha.",
       },
       {
+        icon: History,
+        title: "Histórico de disparos e resultados",
+        description:
+          "Consulte templates, datas, entregas, leituras, cliques e falhas. Cruze os envios com vendas para acompanhar conversões, valor gerado e ROAS estimado dentro da janela de atribuição.",
+      },
+      {
         icon: CalendarHeart,
         title: "Campanhas de datas comemorativas",
         description:
@@ -424,7 +430,7 @@ export const crmFeatureSections: CrmFeatureSection[] = [
         icon: Smile,
         title: "Análise de Sentimentos com IA",
         description:
-          "A IA classifica o sentimento de leads e da equipe: descubra clientes insatisfeitos antes de perder a venda.",
+          "Sentimento dos clientes, tom da equipe e alertas de conversas negativas. Na aba Insights, explore perfis de atendimento, frases recorrentes e oportunidades de melhoria com evidências das conversas analisadas.",
       },
       {
         icon: Target,
@@ -514,7 +520,7 @@ export const crmFeatureSections: CrmFeatureSection[] = [
         icon: CalendarRange,
         title: "Eventos de Vendas",
         description:
-          "Feirões e campanhas com metas: vendas reais do ERP em tempo real, ranking de vendedores, produtos mais vendidos e tag de comprador para remarketing.",
+          "Organize ações por período e lojas, acompanhe metas de faturamento e clientes, vincule campanhas e consulte as vendas integradas ao ERP. Identifique compradores para novas ações.",
       },
       {
         icon: HardHat,

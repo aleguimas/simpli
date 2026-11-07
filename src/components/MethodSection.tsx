@@ -24,7 +24,7 @@ const pillars: Pillar[] = [
   },
   {
     letter: "M",
-    titleLine: "Mapeamento: diagnóstico antes de investir.",
+    titleLine: "Mapeamento: clareza antes de investir.",
     description:
       "Sua empresa não investe errado. Filtramos o que é de fato um gargalo de alavancagem para solucionarmos com IA.",
   },

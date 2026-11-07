@@ -78,7 +78,7 @@ const Index = () => {
     >
       <SEO
         title="Agentes de IA que vendem e qualificam sua empresa"
-        description="SDRs digitais, CRM com IA e automações que prospectam, qualificam e fecham vendas sem intervenção manual. Agende um diagnóstico estratégico com a Simpli."
+        description="SDRs digitais, CRM com IA e automações que prospectam, qualificam e fecham vendas sem intervenção manual. Fale com a Simplí para automatizar a operação da sua empresa."
         keywords="transformação digital, desenvolvimento web, agentes de IA, inteligência artificial, tráfego pago, Google Ads, Facebook Ads, consultoria digital, SEO, sites responsivos, automação, chatbots, marketing digital, Recife, Brasil"
         canonical="/"
         ogTitle="Simpli — Agentes de IA que vendem e qualificam sua empresa"
