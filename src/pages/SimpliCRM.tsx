@@ -1,20 +1,14 @@
 import {
-  ArrowRight,
-  CheckCircle2,
   LineChart,
   MessageSquareText,
   Megaphone,
   ShoppingBag,
   Handshake,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import SiteFooter from "@/components/SiteFooter";
-import Navbar from "@/components/Navbar";
+import CrmNavbar from "@/components/crm/CrmNavbar";
 import { SEO } from "@/components/SEO";
-import { crmFeatureSections } from "@/data/crmFeatures";
-
-const WHATSAPP_URL = "https://wa.link/cpk8xf";
+import CrmLandingContent from "@/components/crm/CrmLandingContent";
 
 /* Os 3 pilares do hero apontam para as âncoras das seções de funcionalidades. */
 const pillars = [
@@ -192,7 +186,7 @@ const SimpliCRM = () => {
         name: "O Simplí CRM usa a API oficial do WhatsApp?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Sim. O Simplí CRM conecta o WhatsApp da empresa direto na infraestrutura oficial da Meta (WhatsApp Cloud API), com número verificado, sem risco de banimento, envio de templates aprovados e suporte à janela de 24 horas.",
+          text: "Sim. O Simplí CRM conecta o WhatsApp da empresa direto na infraestrutura oficial da Meta (WhatsApp Cloud API), com templates aprovados e suporte à janela de 24 horas, conforme as políticas da Meta.",
         },
       },
       {
@@ -239,7 +233,7 @@ const SimpliCRM = () => {
   };
 
   return (
-    <div className="bg-[#0C140F] text-white">
+    <div className="crm-landing bg-[#0C140F] text-white antialiased">
       <SEO
         title="CRM com IA — atende, vende e gerencia no WhatsApp"
         description="O CRM com IA que atende, vende e gerencia: WhatsApp oficial da Meta, Instagram e agente de IA no mesmo lugar. Campanhas em massa, funil Kanban e dashboards."
@@ -249,277 +243,16 @@ const SimpliCRM = () => {
         ogDescription="WhatsApp oficial, Instagram e IA no mesmo lugar: atendimento, campanhas e gestão de vendas em uma plataforma só."
         structuredData={[serviceSchema, breadcrumbSchema, faqSchema]}
       />
-      <Navbar />
+      <CrmNavbar />
 
-      {/* Hero */}
-      <section
-        className="relative overflow-hidden px-6 py-20 md:px-10 md:py-28"
-        style={{
-          backgroundImage: `linear-gradient(120deg, rgba(12,20,15,0.88), rgba(28,51,36,0.80)), url('/fundo-agent.webp')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(134,239,172,0.07),_transparent_50%)]" />
-        <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center gap-6">
-          <span className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-white/70">
-            Simplí CRM
-          </span>
-          <h1 className="text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-            O CRM com IA que <span className="text-[#86efac]">atende, vende e gerencia</span>
-          </h1>
-          <p className="max-w-2xl text-lg text-white/75 md:text-xl">
-            WhatsApp oficial da Meta, Instagram e IA no mesmo lugar. Da primeira
-            mensagem ao pós-venda: central de atendimento, campanhas em massa,
-            funil de vendas e inteligência de clientes em uma única plataforma.
-          </p>
-          <Button
-            asChild
-            className="h-12 rounded-xl border border-transparent bg-white px-8 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
-          >
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-              Quero saber mais
-            </a>
-          </Button>
-          <p className="text-sm text-white/60">Planos a partir de R$ 798/mês</p>
-        </div>
-      </section>
-
-      {/* Pilares */}
-      <section className="px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {pillars.map(({ icon: Icon, title, description, href }) => (
-              <a
-                key={title}
-                href={href}
-                className="group rounded-2xl border border-white/10 bg-[#0f241c]/60 p-6 transition hover:border-[#86efac]/40 hover:bg-[#0f241c]"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#86efac]/20 text-[#86efac]">
-                  <Icon size={20} />
-                </div>
-                <h2 className="mt-4 text-lg font-semibold">{title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  {description}
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#86efac]">
-                  Ver funcionalidades
-                  <ArrowRight
-                    size={14}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Perfis: Varejo e Serviços */}
-      <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-3 flex items-center gap-2">
-            <span className="h-px w-8 bg-white/30" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-white/50">
-              Para quem é
-            </span>
-          </div>
-          <h2 className="mb-10 text-3xl font-bold md:text-4xl">
-            Um CRM, <span className="text-[#86efac]">dois modos de operar</span>
-          </h2>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {profiles.map(({ icon: Icon, badge, title, description, items }) => (
-              <div
-                key={badge}
-                className="rounded-2xl border border-[#86efac]/20 bg-[#0f241c]/60 p-8"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#86efac]/20 text-[#86efac]">
-                    <Icon size={20} />
-                  </div>
-                  <span className="rounded-full bg-[#86efac]/20 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[#86efac]">
-                    {badge}
-                  </span>
-                </div>
-                <h3 className="mt-4 text-xl font-bold">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/60">
-                  {description}
-                </p>
-                <ul className="mt-5 space-y-2">
-                  {items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-center gap-2 text-sm text-white/80"
-                    >
-                      <CheckCircle2
-                        size={14}
-                        className="shrink-0 text-[#86efac]"
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Navegação por âncoras das seções de funcionalidades */}
-      <nav
-        aria-label="Seções de funcionalidades"
-        className="sticky top-16 z-40 border-b border-white/10 bg-[#0C140F]/90 px-6 py-3 backdrop-blur md:px-10"
-      >
-        <div className="mx-auto flex max-w-6xl gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {crmFeatureSections.map(({ id, navLabel }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className="shrink-0 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/70 transition hover:border-[#86efac]/40 hover:text-[#86efac]"
-            >
-              {navLabel}
-            </a>
-          ))}
-        </div>
-      </nav>
-
-      {/* Seções de funcionalidades (src/data/crmFeatures.ts) */}
-      {crmFeatureSections.map(
-        (
-          { id, eyebrow, title, titleHighlight, subtitle, audience, features },
-          index,
-        ) => (
-          <section
-            key={id}
-            id={id}
-            className={`scroll-mt-32 px-6 py-16 md:px-10 md:py-20 ${
-              index % 2 === 1 ? "bg-[#0f1d15]" : ""
-            }`}
-          >
-            <div className="mx-auto max-w-6xl">
-              <div className="mb-3 flex items-center gap-2">
-                <span className="h-px w-8 bg-white/30" />
-                <span className="text-xs font-semibold uppercase tracking-widest text-white/50">
-                  {eyebrow}
-                </span>
-                {audience === "servicos" && (
-                  <span className="rounded-full bg-[#86efac]/20 px-3 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#86efac]">
-                    Agências e consultorias
-                  </span>
-                )}
-              </div>
-              <h2 className="mb-2 text-3xl font-bold md:text-4xl">
-                {title}
-                <span className="text-[#86efac]">{titleHighlight}</span>
-              </h2>
-              <p className="mb-10 max-w-2xl text-white/60">{subtitle}</p>
-
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map(({ icon: Icon, title: featureTitle, description }) => (
-                  <Card
-                    key={featureTitle}
-                    className="border-white/10 bg-[#0C140F]/80 text-white transition hover:border-[#86efac]/30"
-                  >
-                    <CardContent className="flex flex-col gap-4 p-6">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#86efac]/20 text-[#86efac]">
-                        <Icon size={20} />
-                      </div>
-                      <h3 className="text-base font-semibold">{featureTitle}</h3>
-                      <p className="text-sm leading-relaxed text-white/60">
-                        {description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </section>
-        ),
-      )}
-
-      {/* Próximos Passos */}
-      <section className="bg-[#0f1d15] px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-3 flex items-center gap-2">
-            <span className="h-px w-8 bg-white/30" />
-            <span className="text-xs font-semibold uppercase tracking-widest text-white/50">
-              Próximos Passos
-            </span>
-          </div>
-          <h2 className="mb-2 text-3xl font-bold md:text-4xl">
-            Vamos <span className="text-[#86efac]">Começar?</span>
-          </h2>
-          <p className="mb-10 max-w-2xl text-white/60">
-            Um processo simples e ágil para você ter atendimento, campanhas e
-            gestão rodando na mesma plataforma em dias.
-          </p>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {steps.map(({ number, title, description, highlight }) => (
-              <div
-                key={number}
-                className={`relative rounded-2xl border p-6 ${
-                  highlight
-                    ? "border-[#86efac]/40 bg-[#86efac]/10"
-                    : "border-white/10 bg-[#0C140F]/80"
-                }`}
-              >
-                <span className="text-5xl font-black text-white/10">
-                  {number}
-                </span>
-                <h3 className="mt-2 text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  {description}
-                </p>
-                {highlight && (
-                  <span className="mt-3 inline-block rounded-full bg-[#86efac]/20 px-3 py-1 text-xs font-medium text-[#86efac]">
-                    GoLive em até 30 dias
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-[#1C3324] via-[#16402F] to-[#0F1D15] px-6 py-16 md:px-10 md:py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08),_transparent_55%)]" />
-        <div className="relative mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold md:text-4xl">
-            Pronto para atender, vender e gerenciar em um lugar só?
-          </h2>
-          <p className="mt-4 text-base text-white/70 md:text-lg">
-            Fale com nossa equipe e descubra como o Simplí CRM pode transformar
-            seu atendimento e seu processo comercial.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button
-              asChild
-              className="h-12 rounded-xl border border-transparent bg-white px-8 text-base font-semibold text-[#0C140F] transition hover:border-white hover:bg-transparent hover:text-white"
-            >
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                Quero começar agora
-                <ArrowRight size={16} className="ml-2" />
-              </a>
-            </Button>
-          </div>
-
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 text-sm text-white/60">
-            {[
-              "WhatsApp API Oficial da Meta",
-              "IA treinada com a sua empresa",
-              "Integrado ao seu ERP",
-            ].map((item) => (
-              <div key={item} className="flex items-center justify-center gap-2">
-                <CheckCircle2 size={14} className="text-[#86efac]" />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <main id="crm-conteudo">
+        <CrmLandingContent
+          pillars={pillars}
+          profiles={profiles}
+          steps={steps}
+          faqs={faqSchema.mainEntity}
+        />
+      </main>
 
       <SiteFooter />
     </div>
