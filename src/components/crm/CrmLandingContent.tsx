@@ -108,9 +108,9 @@ export default function CrmLandingContent({
               CRM COM IA · ATENDIMENTO, VENDAS E GESTÃO
             </p>
             <h1 className="mt-7 text-[clamp(2.5rem,5.5vw,5rem)] font-semibold leading-[1.08] tracking-[-0.055em]">
-              A conversa começa.
+              CRM com IA: a conversa começa,
               <br />
-              <span className="text-[#86efac]">A venda continua.</span>
+              <span className="text-[#86efac]">a venda continua.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/65 sm:text-lg">
               WhatsApp oficial, Instagram e IA no mesmo lugar. Organize o

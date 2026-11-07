@@ -30,8 +30,9 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Simplí",
+    alternateName: ["Simpli", "Simplí IA"],
     url: "https://www.simpli.ia.br",
-    logo: "/logonome-branca-cortada.webp",
+    logo: "https://www.simpli.ia.br/logonome-branca-cortada.webp",
     description:
       "Simplí oferece soluções completas de transformação digital: desenvolvimento web, agentes de IA, tráfego pago e consultoria digital.",
     address: {
@@ -51,6 +52,7 @@ const Index = () => {
     sameAs: [
       "https://www.instagram.com/simpli.inovacao/",
       "https://www.linkedin.com/company/simpli-inovacao-digital/",
+      "https://www.youtube.com/@Simplidigital",
     ],
     aggregateRating: {
       "@type": "AggregateRating",
@@ -63,6 +65,7 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Simplí",
+    alternateName: ["Simpli", "Simplí IA"],
     url: "https://www.simpli.ia.br",
     potentialAction: {
       "@type": "SearchAction",
