@@ -40,14 +40,18 @@ export const GoogleTagManager = () => {
       if (!(link instanceof HTMLAnchorElement)) return;
 
       const { pathname } = window.location;
+      let channel: LeadChannel;
       if (WHATSAPP_LINK_PATTERN.test(link.href)) {
+        channel = "whatsapp";
         trackGTMWhatsAppClick(pathname);
       } else if (PHONE_LINK_PATTERN.test(link.href)) {
+        channel = "phone";
         trackGTMEvent("contact_click", {
           contact_method: "phone",
           click_location: pathname,
         });
       } else if (EMAIL_LINK_PATTERN.test(link.href)) {
+        channel = "email";
         trackGTMEvent("contact_click", {
           contact_method: "email",
           click_location: pathname,
@@ -56,7 +60,7 @@ export const GoogleTagManager = () => {
         return;
       }
 
-      trackGenerateLead({ dedupeKey: CONTACT_LEAD_DEDUPE_KEY });
+      trackGenerateLead({ dedupeKey: CONTACT_LEAD_DEDUPE_KEY, channel });
     };
 
     document.addEventListener("click", handleClick, true);
@@ -87,16 +91,22 @@ const GENERATE_LEAD_EVENT = "generate_lead";
 // um CTA na mesma página).
 const GENERATE_LEAD_DEDUPE_WINDOW_MS = 30 * 60 * 1000;
 
+// Canal enviado em `lead_channel`. Sempre preenchido: o dataLayer guarda o
+// último valor, então um evento sem canal herdaria o canal do lead anterior.
+export type LeadChannel = "whatsapp" | "phone" | "email" | "ai_academy_form";
+
 const leadStorageKey = (dedupeKey: string) =>
   `simpli_generate_lead_${dedupeKey}`;
 
 /**
- * Dispara `dataLayer.push({ event: "generate_lead" })` uma única vez por
- * janela de deduplicação.
+ * Dispara `dataLayer.push({ event: "generate_lead", lead_channel })` uma única
+ * vez por janela de deduplicação.
  *
  * @returns true se o evento foi disparado agora, false se foi suprimido.
  */
-export const trackGenerateLead = (options?: {
+export const trackGenerateLead = (options: {
+  /** Canal de contato que gerou o lead. */
+  channel: LeadChannel;
   /** Identificador do funil/página. Mesma chave = mesma trava. */
   dedupeKey?: string;
   /** Sobrescreve a janela de deduplicação (ms). Use 0 para sempre disparar. */
@@ -104,9 +114,8 @@ export const trackGenerateLead = (options?: {
 }) => {
   if (typeof window === "undefined") return false;
 
-  const dedupeKey = options?.dedupeKey || "default";
-  const windowMs =
-    options?.dedupeWindowMs ?? GENERATE_LEAD_DEDUPE_WINDOW_MS;
+  const dedupeKey = options.dedupeKey || "default";
+  const windowMs = options.dedupeWindowMs ?? GENERATE_LEAD_DEDUPE_WINDOW_MS;
 
   if (windowMs > 0) {
     try {
@@ -120,7 +129,10 @@ export const trackGenerateLead = (options?: {
     }
   }
 
-  pushToDataLayer({ event: GENERATE_LEAD_EVENT });
+  pushToDataLayer({
+    event: GENERATE_LEAD_EVENT,
+    lead_channel: options.channel,
+  });
 
   try {
     window.localStorage.setItem(leadStorageKey(dedupeKey), String(Date.now()));

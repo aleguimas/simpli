@@ -76,7 +76,10 @@ const PreLaunchDialog = ({ children }: { children: ReactNode }) => {
     setErro(null);
     setEnviando(true);
 
-    trackGenerateLead({ dedupeKey: "ai-academy-prelancamento" });
+    trackGenerateLead({
+      dedupeKey: "ai-academy-prelancamento",
+      channel: "ai_academy_form",
+    });
     pushToDataLayer({
       event: "ai_academy_prelancamento",
       como_descobriu: origem,
