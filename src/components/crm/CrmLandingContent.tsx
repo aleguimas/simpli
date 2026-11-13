@@ -387,7 +387,13 @@ export default function CrmLandingContent({
           </p>
         </div>
       </section>
-      <CrmInsightsAndResults />
+      <CrmInsightsAndResults
+        afterInsights={
+          <div className="px-6 pb-12 text-center md:px-10 md:pb-16">
+            <ContactCTA location="crm_after_insights">Quero começar agora</ContactCTA>
+          </div>
+        }
+      />
       <CrmFeatureCatalog />
       <section id="perfis-crm" className="crm-section">
         <div className="mx-auto max-w-6xl">

@@ -102,9 +102,6 @@
   color: #fff;
   border-color: #fff;
 }
-.crm-capture {
-  transition: opacity 0.25s ease;
-}
 @keyframes crm-rise {
   from {
     opacity: 0.2;
@@ -153,10 +150,6 @@
   }
   .crm-landing section[id] {
     scroll-margin-top: 145px;
-  }
-  .crm-capture {
-    height: 320px;
-    object-fit: contain;
   }
 }
 @media (prefers-reduced-motion: reduce) {
