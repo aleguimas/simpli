@@ -25,6 +25,7 @@ import CrmKanbanTour from "./CrmKanbanTour";
 import CrmCampaignTour from "./CrmCampaignTour";
 import CrmFeatureCatalog from "./CrmFeatureCatalog";
 import CrmInsightsAndResults from "./CrmInsightsAndResults";
+import CrmMobileSection from "./CrmMobileSection";
 import "./crm-landing.css";
 
 const WHATSAPP_URL = "https://wa.link/cpk8xf";
@@ -201,6 +202,7 @@ export default function CrmLandingContent({
               { href: "#insights-crm", label: "Insights" },
               { href: "#historico-disparos", label: "Rastreamento" },
               { href: "#eventos-crm", label: "Eventos" },
+              { href: "#crm-mobile", label: "App mobile" },
               { href: "#recursos", label: "Todos os recursos" },
               { href: "#perfis-crm", label: "Para sua empresa" },
             ].map((item) => (
@@ -394,6 +396,7 @@ export default function CrmLandingContent({
           </div>
         }
       />
+      <CrmMobileSection />
       <CrmFeatureCatalog />
       <section id="perfis-crm" className="crm-section">
         <div className="mx-auto max-w-6xl">
