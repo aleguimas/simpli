@@ -1,4 +1,7 @@
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Pause, Play } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { CrmScreen } from "./CrmScreen";
 import { crmCaptures } from "./crmCaptures";
 
@@ -15,42 +18,79 @@ const tracking = [
   },
 ];
 
-function CaptureTabs({
-  items,
-  label,
-}: {
-  items: { id: string; label: string; text: string }[];
-  label: string;
-}) {
+function CampaignTrackingTabs() {
+  const [activeTab, setActiveTab] = useState(tracking[0].id);
+  const [playing, setPlaying] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    const tabs = tabsRef.current;
+    if (!tabs) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setVisible(entry.isIntersecting);
+    }, { threshold: 0.25 });
+    observer.observe(tabs);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!playing || !visible || reducedMotion) return;
+
+    const timer = window.setTimeout(() => {
+      const currentIndex = tracking.findIndex((item) => item.id === activeTab);
+      setActiveTab(tracking[(currentIndex + 1) % tracking.length].id);
+    }, 5000);
+    return () => window.clearTimeout(timer);
+  }, [activeTab, playing, reducedMotion, visible]);
+
   return (
-    <Tabs defaultValue={items[0].id} className="mt-9">
-      <TabsList
-        aria-label={label}
-        className="h-auto w-full justify-start gap-1 rounded-xl border border-white/10 bg-white/[0.03] p-1 sm:w-auto"
-      >
-        {items.map((item) => (
-          <TabsTrigger
-            key={item.id}
-            value={item.id}
-            className="min-h-12 min-w-0 flex-1 whitespace-normal rounded-lg px-3 text-xs leading-relaxed text-white/65 data-[state=active]:bg-[#86efac] data-[state=active]:text-[#0c140f] sm:flex-none sm:px-6 sm:text-sm"
+    <Tabs ref={tabsRef} value={activeTab} onValueChange={setActiveTab} className="mt-9">
+      <div className="flex flex-wrap items-center gap-3">
+        <TabsList
+          aria-label="Explorar rastreamento de campanhas"
+          className="h-auto w-full justify-start gap-1 rounded-xl border border-white/10 bg-white/[0.03] p-1 sm:w-auto"
+        >
+          {tracking.map((item) => (
+            <TabsTrigger
+              key={item.id}
+              value={item.id}
+              className="min-h-12 min-w-0 flex-1 whitespace-normal rounded-lg px-3 text-xs leading-relaxed text-white/65 data-[state=active]:bg-[#86efac] data-[state=active]:text-[#0c140f] sm:flex-none sm:px-6 sm:text-sm"
+            >
+              {item.label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        {!reducedMotion && (
+          <button
+            type="button"
+            aria-label={playing ? "Pausar alternância de campanhas" : "Retomar alternância de campanhas"}
+            onClick={() => setPlaying((value) => !value)}
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-4 text-xs text-white/75 transition-colors hover:bg-white/5"
           >
-            {item.label}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-      {items.map((item) => (
+            {playing ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}
+            {playing ? "Pausar" : "Retomar"}
+          </button>
+        )}
+      </div>
+      {tracking.map((item) => (
         <TabsContent key={item.id} value={item.id} className="mt-6">
           <p className="mb-6 max-w-3xl text-sm leading-relaxed text-white/65">
             {item.text}
           </p>
-          <CrmScreen capture={crmCaptures[item.id]} />
+          <CrmScreen
+            capture={crmCaptures[item.id]}
+            onExpand={() => setPlaying(false)}
+          />
         </TabsContent>
       ))}
     </Tabs>
   );
 }
 
-export default function CrmInsightsAndResults() {
+export default function CrmInsightsAndResults({ afterInsights }: { afterInsights: ReactNode }) {
   return (
     <>
       <section id="insights-crm" className="crm-section">
@@ -85,6 +125,7 @@ export default function CrmInsightsAndResults() {
           </p>
         </div>
       </section>
+      {afterInsights}
       <section
         id="historico-disparos"
         className="crm-section border-y border-white/[0.08] bg-[#101e16]"
@@ -105,7 +146,7 @@ export default function CrmInsightsAndResults() {
               da campanha ao acompanhamento comercial.
             </p>
           </div>
-          <CaptureTabs items={tracking} label="Explorar rastreamento de campanhas" />
+          <CampaignTrackingTabs />
           <div className="mt-7 grid gap-5 sm:grid-cols-3">
             {[
               ["Disparo registrado", "Template, data, volume e status para consultar cada envio."],

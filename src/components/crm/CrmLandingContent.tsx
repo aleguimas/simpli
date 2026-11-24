@@ -27,6 +27,7 @@ import CrmCampaignTour from "./CrmCampaignTour";
 import CrmFeatureCatalog from "./CrmFeatureCatalog";
 import CrmInsightsAndResults from "./CrmInsightsAndResults";
 import { bookingUrl, handleBookingClick } from "./booking";
+import CrmMobileSection from "./CrmMobileSection";
 import "./crm-landing.css";
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5581975062426&text=Quero%20conhecer%20mais%20do%20Simpl%C3%AD%20CRM";
@@ -273,6 +274,7 @@ export default function CrmLandingContent({
               { href: "#insights-crm", label: "Insights" },
               { href: "#historico-disparos", label: "Rastreamento" },
               { href: "#eventos-crm", label: "Eventos" },
+              { href: "#crm-mobile", label: "App mobile" },
               { href: "#recursos", label: "Todos os recursos" },
               { href: "#perfis-crm", label: "Para sua empresa" },
             ].map((item) => (
@@ -460,7 +462,14 @@ export default function CrmLandingContent({
           </p>
         </div>
       </section>
-      <CrmInsightsAndResults />
+      <CrmInsightsAndResults
+        afterInsights={
+          <div className="px-6 pb-12 text-center md:px-10 md:pb-16">
+            <ContactCTA location="crm_after_insights">Quero começar agora</ContactCTA>
+          </div>
+        }
+      />
+      <CrmMobileSection />
       <CrmFeatureCatalog />
       <section id="perfis-crm" className="crm-section">
         <div className="mx-auto max-w-6xl">

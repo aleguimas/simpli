@@ -36,34 +36,25 @@ export function CrmScreen({
           {capture.title}
         </span>
       </div>
-      <div className="relative overflow-hidden bg-[#f8faf9]">
-        <picture>
-          <source
-            media="(max-width: 639px)"
-            srcSet={capture.src.replace(/\.jpg$/, "-detail.jpg")}
-          />
-          <img
-            key={capture.src}
-            src={capture.src}
-            alt={capture.alt}
-            width={1280}
-            height={800}
-            loading={priority ? "eager" : "lazy"}
-            className="crm-capture crm-frame-enter block aspect-[4/3] w-full object-cover sm:aspect-[8/5]"
-            style={{ objectPosition: capture.position || "center" }}
-          />
-        </picture>
+      <div className="relative overflow-hidden sm:bg-[#f8faf9]">
+        <img
+          key={capture.src}
+          src={capture.src}
+          alt={capture.alt}
+          width={1280}
+          height={800}
+          loading={priority ? "eager" : "lazy"}
+          className="crm-frame-enter block h-auto w-full object-contain sm:aspect-[8/5] sm:object-cover"
+          style={{ objectPosition: capture.position || "center" }}
+        />
         {children}
-        <Dialog
-          onOpenChange={(open) => {
-            if (open) onExpand?.();
-          }}
-        >
+        <Dialog>
           <DialogTrigger asChild>
             <button
               type="button"
               aria-label={`Ampliar ${capture.title}`}
-              className="absolute bottom-3 right-3 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/20 bg-[#0b1711]/95 px-4 text-[10px] font-medium text-white shadow-lg transition-colors hover:bg-[#183c27]"
+              onClick={onExpand}
+              className="my-2 ml-auto mr-3 flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/20 bg-[#0b1711]/95 px-4 text-xs font-medium text-white shadow-lg transition-colors hover:bg-[#183c27] sm:absolute sm:bottom-3 sm:right-3 sm:m-0 sm:text-[10px]"
             >
               <Maximize2 size={13} aria-hidden="true" />
               Ampliar tela
