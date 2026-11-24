@@ -33,7 +33,7 @@ const ORIGENS = [
   "Outros",
 ] as const;
 
-/** (81) 99194-2628 — formata enquanto digita, guarda só os dígitos. */
+/** (81) 97506-2426 — formata enquanto digita, guarda só os dígitos. */
 const formatWhatsapp = (raw: string) => {
   const digits = raw.replace(/\D/g, "").slice(0, 11);
   if (digits.length <= 2) return digits;
@@ -65,7 +65,7 @@ const PreLaunchDialog = ({ children }: { children: ReactNode }) => {
       return;
     }
     if (digits.length < 10) {
-      setErro("Digite um WhatsApp com DDD, como (81) 99194-2628.");
+      setErro("Digite um WhatsApp com DDD, como (81) 97506-2426.");
       return;
     }
     if (!origem) {
@@ -155,7 +155,7 @@ const PreLaunchDialog = ({ children }: { children: ReactNode }) => {
               autoComplete="tel"
               value={whatsapp}
               onChange={(e) => setWhatsapp(formatWhatsapp(e.target.value))}
-              placeholder="(81) 99194-2628"
+              placeholder="(81) 97506-2426"
               className={`mt-2 ${fieldClass}`}
             />
           </div>

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  CalendarCheck,
   Check,
   CheckCircle2,
   Kanban,
@@ -25,9 +26,10 @@ import CrmKanbanTour from "./CrmKanbanTour";
 import CrmCampaignTour from "./CrmCampaignTour";
 import CrmFeatureCatalog from "./CrmFeatureCatalog";
 import CrmInsightsAndResults from "./CrmInsightsAndResults";
+import { bookingUrl, handleBookingClick } from "./booking";
 import "./crm-landing.css";
 
-const WHATSAPP_URL = "https://wa.link/cpk8xf";
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5581975062426&text=Quero%20conhecer%20mais%20do%20Simpl%C3%AD%20CRM";
 type Pillar = {
   icon: LucideIcon;
   title: string;
@@ -76,6 +78,73 @@ function ContactCTA({
     </Button>
   );
 }
+function BookingCTA({
+  children,
+  location,
+  className = "",
+}: {
+  children: React.ReactNode;
+  location: string;
+  className?: string;
+}) {
+  return (
+    <Button
+      asChild
+      className={`crm-primary min-h-12 rounded-full px-6 text-sm font-semibold ${className}`}
+    >
+      <a
+        href={bookingUrl(location)}
+        target="_blank"
+        rel="noreferrer"
+        onClick={(event) => handleBookingClick(event, location)}
+      >
+        <CalendarCheck size={16} className="mr-2" aria-hidden="true" />
+        {children}
+        <ArrowRight size={16} className="ml-3" aria-hidden="true" />
+      </a>
+    </Button>
+  );
+}
+
+/** Barra fixa no celular, aparece depois que o visitante passa do topo. */
+function MobileBookingBar() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 700);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0c1710]/95 px-4 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-3 backdrop-blur transition-transform duration-300 md:hidden ${visible ? "translate-y-0" : "translate-y-full"}`}
+      aria-hidden={!visible}
+    >
+      <div className="flex gap-2">
+        <BookingCTA location="crm_barra_mobile" className="flex-1 px-4">
+          Agendar demonstração grátis
+        </BookingCTA>
+        <Button
+          asChild
+          variant="outline"
+          className="min-h-12 rounded-full border-white/15 bg-white/[0.03] px-4 text-white hover:bg-white/10 hover:text-white"
+        >
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Falar no WhatsApp"
+            tabIndex={visible ? 0 : -1}
+            onClick={() => trackWhatsAppClick("crm_barra_mobile")}
+          >
+            <MessageSquareText size={18} aria-hidden="true" />
+          </a>
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 const previewTabs = [
   { id: "kanban", label: "Funil de vendas", Icon: Kanban },
   { id: "chat", label: "Atendimento", Icon: MessageSquareText },
@@ -118,21 +187,24 @@ export default function CrmLandingContent({
               ao trabalho comercial.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <ContactCTA location="crm_hero">Quero saber mais</ContactCTA>
-              <Button
-                asChild
-                variant="outline"
-                className="min-h-12 rounded-full border-white/15 bg-white/[0.03] px-6 text-sm text-white hover:bg-white/10 hover:text-white"
-              >
-                <a href="#simplichat">
-                  Conheça o CRM por dentro
-                  <ArrowDown size={15} className="ml-3" aria-hidden="true" />
-                </a>
-              </Button>
+              <BookingCTA location="crm_hero">
+                Agende sua demonstração gratuita
+              </BookingCTA>
+              <ContactCTA location="crm_hero" secondary>
+                Falar no WhatsApp
+              </ContactCTA>
             </div>
             <p className="mt-4 text-sm text-white/60">
-              Planos a partir de R$ 798/mês
+              Veja o CRM funcionando com o seu processo de vendas · sem
+              compromisso · planos a partir de R$ 798/mês
             </p>
+            <a
+              href="#simplichat"
+              className="mt-3 inline-flex items-center gap-2 text-xs text-white/60 transition-colors hover:text-[#86efac]"
+            >
+              Conheça o CRM por dentro
+              <ArrowDown size={13} aria-hidden="true" />
+            </a>
             <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-3 text-[11px] text-white/60">
               {[
                 "API oficial da Meta",
@@ -214,13 +286,14 @@ export default function CrmLandingContent({
             ))}
           </div>
           <a
-            href={WHATSAPP_URL}
+            href={bookingUrl("crm_menu_secoes")}
             target="_blank"
             rel="noreferrer"
-            className="hidden min-h-11 shrink-0 items-center gap-2 text-xs text-[#86efac] md:inline-flex"
+            onClick={(event) => handleBookingClick(event, "crm_menu_secoes")}
+            className="hidden min-h-11 shrink-0 items-center gap-2 text-xs font-semibold text-[#86efac] md:inline-flex"
           >
-            Fale com a Simplí
-            <ArrowUpRight size={14} aria-hidden="true" />
+            <CalendarCheck size={14} aria-hidden="true" />
+            Agendar demonstração
           </a>
         </div>
       </nav>
@@ -504,18 +577,24 @@ export default function CrmLandingContent({
               <br className="hidden md:block" /> e gerenciar em um lugar só?
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/65">
-              Converse com nosso time sobre os canais que você usa, seu processo
-              de vendas e o que precisa funcionar melhor.
+              Escolha um horário e veja, ao vivo, como o Simplí CRM organiza os
+              seus canais, o seu funil e as suas campanhas.
             </p>
-            <div className="mt-8">
-              <ContactCTA location="crm_footer">Quero começar agora</ContactCTA>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <BookingCTA location="crm_footer">
+                Agendar minha demonstração
+              </BookingCTA>
+              <ContactCTA location="crm_footer" secondary>
+                Prefiro falar no WhatsApp
+              </ContactCTA>
             </div>
             <p className="mt-4 text-[11px] text-white/60">
-              Contato direto com a equipe Simplí pelo WhatsApp.
+              Gratuito e sem compromisso. Você escolhe o dia e o horário.
             </p>
           </div>
         </div>
       </section>
+      <MobileBookingBar />
     </>
   );
 }

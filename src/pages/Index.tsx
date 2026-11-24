@@ -43,7 +43,7 @@ const Index = () => {
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+55-81-99194-2628",
+      telephone: "+55-81-97506-2426",
       contactType: "customer service",
       email: "contato@simpli.ia.br",
       areaServed: "BR",

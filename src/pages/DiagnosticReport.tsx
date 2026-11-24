@@ -506,7 +506,7 @@ const DiagnosticReport = () => {
             <div className="mt-5 flex justify-center">
               <Button asChild className="h-11 rounded-full bg-white px-5 text-[#0C140F] shadow-md hover:bg-white/90">
                 <a
-                  href="https://api.whatsapp.com/send?phone=5581991942628&text=Quero%20agendar%20minha%20call"
+                  href="https://api.whatsapp.com/send?phone=5581975062426&text=Quero%20agendar%20minha%20call"
                   target="_blank"
                   rel="noreferrer"
                 >

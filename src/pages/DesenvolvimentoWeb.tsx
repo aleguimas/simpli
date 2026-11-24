@@ -16,7 +16,7 @@ import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
 
-const WHATSAPP_URL = "https://wa.link/cpk8xf";
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5581975062426";
 
 const benefits = [
   {

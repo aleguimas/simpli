@@ -25,7 +25,7 @@ const socialLinks = [
 
 const contactInfo = [
   { label: "contato@simpli.ia.br", href: "mailto:contato@simpli.ia.br" },
-  { label: "+55 (81) 99194-2628", href: "tel:+5581991942628" },
+  { label: "+55 (81) 97506-2426", href: "tel:+5581975062426" },
   { label: "Recife, PE - Brasil" },
 ];
 

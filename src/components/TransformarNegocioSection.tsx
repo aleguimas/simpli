@@ -18,7 +18,7 @@ const TransformarNegocioSection = () => {
           alcançar o próximo nível na transformação digital.
         </p>
         <Button className="mt-8 h-12 rounded-xl border border-transparent bg-white px-6 text-base font-semibold text-black transition hover:border-white hover:bg-[#0C140F] hover:text-white" asChild>
-          <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+          <a href="https://api.whatsapp.com/send?phone=5581975062426" target="_blank" rel="noreferrer">
             Fale conosco
           </a>
         </Button>

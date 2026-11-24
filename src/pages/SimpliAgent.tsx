@@ -24,7 +24,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
 import { SEO } from "@/components/SEO";
 
-const WHATSAPP_URL = "https://wa.link/cpk8xf";
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5581975062426";
 
 const problems = [
   {
@@ -187,7 +187,7 @@ const SimpliAgent = () => {
       name: "Simplí",
       url: "https://www.simpli.ia.br",
       logo: "https://www.simpli.ia.br/logonome-branca-cortada.webp",
-      telephone: "+55-81-99194-2628",
+      telephone: "+55-81-97506-2426",
       email: "contato@simpli.ia.br",
       address: {
         "@type": "PostalAddress",

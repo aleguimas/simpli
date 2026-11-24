@@ -99,7 +99,7 @@ const FuncionalidadeCard = ({
 
   return (
     <a
-      href="https://wa.link/cpk8xf"
+      href="https://api.whatsapp.com/send?phone=5581975062426"
       target="_blank"
       rel="noreferrer"
       aria-hidden={!revealed}

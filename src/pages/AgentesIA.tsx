@@ -18,7 +18,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Navbar from "@/components/Navbar";
 import { SEO } from "@/components/SEO";
 
-const WHATSAPP_URL = "https://wa.link/cpk8xf";
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5581975062426";
 const HERO_BG = "/fundo-agent.webp";
 
 const benefits = [

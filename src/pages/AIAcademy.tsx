@@ -258,7 +258,7 @@ const AIAcademy = () => {
       addressCountry: "BR",
     },
     email: "contato@simpli.ia.br",
-    telephone: "+55-81-99194-2628",
+    telephone: "+55-81-97506-2426",
     employee: academyInstructors.map((person) => ({
       "@type": "Person",
       name: person.name,

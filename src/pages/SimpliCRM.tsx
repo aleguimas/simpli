@@ -100,7 +100,7 @@ const SimpliCRM = () => {
       name: "Simplí",
       url: "https://www.simpli.ia.br",
       logo: "https://www.simpli.ia.br/logonome-branca-cortada.webp",
-      telephone: "+55-81-99194-2628",
+      telephone: "+55-81-97506-2426",
       email: "contato@simpli.ia.br",
       address: {
         "@type": "PostalAddress",

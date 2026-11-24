@@ -222,7 +222,7 @@ const Navbar = () => {
 
         <div className="hidden items-center md:flex">
           <Button className="bg-white text-black transition-colors hover:border hover:border-white/70 hover:bg-transparent hover:text-white" asChild>
-            <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+            <a href="https://api.whatsapp.com/send?phone=5581975062426" target="_blank" rel="noreferrer">
               Fale conosco
             </a>
           </Button>
@@ -329,7 +329,7 @@ const Navbar = () => {
                   asChild
                 >
                   <a
-                    href="https://wa.link/cpk8xf"
+                    href="https://api.whatsapp.com/send?phone=5581975062426"
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => setMenuOpen(false)}

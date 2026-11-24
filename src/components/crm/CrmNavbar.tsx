@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Menu } from "lucide-react";
+import { CalendarCheck, ChevronDown, Menu } from "lucide-react";
+import { bookingUrl, handleBookingClick } from "./booking";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -30,7 +31,7 @@ const solutions = [
   { label: "Simplí Estoque", href: "/solucoes/simpli-estoque" },
   { label: "Agentic Office", href: "/agenticoffice", external: true },
 ];
-const contact = "https://wa.link/cpk8xf";
+const contact = "https://api.whatsapp.com/send?phone=5581975062426&text=Quero%20conhecer%20mais%20do%20Simpl%C3%AD%20CRM";
 
 /** Navegação própria da landing do CRM; a navegação da home permanece intacta. */
 export default function CrmNavbar() {
@@ -103,8 +104,14 @@ export default function CrmNavbar() {
             asChild
             className="rounded-full bg-white px-5 text-xs font-semibold text-[#0c1710] hover:bg-[#d9fbe5]"
           >
-            <a href={contact} target="_blank" rel="noreferrer">
-              Fale conosco
+            <a
+              href={bookingUrl("crm_navbar")}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(event) => handleBookingClick(event, "crm_navbar")}
+            >
+              <CalendarCheck size={14} className="mr-2" aria-hidden="true" />
+              Agendar demonstração
             </a>
           </Button>
         </div>
@@ -177,12 +184,30 @@ export default function CrmNavbar() {
                   className="mt-5 min-h-12 rounded-full bg-[#86efac] text-[#0c1710] hover:bg-[#b2f7cd]"
                 >
                   <a
+                    href={bookingUrl("crm_menu_mobile")}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(event) => {
+                      handleBookingClick(event, "crm_menu_mobile");
+                      setOpen(false);
+                    }}
+                  >
+                    <CalendarCheck size={16} className="mr-2" aria-hidden="true" />
+                    Agendar demonstração grátis
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="mt-3 min-h-12 rounded-full border-white/15 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                >
+                  <a
                     href={contact}
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => setOpen(false)}
                   >
-                    Fale conosco
+                    Falar no WhatsApp
                   </a>
                 </Button>
               </nav>

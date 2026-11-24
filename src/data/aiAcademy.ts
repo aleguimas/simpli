@@ -17,7 +17,7 @@ import {
  */
 
 /** WhatsApp comercial da Academy: consultoria 1v1, in-company e mentoria. */
-export const ACADEMY_WHATSAPP = "https://wa.link/jwsthm";
+export const ACADEMY_WHATSAPP = "https://api.whatsapp.com/send?phone=5581975062426";
 
 /**
  * Grupo de pré-lançamento da primeira turma do Treinamento Claude.

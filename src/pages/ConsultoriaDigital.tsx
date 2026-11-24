@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 
-const WHATSAPP_URL = "https://wa.link/cpk8xf";
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5581975062426";
 const HERO_BG = "/ai-roadmap-system.png";
 
 const aiDeliverables = [

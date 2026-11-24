@@ -117,7 +117,7 @@ const ServicePage = () => {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button className="h-11 rounded-xl bg-white px-5 text-black hover:bg-white/90" asChild>
-                <a href="https://wa.link/cpk8xf" target="_blank" rel="noreferrer">
+                <a href="https://api.whatsapp.com/send?phone=5581975062426" target="_blank" rel="noreferrer">
                   Fale conosco
                 </a>
               </Button>
