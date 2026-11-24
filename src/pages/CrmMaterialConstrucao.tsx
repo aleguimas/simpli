@@ -32,6 +32,7 @@ import {
 } from "@/components/crm/CrmLandingContent";
 import { cases } from "@/data/cases";
 import CrmObraMockup from "@/components/crm/CrmObraMockup";
+import CrmOrcamentosMockup from "@/components/crm/CrmOrcamentosMockup";
 import { bookingUrl, handleBookingClick } from "@/components/crm/booking";
 import "@/components/crm/crm-landing.css";
 
@@ -124,12 +125,12 @@ const quoteFlow = [
     text: "A integração traz o orçamento para o CRM, ligado ao cliente e ao vendedor responsável.",
   },
   {
-    title: "Parou? Vira follow-up",
-    text: "Orçamento sem retorno gera follow-up automático para o vendedor, com a tarefa e o lembrete do dia.",
+    title: "Follow-up por estágios",
+    text: "Orçamento sem retorno avança do Follow-up 1 ao 4, e o vendedor retoma o cliente pelo WhatsApp oficial da loja.",
   },
   {
-    title: "Retorno pelo WhatsApp",
-    text: "O vendedor fala com o cliente pelo WhatsApp oficial da loja, com histórico de compras e da conversa na mesma tela.",
+    title: "Venda ou perda, com números",
+    text: "Cada orçamento fecha como venda realizada ou perdida. Total vendido, perdido e ticket médio por loja, equipe e vendedor.",
   },
 ];
 
@@ -192,7 +193,7 @@ const faqs = [
   },
   {
     name: "Os orçamentos do ERP entram no CRM?",
-    text: "Sim. A integração com o ERP traz os orçamentos para o CRM, ligados ao cliente e ao vendedor. Orçamento parado gera follow-up automático para o vendedor, que retorna ao cliente pelo WhatsApp oficial da loja.",
+    text: "Sim. A integração com o ERP traz os orçamentos para o CRM, ligados ao cliente, à loja e ao vendedor. Eles seguem num Kanban do envio ao fechamento, com estágios de Follow-up 1 a 4, e terminam como venda realizada ou orçamento perdido, com totais e ticket médio.",
   },
   {
     name: "O vendedor de loja consegue usar pelo celular?",
@@ -431,8 +432,9 @@ const CrmMaterialConstrucao = () => {
               <p className="text-sm leading-relaxed text-white/65">
                 Na loja de material de construção, o cliente pede orçamento,
                 compara preço e some. O Simplí CRM acompanha cada orçamento
-                lançado no ERP e devolve para o vendedor responsável o que está
-                parado, na hora de fazer o retorno.
+                lançado no ERP do envio até o fechamento, em estágios de
+                follow-up, e mostra quanto a loja vendeu e quanto deixou na
+                mesa.
               </p>
             </div>
             <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -454,11 +456,19 @@ const CrmMaterialConstrucao = () => {
                 </li>
               ))}
             </ol>
+            <div className="mt-10">
+              <CrmOrcamentosMockup />
+            </div>
+            <p className="mt-4 text-[11px] text-white/50">
+              Tela real de Orçamentos do Simplí CRM, reproduzida com dados
+              fictícios.
+            </p>
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-xs text-white/65">
               {[
-                "Orçamentos em aberto por vendedor",
-                "Follow-up automático do orçamento parado",
-                "Histórico de compras na tela do atendimento",
+                "Kanban do envio ao fechamento",
+                "Follow-up 1 a 4 para cada orçamento",
+                "Vendido x perdido por loja, equipe e vendedor",
+                "Loja física e digital",
               ].map((text) => (
                 <li key={text} className="flex items-center gap-2">
                   <Check size={13} className="text-[#86efac]" aria-hidden="true" />
