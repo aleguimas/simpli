@@ -51,14 +51,16 @@ type Step = {
   highlight?: boolean;
 };
 type FAQ = { name: string; acceptedAnswer: { text: string } };
-function ContactCTA({
+export function ContactCTA({
   children,
   location,
   secondary = false,
+  href = WHATSAPP_URL,
 }: {
   children: React.ReactNode;
   location: string;
   secondary?: boolean;
+  href?: string;
 }) {
   return (
     <Button
@@ -66,7 +68,7 @@ function ContactCTA({
       className={`min-h-12 rounded-full px-6 text-sm font-semibold ${secondary ? "border border-white/15 bg-white/[0.03] text-white hover:bg-white/10" : "crm-primary"}`}
     >
       <a
-        href={WHATSAPP_URL}
+        href={href}
         target="_blank"
         rel="noreferrer"
         onClick={() => {
@@ -79,7 +81,7 @@ function ContactCTA({
     </Button>
   );
 }
-function BookingCTA({
+export function BookingCTA({
   children,
   location,
   className = "",
@@ -108,7 +110,13 @@ function BookingCTA({
 }
 
 /** Barra fixa no celular, aparece depois que o visitante passa do topo. */
-function MobileBookingBar() {
+export function MobileBookingBar({
+  location = "crm_barra_mobile",
+  whatsappUrl = WHATSAPP_URL,
+}: {
+  location?: string;
+  whatsappUrl?: string;
+}) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 700);
@@ -122,7 +130,7 @@ function MobileBookingBar() {
       aria-hidden={!visible}
     >
       <div className="flex gap-2">
-        <BookingCTA location="crm_barra_mobile" className="flex-1 px-4">
+        <BookingCTA location={location} className="flex-1 px-4">
           Agendar demonstração grátis
         </BookingCTA>
         <Button
@@ -131,12 +139,12 @@ function MobileBookingBar() {
           className="min-h-12 rounded-full border-white/15 bg-white/[0.03] px-4 text-white hover:bg-white/10 hover:text-white"
         >
           <a
-            href={WHATSAPP_URL}
+            href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
             aria-label="Falar no WhatsApp"
             tabIndex={visible ? 0 : -1}
-            onClick={() => trackWhatsAppClick("crm_barra_mobile")}
+            onClick={() => trackWhatsAppClick(location)}
           >
             <MessageSquareText size={18} aria-hidden="true" />
           </a>

@@ -14,6 +14,7 @@ import TrafegoPago from "./pages/TrafegoPago";
 import ConsultoriaDigital from "./pages/ConsultoriaDigital";
 import SimpliAgent from "./pages/SimpliAgent";
 import SimpliCRM from "./pages/SimpliCRM";
+import CrmMaterialConstrucao from "./pages/CrmMaterialConstrucao";
 import SimpliEstoque from "./pages/SimpliEstoque";
 import Conteudo from "./pages/Conteudo";
 import ConteudoPost from "./pages/ConteudoPost";
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/servicos/:slug" element={<ServicePage />} />
           <Route path="/solucoes/simpli-agent" element={<SimpliAgent />} />
           <Route path="/solucoes/simpli-crm" element={<SimpliCRM />} />
+          <Route path="/solucoes/simpli-crm/material-de-construcao" element={<CrmMaterialConstrucao />} />
           <Route path="/solucoes/simpli-estoque" element={<SimpliEstoque />} />
           <Route path="/conteudo" element={<Conteudo />} />
           <Route path="/conteudo/:slug" element={<ConteudoPost />} />
