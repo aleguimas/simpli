@@ -1,11 +1,15 @@
 import {
   ArrowDown,
   ArrowRight,
+  BellRing,
   CalendarCheck,
   Check,
-  FileText,
+  ClipboardList,
   HardHat,
   History,
+  CalendarRange,
+  Smartphone,
+  Users,
   Megaphone,
   MessageSquareText,
   Store,
@@ -72,10 +76,10 @@ const obraPhases = [
 
 const resources = [
   {
-    icon: FileText,
-    title: "Orçamentos com follow-up",
+    icon: CalendarRange,
+    title: "Eventos de Vendas",
     description:
-      "Orçamento parado gera follow-up automático para o vendedor. Aquele cliente que pediu preço e sumiu volta para a fila.",
+      "Ações por período e por loja, metas de faturamento e de clientes, campanhas vinculadas e vendas integradas ao ERP.",
   },
   {
     icon: History,
@@ -106,6 +110,49 @@ const resources = [
     title: "Atendimento com IA",
     description:
       "WhatsApp e Instagram na mesma central, com agente de IA treinado com os dados da loja e passagem para o vendedor.",
+  },
+];
+
+/* Caminho do orçamento: do ERP ao follow-up com o vendedor. */
+const quoteFlow = [
+  {
+    title: "Orçamento lançado no ERP",
+    text: "O vendedor faz o orçamento no sistema que a loja já usa. Nada muda no balcão.",
+  },
+  {
+    title: "Chega ao CRM com o cliente",
+    text: "A integração traz o orçamento para o CRM, ligado ao cliente e ao vendedor responsável.",
+  },
+  {
+    title: "Parou? Vira follow-up",
+    text: "Orçamento sem retorno gera follow-up automático para o vendedor, com a tarefa e o lembrete do dia.",
+  },
+  {
+    title: "Retorno pelo WhatsApp",
+    text: "O vendedor fala com o cliente pelo WhatsApp oficial da loja, com histórico de compras e da conversa na mesma tela.",
+  },
+];
+
+const appFeatures = [
+  {
+    Icon: Users,
+    title: "A carteira dele, no bolso",
+    text: "Cada vendedor vê os seus clientes, o histórico de compras e as conversas, com as permissões do seu perfil.",
+  },
+  {
+    Icon: ClipboardList,
+    title: "Orçamentos em aberto e follow-ups do dia",
+    text: "Veja os orçamentos que pedem retorno e os follow-ups do dia. Do balcão ou da rua, resolve em poucos toques.",
+  },
+  {
+    Icon: BellRing,
+    title: "Avisos no celular",
+    text: "Notificações de novas mensagens, lembretes e follow-ups para nenhum cliente ficar sem resposta.",
+  },
+  {
+    Icon: Smartphone,
+    title: "Instala em um minuto",
+    text: "Instalado pelo navegador no Android ou no iPhone, direto na tela inicial. Sem loja de aplicativos.",
   },
 ];
 
@@ -141,7 +188,15 @@ const faqs = [
   },
   {
     name: "Funciona para home center e revenda de material de construção?",
-    text: "Sim. O módulo foi pensado para o varejo de material de construção, de lojas de bairro a home centers com várias filiais, com metas por filial e ranking do time comercial.",
+    text: "Sim. O módulo foi pensado para o varejo de material de construção, de lojas de bairro a home centers com várias lojas, com eventos de vendas e metas por loja.",
+  },
+  {
+    name: "Os orçamentos do ERP entram no CRM?",
+    text: "Sim. A integração com o ERP traz os orçamentos para o CRM, ligados ao cliente e ao vendedor. Orçamento parado gera follow-up automático para o vendedor, que retorna ao cliente pelo WhatsApp oficial da loja.",
+  },
+  {
+    name: "O vendedor de loja consegue usar pelo celular?",
+    text: "Sim. O Simplí CRM é instalado no celular pelo navegador, no Android ou no iPhone, e o vendedor acessa os seus clientes, conversas, orçamentos em aberto e follow-ups, com notificações.",
   },
   {
     name: "Como o WhatsApp da loja é conectado?",
@@ -358,6 +413,111 @@ const CrmMaterialConstrucao = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Orçamentos do ERP com follow-up */}
+        <section id="orcamentos" className="crm-section">
+          <div className="mx-auto max-w-6xl">
+            <div className="grid gap-8 md:grid-cols-[1.15fr_1fr] md:items-end">
+              <div>
+                <p className="crm-eyebrow">// ORÇAMENTOS DO ERP COM FOLLOW-UP</p>
+                <h2 className="crm-heading mt-4">
+                  Orçamento aberto no ERP
+                  <br />
+                  <span className="text-[#86efac]">não fica mais esquecido.</span>
+                </h2>
+              </div>
+              <p className="text-sm leading-relaxed text-white/65">
+                Na loja de material de construção, o cliente pede orçamento,
+                compara preço e some. O Simplí CRM acompanha cada orçamento
+                lançado no ERP e devolve para o vendedor responsável o que está
+                parado, na hora de fazer o retorno.
+              </p>
+            </div>
+            <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {quoteFlow.map(({ title, text }, i) => (
+                <li
+                  key={title}
+                  className="relative rounded-2xl border border-white/10 bg-white/[0.025] p-5"
+                >
+                  <span className="font-mono text-xl text-[#86efac]">0{i + 1}</span>
+                  <h3 className="mt-4 text-base font-medium">{title}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-white/60">{text}</p>
+                  {i < quoteFlow.length - 1 && (
+                    <ArrowRight
+                      size={16}
+                      className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-[#86efac]/60 lg:block"
+                      aria-hidden="true"
+                    />
+                  )}
+                </li>
+              ))}
+            </ol>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-xs text-white/65">
+              {[
+                "Orçamentos em aberto por vendedor",
+                "Follow-up automático do orçamento parado",
+                "Histórico de compras na tela do atendimento",
+              ].map((text) => (
+                <li key={text} className="flex items-center gap-2">
+                  <Check size={13} className="text-[#86efac]" aria-hidden="true" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* App do vendedor */}
+        <section
+          id="app-vendedor"
+          className="crm-section border-y border-white/[0.08] bg-[#101e16]"
+        >
+          <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1.05fr_0.95fr] md:gap-12">
+            <div className="max-w-xl">
+              <p className="crm-eyebrow">// APP DO VENDEDOR DE LOJA</p>
+              <h2 className="crm-heading mt-4">
+                Clientes e orçamentos
+                <br />
+                <span className="text-[#86efac]">na palma da mão.</span>
+              </h2>
+              <p className="mt-5 text-sm leading-relaxed text-white/65">
+                O vendedor trabalha a própria carteira pelo celular, de forma
+                simples: vê quem precisa de retorno, abre o orçamento, chama o
+                cliente no WhatsApp e segue para o próximo.
+              </p>
+              <ul className="mt-8 space-y-5">
+                {appFeatures.map(({ Icon, title, text }) => (
+                  <li key={title} className="flex gap-4 border-t border-white/10 pt-5">
+                    <Icon className="mt-0.5 shrink-0 text-[#86efac]" size={20} aria-hidden="true" />
+                    <div>
+                      <h3 className="text-sm font-semibold">{title}</h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-white/65">{text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <figure className="relative isolate mx-auto flex w-full max-w-sm flex-col items-center">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(134,239,172,0.17),transparent_70%)]"
+              />
+              <div className="w-full max-w-[290px] rounded-[2rem] border border-white/20 bg-[#080f0b] p-2 shadow-2xl shadow-black/35">
+                <img
+                  src="/crm/dashboard-mobile.png"
+                  alt="Simplí CRM no celular, com indicadores de atendimento e barra de navegação na parte inferior"
+                  width={1179}
+                  height={2577}
+                  loading="lazy"
+                  className="block h-auto w-full rounded-[1.45rem]"
+                />
+              </div>
+              <figcaption className="mt-3 text-center text-xs text-white/60">
+                Simplí CRM no celular · dados de demonstração
+              </figcaption>
+            </figure>
           </div>
         </section>
 
